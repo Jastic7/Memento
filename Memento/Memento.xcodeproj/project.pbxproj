@@ -9,12 +9,13 @@
 /* Begin PBXBuildFile section */
 		55D34EDA1EBA906500A2EE38 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D34ED91EBA906500A2EE38 /* main.m */; };
 		55D34EDD1EBA906500A2EE38 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D34EDC1EBA906500A2EE38 /* AppDelegate.m */; };
-		55D34EE01EBA906500A2EE38 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D34EDF1EBA906500A2EE38 /* ViewController.m */; };
+		55D34EE01EBA906500A2EE38 /* SetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D34EDF1EBA906500A2EE38 /* SetsViewController.m */; };
 		55D34EE31EBA906500A2EE38 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55D34EE11EBA906500A2EE38 /* Main.storyboard */; };
 		55D34EE51EBA906500A2EE38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55D34EE41EBA906500A2EE38 /* Assets.xcassets */; };
 		55D34EE81EBA906500A2EE38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55D34EE61EBA906500A2EE38 /* LaunchScreen.storyboard */; };
 		55D34EF11EBAA0BF00A2EE38 /* Set.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D34EF01EBAA0BF00A2EE38 /* Set.m */; };
 		55D34EF41EBAA28500A2EE38 /* SetTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D34EF31EBAA28500A2EE38 /* SetTableViewCell.m */; };
+		55D34EF71EBAB04E00A2EE38 /* CreateSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D34EF61EBAB04E00A2EE38 /* CreateSetViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,8 +23,8 @@
 		55D34ED91EBA906500A2EE38 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		55D34EDB1EBA906500A2EE38 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		55D34EDC1EBA906500A2EE38 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		55D34EDE1EBA906500A2EE38 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		55D34EDF1EBA906500A2EE38 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		55D34EDE1EBA906500A2EE38 /* SetsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetsViewController.h; sourceTree = "<group>"; };
+		55D34EDF1EBA906500A2EE38 /* SetsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetsViewController.m; sourceTree = "<group>"; };
 		55D34EE21EBA906500A2EE38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		55D34EE41EBA906500A2EE38 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		55D34EE71EBA906500A2EE38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -32,6 +33,9 @@
 		55D34EF01EBAA0BF00A2EE38 /* Set.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Set.m; sourceTree = "<group>"; };
 		55D34EF21EBAA28500A2EE38 /* SetTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetTableViewCell.h; sourceTree = "<group>"; };
 		55D34EF31EBAA28500A2EE38 /* SetTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetTableViewCell.m; sourceTree = "<group>"; };
+		55D34EF51EBAB04E00A2EE38 /* CreateSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateSetViewController.h; sourceTree = "<group>"; };
+		55D34EF61EBAB04E00A2EE38 /* CreateSetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateSetViewController.m; sourceTree = "<group>"; };
+		55D34EF91EBAB08600A2EE38 /* CreationalNewSetDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreationalNewSetDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,8 +70,7 @@
 			children = (
 				55D34EDB1EBA906500A2EE38 /* AppDelegate.h */,
 				55D34EDC1EBA906500A2EE38 /* AppDelegate.m */,
-				55D34EDE1EBA906500A2EE38 /* ViewController.h */,
-				55D34EDF1EBA906500A2EE38 /* ViewController.m */,
+				55D34EF81EBAB05500A2EE38 /* Controllers */,
 				55D34EE11EBA906500A2EE38 /* Main.storyboard */,
 				55D34EE41EBA906500A2EE38 /* Assets.xcassets */,
 				55D34EE61EBA906500A2EE38 /* LaunchScreen.storyboard */,
@@ -77,6 +80,7 @@
 				55D34EF01EBAA0BF00A2EE38 /* Set.m */,
 				55D34EF21EBAA28500A2EE38 /* SetTableViewCell.h */,
 				55D34EF31EBAA28500A2EE38 /* SetTableViewCell.m */,
+				55D34EF91EBAB08600A2EE38 /* CreationalNewSetDelegate.h */,
 			);
 			path = Memento;
 			sourceTree = "<group>";
@@ -87,6 +91,17 @@
 				55D34ED91EBA906500A2EE38 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		55D34EF81EBAB05500A2EE38 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				55D34EDE1EBA906500A2EE38 /* SetsViewController.h */,
+				55D34EDF1EBA906500A2EE38 /* SetsViewController.m */,
+				55D34EF51EBAB04E00A2EE38 /* CreateSetViewController.h */,
+				55D34EF61EBAB04E00A2EE38 /* CreateSetViewController.m */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -162,10 +177,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				55D34EF11EBAA0BF00A2EE38 /* Set.m in Sources */,
-				55D34EE01EBA906500A2EE38 /* ViewController.m in Sources */,
+				55D34EE01EBA906500A2EE38 /* SetsViewController.m in Sources */,
 				55D34EDD1EBA906500A2EE38 /* AppDelegate.m in Sources */,
 				55D34EF41EBAA28500A2EE38 /* SetTableViewCell.m in Sources */,
 				55D34EDA1EBA906500A2EE38 /* main.m in Sources */,
+				55D34EF71EBAB04E00A2EE38 /* CreateSetViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

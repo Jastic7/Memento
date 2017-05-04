@@ -6,17 +6,18 @@
 //  Copyright © 2017 Andrey Morozov. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "SetsViewController.h"
+#import "CreateSetViewController.h"
 #import "SetTableViewCell.h"
 #import "Set.h"
-@interface ViewController () <UITableViewDataSource>
+@interface SetsViewController () <UITableViewDataSource, CreationalNewSetDelegate>
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray<Set *> *sets;
 
 @end
 
-@implementation ViewController
+@implementation SetsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -58,6 +59,7 @@
     [self.sets addObject:set];
 }
 
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.sets.count;
 }
@@ -68,6 +70,24 @@
     [cell configureWithTitle:set.title termsCount:set.count author:set.author];
     
     return cell;
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    NSString *identifier = segue.identifier;
+    if ([identifier isEqualToString:@"createNewSetSegue"]) {
+        CreateSetViewController *vc = segue.destinationViewController;
+        vc.delegate = self;
+    }
+}
+
+-(void)cancelCreationalNewSet {
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)saveNewSet:(Set *)set {
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    [self.sets addObject:set];
+    [self.tableView reloadData];
 }
 
 @end

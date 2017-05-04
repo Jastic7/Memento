@@ -9,10 +9,48 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Create Set View Controller-->
+        <scene sceneID="bde-s6-J7b">
+            <objects>
+                <viewController id="nIm-JK-2Ta" customClass="CreateSetViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ObH-Ed-6nE"/>
+                        <viewControllerLayoutGuide type="bottom" id="XkO-yD-yb9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FF8-kg-paL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qfI-aA-lz0">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="New set" id="8ty-Sr-lfK">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="hGL-r1-587">
+                                            <connections>
+                                                <action selector="cancelBarButtonTapped:" destination="nIm-JK-2Ta" id="02S-8y-1Pr"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="aOh-kl-cfc">
+                                            <connections>
+                                                <action selector="doneBarButtonTapped:" destination="nIm-JK-2Ta" id="wTt-5U-lTY"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zfy-Kz-YMP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="236" y="-640"/>
+        </scene>
+        <!--Sets-->
         <scene sceneID="5yc-pZ-H4S">
             <objects>
-                <viewController id="P4I-rb-GHM" customClass="ViewController" sceneMemberID="viewController">
+                <viewController id="P4I-rb-GHM" customClass="SetsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="G8W-aa-dY5"/>
                         <viewControllerLayoutGuide type="bottom" id="CxM-C5-JY4"/>
@@ -29,7 +67,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="64"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bm9-FL-pc0" id="lS2-Xj-Q9C">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="63"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unit 8. Prepositions without translate" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cyt-nt-dRd">
@@ -87,7 +125,13 @@
                             <constraint firstItem="dRh-9M-rL9" firstAttribute="top" secondItem="hCJ-sx-0dL" secondAttribute="top" id="XAL-ZH-Xml"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Cgh-Wh-nb7"/>
+                    <navigationItem key="navigationItem" title="Sets" id="Cgh-Wh-nb7">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="6VK-Uo-gWv">
+                            <connections>
+                                <segue destination="nIm-JK-2Ta" kind="presentation" identifier="createNewSetSegue" id="9hB-32-Vki"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="dRh-9M-rL9" id="kyc-sb-b1a"/>
                     </connections>
