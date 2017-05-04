@@ -10,6 +10,7 @@
 #import "CreateSetViewController.h"
 #import "SetTableViewCell.h"
 #import "Set.h"
+#import "ItemOfSet.h"
 @interface SetsViewController () <UITableViewDataSource, CreationalNewSetDelegate>
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
@@ -27,35 +28,27 @@
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     
     self.sets = [NSMutableArray array];
+    NSMutableArray<ItemOfSet *> *items = [NSMutableArray new];
     
-    Set *set = [Set new];
-    set.title = @"Unit 8. Prepositions without translate translate translate translate translate translate translate";
-    set.author = @"Jastic7";
-    set.count = 123;
+    Set *set = [Set setWithTitle:@"Unit 8. Prepositions without translate translate translate translate translate translate translate" author:@"Jastioc7" items:items];
     [self.sets addObject:set];
     
-    set = [Set new];
-    set.title = @"Unit 8. Prepositions without translate";
-    set.author = @"Jastic7";
-    set.count = 123;
+    NSString *title = @"Unit 8. Prepositions without translate";
+    NSString *author = @"Jastic7";
+    
+    set = [Set setWithTitle:title author:author items:items];
     [self.sets addObject:set];
     
-    set = [Set new];
-    set.title = @"Unit 8. Prepositions without translate";
-    set.author = @"Jastic7";
-    set.count = 123;
+    set = [Set setWithTitle:title author:author items:items];
     [self.sets addObject:set];
     
-    set = [Set new];
-    set.title = @"Unit 8. Prepositions without translate";
-    set.author = @"Jastic7";
-    set.count = 123;
+    set = [Set setWithTitle:title author:author items:items];
     [self.sets addObject:set];
     
-    set = [Set new];
-    set.title = @"Unit 8. Prepositions without translate";
-    set.author = @"Jastic7";
-    set.count = 123;
+    set = [Set setWithTitle:title author:author items:items];
+    [self.sets addObject:set];
+    
+    set = [Set setWithTitle:title author:author items:items];
     [self.sets addObject:set];
 }
 

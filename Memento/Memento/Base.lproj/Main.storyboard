@@ -21,9 +21,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qfI-aA-lz0">
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qfI-aA-lz0">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="New set" id="8ty-Sr-lfK">
                                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="hGL-r1-587">
@@ -39,13 +38,48 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter name of the new set" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YeB-J6-INl">
+                                <rect key="frame" x="16" y="76" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ofi-LU-A6U">
+                                <rect key="frame" x="16" y="114" width="343" height="30"/>
+                                <state key="normal" title="Add term"/>
+                                <connections>
+                                    <action selector="addNewTermTouchUpInside:" destination="nIm-JK-2Ta" eventType="touchUpInside" id="lBm-D9-0EH"/>
+                                </connections>
+                            </button>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="le9-Or-Mit">
+                                <rect key="frame" x="0.0" y="152" width="375" height="515"/>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="qfI-aA-lz0" firstAttribute="leading" secondItem="FF8-kg-paL" secondAttribute="leading" id="3qx-ba-NB2"/>
+                            <constraint firstAttribute="trailing" secondItem="qfI-aA-lz0" secondAttribute="trailing" id="4Cz-ON-HCB"/>
+                            <constraint firstItem="YeB-J6-INl" firstAttribute="leading" secondItem="FF8-kg-paL" secondAttribute="leading" constant="16" id="Cwy-zM-OnV"/>
+                            <constraint firstAttribute="trailing" secondItem="YeB-J6-INl" secondAttribute="trailing" constant="16" id="Dwn-aT-Y2T"/>
+                            <constraint firstItem="le9-Or-Mit" firstAttribute="leading" secondItem="qfI-aA-lz0" secondAttribute="leading" id="KMW-Zi-IWE"/>
+                            <constraint firstItem="le9-Or-Mit" firstAttribute="top" secondItem="Ofi-LU-A6U" secondAttribute="bottom" constant="8" symbolic="YES" id="Rx5-aQ-KSL"/>
+                            <constraint firstItem="Ofi-LU-A6U" firstAttribute="leading" secondItem="FF8-kg-paL" secondAttribute="leading" constant="16" id="TPb-y7-rjy"/>
+                            <constraint firstItem="le9-Or-Mit" firstAttribute="bottom" secondItem="XkO-yD-yb9" secondAttribute="top" id="XFF-G5-hql"/>
+                            <constraint firstItem="qfI-aA-lz0" firstAttribute="top" secondItem="ObH-Ed-6nE" secondAttribute="bottom" id="b9W-iD-Mo5"/>
+                            <constraint firstAttribute="trailing" secondItem="Ofi-LU-A6U" secondAttribute="trailing" constant="16" id="dL4-zp-4gJ"/>
+                            <constraint firstItem="Ofi-LU-A6U" firstAttribute="top" secondItem="YeB-J6-INl" secondAttribute="bottom" constant="8" id="qia-yF-4me"/>
+                            <constraint firstItem="le9-Or-Mit" firstAttribute="trailing" secondItem="qfI-aA-lz0" secondAttribute="trailing" id="seb-gH-qRc"/>
+                            <constraint firstItem="YeB-J6-INl" firstAttribute="top" secondItem="qfI-aA-lz0" secondAttribute="bottom" constant="12" id="tgF-Wl-ggI"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="scrollView" destination="le9-Or-Mit" id="VAV-aL-yBg"/>
+                        <outlet property="setTitleTextField" destination="YeB-J6-INl" id="mpA-fc-vdI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zfy-Kz-YMP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="236" y="-640"/>
+            <point key="canvasLocation" x="236" y="-640.02998500749629"/>
         </scene>
         <!--Sets-->
         <scene sceneID="5yc-pZ-H4S">
