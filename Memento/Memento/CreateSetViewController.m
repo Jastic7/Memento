@@ -5,14 +5,17 @@
 //  Created by Andrey Morozov on 04.05.17.
 //  Copyright © 2017 Andrey Morozov. All rights reserved.
 //
-
 #import "CreateSetViewController.h"
+#import "ItemOfSetTableViewCell.h"
 #import "CreationalNewSetDelegate.h"
 #import "Set.h"
-@interface CreateSetViewController () <UIScrollViewDelegate>
+
+static NSString * const kItemOfSetCellID = @"ItemOfSetTableViewCell";
+
+@interface CreateSetViewController () <UITableViewDataSource, UITextViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UITextField *setTitleTextField;
-@property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
 
 @property (nonatomic, strong) NSMutableArray<UITextField *> *termTextFields;
 @property (nonatomic, strong) NSMutableArray<UITextField *> *definitionTextFields;
@@ -25,9 +28,34 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.scrollView.delegate = self;
     
-    self.countOfTerms = 0;
+    self.tableView.dataSource = self;
+    self.tableView.estimatedRowHeight = 100;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    [self.tableView registerNib:[ItemOfSetTableViewCell nib] forCellReuseIdentifier:kItemOfSetCellID];
+    
+    
+    self.countOfTerms = 1;
+}
+
+#pragma mark - UITableViewDataSource
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.countOfTerms;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    ItemOfSetTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kItemOfSetCellID forIndexPath:indexPath];
+    cell.termTextView.delegate = self;
+    cell.definitionTextView.delegate = self;
+    return cell;
+}
+
+#pragma mark - UITextViewDelegate
+
+-(void)textViewDidChange:(UITextView *)textView {
+    [self.tableView beginUpdates];
+    [self.tableView endUpdates];
 }
 
 - (IBAction)cancelBarButtonTapped:(UIBarButtonItem *)sender {
@@ -44,26 +72,8 @@
 }
 
 - (IBAction)addNewTermTouchUpInside:(UIButton *)sender {
-    CGFloat width = 150;
-    CGFloat height = 30;
-    CGFloat horizontalOffset = 16;
-    CGFloat verticalOffset = 16;
-    
-    CGRect termRect = CGRectMake(horizontalOffset, (height + verticalOffset) * self.countOfTerms, width, height);
-    UITextField *term = [[UITextField alloc] initWithFrame:termRect];
-    term.placeholder = @"Some text";
-    
-    CGRect definitionRect = CGRectMake(horizontalOffset * 2 + width, termRect.origin.y, width, height);
-    UITextField *definition = [[UITextField alloc] initWithFrame:definitionRect];
-    definition.placeholder = @"Definition";
-    
-    CGFloat widthScreen = self.view.frame.size.width;
-    self.scrollView.contentSize = CGSizeMake(widthScreen, (height + verticalOffset) * self.countOfTerms + height * 2);
-    
-    [self.scrollView addSubview:term];
-    [self.scrollView addSubview:definition];
-    
     self.countOfTerms++;
+    [self.tableView reloadData];
 }
 
 
