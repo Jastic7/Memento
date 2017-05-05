@@ -12,7 +12,7 @@
         <!--Create Set View Controller-->
         <scene sceneID="bde-s6-J7b">
             <objects>
-                <viewController id="nIm-JK-2Ta" customClass="CreateSetViewController" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="nIm-JK-2Ta" customClass="CreateSetViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ObH-Ed-6nE"/>
                         <viewControllerLayoutGuide type="bottom" id="XkO-yD-yb9"/>
@@ -147,7 +147,7 @@
                                             <outlet property="authorLabel" destination="9b4-YH-eYa" id="slo-P9-urT"/>
                                             <outlet property="countTermsLabel" destination="Idk-2A-Vg3" id="J3f-G8-FjE"/>
                                             <outlet property="titleLabel" destination="cyt-nt-dRd" id="Kse-tT-LBz"/>
-                                            <segue destination="IiD-R2-WGs" kind="show" identifier="detailSetSegue" id="Pwx-GZ-YJj"/>
+                                            <segue destination="IiD-R2-WGs" kind="show" identifier="detailSetSegue" id="Puv-xF-1km"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
