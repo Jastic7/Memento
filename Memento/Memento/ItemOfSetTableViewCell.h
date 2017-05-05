@@ -10,9 +10,10 @@
 
 @interface ItemOfSetTableViewCell : UITableViewCell
 
-@property (weak, nonatomic, readonly) IBOutlet UITextView *termTextView;
-@property (weak, nonatomic, readonly) IBOutlet UITextView *definitionTextView;
+@property (nonatomic, weak) id<UITextViewDelegate> delegate;
 
 +(UINib *)nib;
+
+-(void)configureWithTerm:(NSString *)term definition:(NSString *)definition;
 
 @end

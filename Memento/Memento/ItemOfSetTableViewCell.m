@@ -18,6 +18,13 @@
 
 @implementation ItemOfSetTableViewCell
 
+-(void)setDelegate:(id<UITextViewDelegate>)delegate {
+    _delegate = delegate;
+    
+    self.termTextView.delegate = self.delegate;
+    self.definitionTextView.delegate = self.delegate;
+}
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
@@ -31,6 +38,11 @@
 
 +(UINib *)nib {
     return [UINib nibWithNibName:@"ItemOfSetTableViewCell" bundle:nil];
+}
+
+-(void)configureWithTerm:(NSString *)term definition:(NSString *)definition {
+    self.termTextView.text = term;
+    self.definitionTextView.text = definition;
 }
 
 @end

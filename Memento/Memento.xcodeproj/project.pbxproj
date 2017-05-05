@@ -10,6 +10,7 @@
 		55A8F3DA1EBBDD68000D5DB0 /* ItemOfSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A8F3D91EBBDD68000D5DB0 /* ItemOfSet.m */; };
 		55A8F3DF1EBBEFE2000D5DB0 /* ItemOfSetTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A8F3DD1EBBEFE2000D5DB0 /* ItemOfSetTableViewCell.m */; };
 		55A8F3E01EBBEFE2000D5DB0 /* ItemOfSetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55A8F3DE1EBBEFE2000D5DB0 /* ItemOfSetTableViewCell.xib */; };
+		55A8F3E41EBC98ED000D5DB0 /* UITableView+GettingIndexPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A8F3E31EBC98ED000D5DB0 /* UITableView+GettingIndexPath.m */; };
 		55D34EDA1EBA906500A2EE38 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D34ED91EBA906500A2EE38 /* main.m */; };
 		55D34EDD1EBA906500A2EE38 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D34EDC1EBA906500A2EE38 /* AppDelegate.m */; };
 		55D34EE01EBA906500A2EE38 /* SetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D34EDF1EBA906500A2EE38 /* SetsViewController.m */; };
@@ -27,6 +28,8 @@
 		55A8F3DC1EBBEFE2000D5DB0 /* ItemOfSetTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemOfSetTableViewCell.h; sourceTree = "<group>"; };
 		55A8F3DD1EBBEFE2000D5DB0 /* ItemOfSetTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemOfSetTableViewCell.m; sourceTree = "<group>"; };
 		55A8F3DE1EBBEFE2000D5DB0 /* ItemOfSetTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemOfSetTableViewCell.xib; sourceTree = "<group>"; };
+		55A8F3E21EBC98ED000D5DB0 /* UITableView+GettingIndexPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+GettingIndexPath.h"; sourceTree = "<group>"; };
+		55A8F3E31EBC98ED000D5DB0 /* UITableView+GettingIndexPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+GettingIndexPath.m"; sourceTree = "<group>"; };
 		55D34ED51EBA906500A2EE38 /* Memento.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Memento.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55D34ED91EBA906500A2EE38 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		55D34EDB1EBA906500A2EE38 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -68,6 +71,18 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		55A8F3E11EBC86B5000D5DB0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				55D34EF21EBAA28500A2EE38 /* SetTableViewCell.h */,
+				55D34EF31EBAA28500A2EE38 /* SetTableViewCell.m */,
+				55A8F3DC1EBBEFE2000D5DB0 /* ItemOfSetTableViewCell.h */,
+				55A8F3DD1EBBEFE2000D5DB0 /* ItemOfSetTableViewCell.m */,
+				55A8F3DE1EBBEFE2000D5DB0 /* ItemOfSetTableViewCell.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		55D34ECC1EBA906500A2EE38 = {
 			isa = PBXGroup;
 			children = (
@@ -87,21 +102,14 @@
 		55D34ED71EBA906500A2EE38 /* Memento */ = {
 			isa = PBXGroup;
 			children = (
-				55D34EDB1EBA906500A2EE38 /* AppDelegate.h */,
-				55D34EDC1EBA906500A2EE38 /* AppDelegate.m */,
+				55A8F3DB1EBBE017000D5DB0 /* Model */,
+				55A8F3E11EBC86B5000D5DB0 /* View */,
 				55D34EF81EBAB05500A2EE38 /* Controllers */,
 				55D34EE11EBA906500A2EE38 /* Main.storyboard */,
-				55D34EE41EBA906500A2EE38 /* Assets.xcassets */,
-				55D34EE61EBA906500A2EE38 /* LaunchScreen.storyboard */,
-				55D34EE91EBA906500A2EE38 /* Info.plist */,
-				55D34ED81EBA906500A2EE38 /* Supporting Files */,
-				55A8F3DB1EBBE017000D5DB0 /* Model */,
-				55D34EF21EBAA28500A2EE38 /* SetTableViewCell.h */,
-				55D34EF31EBAA28500A2EE38 /* SetTableViewCell.m */,
 				55D34EF91EBAB08600A2EE38 /* CreationalNewSetDelegate.h */,
-				55A8F3DC1EBBEFE2000D5DB0 /* ItemOfSetTableViewCell.h */,
-				55A8F3DD1EBBEFE2000D5DB0 /* ItemOfSetTableViewCell.m */,
-				55A8F3DE1EBBEFE2000D5DB0 /* ItemOfSetTableViewCell.xib */,
+				55D34ED81EBA906500A2EE38 /* Supporting Files */,
+				55A8F3E21EBC98ED000D5DB0 /* UITableView+GettingIndexPath.h */,
+				55A8F3E31EBC98ED000D5DB0 /* UITableView+GettingIndexPath.m */,
 			);
 			path = Memento;
 			sourceTree = "<group>";
@@ -109,6 +117,11 @@
 		55D34ED81EBA906500A2EE38 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				55D34EDB1EBA906500A2EE38 /* AppDelegate.h */,
+				55D34EDC1EBA906500A2EE38 /* AppDelegate.m */,
+				55D34EE41EBA906500A2EE38 /* Assets.xcassets */,
+				55D34EE61EBA906500A2EE38 /* LaunchScreen.storyboard */,
+				55D34EE91EBA906500A2EE38 /* Info.plist */,
 				55D34ED91EBA906500A2EE38 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -203,6 +216,7 @@
 				55D34EE01EBA906500A2EE38 /* SetsViewController.m in Sources */,
 				55D34EDD1EBA906500A2EE38 /* AppDelegate.m in Sources */,
 				55D34EF41EBAA28500A2EE38 /* SetTableViewCell.m in Sources */,
+				55A8F3E41EBC98ED000D5DB0 /* UITableView+GettingIndexPath.m in Sources */,
 				55D34EDA1EBA906500A2EE38 /* main.m in Sources */,
 				55A8F3DF1EBBEFE2000D5DB0 /* ItemOfSetTableViewCell.m in Sources */,
 				55D34EF71EBAB04E00A2EE38 /* CreateSetViewController.m in Sources */,

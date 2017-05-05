@@ -10,8 +10,8 @@
 
 @interface ItemOfSet ()
 
-@property (nonatomic, copy) NSString *term;
-@property (nonatomic, copy) NSString *definition;
+//@property (nonatomic, copy) NSString *term;
+//@property (nonatomic, copy) NSString *definition;
 
 @end
 

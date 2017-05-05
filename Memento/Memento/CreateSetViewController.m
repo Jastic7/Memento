@@ -9,6 +9,8 @@
 #import "ItemOfSetTableViewCell.h"
 #import "CreationalNewSetDelegate.h"
 #import "Set.h"
+#import "ItemOfSet.h"
+#import "UITableView+GettingIndexPath.h"
 
 static NSString * const kItemOfSetCellID = @"ItemOfSetTableViewCell";
 
@@ -16,15 +18,20 @@ static NSString * const kItemOfSetCellID = @"ItemOfSetTableViewCell";
 
 @property (nonatomic, weak) IBOutlet UITextField *setTitleTextField;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
-
-@property (nonatomic, strong) NSMutableArray<UITextField *> *termTextFields;
-@property (nonatomic, strong) NSMutableArray<UITextField *> *definitionTextFields;
-
+@property (nonatomic, strong) NSMutableArray<ItemOfSet *> *items;
 @property (nonatomic, assign) NSUInteger countOfTerms;
 
 @end
 
 @implementation CreateSetViewController
+
+#pragma mark - Getters
+
+-(NSUInteger)countOfTerms {
+    return self.items.count;
+}
+
+#pragma mark - Lifecycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -34,8 +41,9 @@ static NSString * const kItemOfSetCellID = @"ItemOfSetTableViewCell";
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     [self.tableView registerNib:[ItemOfSetTableViewCell nib] forCellReuseIdentifier:kItemOfSetCellID];
     
-    
-    self.countOfTerms = 1;
+    self.items = [NSMutableArray array];
+    ItemOfSet *item = [ItemOfSet new];
+    [self.items addObject:item];
 }
 
 #pragma mark - UITableViewDataSource
@@ -46,8 +54,11 @@ static NSString * const kItemOfSetCellID = @"ItemOfSetTableViewCell";
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ItemOfSetTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kItemOfSetCellID forIndexPath:indexPath];
-    cell.termTextView.delegate = self;
-    cell.definitionTextView.delegate = self;
+    cell.delegate = self;
+    
+    ItemOfSet *item = self.items[indexPath.row];
+    [cell configureWithTerm:item.term definition:item.definition];
+    
     return cell;
 }
 
@@ -57,6 +68,19 @@ static NSString * const kItemOfSetCellID = @"ItemOfSetTableViewCell";
     [self.tableView beginUpdates];
     [self.tableView endUpdates];
 }
+
+-(void)textViewDidEndEditing:(UITextView *)textView {
+    NSIndexPath *indexPath = [self.tableView indexPathForSubview:textView];
+    ItemOfSet *item = self.items[indexPath.row];
+    
+    if (textView.tag == 1000) {
+        item.term = textView.text;
+    } else {
+        item.definition = textView.text;
+    }
+}
+
+#pragma mark - End of creational
 
 - (IBAction)cancelBarButtonTapped:(UIBarButtonItem *)sender {
     [self.delegate cancelCreationalNewSet];
@@ -71,8 +95,12 @@ static NSString * const kItemOfSetCellID = @"ItemOfSetTableViewCell";
     self.delegate = nil;
 }
 
+#pragma mark - Actions
+
 - (IBAction)addNewTermTouchUpInside:(UIButton *)sender {
-    self.countOfTerms++;
+    ItemOfSet *item = [ItemOfSet new];
+    [self.items addObject:item];
+    
     [self.tableView reloadData];
 }
 
