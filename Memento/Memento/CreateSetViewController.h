@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CreationalNewSetDelegate.h"
+#import "SaveSetDelegate.h"
 
 @interface CreateSetViewController : UIViewController
 
-@property (nonatomic, weak) id<CreationalNewSetDelegate> delegate;
+@property (nonatomic, weak) id<SaveSetDelegate> delegate;
 
 @end

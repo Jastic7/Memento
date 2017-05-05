@@ -55,4 +55,8 @@
     [self.items removeObject:item];
 }
 
+-(id)objectAtIndexedSubscript:(NSUInteger)idx {
+    return self.items[idx];
+}
+
 @end

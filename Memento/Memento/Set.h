@@ -27,4 +27,6 @@
 -(void)addItem:(ItemOfSet *)item;
 -(void)removeItem:(ItemOfSet *)item;
 
+-(id)objectAtIndexedSubscript:(NSUInteger)idx;
+
 @end

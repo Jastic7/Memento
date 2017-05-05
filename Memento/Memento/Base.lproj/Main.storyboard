@@ -147,6 +147,7 @@
                                             <outlet property="authorLabel" destination="9b4-YH-eYa" id="slo-P9-urT"/>
                                             <outlet property="countTermsLabel" destination="Idk-2A-Vg3" id="J3f-G8-FjE"/>
                                             <outlet property="titleLabel" destination="cyt-nt-dRd" id="Kse-tT-LBz"/>
+                                            <segue destination="IiD-R2-WGs" kind="show" identifier="detailSetSegue" id="Pwx-GZ-YJj"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -174,6 +175,39 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JxS-ak-l73" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="236" y="37.331334332833585"/>
+        </scene>
+        <!--Detail Set View Controller-->
+        <scene sceneID="rYf-PI-DgS">
+            <objects>
+                <viewController id="IiD-R2-WGs" customClass="DetailSetViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="uEo-re-wdk"/>
+                        <viewControllerLayoutGuide type="bottom" id="L4u-sF-gEL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="eAB-5Z-Lc2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xqA-9m-t9E">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xqA-9m-t9E" firstAttribute="bottom" secondItem="L4u-sF-gEL" secondAttribute="top" id="13F-LD-REJ"/>
+                            <constraint firstAttribute="trailing" secondItem="xqA-9m-t9E" secondAttribute="trailing" id="3Nl-DK-hF5"/>
+                            <constraint firstItem="xqA-9m-t9E" firstAttribute="leading" secondItem="eAB-5Z-Lc2" secondAttribute="leading" id="RCD-Tl-miP"/>
+                            <constraint firstItem="xqA-9m-t9E" firstAttribute="top" secondItem="eAB-5Z-Lc2" secondAttribute="top" id="cbf-rZ-Rv1"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="xqA-9m-t9E" id="s9O-hx-sJZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uuw-y8-MHh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1092" y="37"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="DcC-YB-098">

@@ -7,7 +7,7 @@
 //
 #import "CreateSetViewController.h"
 #import "ItemOfSetTableViewCell.h"
-#import "CreationalNewSetDelegate.h"
+#import "SaveSetDelegate.h"
 #import "Set.h"
 #import "ItemOfSet.h"
 #import "UITableView+GettingIndexPath.h"
@@ -88,8 +88,9 @@ static NSString * const kItemOfSetCellID = @"ItemOfSetTableViewCell";
 }
 
 - (IBAction)doneBarButtonTapped:(UIBarButtonItem *)sender {
-    NSMutableArray<ItemOfSet *> *items = [NSMutableArray new];
-    Set *set = [Set setWithTitle:@"Unit 8. Prepositions without translate translate translate translate translate translate translate" author:@"Jastioc7" items:items];
+    NSString *title = self.setTitleTextField.text;
+    NSString *author = @"Jastic7";
+    Set *set = [Set setWithTitle:title author:author items:self.items];
     
     [self.delegate saveNewSet:set];
     self.delegate = nil;

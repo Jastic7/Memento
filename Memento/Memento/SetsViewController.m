@@ -8,10 +8,16 @@
 
 #import "SetsViewController.h"
 #import "CreateSetViewController.h"
+#import "DetailSetViewController.h"
 #import "SetTableViewCell.h"
 #import "Set.h"
 #import "ItemOfSet.h"
-@interface SetsViewController () <UITableViewDataSource, CreationalNewSetDelegate>
+
+static NSString * const kSetCellID = @"SetTableViewCell";
+static NSString * const kCreateNewSetSegue = @"createNewSetSegue";
+static NSString * const kDetailSetSegue = @"detailSetSegue";
+
+@interface SetsViewController () <UITableViewDataSource, SaveSetDelegate>
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray<Set *> *sets;
@@ -52,24 +58,31 @@
     [self.sets addObject:set];
 }
 
+#pragma mark - UITableViewDataSource
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.sets.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    SetTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SetTableViewCell" forIndexPath:indexPath];
+    SetTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kSetCellID forIndexPath:indexPath];
     Set *set = self.sets[indexPath.row];
     [cell configureWithTitle:set.title termsCount:set.count author:set.author];
     
     return cell;
 }
 
+#pragma mark - Navigation
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSString *identifier = segue.identifier;
-    if ([identifier isEqualToString:@"createNewSetSegue"]) {
+    if ([identifier isEqualToString:kCreateNewSetSegue]) {
         CreateSetViewController *vc = segue.destinationViewController;
         vc.delegate = self;
+    } else if ([identifier isEqualToString:kDetailSetSegue]) {
+        DetailSetViewController *vc = segue.destinationViewController;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        vc.set = self.sets[indexPath.row];
     }
 }
 

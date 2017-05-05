@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 @class Set;
 
-@protocol CreationalNewSetDelegate <NSObject>
+@protocol SaveSetDelegate <NSObject>
 
 -(void)cancelCreationalNewSet;
 -(void)saveNewSet:(Set *)set;
