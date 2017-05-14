@@ -7,7 +7,7 @@
 //
 
 #import "SetsViewController.h"
-#import "CreateSetViewController.h"
+#import "CreateSetTableViewController.h"
 #import "DetailSetViewController.h"
 #import "SetTableViewCell.h"
 #import "Set.h"
@@ -77,7 +77,7 @@ static NSString * const kDetailSetSegue = @"detailSetSegue";
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSString *identifier = segue.identifier;
     if ([identifier isEqualToString:kCreateNewSetSegue]) {
-        CreateSetViewController *vc = segue.destinationViewController;
+        CreateSetTableViewController *vc = segue.destinationViewController;
         vc.delegate = self;
     } else if ([identifier isEqualToString:kDetailSetSegue]) {
         DetailSetViewController *vc = segue.destinationViewController;

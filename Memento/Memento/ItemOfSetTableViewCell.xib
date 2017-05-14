@@ -19,16 +19,16 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Wrz-IL-zcD">
-                        <rect key="frame" x="8" y="8" width="359" height="44.5"/>
+                        <rect key="frame" x="2" y="6" width="371" height="50.5"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1000" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" text="Some text" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="CYZ-9G-xsG">
-                                <rect key="frame" x="0.0" y="0.0" width="174.5" height="44.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="180.5" height="50.5"/>
                                 <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="2000" contentMode="scaleToFill" scrollEnabled="NO" text="Some text" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="VD3-b0-kvO">
-                                <rect key="frame" x="184.5" y="0.0" width="174.5" height="44.5"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="2000" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" text="Some text" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="VD3-b0-kvO">
+                                <rect key="frame" x="190.5" y="0.0" width="180.5" height="50.5"/>
                                 <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -58,10 +58,10 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="dUE-NR-Ioa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="1gm-wp-GGE"/>
-                    <constraint firstItem="Wrz-IL-zcD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="3Jn-Fl-Pw7"/>
-                    <constraint firstItem="HQJ-wE-Beq" firstAttribute="top" secondItem="Wrz-IL-zcD" secondAttribute="bottom" constant="8" id="6cr-2g-Qlf"/>
-                    <constraint firstAttribute="trailing" secondItem="Wrz-IL-zcD" secondAttribute="trailing" constant="8" id="DXB-N8-D56"/>
-                    <constraint firstItem="Wrz-IL-zcD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="NYT-BL-K53"/>
+                    <constraint firstItem="Wrz-IL-zcD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="2" id="3Jn-Fl-Pw7"/>
+                    <constraint firstItem="HQJ-wE-Beq" firstAttribute="top" secondItem="Wrz-IL-zcD" secondAttribute="bottom" constant="4" id="6cr-2g-Qlf"/>
+                    <constraint firstAttribute="trailing" secondItem="Wrz-IL-zcD" secondAttribute="trailing" constant="2" id="DXB-N8-D56"/>
+                    <constraint firstItem="Wrz-IL-zcD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="NYT-BL-K53"/>
                     <constraint firstAttribute="trailing" secondItem="HQJ-wE-Beq" secondAttribute="trailing" constant="8" id="RxS-sQ-3JI"/>
                     <constraint firstAttribute="bottom" secondItem="HQJ-wE-Beq" secondAttribute="bottom" id="qX4-DW-euo"/>
                     <constraint firstAttribute="bottom" secondItem="dUE-NR-Ioa" secondAttribute="bottom" id="tSy-W7-iau"/>

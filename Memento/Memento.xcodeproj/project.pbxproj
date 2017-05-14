@@ -12,6 +12,7 @@
 		55A8F3E01EBBEFE2000D5DB0 /* ItemOfSetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55A8F3DE1EBBEFE2000D5DB0 /* ItemOfSetTableViewCell.xib */; };
 		55A8F3E41EBC98ED000D5DB0 /* UITableView+GettingIndexPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A8F3E31EBC98ED000D5DB0 /* UITableView+GettingIndexPath.m */; };
 		55A8F3E71EBCAA2B000D5DB0 /* DetailSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A8F3E61EBCAA2B000D5DB0 /* DetailSetViewController.m */; };
+		55C6ACCD1EC873B20062537B /* CreateSetTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C6ACCC1EC873B20062537B /* CreateSetTableViewController.m */; };
 		55D34EDA1EBA906500A2EE38 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D34ED91EBA906500A2EE38 /* main.m */; };
 		55D34EDD1EBA906500A2EE38 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D34EDC1EBA906500A2EE38 /* AppDelegate.m */; };
 		55D34EE01EBA906500A2EE38 /* SetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D34EDF1EBA906500A2EE38 /* SetsViewController.m */; };
@@ -20,7 +21,6 @@
 		55D34EE81EBA906500A2EE38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55D34EE61EBA906500A2EE38 /* LaunchScreen.storyboard */; };
 		55D34EF11EBAA0BF00A2EE38 /* Set.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D34EF01EBAA0BF00A2EE38 /* Set.m */; };
 		55D34EF41EBAA28500A2EE38 /* SetTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D34EF31EBAA28500A2EE38 /* SetTableViewCell.m */; };
-		55D34EF71EBAB04E00A2EE38 /* CreateSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D34EF61EBAB04E00A2EE38 /* CreateSetViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +33,8 @@
 		55A8F3E31EBC98ED000D5DB0 /* UITableView+GettingIndexPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+GettingIndexPath.m"; sourceTree = "<group>"; };
 		55A8F3E51EBCAA2B000D5DB0 /* DetailSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailSetViewController.h; sourceTree = "<group>"; };
 		55A8F3E61EBCAA2B000D5DB0 /* DetailSetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailSetViewController.m; sourceTree = "<group>"; };
+		55C6ACCB1EC873B20062537B /* CreateSetTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateSetTableViewController.h; sourceTree = "<group>"; };
+		55C6ACCC1EC873B20062537B /* CreateSetTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateSetTableViewController.m; sourceTree = "<group>"; };
 		55D34ED51EBA906500A2EE38 /* Memento.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Memento.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55D34ED91EBA906500A2EE38 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		55D34EDB1EBA906500A2EE38 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -47,8 +49,6 @@
 		55D34EF01EBAA0BF00A2EE38 /* Set.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Set.m; sourceTree = "<group>"; };
 		55D34EF21EBAA28500A2EE38 /* SetTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetTableViewCell.h; sourceTree = "<group>"; };
 		55D34EF31EBAA28500A2EE38 /* SetTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetTableViewCell.m; sourceTree = "<group>"; };
-		55D34EF51EBAB04E00A2EE38 /* CreateSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateSetViewController.h; sourceTree = "<group>"; };
-		55D34EF61EBAB04E00A2EE38 /* CreateSetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateSetViewController.m; sourceTree = "<group>"; };
 		55D34EF91EBAB08600A2EE38 /* SaveSetDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveSetDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -135,10 +135,10 @@
 			children = (
 				55D34EDE1EBA906500A2EE38 /* SetsViewController.h */,
 				55D34EDF1EBA906500A2EE38 /* SetsViewController.m */,
-				55D34EF51EBAB04E00A2EE38 /* CreateSetViewController.h */,
-				55D34EF61EBAB04E00A2EE38 /* CreateSetViewController.m */,
 				55A8F3E51EBCAA2B000D5DB0 /* DetailSetViewController.h */,
 				55A8F3E61EBCAA2B000D5DB0 /* DetailSetViewController.m */,
+				55C6ACCB1EC873B20062537B /* CreateSetTableViewController.h */,
+				55C6ACCC1EC873B20062537B /* CreateSetTableViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -216,6 +216,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55C6ACCD1EC873B20062537B /* CreateSetTableViewController.m in Sources */,
 				55A8F3DA1EBBDD68000D5DB0 /* ItemOfSet.m in Sources */,
 				55D34EF11EBAA0BF00A2EE38 /* Set.m in Sources */,
 				55D34EE01EBA906500A2EE38 /* SetsViewController.m in Sources */,
@@ -225,7 +226,6 @@
 				55A8F3E41EBC98ED000D5DB0 /* UITableView+GettingIndexPath.m in Sources */,
 				55D34EDA1EBA906500A2EE38 /* main.m in Sources */,
 				55A8F3DF1EBBEFE2000D5DB0 /* ItemOfSetTableViewCell.m in Sources */,
-				55D34EF71EBAB04E00A2EE38 /* CreateSetViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,8 +343,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 58CCZPCE6T;
 				INFOPLIST_FILE = Memento/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Jastic7.Memento;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -355,8 +357,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 58CCZPCE6T;
 				INFOPLIST_FILE = Memento/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Jastic7.Memento;
 				PRODUCT_NAME = "$(TARGET_NAME)";

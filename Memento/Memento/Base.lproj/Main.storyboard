@@ -9,78 +9,77 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Create Set View Controller-->
-        <scene sceneID="bde-s6-J7b">
+        <!--Create Set Table View Controller-->
+        <scene sceneID="gfr-LV-xwG">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="nIm-JK-2Ta" customClass="CreateSetViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ObH-Ed-6nE"/>
-                        <viewControllerLayoutGuide type="bottom" id="XkO-yD-yb9"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="FF8-kg-paL">
+                <tableViewController id="pWI-6z-sSu" customClass="CreateSetTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="VBY-QZ-LO7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qfI-aA-lz0">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <items>
-                                    <navigationItem title="New set" id="8ty-Sr-lfK">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="hGL-r1-587">
-                                            <connections>
-                                                <action selector="cancelBarButtonTapped:" destination="nIm-JK-2Ta" id="02S-8y-1Pr"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="aOh-kl-cfc">
-                                            <connections>
-                                                <action selector="doneBarButtonTapped:" destination="nIm-JK-2Ta" id="wTt-5U-lTY"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter name of the new set" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YeB-J6-INl">
-                                <rect key="frame" x="16" y="76" width="343" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ofi-LU-A6U">
-                                <rect key="frame" x="16" y="114" width="343" height="30"/>
-                                <state key="normal" title="Add term"/>
-                                <connections>
-                                    <action selector="addNewTermTouchUpInside:" destination="nIm-JK-2Ta" eventType="touchUpInside" id="lBm-D9-0EH"/>
-                                </connections>
-                            </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="55" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WdW-sd-tjG">
-                                <rect key="frame" x="0.0" y="152" width="375" height="515"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="qfI-aA-lz0" firstAttribute="leading" secondItem="FF8-kg-paL" secondAttribute="leading" id="3qx-ba-NB2"/>
-                            <constraint firstAttribute="trailing" secondItem="qfI-aA-lz0" secondAttribute="trailing" id="4Cz-ON-HCB"/>
-                            <constraint firstItem="YeB-J6-INl" firstAttribute="leading" secondItem="FF8-kg-paL" secondAttribute="leading" constant="16" id="Cwy-zM-OnV"/>
-                            <constraint firstAttribute="trailing" secondItem="YeB-J6-INl" secondAttribute="trailing" constant="16" id="Dwn-aT-Y2T"/>
-                            <constraint firstItem="Ofi-LU-A6U" firstAttribute="leading" secondItem="FF8-kg-paL" secondAttribute="leading" constant="16" id="TPb-y7-rjy"/>
-                            <constraint firstItem="WdW-sd-tjG" firstAttribute="trailing" secondItem="qfI-aA-lz0" secondAttribute="trailing" id="TiX-H0-hhZ"/>
-                            <constraint firstItem="WdW-sd-tjG" firstAttribute="leading" secondItem="qfI-aA-lz0" secondAttribute="leading" id="ZgQ-Ao-A0Z"/>
-                            <constraint firstItem="qfI-aA-lz0" firstAttribute="top" secondItem="ObH-Ed-6nE" secondAttribute="bottom" id="b9W-iD-Mo5"/>
-                            <constraint firstAttribute="trailing" secondItem="Ofi-LU-A6U" secondAttribute="trailing" constant="16" id="dL4-zp-4gJ"/>
-                            <constraint firstItem="Ofi-LU-A6U" firstAttribute="top" secondItem="YeB-J6-INl" secondAttribute="bottom" constant="8" id="qia-yF-4me"/>
-                            <constraint firstItem="YeB-J6-INl" firstAttribute="top" secondItem="qfI-aA-lz0" secondAttribute="bottom" constant="12" id="tgF-Wl-ggI"/>
-                            <constraint firstItem="WdW-sd-tjG" firstAttribute="top" secondItem="Ofi-LU-A6U" secondAttribute="bottom" constant="8" symbolic="YES" id="vnx-1S-Nii"/>
-                            <constraint firstItem="WdW-sd-tjG" firstAttribute="bottom" secondItem="XkO-yD-yb9" secondAttribute="top" id="xZo-r0-t8B"/>
-                        </constraints>
-                    </view>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="qfc-cf-OK4">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SrT-OG-shV">
+                                    <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                    <items>
+                                        <navigationItem title="Title" id="sdu-R9-fkD">
+                                            <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="hMM-Ep-1Uy">
+                                                <connections>
+                                                    <action selector="cancelBarButtonTapped:" destination="pWI-6z-sSu" id="tkY-1P-1yL"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem key="rightBarButtonItem" systemItem="done" id="Oh5-1n-o6W">
+                                                <connections>
+                                                    <action selector="doneBarButtonTapped:" destination="pWI-6z-sSu" id="aUz-RM-2M2"/>
+                                                </connections>
+                                            </barButtonItem>
+                                        </navigationItem>
+                                    </items>
+                                    <connections>
+                                        <outlet property="delegate" destination="pWI-6z-sSu" id="3ZZ-GY-95n"/>
+                                    </connections>
+                                </navigationBar>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0PC-mq-P1S">
+                                    <rect key="frame" x="8" y="76" width="359" height="30"/>
+                                    <nil key="textColor"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vxH-MW-g6p">
+                                    <rect key="frame" x="8" y="112" width="359" height="30"/>
+                                    <state key="normal" title="Add term"/>
+                                    <connections>
+                                        <action selector="addNewTermTouchUpInside:" destination="pWI-6z-sSu" eventType="touchUpInside" id="Xik-4b-5Nq"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstItem="vxH-MW-g6p" firstAttribute="top" secondItem="0PC-mq-P1S" secondAttribute="bottom" constant="6" id="5N0-zD-hqa"/>
+                                <constraint firstItem="0PC-mq-P1S" firstAttribute="top" secondItem="SrT-OG-shV" secondAttribute="bottom" constant="12" id="A6y-sN-46L"/>
+                                <constraint firstAttribute="trailing" secondItem="0PC-mq-P1S" secondAttribute="trailing" constant="8" id="G5V-lC-H8a"/>
+                                <constraint firstItem="vxH-MW-g6p" firstAttribute="leading" secondItem="qfc-cf-OK4" secondAttribute="leading" constant="8" id="R3y-SY-V6c"/>
+                                <constraint firstAttribute="trailing" secondItem="SrT-OG-shV" secondAttribute="trailing" id="UaH-o7-IvX"/>
+                                <constraint firstItem="SrT-OG-shV" firstAttribute="leading" secondItem="qfc-cf-OK4" secondAttribute="leading" id="fSc-gB-71B"/>
+                                <constraint firstItem="0PC-mq-P1S" firstAttribute="leading" secondItem="qfc-cf-OK4" secondAttribute="leading" constant="8" id="jht-K9-p6w"/>
+                                <constraint firstItem="SrT-OG-shV" firstAttribute="top" secondItem="qfc-cf-OK4" secondAttribute="top" constant="20" id="qAH-EN-Xbf"/>
+                                <constraint firstAttribute="trailing" secondItem="vxH-MW-g6p" secondAttribute="trailing" constant="8" id="wQg-k2-NRP"/>
+                            </constraints>
+                        </view>
+                        <connections>
+                            <outlet property="dataSource" destination="pWI-6z-sSu" id="CtF-0N-R7s"/>
+                            <outlet property="delegate" destination="pWI-6z-sSu" id="B6X-bm-oBK"/>
+                        </connections>
+                    </tableView>
                     <connections>
-                        <outlet property="setTitleTextField" destination="YeB-J6-INl" id="mpA-fc-vdI"/>
-                        <outlet property="tableView" destination="WdW-sd-tjG" id="Dcv-Uu-XGm"/>
+                        <outlet property="titleOfSetTextField" destination="0PC-mq-P1S" id="Vfr-f1-32c"/>
                     </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zfy-Kz-YMP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RJM-Lg-khP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="236" y="-640.02998500749629"/>
+            <point key="canvasLocation" x="1092" y="-635"/>
         </scene>
         <!--Sets-->
         <scene sceneID="5yc-pZ-H4S">
@@ -102,7 +101,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="64"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bm9-FL-pc0" id="lS2-Xj-Q9C">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="63"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unit 8. Prepositions without translate" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cyt-nt-dRd">
@@ -164,7 +163,7 @@
                     <navigationItem key="navigationItem" title="Sets" id="Cgh-Wh-nb7">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="6VK-Uo-gWv">
                             <connections>
-                                <segue destination="nIm-JK-2Ta" kind="presentation" identifier="createNewSetSegue" id="9hB-32-Vki"/>
+                                <segue destination="pWI-6z-sSu" kind="presentation" identifier="createNewSetSegue" id="eNa-q2-dbb"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
