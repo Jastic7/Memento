@@ -7,7 +7,7 @@
 //
 
 #import "Set.h"
-
+#import "ItemOfSet.h"
 @interface Set ()
 
 @property (nonatomic, copy) NSString *title;
@@ -49,6 +49,10 @@
     return [self.items count];
 }
 
+-(BOOL)isEmpty {
+    return self.items.count == 0;
+}
+
 
 #pragma mark - Modifiers
 
@@ -60,8 +64,23 @@
     [self.items removeObject:item];
 }
 
+- (void)removeItemAtIndex:(NSUInteger)index {
+    [self.items removeObjectAtIndex:index];
+}
+
 - (id)objectAtIndexedSubscript:(NSUInteger)idx {
     return self.items[idx];
+}
+
+-(id)copyWithZone:(NSZone *)zone {
+    Set *copySet = [[[self class] allocWithZone:zone] init];
+    copySet.title = self.title;
+    copySet.author = self.author;
+    
+    for (ItemOfSet *item in self.items) {
+        [copySet.items addObject:[item copy]];
+    }
+    return copySet;
 }
 
 @end

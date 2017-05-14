@@ -9,12 +9,13 @@
 #import <Foundation/Foundation.h>
 @class ItemOfSet;
 
-@interface Set : NSObject
+@interface Set : NSObject <NSCopying>
 
 @property (nonatomic, copy, readonly) NSString *title;
 @property (nonatomic, copy, readonly) NSString *author;
 @property (nonatomic, strong, readonly) NSMutableArray<ItemOfSet *> *items;
 @property (nonatomic, assign, readonly) NSUInteger count;
+@property (nonatomic, assign, readonly) BOOL isEmpty;
 
 - (instancetype)initWithTitle:(NSString *)title
                        author:(NSString *)author
@@ -26,6 +27,7 @@
 
 - (void)addItem:(ItemOfSet *)item;
 - (void)removeItem:(ItemOfSet *)item;
+- (void)removeItemAtIndex:(NSUInteger)index;
 
 - (id)objectAtIndexedSubscript:(NSUInteger)idx;
 

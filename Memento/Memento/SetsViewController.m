@@ -36,6 +36,10 @@ static NSString * const kDetailSetSegue = @"detailSetSegue";
     
     self.sets = [NSMutableArray array];
     NSMutableArray<ItemOfSet *> *items = [NSMutableArray new];
+    for (int i = 0; i < 27; i++) {
+        ItemOfSet *item = [ItemOfSet itemOfSetWithTerm:[NSString stringWithFormat:@"TERM %i", i] definition:[NSString stringWithFormat:@"DEFINITION %i", i]];
+        [items addObject:item];
+    }
     
     Set *set = [Set setWithTitle:@"Unit 8. Prepositions without translate translate translate translate translate translate translate" author:@"Jastioc7" items:items];
     [self.sets addObject:set];

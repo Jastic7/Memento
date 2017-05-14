@@ -38,4 +38,12 @@
     return [[self alloc] initWithTerm:term definition:definition];
 }
 
+-(id)copyWithZone:(NSZone *)zone {
+    ItemOfSet *copyItem = [[[self class] allocWithZone:zone] init];
+    copyItem.term = self.term;
+    copyItem.definition = self.definition;
+    
+    return copyItem;
+}
+
 @end

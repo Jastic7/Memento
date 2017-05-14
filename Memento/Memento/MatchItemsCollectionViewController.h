@@ -12,7 +12,7 @@
 
 @interface MatchItemsCollectionViewController : UICollectionViewController
 
-@property (nonatomic, strong) Set *set;
+@property (nonatomic, copy) Set *set;
 @property (nonatomic, weak) id<MatchModeDelegate> delegate;
 
 @end

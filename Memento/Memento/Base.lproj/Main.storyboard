@@ -106,7 +106,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="64"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bm9-FL-pc0" id="lS2-Xj-Q9C">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="63"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unit 8. Prepositions without translate" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cyt-nt-dRd">
@@ -307,7 +307,6 @@
         <!--Title-->
         <scene sceneID="WUX-EK-WSn">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="O2p-KV-TIH" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <collectionViewController id="Gf8-cw-qZr" customClass="MatchItemsCollectionViewController" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="prototypes" id="5PA-52-Gq4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -341,6 +340,9 @@
                                     <constraint firstItem="BOi-WP-wfg" firstAttribute="top" secondItem="tPM-Dw-Cbi" secondAttribute="top" constant="4" id="YwH-gs-7jB"/>
                                     <constraint firstItem="BOi-WP-wfg" firstAttribute="leading" secondItem="tPM-Dw-Cbi" secondAttribute="leading" constant="4" id="xXN-gI-uQv"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="textLabel" destination="BOi-WP-wfg" id="xgN-6r-aWT"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="matchHeader" id="cPv-n6-wDh">
@@ -375,6 +377,7 @@
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="ha7-AS-XGH"/>
                     </navigationItem>
                 </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O2p-KV-TIH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2822" y="36"/>
         </scene>

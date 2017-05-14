@@ -10,4 +10,6 @@
 
 @interface ItemOfMatchCollectionViewCell : UICollectionViewCell
 
+- (void)configureWithText:(NSString *)text;
+
 @end

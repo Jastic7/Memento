@@ -8,6 +8,18 @@
 
 #import "ItemOfMatchCollectionViewCell.h"
 
+
+@interface ItemOfMatchCollectionViewCell ()
+
+@property (weak, nonatomic) IBOutlet UILabel *textLabel;
+
+@end
+
+
 @implementation ItemOfMatchCollectionViewCell
+
+-(void)configureWithText:(NSString *)text {
+    self.textLabel.text = text;
+}
 
 @end

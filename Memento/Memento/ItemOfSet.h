@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ItemOfSet : NSObject
+@interface ItemOfSet : NSObject <NSCopying>
 
 @property (nonatomic, copy) NSString *term;
 @property (nonatomic, copy) NSString *definition;
