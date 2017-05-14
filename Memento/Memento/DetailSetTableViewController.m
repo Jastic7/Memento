@@ -7,13 +7,16 @@
 //
 
 #import "DetailSetTableViewController.h"
+#import "MatchPrepareViewController.h"
+#import "MatchModeDelegate.h"
 #import "ItemOfSetTableViewCell.h"
 #import "Set.h"
 #import "ItemOfSet.h"
 
 static NSString * const kItemOfSetCellID = @"ItemOfSetTableViewCell";
+static NSString * const kMatchModePrepareSegue = @"matchModePrepareSegue";
 
-@interface DetailSetTableViewController ()
+@interface DetailSetTableViewController () <MatchModeDelegate>
 
 @end
 
@@ -83,14 +86,28 @@ static NSString * const kItemOfSetCellID = @"ItemOfSetTableViewCell";
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    NSString *identifier = segue.identifier;
+    
+    if ([identifier isEqualToString:kMatchModePrepareSegue]) {
+        MatchPrepareViewController *dvc = segue.destinationViewController;
+        dvc.delegate = self;
+        dvc.set = self.set;
+    }
 }
-*/
+
+
+#pragma mark - MatchModeDelegate
+
+-(void)exitMatchMode {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)finishedMatchMode {
+    [self dismissViewControllerAnimated:NO completion:nil];
+}
 
 @end

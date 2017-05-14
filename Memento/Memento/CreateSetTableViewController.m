@@ -40,6 +40,12 @@ static NSString * const kItemOfSetCellID = @"ItemOfSetTableViewCell";
     [self.items addObject:item];
 }
 
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    [self.titleOfSetTextField becomeFirstResponder];
+}
+
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
