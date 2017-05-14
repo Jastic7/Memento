@@ -40,11 +40,12 @@ static NSString * const kItemOfSetCellID = @"ItemOfSetTableViewCell";
     [self.items addObject:item];
 }
 
--(void)viewWillDisappear:(BOOL)animated {
+- (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
     [self.view endEditing:YES];
 }
+
 
 #pragma mark - UITableViewDataSource
 
@@ -119,8 +120,8 @@ static NSString * const kItemOfSetCellID = @"ItemOfSetTableViewCell";
     
     [self.tableView beginUpdates];
     
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.items.count - 1 inSection:0];
-    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationRight];
+    NSIndexPath *insertingIndexPath = [NSIndexPath indexPathForRow:self.items.count - 1 inSection:0];
+    [self.tableView insertRowsAtIndexPaths:@[insertingIndexPath] withRowAnimation:UITableViewRowAnimationRight];
     
     [self.tableView endUpdates];
 }
@@ -144,7 +145,8 @@ static NSString * const kItemOfSetCellID = @"ItemOfSetTableViewCell";
 }
 
 
-#pragma mark - 
+#pragma mark - Helpers
+
 - (void)updateSizeOfTextView:(UITextView *)textView {
     CGPoint currentOffset = self.tableView.contentOffset;
     [UIView setAnimationsEnabled:NO];

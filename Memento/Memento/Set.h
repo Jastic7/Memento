@@ -16,17 +16,17 @@
 @property (nonatomic, strong, readonly) NSMutableArray<ItemOfSet *> *items;
 @property (nonatomic, assign, readonly) NSUInteger count;
 
--(instancetype)initWithTitle:(NSString *)title
+- (instancetype)initWithTitle:(NSString *)title
+                       author:(NSString *)author
+                        items:(NSMutableArray<ItemOfSet *> *)items;
+
++ (instancetype)setWithTitle:(NSString *)title
                       author:(NSString *)author
                        items:(NSMutableArray<ItemOfSet *> *)items;
 
-+(instancetype)setWithTitle:(NSString *)title
-                     author:(NSString *)author
-                      items:(NSMutableArray<ItemOfSet *> *)items;
+- (void)addItem:(ItemOfSet *)item;
+- (void)removeItem:(ItemOfSet *)item;
 
--(void)addItem:(ItemOfSet *)item;
--(void)removeItem:(ItemOfSet *)item;
-
--(id)objectAtIndexedSubscript:(NSUInteger)idx;
+- (id)objectAtIndexedSubscript:(NSUInteger)idx;
 
 @end

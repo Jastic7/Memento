@@ -18,13 +18,14 @@
 
 @implementation Set
 
+
 #pragma mark - Initializations
 
--(instancetype)init {
+- (instancetype)init {
     return [self initWithTitle:@"" author:@"" items:nil];
 }
 
--(instancetype)initWithTitle:(NSString *)title author:(NSString *)author items:(NSMutableArray<ItemOfSet *> *)items {
+- (instancetype)initWithTitle:(NSString *)title author:(NSString *)author items:(NSMutableArray<ItemOfSet *> *)items {
     self = [super init];
     
     if (self) {
@@ -37,25 +38,29 @@
     return self;
 }
 
-+(instancetype)setWithTitle:(NSString *)title author:(NSString *)author items:(NSMutableArray<ItemOfSet *> *)items {
++ (instancetype)setWithTitle:(NSString *)title author:(NSString *)author items:(NSMutableArray<ItemOfSet *> *)items {
     return [[self alloc] initWithTitle:title author:author items:items];
 }
 
--(NSUInteger)count {
+
+#pragma mark - Getters
+
+- (NSUInteger)count {
     return [self.items count];
 }
 
+
 #pragma mark - Modifiers
 
--(void)addItem:(ItemOfSet *)item {
+- (void)addItem:(ItemOfSet *)item {
     [self.items addObject:item];
 }
 
--(void)removeItem:(ItemOfSet *)item {
+- (void)removeItem:(ItemOfSet *)item {
     [self.items removeObject:item];
 }
 
--(id)objectAtIndexedSubscript:(NSUInteger)idx {
+- (id)objectAtIndexedSubscript:(NSUInteger)idx {
     return self.items[idx];
 }
 

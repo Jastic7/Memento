@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 @class Set;
 
-@protocol SaveSetDelegate <NSObject>
+@protocol CreateSetTableViewControllerDelegate <NSObject>
 
 -(void)cancelCreationalNewSet;
 -(void)saveNewSet:(Set *)set;
@@ -18,6 +18,6 @@
 
 @interface CreateSetTableViewController : UITableViewController
 
-@property (nonatomic, weak) id<SaveSetDelegate> delegate;
+@property (nonatomic, weak) id<CreateSetTableViewControllerDelegate> delegate;
 
 @end

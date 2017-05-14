@@ -8,16 +8,17 @@
 
 #import "SetsViewController.h"
 #import "CreateSetTableViewController.h"
-#import "DetailSetViewController.h"
+#import "DetailSetTableViewController.h"
 #import "SetTableViewCell.h"
 #import "Set.h"
 #import "ItemOfSet.h"
+
 
 static NSString * const kSetCellID = @"SetTableViewCell";
 static NSString * const kCreateNewSetSegue = @"createNewSetSegue";
 static NSString * const kDetailSetSegue = @"detailSetSegue";
 
-@interface SetsViewController () <UITableViewDataSource, SaveSetDelegate>
+@interface SetsViewController () <UITableViewDataSource, CreateSetTableViewControllerDelegate>
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray<Set *> *sets;
@@ -58,13 +59,14 @@ static NSString * const kDetailSetSegue = @"detailSetSegue";
     [self.sets addObject:set];
 }
 
+
 #pragma mark - UITableViewDataSource
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.sets.count;
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SetTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kSetCellID forIndexPath:indexPath];
     Set *set = self.sets[indexPath.row];
     [cell configureWithTitle:set.title termsCount:set.count author:set.author];
@@ -72,25 +74,29 @@ static NSString * const kDetailSetSegue = @"detailSetSegue";
     return cell;
 }
 
+
 #pragma mark - Navigation
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSString *identifier = segue.identifier;
     if ([identifier isEqualToString:kCreateNewSetSegue]) {
         CreateSetTableViewController *vc = segue.destinationViewController;
         vc.delegate = self;
     } else if ([identifier isEqualToString:kDetailSetSegue]) {
-        DetailSetViewController *vc = segue.destinationViewController;
+        DetailSetTableViewController *vc = segue.destinationViewController;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
         vc.set = self.sets[indexPath.row];
     }
 }
 
--(void)cancelCreationalNewSet {
+
+#pragma mark - CreateSetTableViewControllerDelegate
+
+- (void)cancelCreationalNewSet {
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
--(void)saveNewSet:(Set *)set {
+- (void)saveNewSet:(Set *)set {
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     [self.sets addObject:set];
     [self.tableView reloadData];

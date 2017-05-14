@@ -41,14 +41,15 @@
                                         <outlet property="delegate" destination="pWI-6z-sSu" id="3ZZ-GY-95n"/>
                                     </connections>
                                 </navigationBar>
-                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0PC-mq-P1S">
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter title of the new set..." textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="0PC-mq-P1S">
                                     <rect key="frame" x="8" y="76" width="359" height="30"/>
                                     <nil key="textColor"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vxH-MW-g6p">
                                     <rect key="frame" x="8" y="112" width="359" height="30"/>
+                                    <color key="backgroundColor" red="0.84705882349999995" green="0.85882352939999995" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
                                     <state key="normal" title="Add term"/>
                                     <connections>
                                         <action selector="addNewTermTouchUpInside:" destination="pWI-6z-sSu" eventType="touchUpInside" id="Xik-4b-5Nq"/>
@@ -146,7 +147,7 @@
                                             <outlet property="authorLabel" destination="9b4-YH-eYa" id="slo-P9-urT"/>
                                             <outlet property="countTermsLabel" destination="Idk-2A-Vg3" id="J3f-G8-FjE"/>
                                             <outlet property="titleLabel" destination="cyt-nt-dRd" id="Kse-tT-LBz"/>
-                                            <segue destination="IiD-R2-WGs" kind="show" identifier="detailSetSegue" id="Puv-xF-1km"/>
+                                            <segue destination="Eg5-yh-EAG" kind="show" identifier="detailSetSegue" id="iFe-Bu-Lza"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -175,36 +176,33 @@
             </objects>
             <point key="canvasLocation" x="236" y="37.331334332833585"/>
         </scene>
-        <!--Detail Set View Controller-->
-        <scene sceneID="rYf-PI-DgS">
+        <!--Detail Set Table View Controller-->
+        <scene sceneID="Ko2-p8-krQ">
             <objects>
-                <viewController id="IiD-R2-WGs" customClass="DetailSetViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="uEo-re-wdk"/>
-                        <viewControllerLayoutGuide type="bottom" id="L4u-sF-gEL"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="eAB-5Z-Lc2">
+                <tableViewController id="Eg5-yh-EAG" customClass="DetailSetTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ICy-cU-zPs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xqA-9m-t9E">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="xqA-9m-t9E" firstAttribute="bottom" secondItem="L4u-sF-gEL" secondAttribute="top" id="13F-LD-REJ"/>
-                            <constraint firstAttribute="trailing" secondItem="xqA-9m-t9E" secondAttribute="trailing" id="3Nl-DK-hF5"/>
-                            <constraint firstItem="xqA-9m-t9E" firstAttribute="leading" secondItem="eAB-5Z-Lc2" secondAttribute="leading" id="RCD-Tl-miP"/>
-                            <constraint firstItem="xqA-9m-t9E" firstAttribute="top" secondItem="eAB-5Z-Lc2" secondAttribute="top" id="cbf-rZ-Rv1"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="tableView" destination="xqA-9m-t9E" id="s9O-hx-sJZ"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uuw-y8-MHh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="spQ-eH-kuh">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="165"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mJ4-d7-BVK">
+                                    <rect key="frame" x="164" y="67" width="46" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" title="Learn"/>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" red="0.40000000600000002" green="1" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                        </view>
+                        <connections>
+                            <outlet property="dataSource" destination="Eg5-yh-EAG" id="b73-Av-gdf"/>
+                            <outlet property="delegate" destination="Eg5-yh-EAG" id="qAp-gd-G3J"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KsI-08-4y4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1092" y="37"/>
         </scene>

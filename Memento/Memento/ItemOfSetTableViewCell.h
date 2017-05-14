@@ -12,8 +12,8 @@
 
 @property (nonatomic, weak) id<UITextViewDelegate> delegate;
 
-+(UINib *)nib;
++ (UINib *)nib;
 
--(void)configureWithTerm:(NSString *)term definition:(NSString *)definition;
+- (void)configureWithTerm:(NSString *)term definition:(NSString *)definition;
 
 @end

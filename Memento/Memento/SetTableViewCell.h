@@ -10,6 +10,6 @@
 
 @interface SetTableViewCell : UITableViewCell
 
--(void)configureWithTitle:(NSString *)title termsCount:(NSUInteger)count author:(NSString *)author;
+- (void)configureWithTitle:(NSString *)title termsCount:(NSUInteger)count author:(NSString *)author;
 
 @end

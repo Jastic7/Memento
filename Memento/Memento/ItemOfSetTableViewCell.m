@@ -18,7 +18,9 @@
 
 @implementation ItemOfSetTableViewCell
 
--(void)setDelegate:(id<UITextViewDelegate>)delegate {
+#pragma mark - Setters
+
+- (void)setDelegate:(id<UITextViewDelegate>)delegate {
     _delegate = delegate;
     
     self.termTextView.delegate = self.delegate;
@@ -27,20 +29,17 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
-+(UINib *)nib {
++ (UINib *)nib {
     return [UINib nibWithNibName:@"ItemOfSetTableViewCell" bundle:nil];
 }
 
--(void)configureWithTerm:(NSString *)term definition:(NSString *)definition {
+- (void)configureWithTerm:(NSString *)term definition:(NSString *)definition {
     self.termTextView.text = term;
     self.definitionTextView.text = definition;
 }

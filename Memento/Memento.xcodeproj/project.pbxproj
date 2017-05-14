@@ -11,8 +11,8 @@
 		55A8F3DF1EBBEFE2000D5DB0 /* ItemOfSetTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A8F3DD1EBBEFE2000D5DB0 /* ItemOfSetTableViewCell.m */; };
 		55A8F3E01EBBEFE2000D5DB0 /* ItemOfSetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55A8F3DE1EBBEFE2000D5DB0 /* ItemOfSetTableViewCell.xib */; };
 		55A8F3E41EBC98ED000D5DB0 /* UITableView+GettingIndexPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A8F3E31EBC98ED000D5DB0 /* UITableView+GettingIndexPath.m */; };
-		55A8F3E71EBCAA2B000D5DB0 /* DetailSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A8F3E61EBCAA2B000D5DB0 /* DetailSetViewController.m */; };
 		55C6ACCD1EC873B20062537B /* CreateSetTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C6ACCC1EC873B20062537B /* CreateSetTableViewController.m */; };
+		55C6ACD51EC89EF80062537B /* DetailSetTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C6ACD41EC89EF80062537B /* DetailSetTableViewController.m */; };
 		55D34EDA1EBA906500A2EE38 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D34ED91EBA906500A2EE38 /* main.m */; };
 		55D34EDD1EBA906500A2EE38 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D34EDC1EBA906500A2EE38 /* AppDelegate.m */; };
 		55D34EE01EBA906500A2EE38 /* SetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D34EDF1EBA906500A2EE38 /* SetsViewController.m */; };
@@ -31,10 +31,10 @@
 		55A8F3DE1EBBEFE2000D5DB0 /* ItemOfSetTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemOfSetTableViewCell.xib; sourceTree = "<group>"; };
 		55A8F3E21EBC98ED000D5DB0 /* UITableView+GettingIndexPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+GettingIndexPath.h"; sourceTree = "<group>"; };
 		55A8F3E31EBC98ED000D5DB0 /* UITableView+GettingIndexPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+GettingIndexPath.m"; sourceTree = "<group>"; };
-		55A8F3E51EBCAA2B000D5DB0 /* DetailSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailSetViewController.h; sourceTree = "<group>"; };
-		55A8F3E61EBCAA2B000D5DB0 /* DetailSetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailSetViewController.m; sourceTree = "<group>"; };
 		55C6ACCB1EC873B20062537B /* CreateSetTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateSetTableViewController.h; sourceTree = "<group>"; };
 		55C6ACCC1EC873B20062537B /* CreateSetTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateSetTableViewController.m; sourceTree = "<group>"; };
+		55C6ACD31EC89EF80062537B /* DetailSetTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailSetTableViewController.h; sourceTree = "<group>"; };
+		55C6ACD41EC89EF80062537B /* DetailSetTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailSetTableViewController.m; sourceTree = "<group>"; };
 		55D34ED51EBA906500A2EE38 /* Memento.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Memento.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55D34ED91EBA906500A2EE38 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		55D34EDB1EBA906500A2EE38 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -49,7 +49,6 @@
 		55D34EF01EBAA0BF00A2EE38 /* Set.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Set.m; sourceTree = "<group>"; };
 		55D34EF21EBAA28500A2EE38 /* SetTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetTableViewCell.h; sourceTree = "<group>"; };
 		55D34EF31EBAA28500A2EE38 /* SetTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetTableViewCell.m; sourceTree = "<group>"; };
-		55D34EF91EBAB08600A2EE38 /* SaveSetDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveSetDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,7 +105,6 @@
 			isa = PBXGroup;
 			children = (
 				55D34EE11EBA906500A2EE38 /* Main.storyboard */,
-				55D34EF91EBAB08600A2EE38 /* SaveSetDelegate.h */,
 				55A8F3DB1EBBE017000D5DB0 /* Model */,
 				55A8F3E11EBC86B5000D5DB0 /* View */,
 				55D34EF81EBAB05500A2EE38 /* Controllers */,
@@ -135,10 +133,10 @@
 			children = (
 				55D34EDE1EBA906500A2EE38 /* SetsViewController.h */,
 				55D34EDF1EBA906500A2EE38 /* SetsViewController.m */,
-				55A8F3E51EBCAA2B000D5DB0 /* DetailSetViewController.h */,
-				55A8F3E61EBCAA2B000D5DB0 /* DetailSetViewController.m */,
 				55C6ACCB1EC873B20062537B /* CreateSetTableViewController.h */,
 				55C6ACCC1EC873B20062537B /* CreateSetTableViewController.m */,
+				55C6ACD31EC89EF80062537B /* DetailSetTableViewController.h */,
+				55C6ACD41EC89EF80062537B /* DetailSetTableViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -218,10 +216,10 @@
 			files = (
 				55C6ACCD1EC873B20062537B /* CreateSetTableViewController.m in Sources */,
 				55A8F3DA1EBBDD68000D5DB0 /* ItemOfSet.m in Sources */,
+				55C6ACD51EC89EF80062537B /* DetailSetTableViewController.m in Sources */,
 				55D34EF11EBAA0BF00A2EE38 /* Set.m in Sources */,
 				55D34EE01EBA906500A2EE38 /* SetsViewController.m in Sources */,
 				55D34EDD1EBA906500A2EE38 /* AppDelegate.m in Sources */,
-				55A8F3E71EBCAA2B000D5DB0 /* DetailSetViewController.m in Sources */,
 				55D34EF41EBAA28500A2EE38 /* SetTableViewCell.m in Sources */,
 				55A8F3E41EBC98ED000D5DB0 /* UITableView+GettingIndexPath.m in Sources */,
 				55D34EDA1EBA906500A2EE38 /* main.m in Sources */,

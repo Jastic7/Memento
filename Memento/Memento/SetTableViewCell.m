@@ -18,7 +18,7 @@
 
 @implementation SetTableViewCell
 
--(void)configureWithTitle:(NSString *)title termsCount:(NSUInteger)count author:(NSString *)author {
+- (void)configureWithTitle:(NSString *)title termsCount:(NSUInteger)count author:(NSString *)author {
     self.titleLabel.text = title;
     self.countTermsLabel.text = [NSString stringWithFormat:@"%lu terms", (unsigned long)count];
     self.authorLabel.text = author;

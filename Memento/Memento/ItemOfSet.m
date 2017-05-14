@@ -19,11 +19,11 @@
 
 #pragma mark - Initializations
 
--(instancetype)init {
+- (instancetype)init {
     return [self initWithTerm:@"" definition:@""];
 }
 
--(instancetype)initWithTerm:(NSString *)term definition:(NSString *)definition {
+- (instancetype)initWithTerm:(NSString *)term definition:(NSString *)definition {
     self = [super init];
     
     if (self) {
@@ -34,7 +34,7 @@
     return self;
 }
 
-+(instancetype)itemOfSetWithTerm:(NSString *)term definition:(NSString *)definition {
++ (instancetype)itemOfSetWithTerm:(NSString *)term definition:(NSString *)definition {
     return [[self alloc] initWithTerm:term definition:definition];
 }
 
