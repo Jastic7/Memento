@@ -25,7 +25,7 @@
     return [self initWithTitle:@"" author:@"" items:nil];
 }
 
-- (instancetype)initWithTitle:(NSString *)title author:(NSString *)author items:(NSMutableArray<ItemOfSet *> *)items {
+- (instancetype)initWithTitle:(NSString *)title author:(NSString *)author items:(NSArray<ItemOfSet *> *)items {
     self = [super init];
     
     if (self) {
@@ -38,7 +38,7 @@
     return self;
 }
 
-+ (instancetype)setWithTitle:(NSString *)title author:(NSString *)author items:(NSMutableArray<ItemOfSet *> *)items {
++ (instancetype)setWithTitle:(NSString *)title author:(NSString *)author items:(NSArray<ItemOfSet *> *)items {
     return [[self alloc] initWithTitle:title author:author items:items];
 }
 
@@ -70,6 +70,13 @@
 
 - (BOOL)containsItem:(ItemOfSet *)item {
     return [self.items containsObject:item];
+}
+
+- (Set *)subsetWithRange:(NSRange)range {
+    NSArray<ItemOfSet *> *subitems = [self.items subarrayWithRange:range];
+    Set *subset = [Set setWithTitle:self.title author:self.author items:subitems];
+    
+    return subset;
 }
 
 - (id)objectAtIndexedSubscript:(NSUInteger)idx {

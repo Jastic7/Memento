@@ -19,17 +19,19 @@
 
 - (instancetype)initWithTitle:(NSString *)title
                        author:(NSString *)author
-                        items:(NSMutableArray<ItemOfSet *> *)items;
+                        items:(NSArray<ItemOfSet *> *)items;
 
 + (instancetype)setWithTitle:(NSString *)title
                       author:(NSString *)author
-                       items:(NSMutableArray<ItemOfSet *> *)items;
+                       items:(NSArray<ItemOfSet *> *)items;
 
 - (void)addItem:(ItemOfSet *)item;
 - (void)removeItem:(ItemOfSet *)item;
 - (void)removeItemAtIndex:(NSUInteger)index;
 
 - (BOOL)containsItem:(ItemOfSet *)item;
+
+- (Set *)subsetWithRange:(NSRange)range;
 
 - (id)objectAtIndexedSubscript:(NSUInteger)idx;
 
