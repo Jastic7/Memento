@@ -103,7 +103,7 @@ static NSUInteger const kCountItemsInRound = 7;
 
 #pragma mark - UINavigationBarDelegate
 
--(UIBarPosition)positionForBar:(id<UIBarPositioning>)bar {
+- (UIBarPosition)positionForBar:(id<UIBarPositioning>)bar {
     return UIBarPositionTopAttached;
 }
 
@@ -152,8 +152,6 @@ static NSUInteger const kCountItemsInRound = 7;
     CGFloat width = self.view.bounds.size.width - 2 * xOffset;
     CGRect frame = CGRectMake(xOffset, 400, width, 44);
     [self.textField setFrame:frame];
-    
-    self.textLabel.text = @"Some text";
 
     self.location = 0;
     self.currentRound = 0;
@@ -166,13 +164,13 @@ static NSUInteger const kCountItemsInRound = 7;
         return;
     }
     
-    //create the new range for current round.
+    //creates the new range for current round.
     self.isLastRound = self.location + kCountItemsInRound >= self.learningSet.count;
     NSUInteger length = self.isLastRound ? self.learningSet.count - self.location : kCountItemsInRound;
     NSRange range = NSMakeRange(self.location, length);
     self.location += length;
     
-    //fill round set by new items.
+    //fills round set by new items.
     self.roundSet = [self.learningSet subsetWithRange:range];
     self.roundItemIndex = 0;
     self.roundItem = self.roundSet[self.roundItemIndex];

@@ -14,7 +14,7 @@
         <scene sceneID="gfr-LV-xwG">
             <objects>
                 <tableViewController id="pWI-6z-sSu" customClass="CreateSetTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="VBY-QZ-LO7">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="VBY-QZ-LO7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -111,8 +111,8 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unit 8. Prepositions without translate" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cyt-nt-dRd">
                                                     <rect key="frame" x="8" y="8" width="359" height="24"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
-                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                                    <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="103 terms" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Idk-2A-Vg3">
@@ -184,7 +184,7 @@
         <scene sceneID="Ko2-p8-krQ">
             <objects>
                 <tableViewController id="Eg5-yh-EAG" customClass="DetailSetTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ICy-cU-zPs">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ICy-cU-zPs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -193,10 +193,10 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="nKt-r7-CmX">
-                                    <rect key="frame" x="8" y="8" width="359" height="92"/>
+                                    <rect key="frame" x="16" y="8" width="343" height="92"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mJ4-d7-BVK">
-                                            <rect key="frame" x="0.0" y="0.0" width="174.5" height="92"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="166.5" height="92"/>
                                             <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="30"/>
                                             <inset key="titleEdgeInsets" minX="10" minY="15" maxX="0.0" maxY="0.0"/>
@@ -206,7 +206,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OpS-MD-dBw">
-                                            <rect key="frame" x="184.5" y="0.0" width="174.5" height="92"/>
+                                            <rect key="frame" x="176.5" y="0.0" width="166.5" height="92"/>
                                             <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="30"/>
                                             <inset key="titleEdgeInsets" minX="10" minY="15" maxX="0.0" maxY="0.0"/>
@@ -220,8 +220,8 @@
                             </subviews>
                             <color key="backgroundColor" red="0.52628141641616821" green="0.75998771190643311" blue="0.98837870359420776" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
-                                <constraint firstItem="nKt-r7-CmX" firstAttribute="leading" secondItem="spQ-eH-kuh" secondAttribute="leading" constant="8" id="5m2-Yh-pXV"/>
-                                <constraint firstAttribute="trailing" secondItem="nKt-r7-CmX" secondAttribute="trailing" constant="8" id="FFd-hf-oTD"/>
+                                <constraint firstItem="nKt-r7-CmX" firstAttribute="leading" secondItem="spQ-eH-kuh" secondAttribute="leading" constant="16" id="5m2-Yh-pXV"/>
+                                <constraint firstAttribute="trailing" secondItem="nKt-r7-CmX" secondAttribute="trailing" constant="16" id="FFd-hf-oTD"/>
                                 <constraint firstAttribute="bottom" secondItem="nKt-r7-CmX" secondAttribute="bottom" constant="8" id="UTz-cb-yVK"/>
                                 <constraint firstItem="nKt-r7-CmX" firstAttribute="top" secondItem="spQ-eH-kuh" secondAttribute="top" constant="8" id="yiO-oP-bIO"/>
                             </constraints>

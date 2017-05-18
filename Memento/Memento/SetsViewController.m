@@ -13,12 +13,12 @@
 #import "Set.h"
 #import "ItemOfSet.h"
 
-
 static NSString * const kSetCellID = @"SetTableViewCell";
 static NSString * const kCreateNewSetSegue = @"createNewSetSegue";
 static NSString * const kDetailSetSegue = @"detailSetSegue";
 
-@interface SetsViewController () <UITableViewDataSource, CreateSetTableViewControllerDelegate>
+
+@interface SetsViewController () <UITableViewDataSource, UITableViewDelegate, CreateSetTableViewControllerDelegate>
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray<Set *> *sets;
@@ -31,6 +31,7 @@ static NSString * const kDetailSetSegue = @"detailSetSegue";
     [super viewDidLoad];
     
     self.tableView.dataSource = self;
+    self.tableView.delegate = self;
     self.tableView.estimatedRowHeight = 150;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     
@@ -76,6 +77,13 @@ static NSString * const kDetailSetSegue = @"detailSetSegue";
     [cell configureWithTitle:set.title termsCount:set.count author:set.author];
     
     return cell;
+}
+
+
+#pragma mark - UITableViewDelegate
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 
