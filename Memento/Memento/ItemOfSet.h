@@ -16,4 +16,6 @@
 - (instancetype)initWithTerm:(NSString *)term definition:(NSString *)definition;
 + (instancetype)itemOfSetWithTerm:(NSString *)term definition:(NSString *)definition;
 
+-(BOOL)isEqual:(id)object;
+
 @end

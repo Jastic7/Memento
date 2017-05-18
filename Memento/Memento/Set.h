@@ -29,6 +29,8 @@
 - (void)removeItem:(ItemOfSet *)item;
 - (void)removeItemAtIndex:(NSUInteger)index;
 
+- (BOOL)containsItem:(ItemOfSet *)item;
+
 - (id)objectAtIndexedSubscript:(NSUInteger)idx;
 
 @end

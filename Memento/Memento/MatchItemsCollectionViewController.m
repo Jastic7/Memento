@@ -1,4 +1,3 @@
-//
 //  MatchItemsCollectionViewController.m
 //  Memento
 //
@@ -11,6 +10,7 @@
 #import "MatchModeDelegate.h"
 #import "Set.h"
 #import "ItemOfSet.h"
+#import "NSMutableArray+Shuffle.h"
 
 
 @interface MatchItemsCollectionViewController () <UICollectionViewDelegateFlowLayout>
@@ -20,8 +20,9 @@
 @property (nonatomic, assign) UIEdgeInsets sectionInsets;
 
 @property (nonatomic, strong) Set *roundSet;
-@property (nonatomic, strong) NSMutableArray<NSString *> *roundTerms;
-@property (nonatomic, strong) NSMutableArray<NSString *> *roundDefinitions;
+@property (nonatomic, strong) NSMutableArray<NSString *> *randomItems;
+
+@property (nonatomic, strong) NSMutableArray<NSString *> *selectedItems;
 
 @end
 
@@ -32,7 +33,7 @@ static NSString * const reuseIdentifier = @"ItemOfMatchCollectionViewCell";
 
 #pragma mark - Getters
 
--(Set *)roundSet {
+- (Set *)roundSet {
     if (!_roundSet) {
         _roundSet = [Set new];
     }
@@ -40,20 +41,20 @@ static NSString * const reuseIdentifier = @"ItemOfMatchCollectionViewCell";
     return _roundSet;
 }
 
--(NSMutableArray<NSString *> *)roundTerms {
-    if (!_roundTerms) {
-        _roundTerms = [NSMutableArray array];
+- (NSMutableArray<NSString *> *)selectedItems {
+    if (!_selectedItems) {
+        _selectedItems = [NSMutableArray array];
     }
     
-    return _roundTerms;
+    return _selectedItems;
 }
 
--(NSMutableArray<NSString *> *)roundDefinitions {
-    if (!_roundDefinitions) {
-        _roundDefinitions = [NSMutableArray array];
+-(NSMutableArray<NSString *> *)randomItems {
+    if (!_randomItems) {
+        _randomItems = [NSMutableArray array];
     }
     
-    return _roundDefinitions;
+    return _randomItems;
 }
 
 
@@ -66,8 +67,139 @@ static NSString * const reuseIdentifier = @"ItemOfMatchCollectionViewCell";
     self.itemsPerColumn = 4;
     self.sectionInsets = UIEdgeInsetsMake(25, 10, 10, 10);
     
+    self.collectionView.allowsMultipleSelection = YES;
+    
     [self fillRoundSetByRandom];
 }
+
+
+#pragma mark - <UICollectionViewDataSource>
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 1;
+}
+
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.randomItems.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
+                  cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    ItemOfMatchCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    
+    cell.backgroundColor = [UIColor lightGrayColor];
+    
+    NSString *randomItem = self.randomItems[indexPath.row];
+    [cell configureWithText:randomItem];
+    
+    return cell;
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView
+          viewForSupplementaryElementOfKind:(NSString *)kind
+                                atIndexPath:(NSIndexPath *)indexPath {
+    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
+        return [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"matchHeader" forIndexPath:indexPath];
+    } else {
+        return nil;
+    }
+}
+
+
+#pragma mark - Actions
+
+- (IBAction)exitButtonTapped:(UIButton *)sender {
+    [self.delegate exitMatchMode];
+}
+
+
+#pragma mark - Helpers
+
+- (void)dealloc {
+    NSLog(@"MATCH VC LEFT");
+}
+
+- (void)fillRoundSetByRandom {
+    if (self.set.isEmpty) {
+        //it means, that user matched all items.
+        [self.delegate finishedMatchMode];
+    }
+    
+    NSUInteger randomIndex;
+    ItemOfSet *randomItem;
+    
+    for (int i = 0; i < 6 && !self.set.isEmpty; i++) {
+        randomIndex = arc4random() % self.set.count;
+        randomItem = self.set[randomIndex];
+        
+        [self.roundSet addItem:randomItem];
+        
+        [self.randomItems addObject:randomItem.term];
+        [self.randomItems addObject:randomItem.definition];
+        
+        [self.set removeItemAtIndex:randomIndex];
+    }
+    
+    [self.randomItems shuffle];
+}
+
+
+#pragma mark - <UICollectionViewDelegate>
+
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    //get selected item
+    NSString *selectedItem = self.randomItems[indexPath.row];
+    [self.selectedItems addObject:selectedItem];
+    
+    if (self.selectedItems.count == 2) {
+        //check items
+        BOOL isMatching = [self checkMatchingItems];
+        isMatching ? [self itemsDidMatched] : [self itemsDidMissed];
+        
+        //deselect all items
+        [self.selectedItems removeAllObjects];
+        
+        //get new potions of items
+        if (self.roundSet.isEmpty) {
+            [self fillRoundSetByRandom];
+            [collectionView reloadData];
+        }
+    }
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSString *deselectedItem = self.randomItems[indexPath.row];
+    [self.selectedItems removeObject:deselectedItem];
+}
+
+
+/*
+// Uncomment this method to specify if the specified item should be highlighted during tracking
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
+	return YES;
+}
+*/
+
+
+/*
+// Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
+	return NO;
+}
+
+- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
+	return NO;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
+	
+}
+*/
 
 
 #pragma mark - UICollectionViewDelegateFlowLayout
@@ -98,106 +230,48 @@ static NSString * const reuseIdentifier = @"ItemOfMatchCollectionViewCell";
 }
 
 
-#pragma mark <UICollectionViewDataSource>
+#pragma mark - Matching Helpers
 
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 1;
-}
-
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 12;
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
-                  cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    ItemOfMatchCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+- (BOOL)checkMatchingItems {
+    BOOL isMatching = NO;
     
-    cell.backgroundColor = [UIColor lightGrayColor];
+    NSString *firstSelectedItem = self.selectedItems[0];
+    NSString *secondSelectedItem = self.selectedItems[1];
     
-    BOOL isTerm = arc4random() % 2;
-    if (isTerm && self.roundTerms.count == 0) {
-        isTerm = NO;
-    }
-    if (!isTerm && self.roundDefinitions.count == 0) {
-        isTerm = YES;
+    ItemOfSet *checkingItem = [ItemOfSet itemOfSetWithTerm:firstSelectedItem definition:secondSelectedItem];
+    isMatching = [self.roundSet containsItem:checkingItem];
+    
+    if (!isMatching) {
+        checkingItem = [ItemOfSet itemOfSetWithTerm:secondSelectedItem definition:firstSelectedItem];
+        isMatching = [self.roundSet containsItem:checkingItem];
     }
     
-    if (isTerm) {
-        NSString *term = self.roundTerms.lastObject;
-        [self.roundTerms removeLastObject];
-        [cell configureWithText:term];
-    } else {
-        NSString *definition = self.roundDefinitions.lastObject;
-        [self.roundDefinitions removeLastObject];
-        [cell configureWithText:definition];
+    if (isMatching) {
+        [self.roundSet removeItem:checkingItem];
     }
     
-    return cell;
+    return isMatching;
 }
 
--(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView
-          viewForSupplementaryElementOfKind:(NSString *)kind
-                                atIndexPath:(NSIndexPath *)indexPath {
-    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
-        return [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"matchHeader" forIndexPath:indexPath];
-    } else {
-        return nil;
+- (void)itemsDidMatched {
+    NSArray<NSIndexPath *> *selectedIndexPaths = self.collectionView.indexPathsForSelectedItems;
+    
+    for (NSIndexPath *idx in selectedIndexPaths) {
+        UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:idx];
+        cell.backgroundColor = [UIColor greenColor];
+    }
+    
+    [self.randomItems removeObjectsInArray:self.selectedItems];
+    [self.collectionView deleteItemsAtIndexPaths:selectedIndexPaths];
+}
+
+- (void)itemsDidMissed {
+    NSArray<NSIndexPath *> *selectedIndexPaths = self.collectionView.indexPathsForSelectedItems;
+    
+    for (NSIndexPath *idx in selectedIndexPaths) {
+        UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:idx];
+        cell.backgroundColor = [UIColor redColor];
+        [self.collectionView deselectItemAtIndexPath:idx animated:YES];
     }
 }
-
-- (IBAction)exitButtonTapped:(UIButton *)sender {
-    [self.delegate exitMatchMode];
-}
-
--(void)dealloc {
-    NSLog(@"MATCH VC LEFT");
-}
-
-- (void)fillRoundSetByRandom {
-    NSUInteger randomIndex;
-    ItemOfSet *randomItem;
-    for (int i = 0; i < 6 && !self.set.isEmpty; i++) {
-        randomIndex = arc4random() % self.set.count;
-        randomItem = self.set[randomIndex];
-        
-        [self.roundTerms addObject:randomItem.term];
-        [self.roundDefinitions addObject:randomItem.definition];
-        
-        [self.roundSet addItem:randomItem];
-        
-        [self.set removeItemAtIndex:randomIndex];
-    }
-}
-#pragma mark <UICollectionViewDelegate>
-
-/*
-// Uncomment this method to specify if the specified item should be highlighted during tracking
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-	return YES;
-}
-*/
-
-/*
-// Uncomment this method to specify if the specified item should be selected
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-*/
-
-/*
-// Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return NO;
-}
-
-- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	return NO;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	
-}
-*/
-
 @end

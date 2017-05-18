@@ -38,6 +38,12 @@
     return [[self alloc] initWithTerm:term definition:definition];
 }
 
+-(BOOL)isEqual:(id)object {
+    ItemOfSet *anotherObject = object;
+    return  ([self.term isEqualToString:anotherObject.term]) &&
+            ([self.definition isEqualToString:anotherObject.definition]);
+}
+
 -(id)copyWithZone:(NSZone *)zone {
     ItemOfSet *copyItem = [[[self class] allocWithZone:zone] init];
     copyItem.term = self.term;

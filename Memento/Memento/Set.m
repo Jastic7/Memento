@@ -68,6 +68,10 @@
     [self.items removeObjectAtIndex:index];
 }
 
+- (BOOL)containsItem:(ItemOfSet *)item {
+    return [self.items containsObject:item];
+}
+
 - (id)objectAtIndexedSubscript:(NSUInteger)idx {
     return self.items[idx];
 }
