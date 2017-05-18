@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		555AE4FD1ECDDA9E00A500CA /* LearnRoundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 555AE4FC1ECDDA9E00A500CA /* LearnRoundViewController.m */; };
 		55A8F3DA1EBBDD68000D5DB0 /* ItemOfSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A8F3D91EBBDD68000D5DB0 /* ItemOfSet.m */; };
 		55A8F3DF1EBBEFE2000D5DB0 /* ItemOfSetTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A8F3DD1EBBEFE2000D5DB0 /* ItemOfSetTableViewCell.m */; };
 		55A8F3E01EBBEFE2000D5DB0 /* ItemOfSetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55A8F3DE1EBBEFE2000D5DB0 /* ItemOfSetTableViewCell.xib */; };
@@ -28,6 +29,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		555AE4FB1ECDDA9E00A500CA /* LearnRoundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnRoundViewController.h; sourceTree = "<group>"; };
+		555AE4FC1ECDDA9E00A500CA /* LearnRoundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearnRoundViewController.m; sourceTree = "<group>"; };
 		55A8F3D81EBBDD68000D5DB0 /* ItemOfSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemOfSet.h; sourceTree = "<group>"; };
 		55A8F3D91EBBDD68000D5DB0 /* ItemOfSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemOfSet.m; sourceTree = "<group>"; };
 		55A8F3DC1EBBEFE2000D5DB0 /* ItemOfSetTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemOfSetTableViewCell.h; sourceTree = "<group>"; };
@@ -156,6 +159,8 @@
 				55C6ACDD1EC8D33F0062537B /* MatchPrepareViewController.m */,
 				55C6ACD61EC8B3250062537B /* MatchItemsCollectionViewController.h */,
 				55C6ACD71EC8B3250062537B /* MatchItemsCollectionViewController.m */,
+				555AE4FB1ECDDA9E00A500CA /* LearnRoundViewController.h */,
+				555AE4FC1ECDDA9E00A500CA /* LearnRoundViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -252,6 +257,7 @@
 				55D34EE01EBA906500A2EE38 /* SetsViewController.m in Sources */,
 				55C6ACDE1EC8D33F0062537B /* MatchPrepareViewController.m in Sources */,
 				55F27BC61ECC7B8F00EE58F9 /* NSMutableArray+Shuffle.m in Sources */,
+				555AE4FD1ECDDA9E00A500CA /* LearnRoundViewController.m in Sources */,
 				55C6ACDB1EC8B4300062537B /* ItemOfMatchCollectionViewCell.m in Sources */,
 				55D34EDD1EBA906500A2EE38 /* AppDelegate.m in Sources */,
 				55D34EF41EBAA28500A2EE38 /* SetTableViewCell.m in Sources */,
@@ -323,7 +329,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -364,7 +370,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -378,7 +384,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 58CCZPCE6T;
 				INFOPLIST_FILE = Memento/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Jastic7.Memento;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -392,7 +398,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 58CCZPCE6T;
 				INFOPLIST_FILE = Memento/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Jastic7.Memento;
 				PRODUCT_NAME = "$(TARGET_NAME)";

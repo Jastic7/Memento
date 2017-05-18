@@ -21,7 +21,6 @@
 
 @property (nonatomic, strong) Set *roundSet;
 @property (nonatomic, strong) NSMutableArray<NSString *> *randomItems;
-
 @property (nonatomic, strong) NSMutableArray<NSString *> *selectedItems;
 
 @end
@@ -49,7 +48,7 @@ static NSString * const reuseIdentifier = @"ItemOfMatchCollectionViewCell";
     return _selectedItems;
 }
 
--(NSMutableArray<NSString *> *)randomItems {
+- (NSMutableArray<NSString *> *)randomItems {
     if (!_randomItems) {
         _randomItems = [NSMutableArray array];
     }
@@ -111,37 +110,6 @@ static NSString * const reuseIdentifier = @"ItemOfMatchCollectionViewCell";
 
 - (IBAction)exitButtonTapped:(UIButton *)sender {
     [self.delegate exitMatchMode];
-}
-
-
-#pragma mark - Helpers
-
-- (void)dealloc {
-    NSLog(@"MATCH VC LEFT");
-}
-
-- (void)fillRoundSetByRandom {
-    if (self.set.isEmpty) {
-        //it means, that user matched all items.
-        [self.delegate finishedMatchMode];
-    }
-    
-    NSUInteger randomIndex;
-    ItemOfSet *randomItem;
-    
-    for (int i = 0; i < 6 && !self.set.isEmpty; i++) {
-        randomIndex = arc4random() % self.set.count;
-        randomItem = self.set[randomIndex];
-        
-        [self.roundSet addItem:randomItem];
-        
-        [self.randomItems addObject:randomItem.term];
-        [self.randomItems addObject:randomItem.definition];
-        
-        [self.set removeItemAtIndex:randomIndex];
-    }
-    
-    [self.randomItems shuffle];
 }
 
 
@@ -219,12 +187,12 @@ static NSString * const reuseIdentifier = @"ItemOfMatchCollectionViewCell";
     return CGSizeMake(widthPerItem, heightPerItem);
 }
 
--(UIEdgeInsets)collectionView:(UICollectionView *)collectionView
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView
                        layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     return self.sectionInsets;
 }
 
--(CGFloat)collectionView:(UICollectionView *)collectionView
+- (CGFloat)collectionView:(UICollectionView *)collectionView
                   layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
     return self.sectionInsets.left;
 }
@@ -271,7 +239,35 @@ static NSString * const reuseIdentifier = @"ItemOfMatchCollectionViewCell";
     for (NSIndexPath *idx in selectedIndexPaths) {
         UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:idx];
         cell.backgroundColor = [UIColor redColor];
+        
         [self.collectionView deselectItemAtIndexPath:idx animated:YES];
     }
+}
+
+
+#pragma mark - Helpers
+
+- (void)fillRoundSetByRandom {
+    if (self.set.isEmpty) {
+        //it means, that user matched all items.
+        [self.delegate finishedMatchMode];
+    }
+    
+    NSUInteger randomIndex;
+    ItemOfSet *randomItem;
+    
+    for (int i = 0; i < 6 && !self.set.isEmpty; i++) {
+        randomIndex = arc4random() % self.set.count;
+        randomItem = self.set[randomIndex];
+        
+        [self.roundSet addItem:randomItem];
+        
+        [self.randomItems addObject:randomItem.term];
+        [self.randomItems addObject:randomItem.definition];
+        
+        [self.set removeItemAtIndex:randomIndex];
+    }
+    
+    [self.randomItems shuffle];
 }
 @end

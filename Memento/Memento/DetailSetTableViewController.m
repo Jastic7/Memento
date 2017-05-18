@@ -8,13 +8,18 @@
 
 #import "DetailSetTableViewController.h"
 #import "MatchPrepareViewController.h"
-#import "MatchModeDelegate.h"
+#import "LearnRoundViewController.h"
 #import "ItemOfSetTableViewCell.h"
+
+#import "MatchModeDelegate.h"
+
 #import "Set.h"
 #import "ItemOfSet.h"
 
 static NSString * const kItemOfSetCellID = @"ItemOfSetTableViewCell";
 static NSString * const kMatchModePrepareSegue = @"matchModePrepareSegue";
+static NSString * const kRoundLearnModeSegue = @"roundLearnModeSegue";
+
 
 @interface DetailSetTableViewController () <MatchModeDelegate>
 
@@ -96,6 +101,12 @@ static NSString * const kMatchModePrepareSegue = @"matchModePrepareSegue";
         MatchPrepareViewController *dvc = segue.destinationViewController;
         dvc.delegate = self;
         dvc.set = self.set;
+    } else if ([identifier isEqualToString:kRoundLearnModeSegue]) {
+        LearnRoundViewController *dvc = segue.destinationViewController;
+        dvc.learningSet = self.set;
+        dvc.cancelingBlock = ^void() {
+            [self dismissViewControllerAnimated:YES completion:nil];
+        };
     }
 }
 
