@@ -19,7 +19,15 @@
 @property (nonatomic, assign) CGFloat itemsPerColumn;
 @property (nonatomic, assign) UIEdgeInsets sectionInsets;
 
+/*!
+ * @brief Contains some items (6) from whole set
+ * for current round. Fills by random.
+ */
 @property (nonatomic, strong) Set *roundSet;
+/*!
+ * @brief Contains terms and definitions
+ * from round set for representing in collection view.
+ */
 @property (nonatomic, strong) NSMutableArray<NSString *> *randomItems;
 @property (nonatomic, strong) NSMutableArray<NSString *> *selectedItems;
 
@@ -146,30 +154,6 @@ static NSString * const reuseIdentifier = @"ItemOfMatchCollectionViewCell";
 }
 
 
-/*
-// Uncomment this method to specify if the specified item should be highlighted during tracking
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-	return YES;
-}
-*/
-
-
-/*
-// Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return NO;
-}
-
-- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	return NO;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	
-}
-*/
-
-
 #pragma mark - UICollectionViewDelegateFlowLayout
 
 - (CGSize)collectionView:(UICollectionView *)collectionView
@@ -256,6 +240,7 @@ static NSString * const reuseIdentifier = @"ItemOfMatchCollectionViewCell";
     NSUInteger randomIndex;
     ItemOfSet *randomItem;
     
+    //get 6 items for current round from set by random.
     for (int i = 0; i < 6 && !self.set.isEmpty; i++) {
         randomIndex = arc4random() % self.set.count;
         randomItem = self.set[randomIndex];
@@ -269,5 +254,9 @@ static NSString * const reuseIdentifier = @"ItemOfMatchCollectionViewCell";
     }
     
     [self.randomItems shuffle];
+}
+
+-(void)dealloc {
+    NSLog(@"Match mode dealloced");
 }
 @end

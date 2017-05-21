@@ -11,7 +11,7 @@
 #import "MatchModeDelegate.h"
 
 
-static NSString * const kMatchModeStartSegue = @"matchModeStartSegue";
+static NSString * const kMatchModeViewControllerID = @"MatchModeViewController";
 
 @interface MatchPrepareViewController ()
 
@@ -23,28 +23,39 @@ static NSString * const kMatchModeStartSegue = @"matchModeStartSegue";
     [super viewDidLoad];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
-
-#pragma mark - Navigation
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    NSString *identifier = segue.identifier;
-    
-    if ([identifier isEqualToString:kMatchModeStartSegue]) {
-        MatchItemsCollectionViewController *dvc = segue.destinationViewController;
-        dvc.delegate = self.delegate;
-        dvc.set = self.set;
-    }
-}
-
 
 #pragma mark - Actions
 
 - (IBAction)exitButtonTapped:(UIButton *)sender {
     [self.delegate exitMatchMode];
+}
+
+- (IBAction)startButtonTapped:(UIButton *)sender {
+    if (self.childViewControllers.count == 0) {
+        [self configureMatchModeViewController];
+        MatchItemsCollectionViewController *childViewController = self.childViewControllers[0];
+        [UIView animateWithDuration:0.3 animations:^{
+            childViewController.view.alpha = 1.0;
+        }];
+    }
+}
+
+
+#pragma mark - Configuration
+
+- (void)configureMatchModeViewController {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    MatchItemsCollectionViewController *childViewController = [storyboard instantiateViewControllerWithIdentifier:kMatchModeViewControllerID];
+    
+    childViewController.set = self.set;
+    childViewController.delegate = self.delegate;
+    
+    [self addChildViewController:childViewController];
+    [self.view addSubview:childViewController.view];
+    [childViewController didMoveToParentViewController:self];
+    
+    childViewController.view.alpha = 0;
 }
 
 -(void)dealloc {
