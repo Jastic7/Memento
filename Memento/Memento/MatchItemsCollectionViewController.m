@@ -12,6 +12,8 @@
 #import "ItemOfSet.h"
 #import "NSMutableArray+Shuffle.h"
 
+static NSString * const reuseIdentifier = @"ItemOfMatchCollectionViewCell";
+
 
 @interface MatchItemsCollectionViewController () <UICollectionViewDelegateFlowLayout>
 
@@ -34,8 +36,6 @@
 @end
 
 @implementation MatchItemsCollectionViewController
-
-static NSString * const reuseIdentifier = @"ItemOfMatchCollectionViewCell";
 
 
 #pragma mark - Getters
@@ -172,12 +172,13 @@ static NSString * const reuseIdentifier = @"ItemOfMatchCollectionViewCell";
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView
-                       layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+                        layout:(UICollectionViewLayout *)collectionViewLayout
+        insetForSectionAtIndex:(NSInteger)section {
     return self.sectionInsets;
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView
-                  layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+                   layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
     return self.sectionInsets.left;
 }
 

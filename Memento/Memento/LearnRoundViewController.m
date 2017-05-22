@@ -7,10 +7,12 @@
 //
 
 #import "LearnRoundViewController.h"
+#import "LearnRoundInfoTableViewController.h"
 #import "Set.h"
 #import "ItemOfSet.h"
 
 static NSUInteger const kCountItemsInRound = 7;
+static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfoNavigationController";
 
 
 @interface LearnRoundViewController () <UINavigationBarDelegate, UITextFieldDelegate>
@@ -19,11 +21,29 @@ static NSUInteger const kCountItemsInRound = 7;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
 
+/*!
+ * @brief Contains items for current learning round.
+ */
 @property (nonatomic, strong) Set *roundSet;
+/*!
+ * @brief Responsible for tracking number of rounds.
+ */
 @property (nonatomic, assign) NSUInteger currentRound;
+/*!
+ * @brief Responsible for tracking position in whole 
+ * learning set, which will be using for creating 
+ * new subset in the new round.
+ */
 @property (nonatomic, assign) NSUInteger location;
 
+/*!
+ * @brief Responsible for tracking index of learning
+ * item from the roundSet.
+ */
 @property (nonatomic, assign) NSUInteger roundItemIndex;
+/*!
+ * @brief Current item from roundSet.
+ */
 @property (nonatomic, strong) ItemOfSet *roundItem;
 
 @property (nonatomic, assign) BOOL isLastRound;
@@ -145,7 +165,7 @@ static NSUInteger const kCountItemsInRound = 7;
 }
 
 
-#pragma mark - Helpers
+#pragma mark - Configuration
 
 - (void)configure {
     CGFloat xOffset = 16;
@@ -155,12 +175,38 @@ static NSUInteger const kCountItemsInRound = 7;
 
     self.location = 0;
     self.currentRound = 0;
-    self.isLastRound = NO;
+}
+
+- (void)configureRoundInfoViewController {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    UINavigationController *navigationController = [storyboard instantiateViewControllerWithIdentifier:kLearnRoundInfoNavigationControllerID];
+    LearnRoundInfoTableViewController *childViewController = (LearnRoundInfoTableViewController *)navigationController.topViewController;
+    
+    childViewController.roundSet = self.roundSet;
+    childViewController.cancelingBlock = self.cancelingBlock;
+    
+    [self addChildViewController:navigationController];
+    [self.view addSubview:navigationController.view];
+    [navigationController didMoveToParentViewController:self];
+    
+    navigationController.view.alpha = 0;
+}
+
+- (void)showRoundInfoViewController {
+    if (self.childViewControllers.count == 0) {
+        [self configureRoundInfoViewController];
+        UINavigationController *childViewController = self.childViewControllers[0];
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            childViewController.view.alpha = 1.0;
+        }];
+    }
 }
 
 - (void)updateRoundSet {
     if (self.isLastRound) {
-        self.cancelingBlock();
+        [self showRoundInfoViewController];
         return;
     }
     
