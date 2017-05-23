@@ -13,7 +13,6 @@
 
 @property (nonatomic, copy, readonly)   NSString *title;
 @property (nonatomic, copy, readonly)   NSString *author;
-@property (nonatomic, strong, readonly) NSMutableArray<ItemOfSet *> *items;
 @property (nonatomic, assign, readonly) NSUInteger count;
 @property (nonatomic, assign, readonly) BOOL isEmpty;
 
@@ -25,8 +24,6 @@
                       author:(NSString *)author
                        items:(NSArray<ItemOfSet *> *)items;
 
-- (Set *)itemsWithLearnState:(LearnState )learnState;
-
 - (void)addItem:(ItemOfSet *)item;
 - (void)removeItem:(ItemOfSet *)item;
 - (void)removeItemAtIndex:(NSUInteger)index;
@@ -35,6 +32,8 @@
 - (ItemOfSet *)findItemWithTerm:(NSString *)term definition:(NSString *)definition;
 
 - (Set *)subsetWithRange:(NSRange)range;
+- (NSMutableArray <ItemOfSet *> *)itemsWithLearnState:(LearnState)learnState;
+- (NSUInteger)countItemsWithLearnState:(LearnState)learnState;
 
 - (id)objectAtIndexedSubscript:(NSUInteger)idx;
 

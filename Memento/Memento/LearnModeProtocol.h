@@ -18,5 +18,8 @@
 + (instancetype)createWithSet:(Set *)set;
 
 - (BOOL)checkUserDefinition:(NSString *)definition;
+- (void)updateRoundSet;
+- (void)setInitialConfiguration;
+- (void)showNextItem;
 
 @end

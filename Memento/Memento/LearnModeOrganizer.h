@@ -27,7 +27,4 @@ static NSUInteger const kCountItemsInRound = 7;
 
 @property (nonatomic, weak) id <LearnModeOrganizerDelegate> delegate;
 
-- (void)configure;
-- (void)nextItem;
-
 @end

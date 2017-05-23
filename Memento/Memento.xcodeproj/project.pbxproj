@@ -121,6 +121,20 @@
 			name = LearnMode;
 			sourceTree = "<group>";
 		};
+		557D1D381ED3DA5300DC7ADE /* LearnMode */ = {
+			isa = PBXGroup;
+			children = (
+				5556BE5B1ED3244F00E8DC64 /* Circle.h */,
+				5556BE5C1ED3244F00E8DC64 /* Circle.m */,
+				5556BE5E1ED3266D00E8DC64 /* LearnRoundInfoHeader.h */,
+				5556BE5F1ED3266D00E8DC64 /* LearnRoundInfoHeader.m */,
+				5556BE611ED3267C00E8DC64 /* LearnRoundInfoHeader.xib */,
+				557D1D351ED3D77F00DC7ADE /* LearnRoundInfoTableViewCell.h */,
+				557D1D361ED3D77F00DC7ADE /* LearnRoundInfoTableViewCell.m */,
+			);
+			name = LearnMode;
+			sourceTree = "<group>";
+		};
 		55A8F3DB1EBBE017000D5DB0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -142,13 +156,7 @@
 				55A8F3DE1EBBEFE2000D5DB0 /* ItemOfSetTableViewCell.xib */,
 				55C6ACD91EC8B4300062537B /* ItemOfMatchCollectionViewCell.h */,
 				55C6ACDA1EC8B4300062537B /* ItemOfMatchCollectionViewCell.m */,
-				5556BE5B1ED3244F00E8DC64 /* Circle.h */,
-				5556BE5C1ED3244F00E8DC64 /* Circle.m */,
-				5556BE5E1ED3266D00E8DC64 /* LearnRoundInfoHeader.h */,
-				5556BE5F1ED3266D00E8DC64 /* LearnRoundInfoHeader.m */,
-				5556BE611ED3267C00E8DC64 /* LearnRoundInfoHeader.xib */,
-				557D1D351ED3D77F00DC7ADE /* LearnRoundInfoTableViewCell.h */,
-				557D1D361ED3D77F00DC7ADE /* LearnRoundInfoTableViewCell.m */,
+				557D1D381ED3DA5300DC7ADE /* LearnMode */,
 			);
 			name = View;
 			sourceTree = "<group>";

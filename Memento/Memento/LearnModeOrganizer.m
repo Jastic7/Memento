@@ -75,9 +75,32 @@
 
 - (void)setCurrentRound:(NSUInteger)currentRound {
     _currentRound = currentRound;
-    [self updateRoundSet];
+    [self.delegate finishLearning];
+//    [self updateRoundSet];
 }
 
+
+#pragma mark - Helpers
+
+- (void)updateLearningProgressOfItem:(ItemOfSet *)item isUserRight:(BOOL)isUserRight {
+    if (isUserRight) {
+        [item increaseLearnProgress];
+    } else {
+        [item resetLearnProgress];
+    }
+}
+
+- (void)setInitialConfiguration {
+    self.location = 0;
+    self.currentRound = 0;
+}
+
+- (void)showNextItem {
+    self.roundItemIndex++;
+}
+
+
+#pragma mark - LearnModeProtocol implementation
 
 #pragma mark - Updating
 
@@ -96,30 +119,8 @@
     //fills round set by new items.
     self.roundSet = [self.learningSet subsetWithRange:range];
     self.roundItemIndex = 0;
-    self.roundItem = self.roundSet[self.roundItemIndex];
 }
 
-#pragma mark - Helpers
-
-- (void)updateLearningProgressOfItem:(ItemOfSet *)item isUserRight:(BOOL)isUserRight {
-    if (isUserRight) {
-        [item increaseLearnProgress];
-    } else {
-        [item resetLearnProgress];
-    }
-}
-
-- (void)configure {
-    self.location = 0;
-    self.currentRound = 0;
-}
-
-- (void)nextItem {
-    self.roundItemIndex++;
-}
-
-
-#pragma mark - LearnModeProtocol implementation
 
 #pragma mark - Initialization
 

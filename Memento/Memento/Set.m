@@ -53,18 +53,6 @@
     return self.items.count == 0;
 }
 
-- (Set *)itemsWithLearnState:(LearnState)learnState {
-    NSMutableArray *filteredItems = [NSMutableArray array];
-    for (ItemOfSet *item in self.items) {
-        if (item.learnProgress == learnState) {
-            [filteredItems addObject:item];
-        }
-    }
-    
-    Set *set = [Set setWithTitle:self.title author:self.author items:filteredItems];
-    
-    return set;
-}
 
 #pragma mark - Modifiers
 
@@ -101,6 +89,29 @@
     Set *subset = [Set setWithTitle:self.title author:self.author items:subitems];
     
     return subset;
+}
+
+
+- (NSMutableArray <ItemOfSet *> *)itemsWithLearnState:(LearnState)learnState {
+    NSMutableArray <ItemOfSet *> *filteredItems = [NSMutableArray array];
+    for (ItemOfSet *item in self.items) {
+        if (item.learnProgress == learnState) {
+            [filteredItems addObject:item];
+        }
+    }
+    
+    return filteredItems;
+}
+
+- (NSUInteger)countItemsWithLearnState:(LearnState)learnState {
+    NSUInteger count = 0;
+    for (ItemOfSet *item in self.items) {
+        if (item.learnProgress == learnState) {
+            count++;
+        }
+    }
+    
+    return count;
 }
 
 - (id)objectAtIndexedSubscript:(NSUInteger)idx {

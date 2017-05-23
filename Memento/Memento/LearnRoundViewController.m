@@ -38,7 +38,7 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
     
     [self configureTextField];
     [self registerNotifications];
-    [self.organizer configure];
+    [self.organizer setInitialConfiguration];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -74,10 +74,11 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
     NSString *userDefinition = textField.text;
     BOOL isRightDefinition = [self.organizer checkUserDefinition:userDefinition];
     
+    // FIXME: Set correct text field state
     self.textField.text = @"DEFINITION ";
     
     if (isRightDefinition) {
-        [self.organizer nextItem];
+        [self.organizer showNextItem];
     }
     
     return YES;
@@ -134,7 +135,12 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
     LearnRoundInfoTableViewController *childViewController = (LearnRoundInfoTableViewController *)navigationController.topViewController;
     
     childViewController.roundSet = self.organizer.roundSet;
+    childViewController.learningSet = self.organizer.learningSet;
+    
     childViewController.cancelingBlock = self.cancelingBlock;
+    childViewController.prepareForNextRoundBlock = ^void() {
+        [self.organizer updateRoundSet];
+    };
     
     [self addChildViewController:navigationController];
     [self.view addSubview:navigationController.view];
