@@ -7,17 +7,34 @@
 //
 
 #import "LearnRoundInfoTableViewController.h"
+#import "LearnRoundInfoTableViewCell.h"
 #import "LearnRoundInfoHeader.h"
 #import "Set.h"
 
 static NSString * const kLearnRoundInfoHeaderID = @"LearnRoundInfoHeader";
+static NSString * const kLearnRoundInfoTableViewCellID = @"LearnRoundInfoTableViewCell";
 
 
 @interface LearnRoundInfoTableViewController () <UINavigationBarDelegate>
 
+@property (strong, nonatomic) NSMutableDictionary <NSString *, Set *> *structuredSet;
+
 @end
 
 @implementation LearnRoundInfoTableViewController
+
+
+#pragma mark - Getters 
+
+- (NSMutableDictionary<NSString *,Set *> *)structuredSet {
+    if (!_structuredSet) {
+        _structuredSet = [NSMutableDictionary dictionary];
+        _structuredSet[@"Learnt"] = [self.roundSet itemsWithLearnState:Learnt];
+        _structuredSet[@"Mastered"] = [self.roundSet itemsWithLearnState:Mastered];
+    }
+    
+    return _structuredSet;
+}
 
 #pragma mark - Life Cycle
 
@@ -36,21 +53,28 @@ static NSString * const kLearnRoundInfoHeaderID = @"LearnRoundInfoHeader";
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return self.structuredSet.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    NSString *typeOfSection = section == 1 ? @"Learnt" : @"Mastered";
+    return self.structuredSet[typeOfSection].count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"learnInfoCell" forIndexPath:indexPath];
+    LearnRoundInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kLearnRoundInfoTableViewCellID forIndexPath:indexPath];
+    NSString *typeOfSection = indexPath.section == 1 ? @"Learnt" : @"Mastered";
+    Set *currentSet = self.structuredSet[typeOfSection];
+    ItemOfSet *item = currentSet[indexPath.row];
+    
+    [cell configureWithTerm:item.term definition:item.definition];
     return cell;
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     LearnRoundInfoHeader *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:kLearnRoundInfoHeaderID];
-    [header configureWithTitle:@"Mastered"];
+    NSString *headerTitle = section == 1 ? @"Learnt" : @"Mastered";
+    [header configureWithTitle:headerTitle];
     
     return header;
 }
@@ -59,9 +83,8 @@ static NSString * const kLearnRoundInfoHeaderID = @"LearnRoundInfoHeader";
     return 30;
 }
 
--(UIBarPosition)positionForBar:(id<UIBarPositioning>)bar {
-    return UIBarPositionTopAttached;
+-(void)dealloc {
+    NSLog(@"Learn round info left");
 }
-
 
 @end

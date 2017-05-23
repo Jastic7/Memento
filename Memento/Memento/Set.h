@@ -7,12 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-@class ItemOfSet;
+#import "ItemOfSet.h"
 
 @interface Set : NSObject <NSCopying>
 
-@property (nonatomic, copy, readonly) NSString *title;
-@property (nonatomic, copy, readonly) NSString *author;
+@property (nonatomic, copy, readonly)   NSString *title;
+@property (nonatomic, copy, readonly)   NSString *author;
 @property (nonatomic, strong, readonly) NSMutableArray<ItemOfSet *> *items;
 @property (nonatomic, assign, readonly) NSUInteger count;
 @property (nonatomic, assign, readonly) BOOL isEmpty;
@@ -25,11 +25,14 @@
                       author:(NSString *)author
                        items:(NSArray<ItemOfSet *> *)items;
 
+- (Set *)itemsWithLearnState:(LearnState )learnState;
+
 - (void)addItem:(ItemOfSet *)item;
 - (void)removeItem:(ItemOfSet *)item;
 - (void)removeItemAtIndex:(NSUInteger)index;
 
 - (BOOL)containsItem:(ItemOfSet *)item;
+- (ItemOfSet *)findItemWithTerm:(NSString *)term definition:(NSString *)definition;
 
 - (Set *)subsetWithRange:(NSRange)range;
 

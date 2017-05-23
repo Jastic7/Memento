@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @class Set;
-
+@class LearnModeOrganizer;
 
 @interface LearnRoundViewController : UIViewController
 
-@property (nonatomic, strong) Set *learningSet;
+@property (nonatomic, strong) LearnModeOrganizer *organizer;
+
 @property (nonatomic, copy) void (^cancelingBlock)();
 
 @end

@@ -28,7 +28,7 @@
     self.titleLabel.text = title;
 
     if ([title isEqualToString:@"Learnt"]) {
-        self.leftCirle.backgroundColor = [UIColor grayColor];
+        self.rightCircle.backgroundColor = [UIColor grayColor];
     }
     
     UIView *view = [[UIView alloc]initWithFrame:CGRectZero];

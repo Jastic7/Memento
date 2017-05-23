@@ -10,12 +10,13 @@
 
 @interface ItemOfSet ()
 
-//@property (nonatomic, copy) NSString *term;
-//@property (nonatomic, copy) NSString *definition;
+@property (nonatomic, assign) LearnState learnProgress;
 
 @end
 
+
 @implementation ItemOfSet
+
 
 #pragma mark - Initializations
 
@@ -27,8 +28,9 @@
     self = [super init];
     
     if (self) {
-        self.term = term;
-        self.definition = definition;
+        _term = term;
+        _definition = definition;
+        _learnProgress = Unknown;
     }
     
     return self;
@@ -38,13 +40,30 @@
     return [[self alloc] initWithTerm:term definition:definition];
 }
 
--(BOOL)isEqual:(id)object {
+
+#pragma mark - Learn Progress
+
+- (void)resetLearnProgress {
+    self.learnProgress = Unknown;
+}
+
+- (void)increaseLearnProgress {
+    if (self.learnProgress < 2) {
+        self.learnProgress++;
+    }
+}
+
+
+#pragma mark - Helpers
+
+- (BOOL)isEqual:(id)object {
     ItemOfSet *anotherObject = object;
+    
     return  ([self.term isEqualToString:anotherObject.term]) &&
             ([self.definition isEqualToString:anotherObject.definition]);
 }
 
--(id)copyWithZone:(NSZone *)zone {
+- (id)copyWithZone:(NSZone *)zone {
     ItemOfSet *copyItem = [[[self class] allocWithZone:zone] init];
     copyItem.term = self.term;
     copyItem.definition = self.definition;

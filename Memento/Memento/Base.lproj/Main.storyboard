@@ -468,7 +468,7 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="learnInfoCell" rowHeight="75" id="rgY-9n-3NK">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LearnRoundInfoTableViewCell" rowHeight="75" id="rgY-9n-3NK" customClass="LearnRoundInfoTableViewCell">
                                 <rect key="frame" x="0.0" y="204" width="375" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rgY-9n-3NK" id="sQN-L3-VbH">
@@ -510,6 +510,10 @@
                                         <constraint firstAttribute="bottom" secondItem="nHa-I0-FB1" secondAttribute="bottom" constant="8" id="qh2-St-6xh"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="definitionLabel" destination="A4N-OF-0sf" id="jz3-wo-Yji"/>
+                                    <outlet property="termLabel" destination="yx2-b6-Whr" id="pgv-Ge-KKo"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

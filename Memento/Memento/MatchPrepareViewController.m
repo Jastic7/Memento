@@ -10,14 +10,18 @@
 #import "MatchItemsCollectionViewController.h"
 #import "MatchModeDelegate.h"
 
-
 static NSString * const kMatchModeViewControllerID = @"MatchModeViewController";
+
 
 @interface MatchPrepareViewController ()
 
 @end
 
+
 @implementation MatchPrepareViewController
+
+
+#pragma mark - Life Cycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];

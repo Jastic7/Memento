@@ -10,83 +10,21 @@
 #import "LearnRoundInfoTableViewController.h"
 #import "Set.h"
 #import "ItemOfSet.h"
+#import "LearnModeOrganizer.h"
 
-static NSUInteger const kCountItemsInRound = 7;
 static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfoNavigationController";
 
 
-@interface LearnRoundViewController () <UINavigationBarDelegate, UITextFieldDelegate>
+@interface LearnRoundViewController () <UINavigationBarDelegate, UITextFieldDelegate, LearnModeOrganizerDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *textLabel;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
 
-/*!
- * @brief Contains items for current learning round.
- */
-@property (nonatomic, strong) Set *roundSet;
-/*!
- * @brief Responsible for tracking number of rounds.
- */
-@property (nonatomic, assign) NSUInteger currentRound;
-/*!
- * @brief Responsible for tracking position in whole 
- * learning set, which will be using for creating 
- * new subset in the new round.
- */
-@property (nonatomic, assign) NSUInteger location;
-
-/*!
- * @brief Responsible for tracking index of learning
- * item from the roundSet.
- */
-@property (nonatomic, assign) NSUInteger roundItemIndex;
-/*!
- * @brief Current item from roundSet.
- */
-@property (nonatomic, strong) ItemOfSet *roundItem;
-
-@property (nonatomic, assign) BOOL isLastRound;
-
 @end
 
 
 @implementation LearnRoundViewController
-
-
-#pragma mark - Getters
-
-- (Set *)roundSet {
-    if (!_roundSet) {
-        _roundSet = [Set new];
-    }
-    
-    return _roundSet;
-}
-
-
-#pragma mark - Setters
-
-- (void)setRoundItemIndex:(NSUInteger)roundItemIndex {
-    _roundItemIndex = roundItemIndex;
-    
-    if (_roundItemIndex == self.roundSet.count) {
-        self.currentRound++;
-        return;
-    }
-    
-    self.roundItem = self.roundSet[_roundItemIndex];
-}
-
-- (void)setRoundItem:(ItemOfSet *)roundItem {
-    _roundItem = roundItem;
-    self.textLabel.text = _roundItem.term;
-}
-
-- (void)setCurrentRound:(NSUInteger)currentRound {
-    _currentRound = currentRound;
-    [self updateRoundSet];
-}
 
 
 #pragma mark - LifeCycle
@@ -96,9 +34,11 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
     
     self.navigationBar.delegate = self;
     self.textField.delegate     = self;
+    self.organizer.delegate     = self;
     
-    [self configure];
+    [self configureTextField];
     [self registerNotifications];
+    [self.organizer configure];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -132,13 +72,26 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     NSString *userDefinition = textField.text;
-    if ([userDefinition isEqualToString:self.roundItem.definition]) {
-        self.roundItemIndex++;
-        textField.text = @"DEFINITION ";
-    } else {
-        textField.text = @"";
+    BOOL isRightDefinition = [self.organizer checkUserDefinition:userDefinition];
+    
+    self.textField.text = @"DEFINITION ";
+    
+    if (isRightDefinition) {
+        [self.organizer nextItem];
     }
+    
     return YES;
+}
+
+
+#pragma mark - LearnModeOrganizerDelegate
+
+- (void)finishLearning {
+    [self showRoundInfoViewController];
+}
+
+- (void)updateTerm:(NSString *)term {
+    self.textLabel.text = term;
 }
 
 
@@ -167,14 +120,11 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
 
 #pragma mark - Configuration
 
-- (void)configure {
+- (void)configureTextField {
     CGFloat xOffset = 16;
     CGFloat width = self.view.bounds.size.width - 2 * xOffset;
     CGRect frame = CGRectMake(xOffset, 400, width, 44);
     [self.textField setFrame:frame];
-
-    self.location = 0;
-    self.currentRound = 0;
 }
 
 - (void)configureRoundInfoViewController {
@@ -183,7 +133,7 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
     UINavigationController *navigationController = [storyboard instantiateViewControllerWithIdentifier:kLearnRoundInfoNavigationControllerID];
     LearnRoundInfoTableViewController *childViewController = (LearnRoundInfoTableViewController *)navigationController.topViewController;
     
-    childViewController.roundSet = self.roundSet;
+    childViewController.roundSet = self.organizer.roundSet;
     childViewController.cancelingBlock = self.cancelingBlock;
     
     [self addChildViewController:navigationController];
@@ -192,6 +142,9 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
     
     navigationController.view.alpha = 0;
 }
+
+
+#pragma mark - Views Showing
 
 - (void)showRoundInfoViewController {
     if (self.childViewControllers.count == 0) {
@@ -204,26 +157,8 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
     }
 }
 
-- (void)updateRoundSet {
-    if (self.isLastRound) {
-        [self showRoundInfoViewController];
-        return;
-    }
-    
-    //creates the new range for current round.
-    self.isLastRound = self.location + kCountItemsInRound >= self.learningSet.count;
-    NSUInteger length = self.isLastRound ? self.learningSet.count - self.location : kCountItemsInRound;
-    NSRange range = NSMakeRange(self.location, length);
-    self.location += length;
-    
-    //fills round set by new items.
-    self.roundSet = [self.learningSet subsetWithRange:range];
-    self.roundItemIndex = 0;
-    self.roundItem = self.roundSet[self.roundItemIndex];
-}
-
 - (void)dealloc {
-    NSLog(@"Learn VC LEFT");
+    NSLog(@"LEARN ROUND LEFT");
 }
 
 @end

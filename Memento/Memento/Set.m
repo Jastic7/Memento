@@ -29,9 +29,9 @@
     self = [super init];
     
     if (self) {
-        self.title = title;
-        self.author = author;
-        self.items = [NSMutableArray new];
+        _title = title;
+        _author = author;
+        _items = [NSMutableArray new];
         [self.items addObjectsFromArray:items];
     }
     
@@ -53,6 +53,18 @@
     return self.items.count == 0;
 }
 
+- (Set *)itemsWithLearnState:(LearnState)learnState {
+    NSMutableArray *filteredItems = [NSMutableArray array];
+    for (ItemOfSet *item in self.items) {
+        if (item.learnProgress == learnState) {
+            [filteredItems addObject:item];
+        }
+    }
+    
+    Set *set = [Set setWithTitle:self.title author:self.author items:filteredItems];
+    
+    return set;
+}
 
 #pragma mark - Modifiers
 
@@ -72,6 +84,18 @@
     return [self.items containsObject:item];
 }
 
+- (ItemOfSet *)findItemWithTerm:(NSString *)term definition:(NSString *)definition {
+    ItemOfSet *findingItem = [ItemOfSet itemOfSetWithTerm:term definition:definition];
+    
+    for (ItemOfSet *item in self.items) {
+        if ([item isEqual:findingItem]) {
+            return item;
+        }
+    }
+    
+    return nil;
+}
+
 - (Set *)subsetWithRange:(NSRange)range {
     NSArray<ItemOfSet *> *subitems = [self.items subarrayWithRange:range];
     Set *subset = [Set setWithTitle:self.title author:self.author items:subitems];
@@ -83,7 +107,7 @@
     return self.items[idx];
 }
 
--(id)copyWithZone:(NSZone *)zone {
+- (id)copyWithZone:(NSZone *)zone {
     Set *copySet = [[[self class] allocWithZone:zone] init];
     copySet.title = self.title;
     copySet.author = self.author;
@@ -91,6 +115,7 @@
     for (ItemOfSet *item in self.items) {
         [copySet.items addObject:[item copy]];
     }
+    
     return copySet;
 }
 

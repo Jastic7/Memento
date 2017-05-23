@@ -80,7 +80,15 @@ static NSString * const reuseIdentifier = @"ItemOfMatchCollectionViewCell";
 }
 
 
-#pragma mark - <UICollectionViewDataSource>
+
+#pragma mark - Actions
+
+- (IBAction)exitButtonTapped:(UIButton *)sender {
+    [self.delegate exitMatchMode];
+}
+
+
+#pragma mark - UICollectionViewDataSource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
@@ -111,13 +119,6 @@ static NSString * const reuseIdentifier = @"ItemOfMatchCollectionViewCell";
     } else {
         return nil;
     }
-}
-
-
-#pragma mark - Actions
-
-- (IBAction)exitButtonTapped:(UIButton *)sender {
-    [self.delegate exitMatchMode];
 }
 
 

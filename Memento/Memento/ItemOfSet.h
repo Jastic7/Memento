@@ -8,14 +8,23 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSUInteger, LearnState) {
+    Unknown,
+    Learnt,
+    Mastered
+};
+
+
 @interface ItemOfSet : NSObject <NSCopying>
 
 @property (nonatomic, copy) NSString *term;
 @property (nonatomic, copy) NSString *definition;
+@property (nonatomic, assign, readonly) LearnState learnProgress;
 
 - (instancetype)initWithTerm:(NSString *)term definition:(NSString *)definition;
 + (instancetype)itemOfSetWithTerm:(NSString *)term definition:(NSString *)definition;
 
--(BOOL)isEqual:(id)object;
+- (void)resetLearnProgress;
+- (void)increaseLearnProgress;
 
 @end
