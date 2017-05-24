@@ -19,9 +19,10 @@ static NSString * const kLearnRoundInfoTableViewCellID = @"LearnRoundInfoTableVi
 
 @property (strong, nonatomic) NSMutableArray <ItemOfSet *> *masteredItems;
 @property (strong, nonatomic) NSMutableArray <ItemOfSet *> *learntItems;
-@property (weak, nonatomic) IBOutlet UILabel *unknownLabel;
-@property (weak, nonatomic) IBOutlet UILabel *learntLabel;
-@property (weak, nonatomic) IBOutlet UILabel *masteredLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *unknownCountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *learntCountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *masteredCountLabel;
 
 @end
 
@@ -130,9 +131,9 @@ static NSString * const kLearnRoundInfoTableViewCellID = @"LearnRoundInfoTableVi
     NSUInteger learntCount      = [self.learningSet countItemsWithLearnState:Learnt];
     NSUInteger unknownCount     = self.learningSet.count - masteredCount - learntCount;
     
-    self.masteredLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)masteredCount];
-    self.learntLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)learntCount];
-    self.unknownLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)unknownCount];
+    self.masteredCountLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)masteredCount];
+    self.learntCountLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)learntCount];
+    self.unknownCountLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)unknownCount];
 }
 
 #pragma mark - Helpers

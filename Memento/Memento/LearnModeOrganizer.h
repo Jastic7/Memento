@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "LearnModeProtocol.h"
+#import "ItemOfSet.h"
 
 static NSUInteger const kCountItemsInRound = 7;
 
@@ -15,7 +16,7 @@ static NSUInteger const kCountItemsInRound = 7;
 @protocol LearnModeOrganizerDelegate <NSObject>
 
 - (void)finishLearning;
-- (void)updateTerm:(NSString *)term;
+- (void)showNewTerm:(NSString *)term withLearnProgress:(LearnState)learnProgress;
 
 @end
 

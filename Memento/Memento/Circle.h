@@ -8,7 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSUInteger, CircleState) {
+    EmptyRound,
+    EmptyRoundInfo,
+    Guessed,
+    Missed
+};
+
+
 @interface Circle : UIView
 
+- (void)configureWithState:(CircleState)state;
 
 @end

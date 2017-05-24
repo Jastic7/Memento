@@ -20,6 +20,6 @@
 - (BOOL)checkUserDefinition:(NSString *)definition;
 - (void)updateRoundSet;
 - (void)setInitialConfiguration;
-- (void)showNextItem;
+- (void)updateLearningItem;
 
 @end

@@ -11,6 +11,8 @@
 		5556BE5D1ED3244F00E8DC64 /* Circle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5556BE5C1ED3244F00E8DC64 /* Circle.m */; };
 		5556BE601ED3266D00E8DC64 /* LearnRoundInfoHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 5556BE5F1ED3266D00E8DC64 /* LearnRoundInfoHeader.m */; };
 		5556BE621ED3267C00E8DC64 /* LearnRoundInfoHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5556BE611ED3267C00E8DC64 /* LearnRoundInfoHeader.xib */; };
+		5558A84E1ED50870001BAFC3 /* LearnProgressStackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5558A84D1ED50870001BAFC3 /* LearnProgressStackView.m */; };
+		5558A8511ED59621001BAFC3 /* UIColor+PickerColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 5558A8501ED59621001BAFC3 /* UIColor+PickerColors.m */; };
 		555AE4FD1ECDDA9E00A500CA /* LearnRoundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 555AE4FC1ECDDA9E00A500CA /* LearnRoundViewController.m */; };
 		557D1D341ED3B45F00DC7ADE /* LearnModeOrganizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 557D1D331ED3B45F00DC7ADE /* LearnModeOrganizer.m */; };
 		557D1D371ED3D77F00DC7ADE /* LearnRoundInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 557D1D361ED3D77F00DC7ADE /* LearnRoundInfoTableViewCell.m */; };
@@ -42,6 +44,10 @@
 		5556BE5E1ED3266D00E8DC64 /* LearnRoundInfoHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnRoundInfoHeader.h; sourceTree = "<group>"; };
 		5556BE5F1ED3266D00E8DC64 /* LearnRoundInfoHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearnRoundInfoHeader.m; sourceTree = "<group>"; };
 		5556BE611ED3267C00E8DC64 /* LearnRoundInfoHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnRoundInfoHeader.xib; sourceTree = "<group>"; };
+		5558A84C1ED50870001BAFC3 /* LearnProgressStackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnProgressStackView.h; sourceTree = "<group>"; };
+		5558A84D1ED50870001BAFC3 /* LearnProgressStackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearnProgressStackView.m; sourceTree = "<group>"; };
+		5558A84F1ED59621001BAFC3 /* UIColor+PickerColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+PickerColors.h"; sourceTree = "<group>"; };
+		5558A8501ED59621001BAFC3 /* UIColor+PickerColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+PickerColors.m"; sourceTree = "<group>"; };
 		555AE4FB1ECDDA9E00A500CA /* LearnRoundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnRoundViewController.h; sourceTree = "<group>"; };
 		555AE4FC1ECDDA9E00A500CA /* LearnRoundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearnRoundViewController.m; sourceTree = "<group>"; };
 		557D1D311ED3B15100DC7ADE /* LearnModeProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnModeProtocol.h; sourceTree = "<group>"; };
@@ -131,6 +137,8 @@
 				5556BE611ED3267C00E8DC64 /* LearnRoundInfoHeader.xib */,
 				557D1D351ED3D77F00DC7ADE /* LearnRoundInfoTableViewCell.h */,
 				557D1D361ED3D77F00DC7ADE /* LearnRoundInfoTableViewCell.m */,
+				5558A84C1ED50870001BAFC3 /* LearnProgressStackView.h */,
+				5558A84D1ED50870001BAFC3 /* LearnProgressStackView.m */,
 			);
 			name = LearnMode;
 			sourceTree = "<group>";
@@ -226,6 +234,8 @@
 				55A8F3E31EBC98ED000D5DB0 /* UITableView+GettingIndexPath.m */,
 				55F27BC41ECC7B8F00EE58F9 /* NSMutableArray+Shuffle.h */,
 				55F27BC51ECC7B8F00EE58F9 /* NSMutableArray+Shuffle.m */,
+				5558A84F1ED59621001BAFC3 /* UIColor+PickerColors.h */,
+				5558A8501ED59621001BAFC3 /* UIColor+PickerColors.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -305,6 +315,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				55C6ACCD1EC873B20062537B /* CreateSetTableViewController.m in Sources */,
+				5558A8511ED59621001BAFC3 /* UIColor+PickerColors.m in Sources */,
 				55A8F3DA1EBBDD68000D5DB0 /* ItemOfSet.m in Sources */,
 				55C6ACD81EC8B3250062537B /* MatchItemsCollectionViewController.m in Sources */,
 				5556BE551ED2ECFF00E8DC64 /* LearnRoundInfoTableViewController.m in Sources */,
@@ -319,6 +330,7 @@
 				55C6ACDB1EC8B4300062537B /* ItemOfMatchCollectionViewCell.m in Sources */,
 				5556BE5D1ED3244F00E8DC64 /* Circle.m in Sources */,
 				55D34EDD1EBA906500A2EE38 /* AppDelegate.m in Sources */,
+				5558A84E1ED50870001BAFC3 /* LearnProgressStackView.m in Sources */,
 				55D34EF41EBAA28500A2EE38 /* SetTableViewCell.m in Sources */,
 				55A8F3E41EBC98ED000D5DB0 /* UITableView+GettingIndexPath.m in Sources */,
 				557D1D371ED3D77F00DC7ADE /* LearnRoundInfoTableViewCell.m in Sources */,

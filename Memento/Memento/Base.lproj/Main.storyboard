@@ -61,7 +61,7 @@
                                     </connections>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" red="0.52628141640000003" green="0.75998771190000003" blue="0.98837870360000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstItem="vxH-MW-g6p" firstAttribute="centerX" secondItem="qfc-cf-OK4" secondAttribute="centerX" id="4We-mQ-xMD"/>
                                 <constraint firstItem="vxH-MW-g6p" firstAttribute="top" secondItem="0PC-mq-P1S" secondAttribute="bottom" constant="6" id="5N0-zD-hqa"/>
@@ -218,7 +218,7 @@
                                     </subviews>
                                 </stackView>
                             </subviews>
-                            <color key="backgroundColor" red="0.52628141641616821" green="0.75998771190643311" blue="0.98837870359420776" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstItem="nKt-r7-CmX" firstAttribute="leading" secondItem="spQ-eH-kuh" secondAttribute="leading" constant="16" id="5m2-Yh-pXV"/>
                                 <constraint firstAttribute="trailing" secondItem="nKt-r7-CmX" secondAttribute="trailing" constant="16" id="FFd-hf-oTD"/>
@@ -261,7 +261,7 @@
                                 </items>
                             </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ud-xD-WP5">
-                                <rect key="frame" x="16" y="104" width="343" height="22"/>
+                                <rect key="frame" x="49" y="104" width="310" height="21.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -273,18 +273,46 @@
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
                             </textField>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="E5g-bx-srG" customClass="LearnProgressStackView">
+                                <rect key="frame" x="16" y="110" width="25" height="10"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ieu-6l-7pw" customClass="Circle">
+                                        <rect key="frame" x="0.0" y="0.0" width="10" height="10"/>
+                                        <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="10" id="URz-0F-gtL"/>
+                                            <constraint firstAttribute="width" constant="10" id="zHh-bv-2tr"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g0d-pK-84C" customClass="Circle">
+                                        <rect key="frame" x="15" y="0.0" width="10" height="10"/>
+                                        <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="10" id="hws-oh-3bu"/>
+                                            <constraint firstAttribute="width" constant="10" id="pxH-AX-u2M"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <connections>
+                                    <outlet property="leftCirle" destination="ieu-6l-7pw" id="RiX-zy-KVw"/>
+                                    <outlet property="rightCirle" destination="g0d-pK-84C" id="0PQ-ua-ycN"/>
+                                </connections>
+                            </stackView>
                         </subviews>
-                        <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.92148083448410034" green="0.92163199186325073" blue="0.92144864797592163" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="E5g-bx-srG" firstAttribute="top" secondItem="ucW-eM-L9k" secondAttribute="bottom" constant="46" id="Aov-UV-gP6"/>
                             <constraint firstItem="ucW-eM-L9k" firstAttribute="leading" secondItem="bn3-WS-Zd1" secondAttribute="leading" id="OfI-A9-gNC"/>
+                            <constraint firstItem="2ud-xD-WP5" firstAttribute="leading" secondItem="g0d-pK-84C" secondAttribute="trailing" constant="8" id="SpY-5w-aUI"/>
                             <constraint firstAttribute="trailing" secondItem="2ud-xD-WP5" secondAttribute="trailing" constant="16" id="XfK-fu-Jli"/>
                             <constraint firstItem="ucW-eM-L9k" firstAttribute="top" secondItem="ab2-T9-BXN" secondAttribute="bottom" id="lgU-vA-pkf"/>
+                            <constraint firstItem="E5g-bx-srG" firstAttribute="leading" secondItem="bn3-WS-Zd1" secondAttribute="leading" constant="16" id="oQC-aa-OwA"/>
                             <constraint firstAttribute="trailing" secondItem="ucW-eM-L9k" secondAttribute="trailing" id="qTQ-5X-XII"/>
-                            <constraint firstItem="2ud-xD-WP5" firstAttribute="leading" secondItem="bn3-WS-Zd1" secondAttribute="leading" constant="16" id="rWd-9k-Ws7"/>
                             <constraint firstItem="2ud-xD-WP5" firstAttribute="top" secondItem="ucW-eM-L9k" secondAttribute="bottom" constant="40" id="shF-F4-8Lg"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="learnProgressView" destination="E5g-bx-srG" id="82r-60-KvU"/>
                         <outlet property="navigationBar" destination="ucW-eM-L9k" id="bqy-Wd-5Wn"/>
                         <outlet property="textField" destination="2eh-VW-3W2" id="vOT-sy-wxt"/>
                         <outlet property="textLabel" destination="2ud-xD-WP5" id="3Ed-BP-w5C"/>
@@ -396,7 +424,7 @@
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ovX-Zz-8DN" customClass="Circle">
                                             <rect key="frame" x="0.0" y="0.0" width="10" height="10"/>
-                                            <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.25098040700000002" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="10" id="8lG-HT-xXM"/>
                                                 <constraint firstAttribute="height" constant="10" id="C8s-W0-4um"/>
@@ -534,10 +562,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="learntLabel" destination="5cv-xb-fUC" id="hRM-tA-hgW"/>
-                        <outlet property="masteredLabel" destination="HZE-xe-G3k" id="tCX-d7-QKQ"/>
+                        <outlet property="learntCountLabel" destination="5cv-xb-fUC" id="xHm-Ur-U50"/>
+                        <outlet property="masteredCountLabel" destination="HZE-xe-G3k" id="0uy-On-yl7"/>
                         <outlet property="tableView" destination="lQl-v3-63t" id="8MJ-yj-wmG"/>
-                        <outlet property="unknownLabel" destination="eYu-f4-PYp" id="KWz-yw-BTJ"/>
+                        <outlet property="unknownCountLabel" destination="eYu-f4-PYp" id="Jtn-qq-Z6Y"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qz1-vH-Kh4" userLabel="First Responder" sceneMemberID="firstResponder"/>

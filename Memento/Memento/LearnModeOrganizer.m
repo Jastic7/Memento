@@ -8,7 +8,6 @@
 
 #import "LearnModeOrganizer.h"
 #import "Set.h"
-#import "ItemOfSet.h"
 
 @interface LearnModeOrganizer ()
 
@@ -70,7 +69,7 @@
 
 - (void)setRoundItem:(ItemOfSet *)roundItem {
     _roundItem = roundItem;
-    [self.delegate updateTerm:roundItem.term];
+    [self.delegate showNewTerm:roundItem.term withLearnProgress:roundItem.learnProgress];
 }
 
 - (void)setCurrentRound:(NSUInteger)currentRound {
@@ -90,17 +89,16 @@
     }
 }
 
+
+
+
+#pragma mark - LearnModeProtocol implementation
+
+
 - (void)setInitialConfiguration {
     self.location = 0;
     self.currentRound = 0;
 }
-
-- (void)showNextItem {
-    self.roundItemIndex++;
-}
-
-
-#pragma mark - LearnModeProtocol implementation
 
 #pragma mark - Updating
 
@@ -121,6 +119,9 @@
     self.roundItemIndex = 0;
 }
 
+- (void)updateLearningItem {
+    self.roundItemIndex++;
+}
 
 #pragma mark - Initialization
 

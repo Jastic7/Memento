@@ -7,10 +7,11 @@
 //
 
 #import "LearnRoundViewController.h"
+#import "LearnProgressStackView.h"
 #import "LearnRoundInfoTableViewController.h"
-#import "Set.h"
-#import "ItemOfSet.h"
 #import "LearnModeOrganizer.h"
+#import "Circle.h"
+
 
 static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfoNavigationController";
 
@@ -20,6 +21,8 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
 @property (weak, nonatomic) IBOutlet UILabel *textLabel;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
+
+@property (weak, nonatomic) IBOutlet LearnProgressStackView *learnProgressView;
 
 @end
 
@@ -39,12 +42,6 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
     [self configureTextField];
     [self registerNotifications];
     [self.organizer setInitialConfiguration];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    [self.textField becomeFirstResponder];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -78,7 +75,11 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
     self.textField.text = @"DEFINITION ";
     
     if (isRightDefinition) {
-        [self.organizer showNextItem];
+        [UIView animateWithDuration:0.4 animations:^{
+            [self.learnProgressView setLearnState:Learnt];
+        } completion:^(BOOL finished) {
+            [self.organizer updateLearningItem];
+        }];
     }
     
     return YES;
@@ -91,8 +92,9 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
     [self showRoundInfoViewController];
 }
 
-- (void)updateTerm:(NSString *)term {
+- (void)showNewTerm:(NSString *)term withLearnProgress:(LearnState)learnProgress {
     self.textLabel.text = term;
+    [self.learnProgressView setLearnState:learnProgress];
 }
 
 
@@ -125,6 +127,7 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
     CGFloat xOffset = 16;
     CGFloat width = self.view.bounds.size.width - 2 * xOffset;
     CGRect frame = CGRectMake(xOffset, 400, width, 44);
+    
     [self.textField setFrame:frame];
 }
 
@@ -140,6 +143,7 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
     childViewController.cancelingBlock = self.cancelingBlock;
     childViewController.prepareForNextRoundBlock = ^void() {
         [self.organizer updateRoundSet];
+        [self.textField becomeFirstResponder];
     };
     
     [self addChildViewController:navigationController];
@@ -154,6 +158,8 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
 
 - (void)showRoundInfoViewController {
     if (self.childViewControllers.count == 0) {
+        [self.view endEditing:YES];
+        
         [self configureRoundInfoViewController];
         UINavigationController *childViewController = self.childViewControllers[0];
         
