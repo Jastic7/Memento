@@ -23,6 +23,7 @@ static NSUInteger const kCountItemsInRound = 7;
 
 @interface LearnModeOrganizer : NSObject <LearnModeProtocol>
 
+@property (nonatomic, strong) Set *set;
 @property (nonatomic, strong) Set *learningSet;
 @property (nonatomic, strong, readonly) Set *roundSet;
 

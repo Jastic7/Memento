@@ -12,7 +12,7 @@
 
 @interface LearnRoundInfoTableViewController : UITableViewController
 
-@property (nonatomic, strong) Set *learningSet;
+@property (nonatomic, strong) Set *set;
 @property (nonatomic, strong) Set *roundSet;
 
 @property (nonatomic, copy) void (^cancelingBlock)();

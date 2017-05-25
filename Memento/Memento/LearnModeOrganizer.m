@@ -15,27 +15,31 @@
  * @brief Contains items for current learning round.
  */
 @property (nonatomic, strong) Set *roundSet;
+
 /*!
  * @brief Responsible for tracking number of rounds.
  */
 @property (nonatomic, assign) NSUInteger currentRound;
+
 /*!
  * @brief Responsible for tracking position in whole
  * learning set, which will be using for creating
  * new subset in the new round.
  */
 @property (nonatomic, assign) NSUInteger location;
+
 /*!
  * @brief Responsible for tracking index of learning
  * item from the roundSet.
  */
 @property (nonatomic, assign) NSUInteger roundItemIndex;
+
 /*!
  * @brief Current item from roundSet in round.
  */
 @property (nonatomic, strong) ItemOfSet *roundItem;
 
-@property (nonatomic, assign) BOOL isLastRound;
+@property (nonatomic, assign, readonly) BOOL isEnoughItems;
 
 @end
 
@@ -51,6 +55,10 @@
     }
     
     return _roundSet;
+}
+
+- (BOOL)isEnoughItems {
+    return self.location + kCountItemsInRound < self.learningSet.count;
 }
 
 
@@ -74,15 +82,15 @@
 
 - (void)setCurrentRound:(NSUInteger)currentRound {
     _currentRound = currentRound;
+    //FIXME:Call another method
     [self.delegate finishLearning];
-//    [self updateRoundSet];
 }
 
 
 #pragma mark - Helpers
 
-- (void)updateLearningProgressOfItem:(ItemOfSet *)item isUserRight:(BOOL)isUserRight {
-    if (isUserRight) {
+- (void)updateLearningProgressOfItem:(ItemOfSet *)item isUserRight:(BOOL)isCorrectDefinition {
+    if (isCorrectDefinition) {
         [item increaseLearnProgress];
     } else {
         [item resetLearnProgress];
@@ -91,9 +99,7 @@
 
 
 
-
 #pragma mark - LearnModeProtocol implementation
-
 
 - (void)setInitialConfiguration {
     self.location = 0;
@@ -103,14 +109,14 @@
 #pragma mark - Updating
 
 - (void)updateRoundSet {
-    if (self.isLastRound) {
+    if (self.location > self.learningSet.count) {
         [self.delegate finishLearning];
+        
         return;
     }
     
     //creates the new range for current round.
-    self.isLastRound = self.location + kCountItemsInRound >= self.learningSet.count;
-    NSUInteger length = self.isLastRound ? self.learningSet.count - self.location : kCountItemsInRound;
+    NSUInteger length = self.isEnoughItems ? kCountItemsInRound : self.learningSet.count - self.location;
     NSRange range = NSMakeRange(self.location, length);
     self.location += length;
     
@@ -129,7 +135,8 @@
     self = [super init];
     
     if (self) {
-        _learningSet = set;
+        _set = set;
+        _learningSet = [Set setWithSet:set];
     }
     
     return self;
@@ -142,12 +149,16 @@
 
 #pragma mark - Checking
 
-- (BOOL)checkUserDefinition:(NSString *)definition {
-    BOOL result = [self.roundItem.definition isEqualToString:definition];
+- (LearnState)checkUserDefinition:(NSString *)definition {
+    BOOL isCorrectDefinition = [self.roundItem.definition isEqualToString:definition];
     
-    [self updateLearningProgressOfItem:self.roundItem isUserRight:result];
+    [self updateLearningProgressOfItem:self.roundItem isUserRight:isCorrectDefinition];
     
-    return result;
+    if (self.roundItem.learnProgress == Learnt) {
+        [self.learningSet addItem:self.roundItem];
+    }
+    
+    return self.roundItem.learnProgress;
 }
 
 - (void)dealloc {

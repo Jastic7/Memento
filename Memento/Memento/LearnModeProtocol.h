@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ItemOfSet.h"
 
 @class Set;
-@class ItemOfSet;
 
 
 @protocol LearnModeProtocol <NSObject>
@@ -17,7 +17,7 @@
 - (instancetype)initWithSet:(Set *)set;
 + (instancetype)createWithSet:(Set *)set;
 
-- (BOOL)checkUserDefinition:(NSString *)definition;
+- (LearnState)checkUserDefinition:(NSString *)definition;
 - (void)updateRoundSet;
 - (void)setInitialConfiguration;
 - (void)updateLearningItem;

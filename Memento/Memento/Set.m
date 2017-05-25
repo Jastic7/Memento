@@ -42,6 +42,10 @@
     return [[self alloc] initWithTitle:title author:author items:items];
 }
 
++ (instancetype)setWithSet:(Set *)set {
+    return [[self alloc] initWithTitle:set.title author:set.author items:set.items];
+}
+
 
 #pragma mark - Getters
 

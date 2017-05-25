@@ -17,8 +17,11 @@ static NSString * const kLearnRoundInfoTableViewCellID = @"LearnRoundInfoTableVi
 
 @interface LearnRoundInfoTableViewController () <UINavigationBarDelegate>
 
-@property (strong, nonatomic) NSMutableArray <ItemOfSet *> *masteredItems;
+@property (strong, nonatomic) NSMutableArray <ItemOfSet *> *unknownItems;
 @property (strong, nonatomic) NSMutableArray <ItemOfSet *> *learntItems;
+@property (strong, nonatomic) NSMutableArray <ItemOfSet *> *masteredItems;
+@property (strong, nonatomic) NSMutableArray <NSMutableArray <ItemOfSet *> *> *items;
+@property (strong, nonatomic) NSMutableArray <NSString *> *titles;
 
 @property (weak, nonatomic) IBOutlet UILabel *unknownCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *learntCountLabel;
@@ -31,12 +34,12 @@ static NSString * const kLearnRoundInfoTableViewCellID = @"LearnRoundInfoTableVi
 
 #pragma mark - Getters 
 
-- (NSMutableArray<ItemOfSet *> *)masteredItems {
-    if (!_masteredItems) {
-        _masteredItems = [self.roundSet itemsWithLearnState:Mastered];
+- (NSMutableArray<ItemOfSet *> *)unknownItems {
+    if (!_unknownItems) {
+        _unknownItems = [self.roundSet itemsWithLearnState:Unknown];
     }
     
-    return _masteredItems;
+    return _unknownItems;
 }
 
 - (NSMutableArray<ItemOfSet *> *)learntItems {
@@ -46,6 +49,46 @@ static NSString * const kLearnRoundInfoTableViewCellID = @"LearnRoundInfoTableVi
     
     return _learntItems;
 }
+
+- (NSMutableArray<ItemOfSet *> *)masteredItems {
+    if (!_masteredItems) {
+        _masteredItems = [self.roundSet itemsWithLearnState:Mastered];
+    }
+    
+    return _masteredItems;
+}
+
+- (NSMutableArray<NSMutableArray<ItemOfSet *> *> *)items {
+    if (!_items) {
+        _items = [NSMutableArray array];
+        
+        if (self.unknownItems.count != 0) {
+            [_items addObject:self.unknownItems];
+            [self.titles addObject:@"Unknown"];
+        }
+        
+        if (self.learntItems.count != 0) {
+            [_items addObject:self.learntItems];
+            [self.titles addObject:@"Learnt"];
+        }
+        
+        if (self.masteredItems.count != 0) {
+            [_items addObject:self.masteredItems];
+            [self.titles addObject:@"Mastered"];
+        }
+    }
+    
+    return _items;
+}
+
+- (NSMutableArray<NSString *> *)titles {
+    if (!_titles) {
+        _titles = [NSMutableArray array];
+    }
+    
+    return _titles;
+}
+
 
 #pragma mark - Life Cycle
 
@@ -82,28 +125,20 @@ static NSString * const kLearnRoundInfoTableViewCellID = @"LearnRoundInfoTableVi
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if (self.masteredItems.count > 0 && self.learntItems.count > 0) {
-        return 2;
-    } else if (self.masteredItems.count == 0 && self.learntItems.count == 0) {
-        return  0;
-    }
-    
-    return 1;
+    return self.items.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSUInteger count = section == Mastered ? self.masteredItems.count : self.learntItems.count;
-    
-    return count;
+    return self.items[section].count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     LearnRoundInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kLearnRoundInfoTableViewCellID forIndexPath:indexPath];
     
-    NSMutableArray <ItemOfSet *> *items = indexPath.section == Mastered ? self.masteredItems : self.learntItems;
-    ItemOfSet *item = items[indexPath.row];
+    ItemOfSet *item = self.items[indexPath.section][indexPath.row];
     
     [cell configureWithTerm:item.term definition:item.definition];
+    
     return cell;
 }
 
@@ -113,7 +148,8 @@ static NSString * const kLearnRoundInfoTableViewCellID = @"LearnRoundInfoTableVi
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     LearnRoundInfoHeader *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:kLearnRoundInfoHeaderID];
     
-    NSString *headerTitle = section == Mastered ? @"Mastered" : @"Learnt";
+    NSString *headerTitle = self.titles[section];
+    
     [header configureWithTitle:headerTitle];
     
     return header;
@@ -127,9 +163,9 @@ static NSString * const kLearnRoundInfoTableViewCellID = @"LearnRoundInfoTableVi
 #pragma mark - Configuration
 
 - (void)configureCountLabels {
-    NSUInteger masteredCount    = [self.learningSet countItemsWithLearnState:Mastered];
-    NSUInteger learntCount      = [self.learningSet countItemsWithLearnState:Learnt];
-    NSUInteger unknownCount     = self.learningSet.count - masteredCount - learntCount;
+    NSUInteger masteredCount    = [self.set countItemsWithLearnState:Mastered];
+    NSUInteger learntCount      = [self.set countItemsWithLearnState:Learnt];
+    NSUInteger unknownCount     = self.set.count - masteredCount - learntCount;
     
     self.masteredCountLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)masteredCount];
     self.learntCountLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)learntCount];

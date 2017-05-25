@@ -69,14 +69,14 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     NSString *userDefinition = textField.text;
-    BOOL isRightDefinition = [self.organizer checkUserDefinition:userDefinition];
+    LearnState learnProgressOfItem = [self.organizer checkUserDefinition:userDefinition];
     
     // FIXME: Set correct text field state
     self.textField.text = @"DEFINITION ";
     
-    if (isRightDefinition) {
+    if (learnProgressOfItem != Unknown) {
         [UIView animateWithDuration:0.4 animations:^{
-            [self.learnProgressView setLearnState:Learnt];
+            [self.learnProgressView setLearnState:learnProgressOfItem];
         } completion:^(BOOL finished) {
             [self.organizer updateLearningItem];
         }];
@@ -138,7 +138,7 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
     LearnRoundInfoTableViewController *childViewController = (LearnRoundInfoTableViewController *)navigationController.topViewController;
     
     childViewController.roundSet = self.organizer.roundSet;
-    childViewController.learningSet = self.organizer.learningSet;
+    childViewController.set = self.organizer.set;
     
     childViewController.cancelingBlock = self.cancelingBlock;
     childViewController.prepareForNextRoundBlock = ^void() {

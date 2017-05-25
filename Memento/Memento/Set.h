@@ -24,6 +24,8 @@
                       author:(NSString *)author
                        items:(NSArray<ItemOfSet *> *)items;
 
++ (instancetype)setWithSet:(Set *)set;
+
 - (void)addItem:(ItemOfSet *)item;
 - (void)removeItem:(ItemOfSet *)item;
 - (void)removeItemAtIndex:(NSUInteger)index;
