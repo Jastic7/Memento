@@ -11,12 +11,21 @@
 @interface ItemOfSet ()
 
 @property (nonatomic, assign) LearnState learnProgress;
+@property (nonatomic, assign) LearnState previousState;
 
 @end
 
 
 @implementation ItemOfSet
 
+
+#pragma mark - Settets
+
+- (void)setLearnProgress:(LearnState)learnProgress {
+    self.previousState = _learnProgress;
+    
+    _learnProgress = learnProgress;
+}
 
 #pragma mark - Initializations
 
@@ -42,6 +51,10 @@
 
 
 #pragma mark - Learn Progress
+
+-(void)failLearnProgress {
+    self.learnProgress = Mistake;
+}
 
 - (void)resetLearnProgress {
     self.learnProgress = Unknown;

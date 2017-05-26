@@ -72,6 +72,10 @@
     [self.items removeObjectAtIndex:index];
 }
 
+- (void)removeAllItems {
+    [self.items removeAllObjects];
+}
+
 - (BOOL)containsItem:(ItemOfSet *)item {
     return [self.items containsObject:item];
 }
@@ -120,6 +124,12 @@
 
 - (id)objectAtIndexedSubscript:(NSUInteger)idx {
     return self.items[idx];
+}
+
+- (void)resetAllLearnProgress {
+    for (ItemOfSet *item in self.items) {
+        [item resetLearnProgress];
+    }
 }
 
 - (id)copyWithZone:(NSZone *)zone {

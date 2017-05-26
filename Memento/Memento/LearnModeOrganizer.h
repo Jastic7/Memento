@@ -15,8 +15,9 @@ static NSUInteger const kCountItemsInRound = 7;
 
 @protocol LearnModeOrganizerDelegate <NSObject>
 
-- (void)finishLearning;
-- (void)showNewTerm:(NSString *)term withLearnProgress:(LearnState)learnProgress;
+- (void)didFinishLearning;
+- (void)didUpdatedTerm:(NSString *)term withLearnProgress:(LearnState)learnProgress;
+- (void)didCheckedUserDefinitionWithLearningState:(LearnState)learnProgress previousState:(LearnState)previousProgress;
 
 @end
 
@@ -26,6 +27,8 @@ static NSUInteger const kCountItemsInRound = 7;
 @property (nonatomic, strong) Set *set;
 @property (nonatomic, strong) Set *learningSet;
 @property (nonatomic, strong, readonly) Set *roundSet;
+
+@property (nonatomic, assign, readonly) BOOL isLearningFinished;
 
 @property (nonatomic, weak) id <LearnModeOrganizerDelegate> delegate;
 

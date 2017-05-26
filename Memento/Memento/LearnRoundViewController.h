@@ -14,7 +14,6 @@
 @interface LearnRoundViewController : UIViewController
 
 @property (nonatomic, strong) LearnModeOrganizer *organizer;
-
 @property (nonatomic, copy) void (^cancelingBlock)();
 
 @end

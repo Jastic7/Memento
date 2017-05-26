@@ -12,7 +12,7 @@ typedef NS_ENUM(NSUInteger, CircleState) {
     EmptyRound,
     EmptyRoundInfo,
     Guessed,
-    Missed
+    Failed,
 };
 
 

@@ -286,7 +286,7 @@
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g0d-pK-84C" customClass="Circle">
                                         <rect key="frame" x="15" y="0.0" width="10" height="10"/>
-                                        <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.58431372550000005" green="0.1176470588" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="10" id="hws-oh-3bu"/>
                                             <constraint firstAttribute="width" constant="10" id="pxH-AX-u2M"/>
@@ -432,7 +432,7 @@
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CrL-fc-cXK" customClass="Circle">
                                             <rect key="frame" x="18" y="0.0" width="10" height="10"/>
-                                            <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.83913534879684448" green="0.83927375078201294" blue="0.83910590410232544" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="10" id="suU-At-bja"/>
                                                 <constraint firstAttribute="width" constant="10" id="wjG-Zh-bS5"/>
@@ -562,6 +562,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="learnRoundButton" destination="LFL-le-Xlw" id="TFG-gN-eNT"/>
                         <outlet property="learntCountLabel" destination="5cv-xb-fUC" id="xHm-Ur-U50"/>
                         <outlet property="masteredCountLabel" destination="HZE-xe-G3k" id="0uy-On-yl7"/>
                         <outlet property="tableView" destination="lQl-v3-63t" id="8MJ-yj-wmG"/>

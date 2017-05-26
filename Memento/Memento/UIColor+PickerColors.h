@@ -12,5 +12,9 @@
 
 + (instancetype)fernColor;
 + (instancetype)mercuryColor;
++ (instancetype)unknownColor;
++ (instancetype)failedColor;
+
++ (instancetype)deepBlue;
 
 @end

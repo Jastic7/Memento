@@ -55,7 +55,7 @@
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="leftCirle" destination="30X-Dq-vhc" id="4Xz-w2-vDN"/>
+                <outlet property="leftCircle" destination="30X-Dq-vhc" id="1KC-Yb-IAi"/>
                 <outlet property="rightCircle" destination="QDA-y4-aUI" id="rXi-wW-ILX"/>
                 <outlet property="titleLabel" destination="p6s-T4-0ND" id="RY7-Ud-bDW"/>
             </connections>

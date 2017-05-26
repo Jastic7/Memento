@@ -17,9 +17,10 @@
 - (instancetype)initWithSet:(Set *)set;
 + (instancetype)createWithSet:(Set *)set;
 
-- (LearnState)checkUserDefinition:(NSString *)definition;
+- (void)checkUserDefinition:(NSString *)definition;
 - (void)updateRoundSet;
 - (void)setInitialConfiguration;
 - (void)updateLearningItem;
+- (void)reset;
 
 @end

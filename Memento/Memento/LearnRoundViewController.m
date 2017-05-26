@@ -12,7 +12,6 @@
 #import "LearnModeOrganizer.h"
 #import "Circle.h"
 
-
 static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfoNavigationController";
 
 
@@ -68,19 +67,9 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
 #pragma mark - UITextFieldDelegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    NSString *userDefinition = textField.text;
-    LearnState learnProgressOfItem = [self.organizer checkUserDefinition:userDefinition];
+    [self.organizer checkUserDefinition:textField.text];
     
-    // FIXME: Set correct text field state
     self.textField.text = @"DEFINITION ";
-    
-    if (learnProgressOfItem != Unknown) {
-        [UIView animateWithDuration:0.4 animations:^{
-            [self.learnProgressView setLearnState:learnProgressOfItem];
-        } completion:^(BOOL finished) {
-            [self.organizer updateLearningItem];
-        }];
-    }
     
     return YES;
 }
@@ -88,13 +77,24 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
 
 #pragma mark - LearnModeOrganizerDelegate
 
-- (void)finishLearning {
+- (void)didFinishLearning {
     [self showRoundInfoViewController];
 }
 
-- (void)showNewTerm:(NSString *)term withLearnProgress:(LearnState)learnProgress {
+- (void)didUpdatedTerm:(NSString *)term withLearnProgress:(LearnState)learnProgress {
     self.textLabel.text = term;
     [self.learnProgressView setLearnState:learnProgress];
+}
+
+- (void)didCheckedUserDefinitionWithLearningState:(LearnState)learnProgress previousState:(LearnState)previousLearnProgress {
+    [UIView animateWithDuration:0.4 animations:^{
+        [self.learnProgressView setLearnState:learnProgress withPreviousState:previousLearnProgress];
+    } completion:^(BOOL finished) {
+        if (learnProgress != Mistake) {
+            [self.organizer updateLearningItem];
+        }
+        
+    }];
 }
 
 
@@ -137,11 +137,16 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
     UINavigationController *navigationController = [storyboard instantiateViewControllerWithIdentifier:kLearnRoundInfoNavigationControllerID];
     LearnRoundInfoTableViewController *childViewController = (LearnRoundInfoTableViewController *)navigationController.topViewController;
     
-    childViewController.roundSet = self.organizer.roundSet;
-    childViewController.set = self.organizer.set;
+    childViewController.isLearningFinished  = self.organizer.isLearningFinished;
+    childViewController.roundSet            = self.organizer.roundSet;
+    childViewController.set                 = self.organizer.set;
     
-    childViewController.cancelingBlock = self.cancelingBlock;
+    childViewController.cancelingBlock           = self.cancelingBlock;
     childViewController.prepareForNextRoundBlock = ^void() {
+        if (self.organizer.isLearningFinished) {
+            [self.organizer reset];
+        }
+        
         [self.organizer updateRoundSet];
         [self.textField becomeFirstResponder];
     };

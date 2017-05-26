@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(NSUInteger, LearnState) {
+typedef NS_ENUM(NSInteger, LearnState) {
+    Mistake = -1,
     Unknown,
     Learnt,
     Mastered
@@ -24,6 +25,7 @@ typedef NS_ENUM(NSUInteger, LearnState) {
 - (instancetype)initWithTerm:(NSString *)term definition:(NSString *)definition;
 + (instancetype)itemOfSetWithTerm:(NSString *)term definition:(NSString *)definition;
 
+- (void)failLearnProgress;
 - (void)resetLearnProgress;
 - (void)increaseLearnProgress;
 

@@ -32,13 +32,17 @@
  * @brief Responsible for tracking index of learning
  * item from the roundSet.
  */
-@property (nonatomic, assign) NSUInteger roundItemIndex;
+@property (nonatomic, assign) NSUInteger learningItemIndex;
 
 /*!
- * @brief Current item from roundSet in round.
+ * @brief Current learning item from roundSet in round.
  */
-@property (nonatomic, strong) ItemOfSet *roundItem;
+@property (nonatomic, strong) ItemOfSet *learningItem;
 
+/*!
+ * @brief True if roundSet has no less items than items needs
+ * per round. False - otherwise.
+ */
 @property (nonatomic, assign, readonly) BOOL isEnoughItems;
 
 @end
@@ -61,29 +65,34 @@
     return self.location + kCountItemsInRound < self.learningSet.count;
 }
 
+- (BOOL)isLearningFinished {
+    return self.location >= self.learningSet.count;
+}
+
 
 #pragma mark - Setters
 
-- (void)setRoundItemIndex:(NSUInteger)roundItemIndex {
-    _roundItemIndex = roundItemIndex;
+- (void)setLearningItemIndex:(NSUInteger)roundItemIndex {
+    _learningItemIndex = roundItemIndex;
     
-    if (_roundItemIndex == self.roundSet.count) {
+    if (_learningItemIndex == self.roundSet.count) {
         self.currentRound++;
         return;
     }
     
-    self.roundItem = self.roundSet[_roundItemIndex];
+    self.learningItem = self.roundSet[_learningItemIndex];
 }
 
-- (void)setRoundItem:(ItemOfSet *)roundItem {
-    _roundItem = roundItem;
-    [self.delegate showNewTerm:roundItem.term withLearnProgress:roundItem.learnProgress];
+- (void)setLearningItem:(ItemOfSet *)roundItem {
+    _learningItem = roundItem;
+    
+    [self.delegate didUpdatedTerm:roundItem.term withLearnProgress:roundItem.learnProgress];
 }
 
 - (void)setCurrentRound:(NSUInteger)currentRound {
     _currentRound = currentRound;
     //FIXME:Call another method
-    [self.delegate finishLearning];
+    [self.delegate didFinishLearning];
 }
 
 
@@ -93,7 +102,7 @@
     if (isCorrectDefinition) {
         [item increaseLearnProgress];
     } else {
-        [item resetLearnProgress];
+        [item failLearnProgress];
     }
 }
 
@@ -106,11 +115,20 @@
     self.currentRound = 0;
 }
 
+- (void)reset {
+    [self.set resetAllLearnProgress];
+    
+    self.learningSet = [Set setWithSet:self.set];
+    
+    self.location = 0;
+    _currentRound = 0;
+}
+
 #pragma mark - Updating
 
 - (void)updateRoundSet {
     if (self.location > self.learningSet.count) {
-        [self.delegate finishLearning];
+        [self.delegate didFinishLearning];
         
         return;
     }
@@ -122,12 +140,13 @@
     
     //fills round set by new items.
     self.roundSet = [self.learningSet subsetWithRange:range];
-    self.roundItemIndex = 0;
+    self.learningItemIndex = 0;
 }
 
 - (void)updateLearningItem {
-    self.roundItemIndex++;
+    self.learningItemIndex++;
 }
+
 
 #pragma mark - Initialization
 
@@ -149,16 +168,17 @@
 
 #pragma mark - Checking
 
-- (LearnState)checkUserDefinition:(NSString *)definition {
-    BOOL isCorrectDefinition = [self.roundItem.definition isEqualToString:definition];
+- (void)checkUserDefinition:(NSString *)definition {
+    BOOL isCorrectDefinition = [self.learningItem.definition isEqualToString:definition];
     
-    [self updateLearningProgressOfItem:self.roundItem isUserRight:isCorrectDefinition];
+    LearnState previousState = self.learningItem.learnProgress;
+    [self updateLearningProgressOfItem:self.learningItem isUserRight:isCorrectDefinition];
     
-    if (self.roundItem.learnProgress == Learnt) {
-        [self.learningSet addItem:self.roundItem];
+    if (self.learningItem.learnProgress == Unknown || self.learningItem.learnProgress == Learnt) {
+        [self.learningSet addItem:self.learningItem];
     }
     
-    return self.roundItem.learnProgress;
+    [self.delegate didCheckedUserDefinitionWithLearningState:self.learningItem.learnProgress previousState:previousState];
 }
 
 - (void)dealloc {

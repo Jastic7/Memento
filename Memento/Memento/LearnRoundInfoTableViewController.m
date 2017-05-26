@@ -23,6 +23,7 @@ static NSString * const kLearnRoundInfoTableViewCellID = @"LearnRoundInfoTableVi
 @property (strong, nonatomic) NSMutableArray <NSMutableArray <ItemOfSet *> *> *items;
 @property (strong, nonatomic) NSMutableArray <NSString *> *titles;
 
+@property (weak, nonatomic) IBOutlet UIButton *learnRoundButton;
 @property (weak, nonatomic) IBOutlet UILabel *unknownCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *learntCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *masteredCountLabel;
@@ -32,7 +33,7 @@ static NSString * const kLearnRoundInfoTableViewCellID = @"LearnRoundInfoTableVi
 @implementation LearnRoundInfoTableViewController
 
 
-#pragma mark - Getters 
+#pragma mark - Getters
 
 - (NSMutableArray<ItemOfSet *> *)unknownItems {
     if (!_unknownItems) {
@@ -97,12 +98,18 @@ static NSString * const kLearnRoundInfoTableViewCellID = @"LearnRoundInfoTableVi
     
     [self.tableView registerNib:[LearnRoundInfoHeader nib] forHeaderFooterViewReuseIdentifier:kLearnRoundInfoHeaderID];
     [self configureCountLabels];
+    
+    if (self.isLearningFinished) {
+        [self.learnRoundButton setTitle:@"Start over" forState:UIControlStateNormal];
+    }
 }
 
 
 #pragma mark - Actions
 
 - (IBAction)nextRoundButtonTapped:(UIButton *)sender {
+    self.prepareForNextRoundBlock();
+    
     [UIView animateWithDuration:0.3 animations:^{
         self.view.alpha = 0;
         self.view.transform = CGAffineTransformScale(self.view.transform, 0.1, 0.1);
@@ -111,8 +118,6 @@ static NSString * const kLearnRoundInfoTableViewCellID = @"LearnRoundInfoTableVi
             [self.navigationController willMoveToParentViewController:nil];
             [self.navigationController.view removeFromSuperview];
             [self.navigationController removeFromParentViewController];
-            
-            self.prepareForNextRoundBlock();
         }
     }];
 }

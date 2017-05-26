@@ -29,6 +29,7 @@
 - (void)addItem:(ItemOfSet *)item;
 - (void)removeItem:(ItemOfSet *)item;
 - (void)removeItemAtIndex:(NSUInteger)index;
+- (void)removeAllItems;
 
 - (BOOL)containsItem:(ItemOfSet *)item;
 - (ItemOfSet *)findItemWithTerm:(NSString *)term definition:(NSString *)definition;
@@ -38,5 +39,7 @@
 - (NSUInteger)countItemsWithLearnState:(LearnState)learnState;
 
 - (id)objectAtIndexedSubscript:(NSUInteger)idx;
+
+- (void)resetAllLearnProgress;
 
 @end

@@ -18,4 +18,19 @@
     return [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1.0];
 }
 
++ (instancetype)unknownColor {
+    return [UIColor colorWithRed:214/255.0 green:214/255.0 blue:214/255.0 alpha:1.0];
+}
+
++ (instancetype)failedColor {
+    return [UIColor colorWithRed:149/255.0 green:30/255.0 blue:23/255.0 alpha:1.0];
+}
+
++ (instancetype)deepBlue {
+    return [UIColor colorWithRed:0/255.0 green:64/255.0 blue:128/255.0 alpha:1.0];
+}
+
 @end
+
+
+

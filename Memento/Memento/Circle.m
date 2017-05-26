@@ -32,8 +32,8 @@
             [self configureWithBackgroundColor:[UIColor fernColor] borderWidth:0.0];
             break;
             
-        case Missed:
-            //FIXME:ADD COLOR
+        case Failed:
+            [self configureWithBackgroundColor:[UIColor failedColor] borderWidth:0.0];
             break;
             
         default:

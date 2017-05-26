@@ -16,7 +16,7 @@
 @property (nonatomic, weak) IBOutlet Circle *rightCirle;
 @property (nonatomic, assign) LearnState learnState;
 
-
 - (void)setLearnState:(LearnState)learnState;
+- (void)setLearnState:(LearnState)learnState withPreviousState:(LearnState)previousState;
 
 @end
