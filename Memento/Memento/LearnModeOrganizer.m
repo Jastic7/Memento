@@ -11,6 +11,8 @@
 
 @interface LearnModeOrganizer ()
 
+@property (nonatomic, strong) Set *learningSet;
+
 /*!
  * @brief Contains items for current learning round.
  */
@@ -92,7 +94,7 @@
 - (void)setCurrentRound:(NSUInteger)currentRound {
     _currentRound = currentRound;
     //FIXME:Call another method
-    [self.delegate didFinishLearning];
+    [self.delegate didFinishedLearning];
 }
 
 
@@ -128,7 +130,7 @@
 
 - (void)updateRoundSet {
     if (self.location > self.learningSet.count) {
-        [self.delegate didFinishLearning];
+        [self.delegate didFinishedLearning];
         
         return;
     }

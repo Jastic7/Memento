@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5508B9231ED8408300526200 /* ItemLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B9221ED8408300526200 /* ItemLabel.m */; };
+		5508B9271ED8CA6300526200 /* MatchModeOrganizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B9261ED8CA6300526200 /* MatchModeOrganizer.m */; };
 		5556BE551ED2ECFF00E8DC64 /* LearnRoundInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5556BE541ED2ECFF00E8DC64 /* LearnRoundInfoTableViewController.m */; };
 		5556BE5D1ED3244F00E8DC64 /* Circle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5556BE5C1ED3244F00E8DC64 /* Circle.m */; };
 		5556BE601ED3266D00E8DC64 /* LearnRoundInfoHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 5556BE5F1ED3266D00E8DC64 /* LearnRoundInfoHeader.m */; };
@@ -40,6 +41,9 @@
 /* Begin PBXFileReference section */
 		5508B9211ED8408300526200 /* ItemLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemLabel.h; sourceTree = "<group>"; };
 		5508B9221ED8408300526200 /* ItemLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemLabel.m; sourceTree = "<group>"; };
+		5508B9241ED8C81900526200 /* MatchModeProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchModeProtocol.h; sourceTree = "<group>"; };
+		5508B9251ED8CA6300526200 /* MatchModeOrganizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchModeOrganizer.h; sourceTree = "<group>"; };
+		5508B9261ED8CA6300526200 /* MatchModeOrganizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchModeOrganizer.m; sourceTree = "<group>"; };
 		5556BE531ED2ECFF00E8DC64 /* LearnRoundInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnRoundInfoTableViewController.h; sourceTree = "<group>"; };
 		5556BE541ED2ECFF00E8DC64 /* LearnRoundInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearnRoundInfoTableViewController.m; sourceTree = "<group>"; };
 		5556BE5B1ED3244F00E8DC64 /* Circle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Circle.h; sourceTree = "<group>"; };
@@ -108,6 +112,9 @@
 		5556BE561ED2F68500E8DC64 /* MatchMode */ = {
 			isa = PBXGroup;
 			children = (
+				5508B9241ED8C81900526200 /* MatchModeProtocol.h */,
+				5508B9251ED8CA6300526200 /* MatchModeOrganizer.h */,
+				5508B9261ED8CA6300526200 /* MatchModeOrganizer.m */,
 				55C6ACDC1EC8D33F0062537B /* MatchPrepareViewController.h */,
 				55C6ACDD1EC8D33F0062537B /* MatchPrepareViewController.m */,
 				55C6ACD61EC8B3250062537B /* MatchItemsCollectionViewController.h */,
@@ -337,6 +344,7 @@
 				5556BE5D1ED3244F00E8DC64 /* Circle.m in Sources */,
 				55D34EDD1EBA906500A2EE38 /* AppDelegate.m in Sources */,
 				5558A84E1ED50870001BAFC3 /* LearnProgressStackView.m in Sources */,
+				5508B9271ED8CA6300526200 /* MatchModeOrganizer.m in Sources */,
 				55D34EF41EBAA28500A2EE38 /* SetTableViewCell.m in Sources */,
 				55A8F3E41EBC98ED000D5DB0 /* UITableView+GettingIndexPath.m in Sources */,
 				557D1D371ED3D77F00DC7ADE /* LearnRoundInfoTableViewCell.m in Sources */,

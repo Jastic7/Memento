@@ -8,12 +8,14 @@
 
 #import <UIKit/UIKit.h>
 @class Set;
+@class MatchModeOrganizer;
 @protocol MatchModeDelegate;
 
 
 @interface MatchPrepareViewController : UIViewController
 
 @property (nonatomic, strong) Set *set;
+@property (nonatomic, strong) MatchModeOrganizer *organizer;
 @property (nonatomic, weak) id<MatchModeDelegate> delegate;
 
 @end

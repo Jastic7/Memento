@@ -12,10 +12,12 @@
 #import "ItemOfSet.h"
 #import "NSMutableArray+Shuffle.h"
 
+#import "MatchModeOrganizer.h"
+
 static NSString * const reuseIdentifier = @"ItemOfMatchCollectionViewCell";
 
 
-@interface MatchItemsCollectionViewController () <UICollectionViewDelegateFlowLayout>
+@interface MatchItemsCollectionViewController () <UICollectionViewDelegateFlowLayout, MatchModeOrganizerDelegate>
 
 @property (nonatomic, assign) CGFloat itemsPerRow;
 @property (nonatomic, assign) CGFloat itemsPerColumn;
@@ -122,7 +124,7 @@ static NSString * const reuseIdentifier = @"ItemOfMatchCollectionViewCell";
 }
 
 
-#pragma mark - <UICollectionViewDelegate>
+#pragma mark - UICollectionViewDelegate
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     return YES;

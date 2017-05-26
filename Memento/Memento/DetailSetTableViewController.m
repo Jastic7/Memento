@@ -15,7 +15,9 @@
 
 #import "Set.h"
 #import "ItemOfSet.h"
+
 #import "LearnModeOrganizer.h"
+#import "MatchModeOrganizer.h"
 
 static NSString * const kItemOfSetCellID = @"ItemOfSetTableViewCell";
 static NSString * const kMatchModePrepareSegue = @"matchModePrepareSegue";
@@ -70,13 +72,16 @@ static NSString * const kRoundLearnModeSegue = @"roundLearnModeSegue";
     
     if ([identifier isEqualToString:kMatchModePrepareSegue]) {
         MatchPrepareViewController *dvc = segue.destinationViewController;
+        MatchModeOrganizer *matchModeOrganizer = [MatchModeOrganizer createWithSet:self.set];
+        
+        dvc.organizer = matchModeOrganizer;
         dvc.delegate = self;
         dvc.set = self.set;
     } else if ([identifier isEqualToString:kRoundLearnModeSegue]) {
         LearnRoundViewController *dvc = segue.destinationViewController;
-        LearnModeOrganizer *learnModeOrginizer = [LearnModeOrganizer createWithSet:self.set];
+        LearnModeOrganizer *learnModeOrganizer = [LearnModeOrganizer createWithSet:self.set];
         
-        dvc.organizer = learnModeOrginizer;
+        dvc.organizer = learnModeOrganizer;
         dvc.cancelingBlock = ^void() {
             [self dismissViewControllerAnimated:YES completion:nil];
         };
