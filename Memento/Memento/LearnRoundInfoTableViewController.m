@@ -9,6 +9,7 @@
 #import "LearnRoundInfoTableViewController.h"
 #import "LearnRoundInfoTableViewCell.h"
 #import "LearnRoundInfoHeader.h"
+#import "UIColor+PickerColors.h"
 #import "Set.h"
 
 static NSString * const kLearnRoundInfoHeaderID = @"LearnRoundInfoHeader";
@@ -142,7 +143,8 @@ static NSString * const kLearnRoundInfoTableViewCellID = @"LearnRoundInfoTableVi
     
     ItemOfSet *item = self.items[indexPath.section][indexPath.row];
     
-    [cell configureWithTerm:item.term definition:item.definition];
+    UIColor *textColor = item.learnProgress == Unknown ? [UIColor failedColor] : [UIColor textBlack];
+    [cell configureWithTerm:item.term definition:item.definition textColor:textColor];
     
     return cell;
 }

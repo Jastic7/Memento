@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5508B9231ED8408300526200 /* ItemLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B9221ED8408300526200 /* ItemLabel.m */; };
 		5556BE551ED2ECFF00E8DC64 /* LearnRoundInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5556BE541ED2ECFF00E8DC64 /* LearnRoundInfoTableViewController.m */; };
 		5556BE5D1ED3244F00E8DC64 /* Circle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5556BE5C1ED3244F00E8DC64 /* Circle.m */; };
 		5556BE601ED3266D00E8DC64 /* LearnRoundInfoHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 5556BE5F1ED3266D00E8DC64 /* LearnRoundInfoHeader.m */; };
@@ -37,6 +38,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5508B9211ED8408300526200 /* ItemLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemLabel.h; sourceTree = "<group>"; };
+		5508B9221ED8408300526200 /* ItemLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemLabel.m; sourceTree = "<group>"; };
 		5556BE531ED2ECFF00E8DC64 /* LearnRoundInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnRoundInfoTableViewController.h; sourceTree = "<group>"; };
 		5556BE541ED2ECFF00E8DC64 /* LearnRoundInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearnRoundInfoTableViewController.m; sourceTree = "<group>"; };
 		5556BE5B1ED3244F00E8DC64 /* Circle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Circle.h; sourceTree = "<group>"; };
@@ -165,6 +168,8 @@
 				55C6ACD91EC8B4300062537B /* ItemOfMatchCollectionViewCell.h */,
 				55C6ACDA1EC8B4300062537B /* ItemOfMatchCollectionViewCell.m */,
 				557D1D381ED3DA5300DC7ADE /* LearnMode */,
+				5508B9211ED8408300526200 /* ItemLabel.h */,
+				5508B9221ED8408300526200 /* ItemLabel.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -314,6 +319,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5508B9231ED8408300526200 /* ItemLabel.m in Sources */,
 				55C6ACCD1EC873B20062537B /* CreateSetTableViewController.m in Sources */,
 				5558A8511ED59621001BAFC3 /* UIColor+PickerColors.m in Sources */,
 				55A8F3DA1EBBDD68000D5DB0 /* ItemOfSet.m in Sources */,

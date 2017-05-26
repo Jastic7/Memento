@@ -16,5 +16,6 @@
 + (instancetype)failedColor;
 
 + (instancetype)deepBlue;
++ (instancetype)textBlack;
 
 @end

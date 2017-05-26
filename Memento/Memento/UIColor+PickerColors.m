@@ -30,6 +30,10 @@
     return [UIColor colorWithRed:0/255.0 green:64/255.0 blue:128/255.0 alpha:1.0];
 }
 
++ (instancetype)textBlack {
+    return [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1.0];
+}
+
 @end
 
 

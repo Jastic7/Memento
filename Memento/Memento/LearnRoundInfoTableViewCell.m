@@ -19,18 +19,19 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
--(void)configureWithTerm:(NSString *)term definition:(NSString *)definition {
-    self.termLabel.text = term;
-    self.definitionLabel.text = definition;
+- (void)configureWithTerm:(NSString *)term definition:(NSString *)definition textColor:(UIColor *)textColor {
+    self.termLabel.text             = term;
+    self.definitionLabel.text       = definition;
+    
+    self.termLabel.textColor        = textColor;
+    self.definitionLabel.textColor  = textColor;
 }
+
 
 @end

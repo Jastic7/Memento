@@ -10,6 +10,6 @@
 
 @interface LearnRoundInfoTableViewCell : UITableViewCell
 
-- (void)configureWithTerm:(NSString *)term definition:(NSString *)definition;
+- (void)configureWithTerm:(NSString *)term definition:(NSString *)definition textColor:(UIColor *)textColor;
 
 @end

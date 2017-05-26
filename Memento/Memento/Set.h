@@ -85,6 +85,10 @@
  */
 - (NSUInteger)countItemsWithLearnState:(LearnState)learnState;
 
+/*
+ * @brief Get item by index.
+ * @param idx - Index of getting item.
+ */
 - (id)objectAtIndexedSubscript:(NSUInteger)idx;
 
 /*
