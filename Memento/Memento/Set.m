@@ -58,11 +58,14 @@
 }
 
 
-#pragma mark - Modifiers
+#pragma mark - Adding
 
 - (void)addItem:(ItemOfSet *)item {
     [self.items addObject:item];
 }
+
+
+#pragma mark - Removing
 
 - (void)removeItem:(ItemOfSet *)item {
     [self.items removeObject:item];
@@ -75,6 +78,9 @@
 - (void)removeAllItems {
     [self.items removeAllObjects];
 }
+
+
+#pragma mark - Searching
 
 - (BOOL)containsItem:(ItemOfSet *)item {
     return [self.items containsObject:item];
@@ -91,6 +97,9 @@
     
     return nil;
 }
+
+
+#pragma mark - Sub items
 
 - (Set *)subsetWithRange:(NSRange)range {
     NSArray<ItemOfSet *> *subitems = [self.items subarrayWithRange:range];
@@ -111,6 +120,9 @@
     return filteredItems;
 }
 
+
+#pragma mark - Count
+
 - (NSUInteger)countItemsWithLearnState:(LearnState)learnState {
     NSUInteger count = 0;
     for (ItemOfSet *item in self.items) {
@@ -122,6 +134,9 @@
     return count;
 }
 
+
+#pragma mark - Helpers.
+
 - (id)objectAtIndexedSubscript:(NSUInteger)idx {
     return self.items[idx];
 }
@@ -131,6 +146,9 @@
         [item resetLearnProgress];
     }
 }
+
+
+#pragma mark - Copying.
 
 - (id)copyWithZone:(NSZone *)zone {
     Set *copySet = [[[self class] allocWithZone:zone] init];

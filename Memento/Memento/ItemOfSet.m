@@ -27,6 +27,7 @@
     _learnProgress = learnProgress;
 }
 
+
 #pragma mark - Initializations
 
 - (instancetype)init {
@@ -67,7 +68,7 @@
 }
 
 
-#pragma mark - Helpers
+#pragma mark - Equality
 
 - (BOOL)isEqual:(id)object {
     ItemOfSet *anotherObject = object;
@@ -75,6 +76,9 @@
     return  ([self.term isEqualToString:anotherObject.term]) &&
             ([self.definition isEqualToString:anotherObject.definition]);
 }
+
+
+#pragma mark - Copying
 
 - (id)copyWithZone:(NSZone *)zone {
     ItemOfSet *copyItem = [[[self class] allocWithZone:zone] init];
