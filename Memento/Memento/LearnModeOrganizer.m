@@ -11,6 +11,8 @@
 
 @interface LearnModeOrganizer ()
 
+@property (nonatomic, strong) Set *set;
+
 @property (nonatomic, strong) Set *learningSet;
 
 /*!
@@ -47,6 +49,8 @@
  */
 @property (nonatomic, assign, readonly) BOOL isEnoughItems;
 
+@property (nonatomic, weak) id <LearnModeOrganizerDelegate> delegate;
+
 @end
 
 
@@ -67,10 +71,13 @@
     return self.location + kCountItemsInRound < self.learningSet.count;
 }
 
-- (BOOL)isLearningFinished {
+- (BOOL)isFinished {
     return self.location >= self.learningSet.count;
 }
 
+- (Set *)set {
+    return _set;
+}
 
 #pragma mark - Setters
 
@@ -97,6 +104,10 @@
     [self.delegate didFinishedLearning];
 }
 
+- (void)setDelegate:(id<LearnModeOrganizerDelegate>)delegate {
+    _delegate = delegate;
+}
+
 
 #pragma mark - Helpers
 
@@ -107,7 +118,6 @@
         [item failLearnProgress];
     }
 }
-
 
 
 #pragma mark - LearnModeProtocol implementation
@@ -184,7 +194,7 @@
 }
 
 - (void)dealloc {
-    NSLog(@"ORGINIZER LEFT");
+    NSLog(@"ORGANIZER LEFT");
 }
 
 @end

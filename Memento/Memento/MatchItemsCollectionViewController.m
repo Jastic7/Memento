@@ -24,16 +24,11 @@ static NSString * const reuseIdentifier = @"ItemOfMatchCollectionViewCell";
 @property (nonatomic, assign) UIEdgeInsets sectionInsets;
 
 /*!
- * @brief Contains some items (6) from whole set
- * for current round. Fills by random.
- */
-@property (nonatomic, strong) Set *roundSet;
-/*!
  * @brief Contains terms and definitions
  * from round set for representing in collection view.
  */
-@property (nonatomic, strong) NSMutableArray<NSString *> *randomItems;
-@property (nonatomic, strong) NSMutableArray<NSString *> *selectedItems;
+@property (nonatomic, strong) NSMutableArray <NSString *> *randomItems;
+@property (nonatomic, strong) NSMutableArray <NSString *> *selectedItems;
 
 @end
 
@@ -42,15 +37,7 @@ static NSString * const reuseIdentifier = @"ItemOfMatchCollectionViewCell";
 
 #pragma mark - Getters
 
-- (Set *)roundSet {
-    if (!_roundSet) {
-        _roundSet = [Set new];
-    }
-    
-    return _roundSet;
-}
-
-- (NSMutableArray<NSString *> *)selectedItems {
+- (NSMutableArray <NSString *> *)selectedItems {
     if (!_selectedItems) {
         _selectedItems = [NSMutableArray array];
     }
@@ -58,7 +45,7 @@ static NSString * const reuseIdentifier = @"ItemOfMatchCollectionViewCell";
     return _selectedItems;
 }
 
-- (NSMutableArray<NSString *> *)randomItems {
+- (NSMutableArray <NSString *> *)randomItems {
     if (!_randomItems) {
         _randomItems = [NSMutableArray array];
     }
@@ -72,13 +59,19 @@ static NSString * const reuseIdentifier = @"ItemOfMatchCollectionViewCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self configure];
+    
+
+    [self.organizer setDelegate:self];
+    [self.organizer updateRoundSet];
+}
+
+- (void)configure {
     self.itemsPerRow = 3;
     self.itemsPerColumn = 4;
     self.sectionInsets = UIEdgeInsetsMake(25, 10, 10, 10);
     
     self.collectionView.allowsMultipleSelection = YES;
-    
-    [self fillRoundSetByRandom];
 }
 
 
@@ -87,6 +80,41 @@ static NSString * const reuseIdentifier = @"ItemOfMatchCollectionViewCell";
 
 - (IBAction)exitButtonTapped:(UIButton *)sender {
     [self.delegate exitMatchMode];
+}
+
+
+#pragma mark - MatchModeOrganizerDelegate
+
+- (void)didFinishedMatching {
+    [self.delegate finishedMatchMode];
+}
+
+- (void)roundSet:(Set *)roundSet didFilledWithRandomItems:(NSMutableArray <NSString *> *)randomItems {
+    self.randomItems = randomItems;
+    
+    [self.collectionView reloadData];
+}
+
+- (void)didCheckedSelectedItemsWithResult:(BOOL)isMatched {
+    NSArray<NSIndexPath *> *selectedIndexPaths = self.collectionView.indexPathsForSelectedItems;
+    
+    if (isMatched) {
+        for (NSIndexPath *idx in selectedIndexPaths) {
+            UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:idx];
+            cell.backgroundColor = [UIColor greenColor];
+        }
+        
+        [self.randomItems removeObjectsInArray:self.selectedItems];
+        [self.collectionView deleteItemsAtIndexPaths:selectedIndexPaths];
+        
+    } else {
+        for (NSIndexPath *idx in selectedIndexPaths) {
+            UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:idx];
+            cell.backgroundColor = [UIColor redColor];
+            
+            [self.collectionView deselectItemAtIndexPath:idx animated:YES];
+        }
+    }
 }
 
 
@@ -137,16 +165,14 @@ static NSString * const reuseIdentifier = @"ItemOfMatchCollectionViewCell";
     
     if (self.selectedItems.count == 2) {
         //check items
-        BOOL isMatching = [self checkMatchingItems];
-        isMatching ? [self itemsDidMatched] : [self itemsDidMissed];
+        [self.organizer checkSelectedItems:self.selectedItems];
         
         //deselect all items
         [self.selectedItems removeAllObjects];
         
         //get new potions of items
-        if (self.roundSet.isEmpty) {
-            [self fillRoundSetByRandom];
-            [collectionView reloadData];
+        if (self.randomItems.count == 0) {
+            [self.organizer updateRoundSet];
         }
     }
 }
@@ -185,82 +211,7 @@ static NSString * const reuseIdentifier = @"ItemOfMatchCollectionViewCell";
     return self.sectionInsets.left;
 }
 
-
-#pragma mark - Matching Helpers
-
-- (BOOL)checkMatchingItems {
-    BOOL isMatching = NO;
-    
-    NSString *firstSelectedItem = self.selectedItems[0];
-    NSString *secondSelectedItem = self.selectedItems[1];
-    
-    ItemOfSet *checkingItem = [ItemOfSet itemOfSetWithTerm:firstSelectedItem definition:secondSelectedItem];
-    isMatching = [self.roundSet containsItem:checkingItem];
-    
-    if (!isMatching) {
-        checkingItem = [ItemOfSet itemOfSetWithTerm:secondSelectedItem definition:firstSelectedItem];
-        isMatching = [self.roundSet containsItem:checkingItem];
-    }
-    
-    if (isMatching) {
-        [self.roundSet removeItem:checkingItem];
-    }
-    
-    return isMatching;
-}
-
-- (void)itemsDidMatched {
-    NSArray<NSIndexPath *> *selectedIndexPaths = self.collectionView.indexPathsForSelectedItems;
-    
-    for (NSIndexPath *idx in selectedIndexPaths) {
-        UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:idx];
-        cell.backgroundColor = [UIColor greenColor];
-    }
-    
-    [self.randomItems removeObjectsInArray:self.selectedItems];
-    [self.collectionView deleteItemsAtIndexPaths:selectedIndexPaths];
-}
-
-- (void)itemsDidMissed {
-    NSArray<NSIndexPath *> *selectedIndexPaths = self.collectionView.indexPathsForSelectedItems;
-    
-    for (NSIndexPath *idx in selectedIndexPaths) {
-        UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:idx];
-        cell.backgroundColor = [UIColor redColor];
-        
-        [self.collectionView deselectItemAtIndexPath:idx animated:YES];
-    }
-}
-
-
-#pragma mark - Helpers
-
-- (void)fillRoundSetByRandom {
-    if (self.set.isEmpty) {
-        //it means, that user matched all items.
-        [self.delegate finishedMatchMode];
-    }
-    
-    NSUInteger randomIndex;
-    ItemOfSet *randomItem;
-    
-    //get 6 items for current round from set by random.
-    for (int i = 0; i < 6 && !self.set.isEmpty; i++) {
-        randomIndex = arc4random() % self.set.count;
-        randomItem = self.set[randomIndex];
-        
-        [self.roundSet addItem:randomItem];
-        
-        [self.randomItems addObject:randomItem.term];
-        [self.randomItems addObject:randomItem.definition];
-        
-        [self.set removeItemAtIndex:randomIndex];
-    }
-    
-    [self.randomItems shuffle];
-}
-
--(void)dealloc {
+- (void)dealloc {
     NSLog(@"Match mode dealloced");
 }
 @end

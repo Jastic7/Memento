@@ -7,14 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "OrganizerProtocol.h"
 
-@class Set;
+
+@protocol MatchModeOrganizerDelegate <NSObject>
+
+- (void) roundSet:(Set *)roundSet didFilledWithRandomItems:(NSMutableArray <NSString *> *)randomItems;
+- (void) didFinishedMatching;
+- (void) didCheckedSelectedItemsWithResult:(BOOL)isMatched;
+
+@end
 
 
-@protocol MatchModeProtocol <NSObject>
+@protocol MatchModeProtocol <NSObject, OrganizerProtocol>
 
-- (instancetype)initWithSet:(Set *)set;
-+ (instancetype)createWithSet:(Set *)set;
-
+- (void)checkSelectedItems:(NSArray <NSString *> *)selectedItems;
+- (void)setDelegate:(id <MatchModeOrganizerDelegate>) delegate;
 
 @end

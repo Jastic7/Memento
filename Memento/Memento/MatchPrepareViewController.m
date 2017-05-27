@@ -13,11 +13,6 @@
 static NSString * const kMatchModeViewControllerID = @"MatchModeViewController";
 
 
-@interface MatchPrepareViewController ()
-
-@end
-
-
 @implementation MatchPrepareViewController
 
 
@@ -52,8 +47,8 @@ static NSString * const kMatchModeViewControllerID = @"MatchModeViewController";
     
     MatchItemsCollectionViewController *childViewController = [storyboard instantiateViewControllerWithIdentifier:kMatchModeViewControllerID];
     
-    childViewController.set = self.set;
-    childViewController.delegate = self.delegate;
+    childViewController.delegate    = self.delegate;
+    childViewController.organizer   = self.organizer;
     
     [self addChildViewController:childViewController];
     [self.view addSubview:childViewController.view];

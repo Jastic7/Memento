@@ -44,6 +44,7 @@
 		5508B9241ED8C81900526200 /* MatchModeProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchModeProtocol.h; sourceTree = "<group>"; };
 		5508B9251ED8CA6300526200 /* MatchModeOrganizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchModeOrganizer.h; sourceTree = "<group>"; };
 		5508B9261ED8CA6300526200 /* MatchModeOrganizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchModeOrganizer.m; sourceTree = "<group>"; };
+		5508B9281ED8F89800526200 /* OrganizerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrganizerProtocol.h; sourceTree = "<group>"; };
 		5556BE531ED2ECFF00E8DC64 /* LearnRoundInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnRoundInfoTableViewController.h; sourceTree = "<group>"; };
 		5556BE541ED2ECFF00E8DC64 /* LearnRoundInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearnRoundInfoTableViewController.m; sourceTree = "<group>"; };
 		5556BE5B1ED3244F00E8DC64 /* Circle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Circle.h; sourceTree = "<group>"; };
@@ -233,6 +234,7 @@
 				55C6ACCC1EC873B20062537B /* CreateSetTableViewController.m */,
 				55C6ACD31EC89EF80062537B /* DetailSetTableViewController.h */,
 				55C6ACD41EC89EF80062537B /* DetailSetTableViewController.m */,
+				5508B9281ED8F89800526200 /* OrganizerProtocol.h */,
 				5556BE561ED2F68500E8DC64 /* MatchMode */,
 				5556BE571ED2F68D00E8DC64 /* LearnMode */,
 			);

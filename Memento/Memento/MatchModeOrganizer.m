@@ -13,13 +13,45 @@
 
 @interface MatchModeOrganizer ()
 
+@property (nonatomic, strong) Set *set;
 @property (nonatomic, strong) Set *matchingSet;
 @property (nonatomic, strong) Set *roundSet;
-@property (nonatomic, strong) NSMutableArray<NSString *> *randomItems;
+
+@property (nonatomic, weak) id <MatchModeOrganizerDelegate> delegate;
 
 @end
 
+
 @implementation MatchModeOrganizer
+
+
+#pragma mark - Getters
+
+- (Set *)roundSet {
+    if (!_roundSet) {
+        _roundSet = [Set new];
+    }
+    
+    return _roundSet;
+}
+
+- (Set *)set {
+    return _set;
+}
+
+- (BOOL)isFinished {
+    return self.matchingSet.isEmpty;
+}
+
+
+#pragma mark - Setters
+
+- (void)setDelegate:(id <MatchModeOrganizerDelegate>)delegate {
+    _delegate = delegate;
+}
+
+
+#pragma mark - Initialization
 
 - (instancetype)initWithSet:(Set *)set {
     self = [super init];
@@ -36,8 +68,11 @@
     return [[self alloc] initWithSet:set];
 }
 
-- (void)fillRandomItems {
-    if (self.matchingSet.isEmpty) {
+
+#pragma mark - MatchModeOrganizerDelegate
+
+- (void)updateRoundSet {
+    if (self.isFinished) {
         //it means, that user matched all items.
         [self.delegate didFinishedMatching];
     }
@@ -45,21 +80,52 @@
     NSUInteger randomIndex;
     ItemOfSet *randomItem;
     
+    NSMutableArray<NSString *> *randomItems = [NSMutableArray array];
+    
     //get 6 items for current round from set by random.
-    for (int i = 0; i < 6 && !self.set.isEmpty; i++) {
-        randomIndex = arc4random() % self.set.count;
-        randomItem = self.set[randomIndex];
+    for (int i = 0; i < 6 && !self.matchingSet.isEmpty; i++) {
+        randomIndex = arc4random() % self.matchingSet.count;
+        randomItem = self.matchingSet[randomIndex];
         
         [self.roundSet addItem:randomItem];
         
-        [self.randomItems addObject:randomItem.term];
-        [self.randomItems addObject:randomItem.definition];
+        [randomItems addObject:randomItem.term];
+        [randomItems addObject:randomItem.definition];
         
         [self.matchingSet removeItemAtIndex:randomIndex];
     }
     
-    [self.randomItems shuffle];
-    [self.delegate roundSet:self.roundSet didFilledWithRandomItems:self.randomItems];
+    [randomItems shuffle];
+    [self.delegate roundSet:self.roundSet didFilledWithRandomItems:randomItems];
+}
+
+- (void)checkSelectedItems:(NSArray<NSString *> *)selectedItems {
+    BOOL isMatched = NO;
+    
+    NSString *firstSelectedItem = selectedItems[0];
+    NSString *secondSelectedItem = selectedItems[1];
+    
+    ItemOfSet *checkingItem = [ItemOfSet itemOfSetWithTerm:firstSelectedItem definition:secondSelectedItem];
+    isMatched = [self.roundSet containsItem:checkingItem];
+    
+    if (!isMatched) {
+        checkingItem = [ItemOfSet itemOfSetWithTerm:secondSelectedItem definition:firstSelectedItem];
+        isMatched = [self.roundSet containsItem:checkingItem];
+    }
+    
+    if (isMatched) {
+        [self.roundSet removeItem:checkingItem];
+    }
+    
+    [self.delegate didCheckedSelectedItemsWithResult:isMatched];
+}
+
+
+#pragma mark - Helpers
+
+- (void)reset {
+    [self.roundSet removeAllItems];
+    self.matchingSet = [Set setWithSet:self.set];
 }
 
 @end

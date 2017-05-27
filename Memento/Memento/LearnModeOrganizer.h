@@ -8,28 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "LearnModeProtocol.h"
-#import "ItemOfSet.h"
+
 
 static NSUInteger const kCountItemsInRound = 7;
 
-
-@protocol LearnModeOrganizerDelegate <NSObject>
-
-- (void)didFinishedLearning;
-- (void)didUpdatedTerm:(NSString *)term withLearnProgress:(LearnState)learnProgress;
-- (void)didCheckedUserDefinitionWithLearningState:(LearnState)learnProgress previousState:(LearnState)previousProgress;
-
-@end
-
-
 @interface LearnModeOrganizer : NSObject <LearnModeProtocol>
-
-@property (nonatomic, strong, readonly) Set *set;
-@property (nonatomic, strong, readonly) Set *learningSet;
-@property (nonatomic, strong, readonly) Set *roundSet;
-
-@property (nonatomic, assign, readonly) BOOL isLearningFinished;
-
-@property (nonatomic, weak) id <LearnModeOrganizerDelegate> delegate;
 
 @end

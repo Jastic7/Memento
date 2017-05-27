@@ -76,7 +76,6 @@ static NSString * const kRoundLearnModeSegue = @"roundLearnModeSegue";
         
         dvc.organizer = matchModeOrganizer;
         dvc.delegate = self;
-        dvc.set = self.set;
     } else if ([identifier isEqualToString:kRoundLearnModeSegue]) {
         LearnRoundViewController *dvc = segue.destinationViewController;
         LearnModeOrganizer *learnModeOrganizer = [LearnModeOrganizer createWithSet:self.set];

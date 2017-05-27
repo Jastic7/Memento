@@ -36,7 +36,7 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
     
     self.navigationBar.delegate = self;
     self.textField.delegate     = self;
-    self.organizer.delegate     = self;
+    [self.organizer setDelegate:self];
     
     [self configureTextField];
     [self registerNotifications];
@@ -77,7 +77,7 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
 
 #pragma mark - LearnModeOrganizerDelegate
 
-- (void)didFinishLearning {
+- (void)didFinishedLearning {
     [self showRoundInfoViewController];
 }
 
@@ -137,13 +137,13 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
     UINavigationController *navigationController = [storyboard instantiateViewControllerWithIdentifier:kLearnRoundInfoNavigationControllerID];
     LearnRoundInfoTableViewController *childViewController = (LearnRoundInfoTableViewController *)navigationController.topViewController;
     
-    childViewController.isLearningFinished  = self.organizer.isLearningFinished;
+    childViewController.isLearningFinished  = self.organizer.isFinished;
     childViewController.roundSet            = self.organizer.roundSet;
     childViewController.set                 = self.organizer.set;
     
     childViewController.cancelingBlock           = self.cancelingBlock;
     childViewController.prepareForNextRoundBlock = ^void() {
-        if (self.organizer.isLearningFinished) {
+        if (self.organizer.isFinished) {
             [self.organizer reset];
         }
         

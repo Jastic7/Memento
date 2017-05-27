@@ -7,20 +7,25 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "OrganizerProtocol.h"
 #import "ItemOfSet.h"
 
-@class Set;
+@protocol LearnModeOrganizerDelegate <NSObject>
+
+- (void)didFinishedLearning;
+- (void)didUpdatedTerm:(NSString *)term withLearnProgress:(LearnState)learnProgress;
+- (void)didCheckedUserDefinitionWithLearningState:(LearnState)learnProgress previousState:(LearnState)previousProgress;
+
+@end
 
 
-@protocol LearnModeProtocol <NSObject>
+@protocol LearnModeProtocol <NSObject, OrganizerProtocol>
 
-- (instancetype)initWithSet:(Set *)set;
-+ (instancetype)createWithSet:(Set *)set;
+- (void)setInitialConfiguration;
 
 - (void)checkUserDefinition:(NSString *)definition;
-- (void)updateRoundSet;
-- (void)setInitialConfiguration;
 - (void)updateLearningItem;
-- (void)reset;
+
+- (void)setDelegate:(id <LearnModeOrganizerDelegate>)delegate;
 
 @end

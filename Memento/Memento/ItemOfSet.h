@@ -50,7 +50,7 @@ typedef NS_ENUM(NSInteger, LearnState) {
  */
 @property (nonatomic, assign, readonly) LearnState learnProgress;
 
-/*
+/**
  * @brief Initialize the new item with data.
  * @param term - Term of the new item.
  * @param definition - Defenition for the @term.
@@ -59,17 +59,17 @@ typedef NS_ENUM(NSInteger, LearnState) {
 - (instancetype)initWithTerm:(NSString *)term definition:(NSString *)definition;
 + (instancetype)itemOfSetWithTerm:(NSString *)term definition:(NSString *)definition;
 
-/*!
+/**
  * @brief Set learnProgress of the item to Mistake.
  */
 - (void)failLearnProgress;
 
-/*!
+/**
  * @brief Set learnProgress of the item to Unknown.
  */
 - (void)resetLearnProgress;
 
-/*!
+/**
  * @brief Increase learnProgress of the item by one.
  */
 - (void)increaseLearnProgress;
