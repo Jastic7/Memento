@@ -12,12 +12,12 @@
 #import "ItemOfSet.h"
 #import "NSMutableArray+Shuffle.h"
 
-#import "MatchModeOrganizer.h"
+#import "MatchOrganizer.h"
 
 static NSString * const reuseIdentifier = @"ItemOfMatchCollectionViewCell";
 
 
-@interface MatchItemsCollectionViewController () <UICollectionViewDelegateFlowLayout, MatchModeOrganizerDelegate>
+@interface MatchItemsCollectionViewController () <UICollectionViewDelegateFlowLayout, MatchOrganizerDelegate>
 
 @property (nonatomic, assign) CGFloat itemsPerRow;
 @property (nonatomic, assign) CGFloat itemsPerColumn;

@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MatchModeProtocol.h"
+#import "MatchOrganizerProtocol.h"
 
 
-@interface MatchModeOrganizer : NSObject <MatchModeProtocol>
+@interface MatchOrganizer : NSObject <MatchOrganizerProtocol>
 
 @end

@@ -10,7 +10,7 @@
 #import "OrganizerProtocol.h"
 
 
-@protocol MatchModeOrganizerDelegate <NSObject>
+@protocol MatchOrganizerDelegate <NSObject>
 
 - (void) roundSet:(Set *)roundSet didFilledWithRandomItems:(NSMutableArray <NSString *> *)randomItems;
 - (void) didFinishedMatching;
@@ -19,9 +19,9 @@
 @end
 
 
-@protocol MatchModeProtocol <NSObject, OrganizerProtocol>
+@protocol MatchOrganizerProtocol <NSObject, OrganizerProtocol>
 
 - (void)checkSelectedItems:(NSArray <NSString *> *)selectedItems;
-- (void)setDelegate:(id <MatchModeOrganizerDelegate>) delegate;
+- (void)setDelegate:(id <MatchOrganizerDelegate>) delegate;
 
 @end

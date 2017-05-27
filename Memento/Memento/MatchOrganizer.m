@@ -6,23 +6,23 @@
 //  Copyright © 2017 Andrey Morozov. All rights reserved.
 //
 
-#import "MatchModeOrganizer.h"
+#import "MatchOrganizer.h"
 #import "Set.h"
 #import "NSMutableArray+Shuffle.h"
 
 
-@interface MatchModeOrganizer ()
+@interface MatchOrganizer ()
 
 @property (nonatomic, strong) Set *set;
 @property (nonatomic, strong) Set *matchingSet;
 @property (nonatomic, strong) Set *roundSet;
 
-@property (nonatomic, weak) id <MatchModeOrganizerDelegate> delegate;
+@property (nonatomic, weak) id <MatchOrganizerDelegate> delegate;
 
 @end
 
 
-@implementation MatchModeOrganizer
+@implementation MatchOrganizer
 
 
 #pragma mark - Getters
@@ -46,7 +46,7 @@
 
 #pragma mark - Setters
 
-- (void)setDelegate:(id <MatchModeOrganizerDelegate>)delegate {
+- (void)setDelegate:(id <MatchOrganizerDelegate>)delegate {
     _delegate = delegate;
 }
 

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5508B9231ED8408300526200 /* ItemLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B9221ED8408300526200 /* ItemLabel.m */; };
-		5508B9271ED8CA6300526200 /* MatchModeOrganizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B9261ED8CA6300526200 /* MatchModeOrganizer.m */; };
+		5508B9271ED8CA6300526200 /* MatchOrganizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B9261ED8CA6300526200 /* MatchOrganizer.m */; };
 		5556BE551ED2ECFF00E8DC64 /* LearnRoundInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5556BE541ED2ECFF00E8DC64 /* LearnRoundInfoTableViewController.m */; };
 		5556BE5D1ED3244F00E8DC64 /* Circle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5556BE5C1ED3244F00E8DC64 /* Circle.m */; };
 		5556BE601ED3266D00E8DC64 /* LearnRoundInfoHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 5556BE5F1ED3266D00E8DC64 /* LearnRoundInfoHeader.m */; };
@@ -16,7 +16,7 @@
 		5558A84E1ED50870001BAFC3 /* LearnProgressStackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5558A84D1ED50870001BAFC3 /* LearnProgressStackView.m */; };
 		5558A8511ED59621001BAFC3 /* UIColor+PickerColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 5558A8501ED59621001BAFC3 /* UIColor+PickerColors.m */; };
 		555AE4FD1ECDDA9E00A500CA /* LearnRoundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 555AE4FC1ECDDA9E00A500CA /* LearnRoundViewController.m */; };
-		557D1D341ED3B45F00DC7ADE /* LearnModeOrganizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 557D1D331ED3B45F00DC7ADE /* LearnModeOrganizer.m */; };
+		557D1D341ED3B45F00DC7ADE /* LearnOrganizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 557D1D331ED3B45F00DC7ADE /* LearnOrganizer.m */; };
 		557D1D371ED3D77F00DC7ADE /* LearnRoundInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 557D1D361ED3D77F00DC7ADE /* LearnRoundInfoTableViewCell.m */; };
 		55A8F3DA1EBBDD68000D5DB0 /* ItemOfSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A8F3D91EBBDD68000D5DB0 /* ItemOfSet.m */; };
 		55A8F3DF1EBBEFE2000D5DB0 /* ItemOfSetTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A8F3DD1EBBEFE2000D5DB0 /* ItemOfSetTableViewCell.m */; };
@@ -41,9 +41,9 @@
 /* Begin PBXFileReference section */
 		5508B9211ED8408300526200 /* ItemLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemLabel.h; sourceTree = "<group>"; };
 		5508B9221ED8408300526200 /* ItemLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemLabel.m; sourceTree = "<group>"; };
-		5508B9241ED8C81900526200 /* MatchModeProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchModeProtocol.h; sourceTree = "<group>"; };
-		5508B9251ED8CA6300526200 /* MatchModeOrganizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchModeOrganizer.h; sourceTree = "<group>"; };
-		5508B9261ED8CA6300526200 /* MatchModeOrganizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchModeOrganizer.m; sourceTree = "<group>"; };
+		5508B9241ED8C81900526200 /* MatchOrganizerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchOrganizerProtocol.h; sourceTree = "<group>"; };
+		5508B9251ED8CA6300526200 /* MatchOrganizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchOrganizer.h; sourceTree = "<group>"; };
+		5508B9261ED8CA6300526200 /* MatchOrganizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchOrganizer.m; sourceTree = "<group>"; };
 		5508B9281ED8F89800526200 /* OrganizerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrganizerProtocol.h; sourceTree = "<group>"; };
 		5556BE531ED2ECFF00E8DC64 /* LearnRoundInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnRoundInfoTableViewController.h; sourceTree = "<group>"; };
 		5556BE541ED2ECFF00E8DC64 /* LearnRoundInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearnRoundInfoTableViewController.m; sourceTree = "<group>"; };
@@ -58,9 +58,9 @@
 		5558A8501ED59621001BAFC3 /* UIColor+PickerColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+PickerColors.m"; sourceTree = "<group>"; };
 		555AE4FB1ECDDA9E00A500CA /* LearnRoundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnRoundViewController.h; sourceTree = "<group>"; };
 		555AE4FC1ECDDA9E00A500CA /* LearnRoundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearnRoundViewController.m; sourceTree = "<group>"; };
-		557D1D311ED3B15100DC7ADE /* LearnModeProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnModeProtocol.h; sourceTree = "<group>"; };
-		557D1D321ED3B45F00DC7ADE /* LearnModeOrganizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnModeOrganizer.h; sourceTree = "<group>"; };
-		557D1D331ED3B45F00DC7ADE /* LearnModeOrganizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearnModeOrganizer.m; sourceTree = "<group>"; };
+		557D1D311ED3B15100DC7ADE /* LearnOrganizerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnOrganizerProtocol.h; sourceTree = "<group>"; };
+		557D1D321ED3B45F00DC7ADE /* LearnOrganizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnOrganizer.h; sourceTree = "<group>"; };
+		557D1D331ED3B45F00DC7ADE /* LearnOrganizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearnOrganizer.m; sourceTree = "<group>"; };
 		557D1D351ED3D77F00DC7ADE /* LearnRoundInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnRoundInfoTableViewCell.h; sourceTree = "<group>"; };
 		557D1D361ED3D77F00DC7ADE /* LearnRoundInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearnRoundInfoTableViewCell.m; sourceTree = "<group>"; };
 		55A8F3D81EBBDD68000D5DB0 /* ItemOfSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemOfSet.h; sourceTree = "<group>"; };
@@ -113,9 +113,9 @@
 		5556BE561ED2F68500E8DC64 /* MatchMode */ = {
 			isa = PBXGroup;
 			children = (
-				5508B9241ED8C81900526200 /* MatchModeProtocol.h */,
-				5508B9251ED8CA6300526200 /* MatchModeOrganizer.h */,
-				5508B9261ED8CA6300526200 /* MatchModeOrganizer.m */,
+				5508B9241ED8C81900526200 /* MatchOrganizerProtocol.h */,
+				5508B9251ED8CA6300526200 /* MatchOrganizer.h */,
+				5508B9261ED8CA6300526200 /* MatchOrganizer.m */,
 				55C6ACDC1EC8D33F0062537B /* MatchPrepareViewController.h */,
 				55C6ACDD1EC8D33F0062537B /* MatchPrepareViewController.m */,
 				55C6ACD61EC8B3250062537B /* MatchItemsCollectionViewController.h */,
@@ -127,9 +127,9 @@
 		5556BE571ED2F68D00E8DC64 /* LearnMode */ = {
 			isa = PBXGroup;
 			children = (
-				557D1D311ED3B15100DC7ADE /* LearnModeProtocol.h */,
-				557D1D321ED3B45F00DC7ADE /* LearnModeOrganizer.h */,
-				557D1D331ED3B45F00DC7ADE /* LearnModeOrganizer.m */,
+				557D1D311ED3B15100DC7ADE /* LearnOrganizerProtocol.h */,
+				557D1D321ED3B45F00DC7ADE /* LearnOrganizer.h */,
+				557D1D331ED3B45F00DC7ADE /* LearnOrganizer.m */,
 				555AE4FB1ECDDA9E00A500CA /* LearnRoundViewController.h */,
 				555AE4FC1ECDDA9E00A500CA /* LearnRoundViewController.m */,
 				5556BE531ED2ECFF00E8DC64 /* LearnRoundInfoTableViewController.h */,
@@ -335,7 +335,7 @@
 				55C6ACD81EC8B3250062537B /* MatchItemsCollectionViewController.m in Sources */,
 				5556BE551ED2ECFF00E8DC64 /* LearnRoundInfoTableViewController.m in Sources */,
 				5556BE601ED3266D00E8DC64 /* LearnRoundInfoHeader.m in Sources */,
-				557D1D341ED3B45F00DC7ADE /* LearnModeOrganizer.m in Sources */,
+				557D1D341ED3B45F00DC7ADE /* LearnOrganizer.m in Sources */,
 				55C6ACD51EC89EF80062537B /* DetailSetTableViewController.m in Sources */,
 				55D34EF11EBAA0BF00A2EE38 /* Set.m in Sources */,
 				55D34EE01EBA906500A2EE38 /* SetsViewController.m in Sources */,
@@ -346,7 +346,7 @@
 				5556BE5D1ED3244F00E8DC64 /* Circle.m in Sources */,
 				55D34EDD1EBA906500A2EE38 /* AppDelegate.m in Sources */,
 				5558A84E1ED50870001BAFC3 /* LearnProgressStackView.m in Sources */,
-				5508B9271ED8CA6300526200 /* MatchModeOrganizer.m in Sources */,
+				5508B9271ED8CA6300526200 /* MatchOrganizer.m in Sources */,
 				55D34EF41EBAA28500A2EE38 /* SetTableViewCell.m in Sources */,
 				55A8F3E41EBC98ED000D5DB0 /* UITableView+GettingIndexPath.m in Sources */,
 				557D1D371ED3D77F00DC7ADE /* LearnRoundInfoTableViewCell.m in Sources */,

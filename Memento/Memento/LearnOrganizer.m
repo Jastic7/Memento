@@ -6,10 +6,10 @@
 //  Copyright © 2017 Andrey Morozov. All rights reserved.
 //
 
-#import "LearnModeOrganizer.h"
+#import "LearnOrganizer.h"
 #import "Set.h"
 
-@interface LearnModeOrganizer ()
+@interface LearnOrganizer ()
 
 @property (nonatomic, strong) Set *set;
 
@@ -49,12 +49,12 @@
  */
 @property (nonatomic, assign, readonly) BOOL isEnoughItems;
 
-@property (nonatomic, weak) id <LearnModeOrganizerDelegate> delegate;
+@property (nonatomic, weak) id <LearnOrganizerDelegate> delegate;
 
 @end
 
 
-@implementation LearnModeOrganizer
+@implementation LearnOrganizer
 
 
 #pragma mark - Getters
@@ -104,7 +104,7 @@
     [self.delegate didFinishedLearning];
 }
 
-- (void)setDelegate:(id<LearnModeOrganizerDelegate>)delegate {
+- (void)setDelegate:(id <LearnOrganizerDelegate>)delegate {
     _delegate = delegate;
 }
 

@@ -9,13 +9,13 @@
 #import "LearnRoundViewController.h"
 #import "LearnProgressStackView.h"
 #import "LearnRoundInfoTableViewController.h"
-#import "LearnModeOrganizer.h"
+#import "LearnOrganizer.h"
 #import "Circle.h"
 
 static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfoNavigationController";
 
 
-@interface LearnRoundViewController () <UINavigationBarDelegate, UITextFieldDelegate, LearnModeOrganizerDelegate>
+@interface LearnRoundViewController () <UINavigationBarDelegate, UITextFieldDelegate, LearnOrganizerDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *textLabel;
 @property (weak, nonatomic) IBOutlet UITextField *textField;

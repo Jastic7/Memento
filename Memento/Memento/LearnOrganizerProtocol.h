@@ -10,7 +10,7 @@
 #import "OrganizerProtocol.h"
 #import "ItemOfSet.h"
 
-@protocol LearnModeOrganizerDelegate <NSObject>
+@protocol LearnOrganizerDelegate <NSObject>
 
 - (void)didFinishedLearning;
 - (void)didUpdatedTerm:(NSString *)term withLearnProgress:(LearnState)learnProgress;
@@ -19,13 +19,13 @@
 @end
 
 
-@protocol LearnModeProtocol <NSObject, OrganizerProtocol>
+@protocol LearnOrganizerProtocol <NSObject, OrganizerProtocol>
 
 - (void)setInitialConfiguration;
 
 - (void)checkUserDefinition:(NSString *)definition;
 - (void)updateLearningItem;
 
-- (void)setDelegate:(id <LearnModeOrganizerDelegate>)delegate;
+- (void)setDelegate:(id <LearnOrganizerDelegate>)delegate;
 
 @end

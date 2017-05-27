@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LearnModeProtocol.h"
+#import "LearnOrganizerProtocol.h"
 
 
 @interface LearnRoundViewController : UIViewController
 
-@property (nonatomic, strong) id <LearnModeProtocol> organizer;
+@property (nonatomic, strong) id <LearnOrganizerProtocol> organizer;
 @property (nonatomic, copy) void (^cancelingBlock)();
 
 @end

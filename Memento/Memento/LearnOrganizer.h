@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "LearnModeProtocol.h"
+#import "LearnOrganizerProtocol.h"
 
 
 static NSUInteger const kCountItemsInRound = 7;
 
-@interface LearnModeOrganizer : NSObject <LearnModeProtocol>
+@interface LearnOrganizer : NSObject <LearnOrganizerProtocol>
 
 @end
