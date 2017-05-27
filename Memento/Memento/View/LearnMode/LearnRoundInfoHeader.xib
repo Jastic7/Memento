@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="LearnRoundInfoHeader">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mastered" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p6s-T4-0ND">
+                    <rect key="frame" x="16" y="3" width="91" height="24"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                    <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="nMX-nd-ikE">
+                    <rect key="frame" x="115" y="10" width="25" height="10"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="30X-Dq-vhc" customClass="Circle">
+                            <rect key="frame" x="0.0" y="0.0" width="10" height="10"/>
+                            <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="10" id="7Vj-WP-kNz"/>
+                                <constraint firstAttribute="height" constant="10" id="n0Y-rR-2gL"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QDA-y4-aUI" customClass="Circle">
+                            <rect key="frame" x="15" y="0.0" width="10" height="10"/>
+                            <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="10" id="Bul-EF-ChM"/>
+                                <constraint firstAttribute="width" constant="10" id="a5X-on-tTb"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="p6s-T4-0ND" secondAttribute="bottom" constant="3" id="9Qk-Bj-aNK"/>
+                <constraint firstItem="p6s-T4-0ND" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="V5O-AR-gBx"/>
+                <constraint firstAttribute="bottom" secondItem="nMX-nd-ikE" secondAttribute="bottom" constant="10" id="Vcy-fh-jne"/>
+                <constraint firstItem="p6s-T4-0ND" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="3" id="jRv-lc-a7r"/>
+                <constraint firstItem="nMX-nd-ikE" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="waM-2I-xM2"/>
+                <constraint firstItem="nMX-nd-ikE" firstAttribute="leading" secondItem="p6s-T4-0ND" secondAttribute="trailing" constant="8" id="xba-hT-0HM"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="leftCircle" destination="30X-Dq-vhc" id="1KC-Yb-IAi"/>
+                <outlet property="rightCircle" destination="QDA-y4-aUI" id="rXi-wW-ILX"/>
+                <outlet property="titleLabel" destination="p6s-T4-0ND" id="RY7-Ud-bDW"/>
+            </connections>
+            <point key="canvasLocation" x="34.5" y="-264"/>
+        </view>
+    </objects>
+</document>

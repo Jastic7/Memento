@@ -7,94 +7,96 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5508B9231ED8408300526200 /* ItemLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B9221ED8408300526200 /* ItemLabel.m */; };
-		5508B9271ED8CA6300526200 /* MatchOrganizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B9261ED8CA6300526200 /* MatchOrganizer.m */; };
-		5556BE551ED2ECFF00E8DC64 /* LearnRoundInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5556BE541ED2ECFF00E8DC64 /* LearnRoundInfoTableViewController.m */; };
-		5556BE5D1ED3244F00E8DC64 /* Circle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5556BE5C1ED3244F00E8DC64 /* Circle.m */; };
-		5556BE601ED3266D00E8DC64 /* LearnRoundInfoHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 5556BE5F1ED3266D00E8DC64 /* LearnRoundInfoHeader.m */; };
-		5556BE621ED3267C00E8DC64 /* LearnRoundInfoHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5556BE611ED3267C00E8DC64 /* LearnRoundInfoHeader.xib */; };
-		5558A84E1ED50870001BAFC3 /* LearnProgressStackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5558A84D1ED50870001BAFC3 /* LearnProgressStackView.m */; };
+		5508B9331ED916A600526200 /* LearnOrganizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B92C1ED916A600526200 /* LearnOrganizer.m */; };
+		5508B9341ED916A600526200 /* MatchOrganizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B9301ED916A600526200 /* MatchOrganizer.m */; };
+		5508B9461ED9176B00526200 /* CreateSetTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B9371ED9176B00526200 /* CreateSetTableViewController.m */; };
+		5508B9471ED9176B00526200 /* DetailSetTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B9391ED9176B00526200 /* DetailSetTableViewController.m */; };
+		5508B9481ED9176B00526200 /* LearnRoundInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B93C1ED9176B00526200 /* LearnRoundInfoTableViewController.m */; };
+		5508B9491ED9176B00526200 /* LearnRoundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B93E1ED9176B00526200 /* LearnRoundViewController.m */; };
+		5508B94A1ED9176B00526200 /* MatchItemsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B9411ED9176B00526200 /* MatchItemsCollectionViewController.m */; };
+		5508B94B1ED9176B00526200 /* MatchPrepareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B9431ED9176B00526200 /* MatchPrepareViewController.m */; };
+		5508B94C1ED9176B00526200 /* SetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B9451ED9176B00526200 /* SetsViewController.m */; };
+		5508B9611ED9184B00526200 /* Circle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B94F1ED9184B00526200 /* Circle.m */; };
+		5508B9621ED9184B00526200 /* ItemLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B9511ED9184B00526200 /* ItemLabel.m */; };
+		5508B9631ED9184B00526200 /* ItemOfMatchCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B9531ED9184B00526200 /* ItemOfMatchCollectionViewCell.m */; };
+		5508B9641ED9184B00526200 /* ItemOfSetTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B9551ED9184B00526200 /* ItemOfSetTableViewCell.m */; };
+		5508B9651ED9184B00526200 /* ItemOfSetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5508B9561ED9184B00526200 /* ItemOfSetTableViewCell.xib */; };
+		5508B9661ED9184B00526200 /* LearnProgressStackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B9591ED9184B00526200 /* LearnProgressStackView.m */; };
+		5508B9671ED9184B00526200 /* LearnRoundInfoHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B95B1ED9184B00526200 /* LearnRoundInfoHeader.m */; };
+		5508B9681ED9184B00526200 /* LearnRoundInfoHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5508B95C1ED9184B00526200 /* LearnRoundInfoHeader.xib */; };
+		5508B9691ED9184B00526200 /* LearnRoundInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B95E1ED9184B00526200 /* LearnRoundInfoTableViewCell.m */; };
+		5508B96A1ED9184B00526200 /* SetTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B9601ED9184B00526200 /* SetTableViewCell.m */; };
+		5508B9711ED9186300526200 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5508B96C1ED9186300526200 /* Info.plist */; };
+		5508B9721ED9186300526200 /* ItemOfSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B96E1ED9186300526200 /* ItemOfSet.m */; };
+		5508B9731ED9186300526200 /* Set.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B9701ED9186300526200 /* Set.m */; };
 		5558A8511ED59621001BAFC3 /* UIColor+PickerColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 5558A8501ED59621001BAFC3 /* UIColor+PickerColors.m */; };
-		555AE4FD1ECDDA9E00A500CA /* LearnRoundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 555AE4FC1ECDDA9E00A500CA /* LearnRoundViewController.m */; };
-		557D1D341ED3B45F00DC7ADE /* LearnOrganizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 557D1D331ED3B45F00DC7ADE /* LearnOrganizer.m */; };
-		557D1D371ED3D77F00DC7ADE /* LearnRoundInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 557D1D361ED3D77F00DC7ADE /* LearnRoundInfoTableViewCell.m */; };
-		55A8F3DA1EBBDD68000D5DB0 /* ItemOfSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A8F3D91EBBDD68000D5DB0 /* ItemOfSet.m */; };
-		55A8F3DF1EBBEFE2000D5DB0 /* ItemOfSetTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A8F3DD1EBBEFE2000D5DB0 /* ItemOfSetTableViewCell.m */; };
-		55A8F3E01EBBEFE2000D5DB0 /* ItemOfSetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55A8F3DE1EBBEFE2000D5DB0 /* ItemOfSetTableViewCell.xib */; };
 		55A8F3E41EBC98ED000D5DB0 /* UITableView+GettingIndexPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A8F3E31EBC98ED000D5DB0 /* UITableView+GettingIndexPath.m */; };
-		55C6ACCD1EC873B20062537B /* CreateSetTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C6ACCC1EC873B20062537B /* CreateSetTableViewController.m */; };
-		55C6ACD51EC89EF80062537B /* DetailSetTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C6ACD41EC89EF80062537B /* DetailSetTableViewController.m */; };
-		55C6ACD81EC8B3250062537B /* MatchItemsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C6ACD71EC8B3250062537B /* MatchItemsCollectionViewController.m */; };
-		55C6ACDB1EC8B4300062537B /* ItemOfMatchCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C6ACDA1EC8B4300062537B /* ItemOfMatchCollectionViewCell.m */; };
-		55C6ACDE1EC8D33F0062537B /* MatchPrepareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C6ACDD1EC8D33F0062537B /* MatchPrepareViewController.m */; };
 		55D34EDA1EBA906500A2EE38 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D34ED91EBA906500A2EE38 /* main.m */; };
 		55D34EDD1EBA906500A2EE38 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D34EDC1EBA906500A2EE38 /* AppDelegate.m */; };
-		55D34EE01EBA906500A2EE38 /* SetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D34EDF1EBA906500A2EE38 /* SetsViewController.m */; };
 		55D34EE31EBA906500A2EE38 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55D34EE11EBA906500A2EE38 /* Main.storyboard */; };
 		55D34EE51EBA906500A2EE38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55D34EE41EBA906500A2EE38 /* Assets.xcassets */; };
 		55D34EE81EBA906500A2EE38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55D34EE61EBA906500A2EE38 /* LaunchScreen.storyboard */; };
-		55D34EF11EBAA0BF00A2EE38 /* Set.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D34EF01EBAA0BF00A2EE38 /* Set.m */; };
-		55D34EF41EBAA28500A2EE38 /* SetTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D34EF31EBAA28500A2EE38 /* SetTableViewCell.m */; };
 		55F27BC61ECC7B8F00EE58F9 /* NSMutableArray+Shuffle.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F27BC51ECC7B8F00EE58F9 /* NSMutableArray+Shuffle.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5508B9211ED8408300526200 /* ItemLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemLabel.h; sourceTree = "<group>"; };
-		5508B9221ED8408300526200 /* ItemLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemLabel.m; sourceTree = "<group>"; };
-		5508B9241ED8C81900526200 /* MatchOrganizerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchOrganizerProtocol.h; sourceTree = "<group>"; };
-		5508B9251ED8CA6300526200 /* MatchOrganizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchOrganizer.h; sourceTree = "<group>"; };
-		5508B9261ED8CA6300526200 /* MatchOrganizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchOrganizer.m; sourceTree = "<group>"; };
-		5508B9281ED8F89800526200 /* OrganizerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrganizerProtocol.h; sourceTree = "<group>"; };
-		5556BE531ED2ECFF00E8DC64 /* LearnRoundInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnRoundInfoTableViewController.h; sourceTree = "<group>"; };
-		5556BE541ED2ECFF00E8DC64 /* LearnRoundInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearnRoundInfoTableViewController.m; sourceTree = "<group>"; };
-		5556BE5B1ED3244F00E8DC64 /* Circle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Circle.h; sourceTree = "<group>"; };
-		5556BE5C1ED3244F00E8DC64 /* Circle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Circle.m; sourceTree = "<group>"; };
-		5556BE5E1ED3266D00E8DC64 /* LearnRoundInfoHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnRoundInfoHeader.h; sourceTree = "<group>"; };
-		5556BE5F1ED3266D00E8DC64 /* LearnRoundInfoHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearnRoundInfoHeader.m; sourceTree = "<group>"; };
-		5556BE611ED3267C00E8DC64 /* LearnRoundInfoHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnRoundInfoHeader.xib; sourceTree = "<group>"; };
-		5558A84C1ED50870001BAFC3 /* LearnProgressStackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnProgressStackView.h; sourceTree = "<group>"; };
-		5558A84D1ED50870001BAFC3 /* LearnProgressStackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearnProgressStackView.m; sourceTree = "<group>"; };
+		5508B92B1ED916A600526200 /* LearnOrganizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnOrganizer.h; sourceTree = "<group>"; };
+		5508B92C1ED916A600526200 /* LearnOrganizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearnOrganizer.m; sourceTree = "<group>"; };
+		5508B92D1ED916A600526200 /* LearnOrganizerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnOrganizerProtocol.h; sourceTree = "<group>"; };
+		5508B92F1ED916A600526200 /* MatchOrganizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchOrganizer.h; sourceTree = "<group>"; };
+		5508B9301ED916A600526200 /* MatchOrganizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchOrganizer.m; sourceTree = "<group>"; };
+		5508B9311ED916A600526200 /* MatchOrganizerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchOrganizerProtocol.h; sourceTree = "<group>"; };
+		5508B9321ED916A600526200 /* OrganizerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrganizerProtocol.h; sourceTree = "<group>"; };
+		5508B9361ED9176B00526200 /* CreateSetTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateSetTableViewController.h; sourceTree = "<group>"; };
+		5508B9371ED9176B00526200 /* CreateSetTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateSetTableViewController.m; sourceTree = "<group>"; };
+		5508B9381ED9176B00526200 /* DetailSetTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailSetTableViewController.h; sourceTree = "<group>"; };
+		5508B9391ED9176B00526200 /* DetailSetTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailSetTableViewController.m; sourceTree = "<group>"; };
+		5508B93B1ED9176B00526200 /* LearnRoundInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnRoundInfoTableViewController.h; sourceTree = "<group>"; };
+		5508B93C1ED9176B00526200 /* LearnRoundInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearnRoundInfoTableViewController.m; sourceTree = "<group>"; };
+		5508B93D1ED9176B00526200 /* LearnRoundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnRoundViewController.h; sourceTree = "<group>"; };
+		5508B93E1ED9176B00526200 /* LearnRoundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearnRoundViewController.m; sourceTree = "<group>"; };
+		5508B9401ED9176B00526200 /* MatchItemsCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchItemsCollectionViewController.h; sourceTree = "<group>"; };
+		5508B9411ED9176B00526200 /* MatchItemsCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchItemsCollectionViewController.m; sourceTree = "<group>"; };
+		5508B9421ED9176B00526200 /* MatchPrepareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchPrepareViewController.h; sourceTree = "<group>"; };
+		5508B9431ED9176B00526200 /* MatchPrepareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchPrepareViewController.m; sourceTree = "<group>"; };
+		5508B9441ED9176B00526200 /* SetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetsViewController.h; sourceTree = "<group>"; };
+		5508B9451ED9176B00526200 /* SetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetsViewController.m; sourceTree = "<group>"; };
+		5508B94E1ED9184B00526200 /* Circle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Circle.h; sourceTree = "<group>"; };
+		5508B94F1ED9184B00526200 /* Circle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Circle.m; sourceTree = "<group>"; };
+		5508B9501ED9184B00526200 /* ItemLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemLabel.h; sourceTree = "<group>"; };
+		5508B9511ED9184B00526200 /* ItemLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemLabel.m; sourceTree = "<group>"; };
+		5508B9521ED9184B00526200 /* ItemOfMatchCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemOfMatchCollectionViewCell.h; sourceTree = "<group>"; };
+		5508B9531ED9184B00526200 /* ItemOfMatchCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemOfMatchCollectionViewCell.m; sourceTree = "<group>"; };
+		5508B9541ED9184B00526200 /* ItemOfSetTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemOfSetTableViewCell.h; sourceTree = "<group>"; };
+		5508B9551ED9184B00526200 /* ItemOfSetTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemOfSetTableViewCell.m; sourceTree = "<group>"; };
+		5508B9561ED9184B00526200 /* ItemOfSetTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemOfSetTableViewCell.xib; sourceTree = "<group>"; };
+		5508B9581ED9184B00526200 /* LearnProgressStackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnProgressStackView.h; sourceTree = "<group>"; };
+		5508B9591ED9184B00526200 /* LearnProgressStackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearnProgressStackView.m; sourceTree = "<group>"; };
+		5508B95A1ED9184B00526200 /* LearnRoundInfoHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnRoundInfoHeader.h; sourceTree = "<group>"; };
+		5508B95B1ED9184B00526200 /* LearnRoundInfoHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearnRoundInfoHeader.m; sourceTree = "<group>"; };
+		5508B95C1ED9184B00526200 /* LearnRoundInfoHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnRoundInfoHeader.xib; sourceTree = "<group>"; };
+		5508B95D1ED9184B00526200 /* LearnRoundInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnRoundInfoTableViewCell.h; sourceTree = "<group>"; };
+		5508B95E1ED9184B00526200 /* LearnRoundInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearnRoundInfoTableViewCell.m; sourceTree = "<group>"; };
+		5508B95F1ED9184B00526200 /* SetTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetTableViewCell.h; sourceTree = "<group>"; };
+		5508B9601ED9184B00526200 /* SetTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetTableViewCell.m; sourceTree = "<group>"; };
+		5508B96C1ED9186300526200 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5508B96D1ED9186300526200 /* ItemOfSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemOfSet.h; sourceTree = "<group>"; };
+		5508B96E1ED9186300526200 /* ItemOfSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemOfSet.m; sourceTree = "<group>"; };
+		5508B96F1ED9186300526200 /* Set.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Set.h; sourceTree = "<group>"; };
+		5508B9701ED9186300526200 /* Set.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Set.m; sourceTree = "<group>"; };
 		5558A84F1ED59621001BAFC3 /* UIColor+PickerColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+PickerColors.h"; sourceTree = "<group>"; };
 		5558A8501ED59621001BAFC3 /* UIColor+PickerColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+PickerColors.m"; sourceTree = "<group>"; };
-		555AE4FB1ECDDA9E00A500CA /* LearnRoundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnRoundViewController.h; sourceTree = "<group>"; };
-		555AE4FC1ECDDA9E00A500CA /* LearnRoundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearnRoundViewController.m; sourceTree = "<group>"; };
-		557D1D311ED3B15100DC7ADE /* LearnOrganizerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnOrganizerProtocol.h; sourceTree = "<group>"; };
-		557D1D321ED3B45F00DC7ADE /* LearnOrganizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnOrganizer.h; sourceTree = "<group>"; };
-		557D1D331ED3B45F00DC7ADE /* LearnOrganizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearnOrganizer.m; sourceTree = "<group>"; };
-		557D1D351ED3D77F00DC7ADE /* LearnRoundInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnRoundInfoTableViewCell.h; sourceTree = "<group>"; };
-		557D1D361ED3D77F00DC7ADE /* LearnRoundInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearnRoundInfoTableViewCell.m; sourceTree = "<group>"; };
-		55A8F3D81EBBDD68000D5DB0 /* ItemOfSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemOfSet.h; sourceTree = "<group>"; };
-		55A8F3D91EBBDD68000D5DB0 /* ItemOfSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemOfSet.m; sourceTree = "<group>"; };
-		55A8F3DC1EBBEFE2000D5DB0 /* ItemOfSetTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemOfSetTableViewCell.h; sourceTree = "<group>"; };
-		55A8F3DD1EBBEFE2000D5DB0 /* ItemOfSetTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemOfSetTableViewCell.m; sourceTree = "<group>"; };
-		55A8F3DE1EBBEFE2000D5DB0 /* ItemOfSetTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemOfSetTableViewCell.xib; sourceTree = "<group>"; };
 		55A8F3E21EBC98ED000D5DB0 /* UITableView+GettingIndexPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+GettingIndexPath.h"; sourceTree = "<group>"; };
 		55A8F3E31EBC98ED000D5DB0 /* UITableView+GettingIndexPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+GettingIndexPath.m"; sourceTree = "<group>"; };
-		55C6ACCB1EC873B20062537B /* CreateSetTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateSetTableViewController.h; sourceTree = "<group>"; };
-		55C6ACCC1EC873B20062537B /* CreateSetTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateSetTableViewController.m; sourceTree = "<group>"; };
-		55C6ACD31EC89EF80062537B /* DetailSetTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailSetTableViewController.h; sourceTree = "<group>"; };
-		55C6ACD41EC89EF80062537B /* DetailSetTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailSetTableViewController.m; sourceTree = "<group>"; };
-		55C6ACD61EC8B3250062537B /* MatchItemsCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchItemsCollectionViewController.h; sourceTree = "<group>"; };
-		55C6ACD71EC8B3250062537B /* MatchItemsCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchItemsCollectionViewController.m; sourceTree = "<group>"; };
-		55C6ACD91EC8B4300062537B /* ItemOfMatchCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemOfMatchCollectionViewCell.h; sourceTree = "<group>"; };
-		55C6ACDA1EC8B4300062537B /* ItemOfMatchCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemOfMatchCollectionViewCell.m; sourceTree = "<group>"; };
-		55C6ACDC1EC8D33F0062537B /* MatchPrepareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchPrepareViewController.h; sourceTree = "<group>"; };
-		55C6ACDD1EC8D33F0062537B /* MatchPrepareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchPrepareViewController.m; sourceTree = "<group>"; };
 		55C6ACDF1EC8D5AA0062537B /* MatchModeDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchModeDelegate.h; sourceTree = "<group>"; };
 		55D34ED51EBA906500A2EE38 /* Memento.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Memento.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55D34ED91EBA906500A2EE38 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		55D34EDB1EBA906500A2EE38 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		55D34EDC1EBA906500A2EE38 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		55D34EDE1EBA906500A2EE38 /* SetsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetsViewController.h; sourceTree = "<group>"; };
-		55D34EDF1EBA906500A2EE38 /* SetsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetsViewController.m; sourceTree = "<group>"; };
 		55D34EE21EBA906500A2EE38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		55D34EE41EBA906500A2EE38 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		55D34EE71EBA906500A2EE38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		55D34EE91EBA906500A2EE38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		55D34EEF1EBAA0BF00A2EE38 /* Set.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Set.h; sourceTree = "<group>"; };
-		55D34EF01EBAA0BF00A2EE38 /* Set.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Set.m; sourceTree = "<group>"; };
-		55D34EF21EBAA28500A2EE38 /* SetTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetTableViewCell.h; sourceTree = "<group>"; };
-		55D34EF31EBAA28500A2EE38 /* SetTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetTableViewCell.m; sourceTree = "<group>"; };
 		55F27BC41ECC7B8F00EE58F9 /* NSMutableArray+Shuffle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Shuffle.h"; sourceTree = "<group>"; };
 		55F27BC51ECC7B8F00EE58F9 /* NSMutableArray+Shuffle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Shuffle.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -110,76 +112,116 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5556BE561ED2F68500E8DC64 /* MatchMode */ = {
+		5508B9291ED916A600526200 /* Organizers */ = {
 			isa = PBXGroup;
 			children = (
-				5508B9241ED8C81900526200 /* MatchOrganizerProtocol.h */,
-				5508B9251ED8CA6300526200 /* MatchOrganizer.h */,
-				5508B9261ED8CA6300526200 /* MatchOrganizer.m */,
-				55C6ACDC1EC8D33F0062537B /* MatchPrepareViewController.h */,
-				55C6ACDD1EC8D33F0062537B /* MatchPrepareViewController.m */,
-				55C6ACD61EC8B3250062537B /* MatchItemsCollectionViewController.h */,
-				55C6ACD71EC8B3250062537B /* MatchItemsCollectionViewController.m */,
+				5508B9321ED916A600526200 /* OrganizerProtocol.h */,
+				5508B92A1ED916A600526200 /* LearnMode */,
+				5508B92E1ED916A600526200 /* MatchMode */,
 			);
-			name = MatchMode;
+			path = Organizers;
 			sourceTree = "<group>";
 		};
-		5556BE571ED2F68D00E8DC64 /* LearnMode */ = {
+		5508B92A1ED916A600526200 /* LearnMode */ = {
 			isa = PBXGroup;
 			children = (
-				557D1D311ED3B15100DC7ADE /* LearnOrganizerProtocol.h */,
-				557D1D321ED3B45F00DC7ADE /* LearnOrganizer.h */,
-				557D1D331ED3B45F00DC7ADE /* LearnOrganizer.m */,
-				555AE4FB1ECDDA9E00A500CA /* LearnRoundViewController.h */,
-				555AE4FC1ECDDA9E00A500CA /* LearnRoundViewController.m */,
-				5556BE531ED2ECFF00E8DC64 /* LearnRoundInfoTableViewController.h */,
-				5556BE541ED2ECFF00E8DC64 /* LearnRoundInfoTableViewController.m */,
+				5508B92B1ED916A600526200 /* LearnOrganizer.h */,
+				5508B92C1ED916A600526200 /* LearnOrganizer.m */,
+				5508B92D1ED916A600526200 /* LearnOrganizerProtocol.h */,
 			);
-			name = LearnMode;
+			path = LearnMode;
 			sourceTree = "<group>";
 		};
-		557D1D381ED3DA5300DC7ADE /* LearnMode */ = {
+		5508B92E1ED916A600526200 /* MatchMode */ = {
 			isa = PBXGroup;
 			children = (
-				5556BE5B1ED3244F00E8DC64 /* Circle.h */,
-				5556BE5C1ED3244F00E8DC64 /* Circle.m */,
-				5556BE5E1ED3266D00E8DC64 /* LearnRoundInfoHeader.h */,
-				5556BE5F1ED3266D00E8DC64 /* LearnRoundInfoHeader.m */,
-				5556BE611ED3267C00E8DC64 /* LearnRoundInfoHeader.xib */,
-				557D1D351ED3D77F00DC7ADE /* LearnRoundInfoTableViewCell.h */,
-				557D1D361ED3D77F00DC7ADE /* LearnRoundInfoTableViewCell.m */,
-				5558A84C1ED50870001BAFC3 /* LearnProgressStackView.h */,
-				5558A84D1ED50870001BAFC3 /* LearnProgressStackView.m */,
+				5508B92F1ED916A600526200 /* MatchOrganizer.h */,
+				5508B9301ED916A600526200 /* MatchOrganizer.m */,
+				5508B9311ED916A600526200 /* MatchOrganizerProtocol.h */,
 			);
-			name = LearnMode;
+			path = MatchMode;
 			sourceTree = "<group>";
 		};
-		55A8F3DB1EBBE017000D5DB0 /* Model */ = {
+		5508B9351ED9176B00526200 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				55D34EEF1EBAA0BF00A2EE38 /* Set.h */,
-				55D34EF01EBAA0BF00A2EE38 /* Set.m */,
-				55A8F3D81EBBDD68000D5DB0 /* ItemOfSet.h */,
-				55A8F3D91EBBDD68000D5DB0 /* ItemOfSet.m */,
+				5508B9361ED9176B00526200 /* CreateSetTableViewController.h */,
+				5508B9371ED9176B00526200 /* CreateSetTableViewController.m */,
+				5508B9381ED9176B00526200 /* DetailSetTableViewController.h */,
+				5508B9391ED9176B00526200 /* DetailSetTableViewController.m */,
+				5508B93A1ED9176B00526200 /* LearnMode */,
+				5508B93F1ED9176B00526200 /* MatchMode */,
+				5508B9441ED9176B00526200 /* SetsViewController.h */,
+				5508B9451ED9176B00526200 /* SetsViewController.m */,
 			);
-			name = Model;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
-		55A8F3E11EBC86B5000D5DB0 /* View */ = {
+		5508B93A1ED9176B00526200 /* LearnMode */ = {
 			isa = PBXGroup;
 			children = (
-				55D34EF21EBAA28500A2EE38 /* SetTableViewCell.h */,
-				55D34EF31EBAA28500A2EE38 /* SetTableViewCell.m */,
-				55A8F3DC1EBBEFE2000D5DB0 /* ItemOfSetTableViewCell.h */,
-				55A8F3DD1EBBEFE2000D5DB0 /* ItemOfSetTableViewCell.m */,
-				55A8F3DE1EBBEFE2000D5DB0 /* ItemOfSetTableViewCell.xib */,
-				55C6ACD91EC8B4300062537B /* ItemOfMatchCollectionViewCell.h */,
-				55C6ACDA1EC8B4300062537B /* ItemOfMatchCollectionViewCell.m */,
-				557D1D381ED3DA5300DC7ADE /* LearnMode */,
-				5508B9211ED8408300526200 /* ItemLabel.h */,
-				5508B9221ED8408300526200 /* ItemLabel.m */,
+				5508B93B1ED9176B00526200 /* LearnRoundInfoTableViewController.h */,
+				5508B93C1ED9176B00526200 /* LearnRoundInfoTableViewController.m */,
+				5508B93D1ED9176B00526200 /* LearnRoundViewController.h */,
+				5508B93E1ED9176B00526200 /* LearnRoundViewController.m */,
 			);
-			name = View;
+			path = LearnMode;
+			sourceTree = "<group>";
+		};
+		5508B93F1ED9176B00526200 /* MatchMode */ = {
+			isa = PBXGroup;
+			children = (
+				5508B9401ED9176B00526200 /* MatchItemsCollectionViewController.h */,
+				5508B9411ED9176B00526200 /* MatchItemsCollectionViewController.m */,
+				5508B9421ED9176B00526200 /* MatchPrepareViewController.h */,
+				5508B9431ED9176B00526200 /* MatchPrepareViewController.m */,
+			);
+			path = MatchMode;
+			sourceTree = "<group>";
+		};
+		5508B94D1ED9184B00526200 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5508B94E1ED9184B00526200 /* Circle.h */,
+				5508B94F1ED9184B00526200 /* Circle.m */,
+				5508B9501ED9184B00526200 /* ItemLabel.h */,
+				5508B9511ED9184B00526200 /* ItemLabel.m */,
+				5508B9521ED9184B00526200 /* ItemOfMatchCollectionViewCell.h */,
+				5508B9531ED9184B00526200 /* ItemOfMatchCollectionViewCell.m */,
+				5508B9541ED9184B00526200 /* ItemOfSetTableViewCell.h */,
+				5508B9551ED9184B00526200 /* ItemOfSetTableViewCell.m */,
+				5508B9561ED9184B00526200 /* ItemOfSetTableViewCell.xib */,
+				5508B9571ED9184B00526200 /* LearnMode */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5508B9571ED9184B00526200 /* LearnMode */ = {
+			isa = PBXGroup;
+			children = (
+				5508B9581ED9184B00526200 /* LearnProgressStackView.h */,
+				5508B9591ED9184B00526200 /* LearnProgressStackView.m */,
+				5508B95A1ED9184B00526200 /* LearnRoundInfoHeader.h */,
+				5508B95B1ED9184B00526200 /* LearnRoundInfoHeader.m */,
+				5508B95C1ED9184B00526200 /* LearnRoundInfoHeader.xib */,
+				5508B95D1ED9184B00526200 /* LearnRoundInfoTableViewCell.h */,
+				5508B95E1ED9184B00526200 /* LearnRoundInfoTableViewCell.m */,
+				5508B95F1ED9184B00526200 /* SetTableViewCell.h */,
+				5508B9601ED9184B00526200 /* SetTableViewCell.m */,
+			);
+			path = LearnMode;
+			sourceTree = "<group>";
+		};
+		5508B96B1ED9186300526200 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5508B96C1ED9186300526200 /* Info.plist */,
+				5508B96D1ED9186300526200 /* ItemOfSet.h */,
+				5508B96E1ED9186300526200 /* ItemOfSet.m */,
+				5508B96F1ED9186300526200 /* Set.h */,
+				5508B9701ED9186300526200 /* Set.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		55D34ECC1EBA906500A2EE38 = {
@@ -202,11 +244,12 @@
 			isa = PBXGroup;
 			children = (
 				55D34EE11EBA906500A2EE38 /* Main.storyboard */,
-				55A8F3DB1EBBE017000D5DB0 /* Model */,
-				55A8F3E11EBC86B5000D5DB0 /* View */,
-				55D34EF81EBAB05500A2EE38 /* Controllers */,
+				5508B96B1ED9186300526200 /* Model */,
+				5508B94D1ED9184B00526200 /* View */,
+				5508B9351ED9176B00526200 /* Controllers */,
 				55D34ED81EBA906500A2EE38 /* Supporting Files */,
 				55F27BC31ECC7B6C00EE58F9 /* Categories */,
+				5508B9291ED916A600526200 /* Organizers */,
 				55C6ACDF1EC8D5AA0062537B /* MatchModeDelegate.h */,
 			);
 			path = Memento;
@@ -223,22 +266,6 @@
 				55D34ED91EBA906500A2EE38 /* main.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		55D34EF81EBAB05500A2EE38 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				55D34EDE1EBA906500A2EE38 /* SetsViewController.h */,
-				55D34EDF1EBA906500A2EE38 /* SetsViewController.m */,
-				55C6ACCB1EC873B20062537B /* CreateSetTableViewController.h */,
-				55C6ACCC1EC873B20062537B /* CreateSetTableViewController.m */,
-				55C6ACD31EC89EF80062537B /* DetailSetTableViewController.h */,
-				55C6ACD41EC89EF80062537B /* DetailSetTableViewController.m */,
-				5508B9281ED8F89800526200 /* OrganizerProtocol.h */,
-				5556BE561ED2F68500E8DC64 /* MatchMode */,
-				5556BE571ED2F68D00E8DC64 /* LearnMode */,
-			);
-			name = Controllers;
 			sourceTree = "<group>";
 		};
 		55F27BC31ECC7B6C00EE58F9 /* Categories */ = {
@@ -315,8 +342,9 @@
 			files = (
 				55D34EE81EBA906500A2EE38 /* LaunchScreen.storyboard in Resources */,
 				55D34EE51EBA906500A2EE38 /* Assets.xcassets in Resources */,
-				55A8F3E01EBBEFE2000D5DB0 /* ItemOfSetTableViewCell.xib in Resources */,
-				5556BE621ED3267C00E8DC64 /* LearnRoundInfoHeader.xib in Resources */,
+				5508B9711ED9186300526200 /* Info.plist in Resources */,
+				5508B9651ED9184B00526200 /* ItemOfSetTableViewCell.xib in Resources */,
+				5508B9681ED9184B00526200 /* LearnRoundInfoHeader.xib in Resources */,
 				55D34EE31EBA906500A2EE38 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -328,30 +356,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5508B9231ED8408300526200 /* ItemLabel.m in Sources */,
-				55C6ACCD1EC873B20062537B /* CreateSetTableViewController.m in Sources */,
+				5508B9671ED9184B00526200 /* LearnRoundInfoHeader.m in Sources */,
+				5508B9341ED916A600526200 /* MatchOrganizer.m in Sources */,
 				5558A8511ED59621001BAFC3 /* UIColor+PickerColors.m in Sources */,
-				55A8F3DA1EBBDD68000D5DB0 /* ItemOfSet.m in Sources */,
-				55C6ACD81EC8B3250062537B /* MatchItemsCollectionViewController.m in Sources */,
-				5556BE551ED2ECFF00E8DC64 /* LearnRoundInfoTableViewController.m in Sources */,
-				5556BE601ED3266D00E8DC64 /* LearnRoundInfoHeader.m in Sources */,
-				557D1D341ED3B45F00DC7ADE /* LearnOrganizer.m in Sources */,
-				55C6ACD51EC89EF80062537B /* DetailSetTableViewController.m in Sources */,
-				55D34EF11EBAA0BF00A2EE38 /* Set.m in Sources */,
-				55D34EE01EBA906500A2EE38 /* SetsViewController.m in Sources */,
-				55C6ACDE1EC8D33F0062537B /* MatchPrepareViewController.m in Sources */,
+				5508B9471ED9176B00526200 /* DetailSetTableViewController.m in Sources */,
+				5508B9621ED9184B00526200 /* ItemLabel.m in Sources */,
+				5508B9331ED916A600526200 /* LearnOrganizer.m in Sources */,
+				5508B9461ED9176B00526200 /* CreateSetTableViewController.m in Sources */,
 				55F27BC61ECC7B8F00EE58F9 /* NSMutableArray+Shuffle.m in Sources */,
-				555AE4FD1ECDDA9E00A500CA /* LearnRoundViewController.m in Sources */,
-				55C6ACDB1EC8B4300062537B /* ItemOfMatchCollectionViewCell.m in Sources */,
-				5556BE5D1ED3244F00E8DC64 /* Circle.m in Sources */,
+				5508B9691ED9184B00526200 /* LearnRoundInfoTableViewCell.m in Sources */,
+				5508B94B1ED9176B00526200 /* MatchPrepareViewController.m in Sources */,
+				5508B96A1ED9184B00526200 /* SetTableViewCell.m in Sources */,
+				5508B9491ED9176B00526200 /* LearnRoundViewController.m in Sources */,
+				5508B9731ED9186300526200 /* Set.m in Sources */,
+				5508B94C1ED9176B00526200 /* SetsViewController.m in Sources */,
+				5508B9611ED9184B00526200 /* Circle.m in Sources */,
+				5508B94A1ED9176B00526200 /* MatchItemsCollectionViewController.m in Sources */,
 				55D34EDD1EBA906500A2EE38 /* AppDelegate.m in Sources */,
-				5558A84E1ED50870001BAFC3 /* LearnProgressStackView.m in Sources */,
-				5508B9271ED8CA6300526200 /* MatchOrganizer.m in Sources */,
-				55D34EF41EBAA28500A2EE38 /* SetTableViewCell.m in Sources */,
+				5508B9661ED9184B00526200 /* LearnProgressStackView.m in Sources */,
 				55A8F3E41EBC98ED000D5DB0 /* UITableView+GettingIndexPath.m in Sources */,
-				557D1D371ED3D77F00DC7ADE /* LearnRoundInfoTableViewCell.m in Sources */,
 				55D34EDA1EBA906500A2EE38 /* main.m in Sources */,
-				55A8F3DF1EBBEFE2000D5DB0 /* ItemOfSetTableViewCell.m in Sources */,
+				5508B9481ED9176B00526200 /* LearnRoundInfoTableViewController.m in Sources */,
+				5508B9641ED9184B00526200 /* ItemOfSetTableViewCell.m in Sources */,
+				5508B9631ED9184B00526200 /* ItemOfMatchCollectionViewCell.m in Sources */,
+				5508B9721ED9186300526200 /* ItemOfSet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
