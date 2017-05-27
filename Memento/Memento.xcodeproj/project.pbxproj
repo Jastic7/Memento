@@ -26,17 +26,16 @@
 		5508B9681ED9184B00526200 /* LearnRoundInfoHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5508B95C1ED9184B00526200 /* LearnRoundInfoHeader.xib */; };
 		5508B9691ED9184B00526200 /* LearnRoundInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B95E1ED9184B00526200 /* LearnRoundInfoTableViewCell.m */; };
 		5508B96A1ED9184B00526200 /* SetTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B9601ED9184B00526200 /* SetTableViewCell.m */; };
-		5508B9711ED9186300526200 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5508B96C1ED9186300526200 /* Info.plist */; };
 		5508B9721ED9186300526200 /* ItemOfSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B96E1ED9186300526200 /* ItemOfSet.m */; };
 		5508B9731ED9186300526200 /* Set.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B9701ED9186300526200 /* Set.m */; };
-		5558A8511ED59621001BAFC3 /* UIColor+PickerColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 5558A8501ED59621001BAFC3 /* UIColor+PickerColors.m */; };
-		55A8F3E41EBC98ED000D5DB0 /* UITableView+GettingIndexPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A8F3E31EBC98ED000D5DB0 /* UITableView+GettingIndexPath.m */; };
 		55D34EDA1EBA906500A2EE38 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D34ED91EBA906500A2EE38 /* main.m */; };
 		55D34EDD1EBA906500A2EE38 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D34EDC1EBA906500A2EE38 /* AppDelegate.m */; };
 		55D34EE31EBA906500A2EE38 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55D34EE11EBA906500A2EE38 /* Main.storyboard */; };
 		55D34EE51EBA906500A2EE38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55D34EE41EBA906500A2EE38 /* Assets.xcassets */; };
 		55D34EE81EBA906500A2EE38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55D34EE61EBA906500A2EE38 /* LaunchScreen.storyboard */; };
-		55F27BC61ECC7B8F00EE58F9 /* NSMutableArray+Shuffle.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F27BC51ECC7B8F00EE58F9 /* NSMutableArray+Shuffle.m */; };
+		55DD03481ED919FA00BDA097 /* UIColor+PickerColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 55DD03451ED919FA00BDA097 /* UIColor+PickerColors.m */; };
+		55DD03491ED919FA00BDA097 /* UITableView+GettingIndexPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 55DD03471ED919FA00BDA097 /* UITableView+GettingIndexPath.m */; };
+		55DD034C1ED91A3200BDA097 /* NSMutableArray+Shuffle.m in Sources */ = {isa = PBXBuildFile; fileRef = 55DD034B1ED91A3200BDA097 /* NSMutableArray+Shuffle.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,15 +78,11 @@
 		5508B95E1ED9184B00526200 /* LearnRoundInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearnRoundInfoTableViewCell.m; sourceTree = "<group>"; };
 		5508B95F1ED9184B00526200 /* SetTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetTableViewCell.h; sourceTree = "<group>"; };
 		5508B9601ED9184B00526200 /* SetTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetTableViewCell.m; sourceTree = "<group>"; };
-		5508B96C1ED9186300526200 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5508B96D1ED9186300526200 /* ItemOfSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemOfSet.h; sourceTree = "<group>"; };
 		5508B96E1ED9186300526200 /* ItemOfSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemOfSet.m; sourceTree = "<group>"; };
 		5508B96F1ED9186300526200 /* Set.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Set.h; sourceTree = "<group>"; };
 		5508B9701ED9186300526200 /* Set.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Set.m; sourceTree = "<group>"; };
-		5558A84F1ED59621001BAFC3 /* UIColor+PickerColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+PickerColors.h"; sourceTree = "<group>"; };
-		5558A8501ED59621001BAFC3 /* UIColor+PickerColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+PickerColors.m"; sourceTree = "<group>"; };
-		55A8F3E21EBC98ED000D5DB0 /* UITableView+GettingIndexPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+GettingIndexPath.h"; sourceTree = "<group>"; };
-		55A8F3E31EBC98ED000D5DB0 /* UITableView+GettingIndexPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+GettingIndexPath.m"; sourceTree = "<group>"; };
+		558D15331ED91E100055C2DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55C6ACDF1EC8D5AA0062537B /* MatchModeDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchModeDelegate.h; sourceTree = "<group>"; };
 		55D34ED51EBA906500A2EE38 /* Memento.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Memento.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55D34ED91EBA906500A2EE38 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -96,9 +91,12 @@
 		55D34EE21EBA906500A2EE38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		55D34EE41EBA906500A2EE38 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		55D34EE71EBA906500A2EE38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		55D34EE91EBA906500A2EE38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		55F27BC41ECC7B8F00EE58F9 /* NSMutableArray+Shuffle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Shuffle.h"; sourceTree = "<group>"; };
-		55F27BC51ECC7B8F00EE58F9 /* NSMutableArray+Shuffle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Shuffle.m"; sourceTree = "<group>"; };
+		55DD03441ED919FA00BDA097 /* UIColor+PickerColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+PickerColors.h"; sourceTree = "<group>"; };
+		55DD03451ED919FA00BDA097 /* UIColor+PickerColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+PickerColors.m"; sourceTree = "<group>"; };
+		55DD03461ED919FA00BDA097 /* UITableView+GettingIndexPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+GettingIndexPath.h"; sourceTree = "<group>"; };
+		55DD03471ED919FA00BDA097 /* UITableView+GettingIndexPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+GettingIndexPath.m"; sourceTree = "<group>"; };
+		55DD034A1ED91A3200BDA097 /* NSMutableArray+Shuffle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Shuffle.h"; sourceTree = "<group>"; };
+		55DD034B1ED91A3200BDA097 /* NSMutableArray+Shuffle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Shuffle.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,7 +213,6 @@
 		5508B96B1ED9186300526200 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				5508B96C1ED9186300526200 /* Info.plist */,
 				5508B96D1ED9186300526200 /* ItemOfSet.h */,
 				5508B96E1ED9186300526200 /* ItemOfSet.m */,
 				5508B96F1ED9186300526200 /* Set.h */,
@@ -248,8 +245,8 @@
 				5508B94D1ED9184B00526200 /* View */,
 				5508B9351ED9176B00526200 /* Controllers */,
 				55D34ED81EBA906500A2EE38 /* Supporting Files */,
-				55F27BC31ECC7B6C00EE58F9 /* Categories */,
 				5508B9291ED916A600526200 /* Organizers */,
+				55DD03431ED919FA00BDA097 /* Categories */,
 				55C6ACDF1EC8D5AA0062537B /* MatchModeDelegate.h */,
 			);
 			path = Memento;
@@ -258,27 +255,27 @@
 		55D34ED81EBA906500A2EE38 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				558D15331ED91E100055C2DE /* Info.plist */,
 				55D34EDB1EBA906500A2EE38 /* AppDelegate.h */,
 				55D34EDC1EBA906500A2EE38 /* AppDelegate.m */,
 				55D34EE41EBA906500A2EE38 /* Assets.xcassets */,
 				55D34EE61EBA906500A2EE38 /* LaunchScreen.storyboard */,
-				55D34EE91EBA906500A2EE38 /* Info.plist */,
 				55D34ED91EBA906500A2EE38 /* main.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		55F27BC31ECC7B6C00EE58F9 /* Categories */ = {
+		55DD03431ED919FA00BDA097 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				55A8F3E21EBC98ED000D5DB0 /* UITableView+GettingIndexPath.h */,
-				55A8F3E31EBC98ED000D5DB0 /* UITableView+GettingIndexPath.m */,
-				55F27BC41ECC7B8F00EE58F9 /* NSMutableArray+Shuffle.h */,
-				55F27BC51ECC7B8F00EE58F9 /* NSMutableArray+Shuffle.m */,
-				5558A84F1ED59621001BAFC3 /* UIColor+PickerColors.h */,
-				5558A8501ED59621001BAFC3 /* UIColor+PickerColors.m */,
+				55DD03441ED919FA00BDA097 /* UIColor+PickerColors.h */,
+				55DD03451ED919FA00BDA097 /* UIColor+PickerColors.m */,
+				55DD03461ED919FA00BDA097 /* UITableView+GettingIndexPath.h */,
+				55DD03471ED919FA00BDA097 /* UITableView+GettingIndexPath.m */,
+				55DD034A1ED91A3200BDA097 /* NSMutableArray+Shuffle.h */,
+				55DD034B1ED91A3200BDA097 /* NSMutableArray+Shuffle.m */,
 			);
-			name = Categories;
+			path = Categories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -342,7 +339,6 @@
 			files = (
 				55D34EE81EBA906500A2EE38 /* LaunchScreen.storyboard in Resources */,
 				55D34EE51EBA906500A2EE38 /* Assets.xcassets in Resources */,
-				5508B9711ED9186300526200 /* Info.plist in Resources */,
 				5508B9651ED9184B00526200 /* ItemOfSetTableViewCell.xib in Resources */,
 				5508B9681ED9184B00526200 /* LearnRoundInfoHeader.xib in Resources */,
 				55D34EE31EBA906500A2EE38 /* Main.storyboard in Resources */,
@@ -357,13 +353,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				5508B9671ED9184B00526200 /* LearnRoundInfoHeader.m in Sources */,
+				55DD03481ED919FA00BDA097 /* UIColor+PickerColors.m in Sources */,
 				5508B9341ED916A600526200 /* MatchOrganizer.m in Sources */,
-				5558A8511ED59621001BAFC3 /* UIColor+PickerColors.m in Sources */,
 				5508B9471ED9176B00526200 /* DetailSetTableViewController.m in Sources */,
 				5508B9621ED9184B00526200 /* ItemLabel.m in Sources */,
+				55DD034C1ED91A3200BDA097 /* NSMutableArray+Shuffle.m in Sources */,
 				5508B9331ED916A600526200 /* LearnOrganizer.m in Sources */,
 				5508B9461ED9176B00526200 /* CreateSetTableViewController.m in Sources */,
-				55F27BC61ECC7B8F00EE58F9 /* NSMutableArray+Shuffle.m in Sources */,
+				55DD03491ED919FA00BDA097 /* UITableView+GettingIndexPath.m in Sources */,
 				5508B9691ED9184B00526200 /* LearnRoundInfoTableViewCell.m in Sources */,
 				5508B94B1ED9176B00526200 /* MatchPrepareViewController.m in Sources */,
 				5508B96A1ED9184B00526200 /* SetTableViewCell.m in Sources */,
@@ -374,7 +371,6 @@
 				5508B94A1ED9176B00526200 /* MatchItemsCollectionViewController.m in Sources */,
 				55D34EDD1EBA906500A2EE38 /* AppDelegate.m in Sources */,
 				5508B9661ED9184B00526200 /* LearnProgressStackView.m in Sources */,
-				55A8F3E41EBC98ED000D5DB0 /* UITableView+GettingIndexPath.m in Sources */,
 				55D34EDA1EBA906500A2EE38 /* main.m in Sources */,
 				5508B9481ED9176B00526200 /* LearnRoundInfoTableViewController.m in Sources */,
 				5508B9641ED9184B00526200 /* ItemOfSetTableViewCell.m in Sources */,
