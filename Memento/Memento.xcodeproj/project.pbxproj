@@ -123,9 +123,9 @@
 		5508B92A1ED916A600526200 /* LearnMode */ = {
 			isa = PBXGroup;
 			children = (
+				5508B92D1ED916A600526200 /* LearnOrganizerProtocol.h */,
 				5508B92B1ED916A600526200 /* LearnOrganizer.h */,
 				5508B92C1ED916A600526200 /* LearnOrganizer.m */,
-				5508B92D1ED916A600526200 /* LearnOrganizerProtocol.h */,
 			);
 			path = LearnMode;
 			sourceTree = "<group>";
@@ -133,9 +133,9 @@
 		5508B92E1ED916A600526200 /* MatchMode */ = {
 			isa = PBXGroup;
 			children = (
+				5508B9311ED916A600526200 /* MatchOrganizerProtocol.h */,
 				5508B92F1ED916A600526200 /* MatchOrganizer.h */,
 				5508B9301ED916A600526200 /* MatchOrganizer.m */,
-				5508B9311ED916A600526200 /* MatchOrganizerProtocol.h */,
 			);
 			path = MatchMode;
 			sourceTree = "<group>";

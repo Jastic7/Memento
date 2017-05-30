@@ -12,7 +12,6 @@
 
 @property (nonatomic, assign) LearnState learnProgress;
 @property (nonatomic, assign) LearnState previousState;
-@property (nonatomic, assign) LearnState kek;
 
 @end
 
