@@ -28,6 +28,10 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>The app need to access to your camera to take a photo for profile image or something else.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>The app need to access to your photo library to get a photo for profile image or something else.</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

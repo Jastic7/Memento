@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>19378126281-g0rb3r2b58g2qd1oru4pg0fhku62uflq.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.19378126281-g0rb3r2b58g2qd1oru4pg0fhku62uflq</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBd0bt3UbrJ218M2ILGj1XxYsVM66Q4qeA</string>
+	<key>GCM_SENDER_ID</key>
+	<string>19378126281</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>Jastic7.Memento</string>
+	<key>PROJECT_ID</key>
+	<string>memento-7958a</string>
+	<key>STORAGE_BUCKET</key>
+	<string>memento-7958a.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:19378126281:ios:3cc098c59f1cc826</string>
+	<key>DATABASE_URL</key>
+	<string>https://memento-7958a.firebaseio.com</string>
+</dict>
+</plist>

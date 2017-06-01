@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D39C1363509CDDBF57D9FDF /* Pods_Memento.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 535D42DE3A22028E3712CDFB /* Pods_Memento.framework */; };
 		5508B9331ED916A600526200 /* LearnOrganizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B92C1ED916A600526200 /* LearnOrganizer.m */; };
 		5508B9341ED916A600526200 /* MatchOrganizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B9301ED916A600526200 /* MatchOrganizer.m */; };
 		5508B9461ED9176B00526200 /* CreateSetTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B9371ED9176B00526200 /* CreateSetTableViewController.m */; };
@@ -28,6 +29,16 @@
 		5508B96A1ED9184B00526200 /* SetTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B9601ED9184B00526200 /* SetTableViewCell.m */; };
 		5508B9721ED9186300526200 /* ItemOfSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B96E1ED9186300526200 /* ItemOfSet.m */; };
 		5508B9731ED9186300526200 /* Set.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B9701ED9186300526200 /* Set.m */; };
+		559094291EDEF53A00BE4500 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 559094281EDEF53A00BE4500 /* User.m */; };
+		559094311EDF009700BE4500 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 559094301EDF009700BE4500 /* GoogleService-Info.plist */; };
+		55BAE12C1EDF8D6D00F1CBEE /* AuthService.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BAE12B1EDF8D6D00F1CBEE /* AuthService.m */; };
+		55BAE12F1EDF928100F1CBEE /* TransportLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BAE12E1EDF928100F1CBEE /* TransportLayer.m */; };
+		55BAE1331EE088D100F1CBEE /* ServiceLocator.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BAE1321EE088D100F1CBEE /* ServiceLocator.m */; };
+		55BAE13A1EE08EE600F1CBEE /* RemoteServiceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BAE1391EE08EE600F1CBEE /* RemoteServiceFactory.m */; };
+		55BAE13D1EE09C7000F1CBEE /* Assembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BAE13C1EE09C7000F1CBEE /* Assembly.m */; };
+		55BAE1451EE09E0900F1CBEE /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BAE1401EE09E0900F1CBEE /* LogInViewController.m */; };
+		55BAE1461EE09E0900F1CBEE /* SignUpTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BAE1421EE09E0900F1CBEE /* SignUpTableViewController.m */; };
+		55BAE1471EE09E0900F1CBEE /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BAE1441EE09E0900F1CBEE /* WelcomeViewController.m */; };
 		55D34EDA1EBA906500A2EE38 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D34ED91EBA906500A2EE38 /* main.m */; };
 		55D34EDD1EBA906500A2EE38 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D34EDC1EBA906500A2EE38 /* AppDelegate.m */; };
 		55D34EE31EBA906500A2EE38 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55D34EE11EBA906500A2EE38 /* Main.storyboard */; };
@@ -39,6 +50,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		03B1D7B40CEBC6BB37B0FDC3 /* Pods-Memento.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Memento.release.xcconfig"; path = "Pods/Target Support Files/Pods-Memento/Pods-Memento.release.xcconfig"; sourceTree = "<group>"; };
+		535D42DE3A22028E3712CDFB /* Pods_Memento.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Memento.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5508B92B1ED916A600526200 /* LearnOrganizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnOrganizer.h; sourceTree = "<group>"; };
 		5508B92C1ED916A600526200 /* LearnOrganizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearnOrganizer.m; sourceTree = "<group>"; };
 		5508B92D1ED916A600526200 /* LearnOrganizerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnOrganizerProtocol.h; sourceTree = "<group>"; };
@@ -83,6 +96,27 @@
 		5508B96F1ED9186300526200 /* Set.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Set.h; sourceTree = "<group>"; };
 		5508B9701ED9186300526200 /* Set.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Set.m; sourceTree = "<group>"; };
 		558D15331ED91E100055C2DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		559094271EDEF53A00BE4500 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		559094281EDEF53A00BE4500 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		559094301EDF009700BE4500 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		55BAE1281EDF8B4B00F1CBEE /* AuthServiceProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthServiceProtocol.h; sourceTree = "<group>"; };
+		55BAE12A1EDF8D6D00F1CBEE /* AuthService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthService.h; sourceTree = "<group>"; };
+		55BAE12B1EDF8D6D00F1CBEE /* AuthService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthService.m; sourceTree = "<group>"; };
+		55BAE12D1EDF928100F1CBEE /* TransportLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransportLayer.h; sourceTree = "<group>"; };
+		55BAE12E1EDF928100F1CBEE /* TransportLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransportLayer.m; sourceTree = "<group>"; };
+		55BAE1311EE088D100F1CBEE /* ServiceLocator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceLocator.h; sourceTree = "<group>"; };
+		55BAE1321EE088D100F1CBEE /* ServiceLocator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceLocator.m; sourceTree = "<group>"; };
+		55BAE1371EE0894600F1CBEE /* ServiceFactoryProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceFactoryProtocol.h; sourceTree = "<group>"; };
+		55BAE1381EE08EE600F1CBEE /* RemoteServiceFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteServiceFactory.h; sourceTree = "<group>"; };
+		55BAE1391EE08EE600F1CBEE /* RemoteServiceFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteServiceFactory.m; sourceTree = "<group>"; };
+		55BAE13B1EE09C7000F1CBEE /* Assembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Assembly.h; sourceTree = "<group>"; };
+		55BAE13C1EE09C7000F1CBEE /* Assembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Assembly.m; sourceTree = "<group>"; };
+		55BAE13F1EE09E0900F1CBEE /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInViewController.h; sourceTree = "<group>"; };
+		55BAE1401EE09E0900F1CBEE /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInViewController.m; sourceTree = "<group>"; };
+		55BAE1411EE09E0900F1CBEE /* SignUpTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpTableViewController.h; sourceTree = "<group>"; };
+		55BAE1421EE09E0900F1CBEE /* SignUpTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpTableViewController.m; sourceTree = "<group>"; };
+		55BAE1431EE09E0900F1CBEE /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
+		55BAE1441EE09E0900F1CBEE /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
 		55C6ACDF1EC8D5AA0062537B /* MatchModeDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchModeDelegate.h; sourceTree = "<group>"; };
 		55D34ED51EBA906500A2EE38 /* Memento.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Memento.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55D34ED91EBA906500A2EE38 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -97,6 +131,7 @@
 		55DD03471ED919FA00BDA097 /* UITableView+GettingIndexPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+GettingIndexPath.m"; sourceTree = "<group>"; };
 		55DD034A1ED91A3200BDA097 /* NSMutableArray+Shuffle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Shuffle.h"; sourceTree = "<group>"; };
 		55DD034B1ED91A3200BDA097 /* NSMutableArray+Shuffle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Shuffle.m"; sourceTree = "<group>"; };
+		F9F8122E197F931FE908B655 /* Pods-Memento.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Memento.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Memento/Pods-Memento.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +139,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D39C1363509CDDBF57D9FDF /* Pods_Memento.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,6 +179,7 @@
 		5508B9351ED9176B00526200 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				55BAE13E1EE09DBA00F1CBEE /* Auth */,
 				5508B9361ED9176B00526200 /* CreateSetTableViewController.h */,
 				5508B9371ED9176B00526200 /* CreateSetTableViewController.m */,
 				5508B9381ED9176B00526200 /* DetailSetTableViewController.h */,
@@ -217,8 +254,64 @@
 				5508B96E1ED9186300526200 /* ItemOfSet.m */,
 				5508B96F1ED9186300526200 /* Set.h */,
 				5508B9701ED9186300526200 /* Set.m */,
+				559094271EDEF53A00BE4500 /* User.h */,
+				559094281EDEF53A00BE4500 /* User.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		55BAE1251EDF8B0B00F1CBEE /* ServiceLayer */ = {
+			isa = PBXGroup;
+			children = (
+				55BAE1301EE088BE00F1CBEE /* ServiceLocator */,
+				55BAE1261EDF8B0B00F1CBEE /* Services */,
+				55BAE1271EDF8B0B00F1CBEE /* Transport */,
+			);
+			path = ServiceLayer;
+			sourceTree = "<group>";
+		};
+		55BAE1261EDF8B0B00F1CBEE /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				55BAE1281EDF8B4B00F1CBEE /* AuthServiceProtocol.h */,
+				55BAE12A1EDF8D6D00F1CBEE /* AuthService.h */,
+				55BAE12B1EDF8D6D00F1CBEE /* AuthService.m */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		55BAE1271EDF8B0B00F1CBEE /* Transport */ = {
+			isa = PBXGroup;
+			children = (
+				55BAE12D1EDF928100F1CBEE /* TransportLayer.h */,
+				55BAE12E1EDF928100F1CBEE /* TransportLayer.m */,
+			);
+			path = Transport;
+			sourceTree = "<group>";
+		};
+		55BAE1301EE088BE00F1CBEE /* ServiceLocator */ = {
+			isa = PBXGroup;
+			children = (
+				55BAE1311EE088D100F1CBEE /* ServiceLocator.h */,
+				55BAE1321EE088D100F1CBEE /* ServiceLocator.m */,
+				55BAE1371EE0894600F1CBEE /* ServiceFactoryProtocol.h */,
+				55BAE1381EE08EE600F1CBEE /* RemoteServiceFactory.h */,
+				55BAE1391EE08EE600F1CBEE /* RemoteServiceFactory.m */,
+			);
+			path = ServiceLocator;
+			sourceTree = "<group>";
+		};
+		55BAE13E1EE09DBA00F1CBEE /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				55BAE13F1EE09E0900F1CBEE /* LogInViewController.h */,
+				55BAE1401EE09E0900F1CBEE /* LogInViewController.m */,
+				55BAE1411EE09E0900F1CBEE /* SignUpTableViewController.h */,
+				55BAE1421EE09E0900F1CBEE /* SignUpTableViewController.m */,
+				55BAE1431EE09E0900F1CBEE /* WelcomeViewController.h */,
+				55BAE1441EE09E0900F1CBEE /* WelcomeViewController.m */,
+			);
+			path = Auth;
 			sourceTree = "<group>";
 		};
 		55D34ECC1EBA906500A2EE38 = {
@@ -226,6 +319,8 @@
 			children = (
 				55D34ED71EBA906500A2EE38 /* Memento */,
 				55D34ED61EBA906500A2EE38 /* Products */,
+				DB01291980CB7DB12BB46845 /* Pods */,
+				BDA0333F43238702CD738697 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -240,7 +335,9 @@
 		55D34ED71EBA906500A2EE38 /* Memento */ = {
 			isa = PBXGroup;
 			children = (
+				559094301EDF009700BE4500 /* GoogleService-Info.plist */,
 				55D34EE11EBA906500A2EE38 /* Main.storyboard */,
+				55BAE1251EDF8B0B00F1CBEE /* ServiceLayer */,
 				5508B96B1ED9186300526200 /* Model */,
 				5508B94D1ED9184B00526200 /* View */,
 				5508B9351ED9176B00526200 /* Controllers */,
@@ -248,6 +345,8 @@
 				5508B9291ED916A600526200 /* Organizers */,
 				55DD03431ED919FA00BDA097 /* Categories */,
 				55C6ACDF1EC8D5AA0062537B /* MatchModeDelegate.h */,
+				55BAE13B1EE09C7000F1CBEE /* Assembly.h */,
+				55BAE13C1EE09C7000F1CBEE /* Assembly.m */,
 			);
 			path = Memento;
 			sourceTree = "<group>";
@@ -278,6 +377,23 @@
 			path = Categories;
 			sourceTree = "<group>";
 		};
+		BDA0333F43238702CD738697 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				535D42DE3A22028E3712CDFB /* Pods_Memento.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DB01291980CB7DB12BB46845 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F9F8122E197F931FE908B655 /* Pods-Memento.debug.xcconfig */,
+				03B1D7B40CEBC6BB37B0FDC3 /* Pods-Memento.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -285,9 +401,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 55D34EEC1EBA906500A2EE38 /* Build configuration list for PBXNativeTarget "Memento" */;
 			buildPhases = (
+				856403433BD4A00A184B3A4E /* [CP] Check Pods Manifest.lock */,
 				55D34ED11EBA906500A2EE38 /* Sources */,
 				55D34ED21EBA906500A2EE38 /* Frameworks */,
 				55D34ED31EBA906500A2EE38 /* Resources */,
+				808491FCDC0BAE0D5D575798 /* [CP] Embed Pods Frameworks */,
+				E6A0FB5A4A9ED40DD5CD68BC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -342,19 +461,70 @@
 				5508B9651ED9184B00526200 /* ItemOfSetTableViewCell.xib in Resources */,
 				5508B9681ED9184B00526200 /* LearnRoundInfoHeader.xib in Resources */,
 				55D34EE31EBA906500A2EE38 /* Main.storyboard in Resources */,
+				559094311EDF009700BE4500 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		808491FCDC0BAE0D5D575798 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Memento/Pods-Memento-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		856403433BD4A00A184B3A4E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E6A0FB5A4A9ED40DD5CD68BC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Memento/Pods-Memento-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		55D34ED11EBA906500A2EE38 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				559094291EDEF53A00BE4500 /* User.m in Sources */,
 				5508B9671ED9184B00526200 /* LearnRoundInfoHeader.m in Sources */,
 				55DD03481ED919FA00BDA097 /* UIColor+PickerColors.m in Sources */,
 				5508B9341ED916A600526200 /* MatchOrganizer.m in Sources */,
+				55BAE12C1EDF8D6D00F1CBEE /* AuthService.m in Sources */,
 				5508B9471ED9176B00526200 /* DetailSetTableViewController.m in Sources */,
 				5508B9621ED9184B00526200 /* ItemLabel.m in Sources */,
 				55DD034C1ED91A3200BDA097 /* NSMutableArray+Shuffle.m in Sources */,
@@ -366,14 +536,21 @@
 				5508B96A1ED9184B00526200 /* SetTableViewCell.m in Sources */,
 				5508B9491ED9176B00526200 /* LearnRoundViewController.m in Sources */,
 				5508B9731ED9186300526200 /* Set.m in Sources */,
+				55BAE1331EE088D100F1CBEE /* ServiceLocator.m in Sources */,
+				55BAE1471EE09E0900F1CBEE /* WelcomeViewController.m in Sources */,
+				55BAE13A1EE08EE600F1CBEE /* RemoteServiceFactory.m in Sources */,
 				5508B94C1ED9176B00526200 /* SetsViewController.m in Sources */,
+				55BAE1461EE09E0900F1CBEE /* SignUpTableViewController.m in Sources */,
 				5508B9611ED9184B00526200 /* Circle.m in Sources */,
 				5508B94A1ED9176B00526200 /* MatchItemsCollectionViewController.m in Sources */,
 				55D34EDD1EBA906500A2EE38 /* AppDelegate.m in Sources */,
+				55BAE1451EE09E0900F1CBEE /* LogInViewController.m in Sources */,
 				5508B9661ED9184B00526200 /* LearnProgressStackView.m in Sources */,
 				55D34EDA1EBA906500A2EE38 /* main.m in Sources */,
+				55BAE12F1EDF928100F1CBEE /* TransportLayer.m in Sources */,
 				5508B9481ED9176B00526200 /* LearnRoundInfoTableViewController.m in Sources */,
 				5508B9641ED9184B00526200 /* ItemOfSetTableViewCell.m in Sources */,
+				55BAE13D1EE09C7000F1CBEE /* Assembly.m in Sources */,
 				5508B9631ED9184B00526200 /* ItemOfMatchCollectionViewCell.m in Sources */,
 				5508B9721ED9186300526200 /* ItemOfSet.m in Sources */,
 			);
@@ -491,6 +668,7 @@
 		};
 		55D34EED1EBA906500A2EE38 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F9F8122E197F931FE908B655 /* Pods-Memento.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -505,6 +683,7 @@
 		};
 		55D34EEE1EBA906500A2EE38 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 03B1D7B40CEBC6BB37B0FDC3 /* Pods-Memento.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
