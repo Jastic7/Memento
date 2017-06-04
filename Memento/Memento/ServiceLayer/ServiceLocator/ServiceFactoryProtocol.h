@@ -9,11 +9,12 @@
 #import <Foundation/Foundation.h>
 
 @protocol AuthServiceProtocol;
-
+@protocol SetServiceProtocol;
 
 @protocol ServiceFactoryProtocol <NSObject>
 
 - (id <AuthServiceProtocol>)createAuthService;
+- (id <SetServiceProtocol>)createSetService;
 
 
 @end

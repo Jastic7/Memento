@@ -42,25 +42,25 @@ static NSString * const kDetailSetSegue = @"detailSetSegue";
         [items addObject:item];
     }
     
-    Set *set = [Set setWithTitle:@"Unit 8. Prepositions without translate translate translate translate translate translate translate" author:@"Jastioc7" items:items];
+    Set *set = [Set setWithTitle:@"Unit 8. Prepositions without translate translate translate translate translate translate translate" author:@"Jastioc7" definitionLang:@"" termLang:@"" items:items];
     [self.sets addObject:set];
     
     NSString *title = @"Unit 8. Prepositions without translate";
     NSString *author = @"Jastic7";
     
-    set = [Set setWithTitle:title author:author items:items];
+    set = [Set setWithTitle:title author:author definitionLang:@"" termLang:@"" items:items];
     [self.sets addObject:set];
     
-    set = [Set setWithTitle:title author:author items:items];
+    set = [Set setWithTitle:title author:author definitionLang:@"" termLang:@"" items:items];
     [self.sets addObject:set];
     
-    set = [Set setWithTitle:title author:author items:items];
+    set = [Set setWithTitle:title author:author definitionLang:@"" termLang:@"" items:items];
     [self.sets addObject:set];
     
-    set = [Set setWithTitle:title author:author items:items];
+    set = [Set setWithTitle:title author:author definitionLang:@"" termLang:@"" items:items];
     [self.sets addObject:set];
     
-    set = [Set setWithTitle:title author:author items:items];
+    set = [Set setWithTitle:title author:author definitionLang:@"" termLang:@"" items:items];
     [self.sets addObject:set];
 }
 

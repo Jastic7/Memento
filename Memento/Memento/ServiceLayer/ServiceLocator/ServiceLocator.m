@@ -51,4 +51,8 @@ static ServiceLocator *sharedInstance = nil;
     return [self.serviceFactory createAuthService];
 }
 
+- (id <SetServiceProtocol>)setService {
+    return [self.serviceFactory createSetService];
+}
+
 @end

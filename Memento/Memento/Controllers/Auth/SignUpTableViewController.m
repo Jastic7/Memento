@@ -78,8 +78,10 @@
     NSString *password = self.passwordTextField.text;
     UIImage  *avatar   = self.profilePictureImageView.image;
     
+    NSData *imageData = UIImageJPEGRepresentation(avatar, 0.9);
+    
     ServiceLocator *locator = [ServiceLocator shared];
-    [locator.authService signUpWithEmail:email password:password completion:^(NSError *error) {
+    [locator.authService signUpWithEmail:email password:password username:username profileImage:imageData completion:^(NSError *error) {
         if (error) {
             NSString *errorDescription = error.localizedDescription;
             

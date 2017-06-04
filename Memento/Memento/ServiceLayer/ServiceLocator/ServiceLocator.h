@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "AuthServiceProtocol.h"
+#import "SetServiceProtocol.h"
 
 @protocol ServiceFactoryProtocol;
 
@@ -15,6 +16,7 @@
 @interface ServiceLocator : NSObject
 
 @property (nonatomic, strong, readonly) id <AuthServiceProtocol> authService;
+@property (nonatomic, strong, readonly) id <SetServiceProtocol> setService;
 
 + (instancetype)shared;
 - (void)setServiceFactory:(id <ServiceFactoryProtocol>)serviceFactory;

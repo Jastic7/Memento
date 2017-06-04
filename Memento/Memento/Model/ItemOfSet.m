@@ -35,19 +35,27 @@
 }
 
 - (instancetype)initWithTerm:(NSString *)term definition:(NSString *)definition {
+    return [self initWithTerm:term definition:definition learnProgress:Unknown];
+}
+
+- (instancetype)initWithTerm:(NSString *)term definition:(NSString *)definition learnProgress:(LearnState)progress {
     self = [super init];
     
     if (self) {
         _term = term;
         _definition = definition;
-        _learnProgress = Unknown;
+        _learnProgress = progress;
     }
     
     return self;
 }
 
 + (instancetype)itemOfSetWithTerm:(NSString *)term definition:(NSString *)definition {
-    return [[self alloc] initWithTerm:term definition:definition];
+    return [[self alloc] initWithTerm:term definition:definition learnProgress:Unknown];
+}
+
++ (instancetype)itemOfSetWithTerm:(NSString *)term definition:(NSString *)definition learnProgress:(LearnState)progress {
+    return [[self alloc] initWithTerm:term definition:definition learnProgress:progress];
 }
 
 
@@ -81,9 +89,11 @@
 #pragma mark - Copying
 
 - (id)copyWithZone:(NSZone *)zone {
-    ItemOfSet *copyItem = [[[self class] allocWithZone:zone] init];
-    copyItem.term = self.term;
-    copyItem.definition = self.definition;
+    ItemOfSet *copyItem     = [[[self class] allocWithZone:zone] init];
+    
+    copyItem.term           = self.term;
+    copyItem.definition     = self.definition;
+    copyItem.learnProgress  = self.learnProgress;
     
     return copyItem;
 }

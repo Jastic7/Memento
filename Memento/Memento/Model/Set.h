@@ -13,15 +13,21 @@
 
 @property (nonatomic, copy, readonly)   NSString *title;
 @property (nonatomic, copy, readonly)   NSString *author;
+@property (nonatomic, copy, readonly)   NSString *definitionLang;
+@property (nonatomic, copy, readonly)   NSString *termLang;
 @property (nonatomic, assign, readonly) NSUInteger count;
 @property (nonatomic, assign, readonly) BOOL isEmpty;
 
 - (instancetype)initWithTitle:(NSString *)title
                        author:(NSString *)author
+               definitionLang:(NSString *)defLang
+                     termLang:(NSString *)termLang
                         items:(NSArray<ItemOfSet *> *)items;
 
 + (instancetype)setWithTitle:(NSString *)title
                       author:(NSString *)author
+              definitionLang:(NSString *)defLang
+                    termLang:(NSString *)termLang
                        items:(NSArray<ItemOfSet *> *)items;
 
 + (instancetype)setWithSet:(Set *)set;

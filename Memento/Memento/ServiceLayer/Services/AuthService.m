@@ -5,36 +5,13 @@
 //  Created by Andrey Morozov on 01.06.17.
 //  Copyright © 2017 Andrey Morozov. All rights reserved.
 //
-
 #import "AuthService.h"
 #import "TransportLayer.h"
 #import "User.h"
 #import "Firebase.h"
 
-@interface AuthService ()
-
-@property (nonatomic, strong) TransportLayer *transort;
-
-@end
-
 
 @implementation AuthService
-
-#pragma mark - Initialization
-
-- (instancetype)initWithTrasport:(TransportLayer *)transport {
-    self = [super init];
-    
-    if (self) {
-        _transort = transport;
-    }
-    
-    return self;
-}
-
-+ (instancetype)authServiceWithTrasport:(TransportLayer *)transport {
-    return [[self alloc] initWithTrasport:transport];
-}
 
 - (BOOL)isCorrectEmail:(NSString *)email password:(NSString *)password {
     //TODO: ADD IMPLEMENTATION
@@ -44,10 +21,25 @@
 
 #pragma mark - AuthServiceProtocol Implementation
 
-- (void)signUpWithEmail:(NSString *)email password:(NSString *)password completion:(AuthSignUpCompletionBlock)completion {
+- (void)signUpWithEmail:(NSString *)email
+               password:(NSString *)password
+               username:(NSString *)username
+           profileImage:(NSData   *)image
+             completion:(AuthSignUpCompletionBlock)completion {
+    
+
+    
     if ([self isCorrectEmail:email password:password]) {
+        NSMutableDictionary <NSString *, id> *jsonModel = [NSMutableDictionary dictionary];
+        
+        jsonModel[@"username"] = username;
+        jsonModel[@"setList"] = @{};
+        jsonModel[@"setCount"] = @0;
+        
         [self.transort createNewUserWithEmail:email
                                      password:password
+                                 profileImage:image
+                                    jsonModel:jsonModel
                                       success:^(id response) {
                                           completion(response);
                                       }
@@ -62,7 +54,7 @@
         [self.transort authorizeWithEmail:email
                                  password:password
                                   success:^(id response) {
-                                      [self handleSuccessLogInWithResonse:response completion:completion];
+                                      [self handleSuccessLogInWithResponse:response completion:completion];
                                   }
                                   failure:^(NSError *error) {
                                       completion(nil, error);
@@ -73,11 +65,10 @@
 
 #pragma mark - private
 
-- (void)handleSuccessLogInWithResonse:(id)response completion:(AuthLogInCompletionBlock)completion {
-    FIRUser *firUser = response;
-    User *user = [User new];
-    //FIXME: add mapping;
-    completion(user, nil);
+- (void)handleSuccessLogInWithResponse:(id)response completion:(AuthLogInCompletionBlock)completion {
+    NSString *uid = response;
+    
+    completion(uid, nil);
 }
 
 

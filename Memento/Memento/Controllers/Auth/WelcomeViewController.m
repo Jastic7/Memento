@@ -8,9 +8,15 @@
 
 #import "WelcomeViewController.h"
 #import "SignUpTableViewController.h"
-#import "LogInViewController.h"
+#import "LogInTableViewController.h"
 
-@interface WelcomeViewController () <SignUpTableViewControllerDelegate, LogInViewControllerDelegate>
+static NSString * const kShowSignUpSegue = @"showSignUpSegue";
+static NSString * const kShowLogInSegue = @"showLogInSegue";
+
+
+@interface WelcomeViewController () <SignUpTableViewControllerDelegate, LogInTableViewControllerDelegate>
+
+@property (nonatomic, strong) UIView *authWaitingView;
 
 @end
 
@@ -24,15 +30,14 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSString *identifier = segue.identifier;
+    UINavigationController *navController = segue.destinationViewController;
     
-    if ([identifier isEqualToString:@"showSignUpSegue"]) {
-        UINavigationController *navController = segue.destinationViewController;
+    if ([identifier isEqualToString:kShowSignUpSegue]) {
         SignUpTableViewController *dvc = (SignUpTableViewController *)navController.topViewController;
         
         dvc.delegate = self;
-    } else if ([identifier isEqualToString:@"showLogInSegue"]) {
-        UINavigationController *navController = segue.destinationViewController;
-        LogInViewController *dvc = (LogInViewController *)navController.topViewController;
+    } else if ([identifier isEqualToString:kShowLogInSegue]) {
+        LogInTableViewController *dvc = (LogInTableViewController *)navController.topViewController;
         
         dvc.delegate = self;
     }
@@ -42,12 +47,16 @@
 #pragma mark - SignUpTableViewControllerDelegate
 
 - (void)signUpViewControllerDidCancelled {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:^{
+        [self showWaitingAlertWithTitle:@"" message:@"Authorization in progress..."];
+    }];
 }
 
 - (void)signUpViewControllerDidCreatedUserWithEmail:(NSString *)email password:(NSString *)password username:(NSString *)username profilePhoto:(NSURL *)photo {
     [self dismissViewControllerAnimated:YES completion:^{
         NSLog(@"User created!");
+        
+        
     }];
     
 }
@@ -59,9 +68,41 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)logInViewControllerDidLoggedInWithUser:(User *)user {
+- (void)logInViewControllerDidLoggedInWithUserId:(NSString *)uid {
     //TODO::ADD IMPLEMENTATION
 }
+
+
+#pragma mark - Private
+
+- (void)showWaitingAlertWithTitle:(NSString *)title
+                          message:(NSString *)message {
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    
+    CGRect rect = activityIndicator.frame;
+    rect.origin.y = 19.5;
+    rect.origin.x += 20;
+    
+    activityIndicator.frame = rect;
+    [activityIndicator startAnimating];
+    
+    [alert.view addSubview:activityIndicator];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+
+
+
+
+
+
+
+
+
 
 
 

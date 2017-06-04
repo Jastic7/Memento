@@ -29,6 +29,10 @@
 		5508B96A1ED9184B00526200 /* SetTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B9601ED9184B00526200 /* SetTableViewCell.m */; };
 		5508B9721ED9186300526200 /* ItemOfSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B96E1ED9186300526200 /* ItemOfSet.m */; };
 		5508B9731ED9186300526200 /* Set.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B9701ED9186300526200 /* Set.m */; };
+		5525EE871EE3725100206898 /* SetService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5525EE861EE3725100206898 /* SetService.m */; };
+		5525EE8A1EE376AB00206898 /* BaseService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5525EE891EE376AB00206898 /* BaseService.m */; };
+		5525EE8E1EE38C1C00206898 /* SetMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5525EE8D1EE38C1C00206898 /* SetMapper.m */; };
+		5525EE911EE3918500206898 /* ItemsOfSetMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5525EE901EE3918500206898 /* ItemsOfSetMapper.m */; };
 		559094291EDEF53A00BE4500 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 559094281EDEF53A00BE4500 /* User.m */; };
 		559094311EDF009700BE4500 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 559094301EDF009700BE4500 /* GoogleService-Info.plist */; };
 		55BAE12C1EDF8D6D00F1CBEE /* AuthService.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BAE12B1EDF8D6D00F1CBEE /* AuthService.m */; };
@@ -36,7 +40,7 @@
 		55BAE1331EE088D100F1CBEE /* ServiceLocator.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BAE1321EE088D100F1CBEE /* ServiceLocator.m */; };
 		55BAE13A1EE08EE600F1CBEE /* RemoteServiceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BAE1391EE08EE600F1CBEE /* RemoteServiceFactory.m */; };
 		55BAE13D1EE09C7000F1CBEE /* Assembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BAE13C1EE09C7000F1CBEE /* Assembly.m */; };
-		55BAE1451EE09E0900F1CBEE /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BAE1401EE09E0900F1CBEE /* LogInViewController.m */; };
+		55BAE1451EE09E0900F1CBEE /* LogInTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BAE1401EE09E0900F1CBEE /* LogInTableViewController.m */; };
 		55BAE1461EE09E0900F1CBEE /* SignUpTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BAE1421EE09E0900F1CBEE /* SignUpTableViewController.m */; };
 		55BAE1471EE09E0900F1CBEE /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BAE1441EE09E0900F1CBEE /* WelcomeViewController.m */; };
 		55D34EDA1EBA906500A2EE38 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D34ED91EBA906500A2EE38 /* main.m */; };
@@ -95,6 +99,15 @@
 		5508B96E1ED9186300526200 /* ItemOfSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemOfSet.m; sourceTree = "<group>"; };
 		5508B96F1ED9186300526200 /* Set.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Set.h; sourceTree = "<group>"; };
 		5508B9701ED9186300526200 /* Set.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Set.m; sourceTree = "<group>"; };
+		5525EE841EE3723E00206898 /* SetServiceProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetServiceProtocol.h; sourceTree = "<group>"; };
+		5525EE851EE3725100206898 /* SetService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetService.h; sourceTree = "<group>"; };
+		5525EE861EE3725100206898 /* SetService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetService.m; sourceTree = "<group>"; };
+		5525EE881EE376AB00206898 /* BaseService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseService.h; sourceTree = "<group>"; };
+		5525EE891EE376AB00206898 /* BaseService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseService.m; sourceTree = "<group>"; };
+		5525EE8C1EE38C1C00206898 /* SetMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetMapper.h; sourceTree = "<group>"; };
+		5525EE8D1EE38C1C00206898 /* SetMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetMapper.m; sourceTree = "<group>"; };
+		5525EE8F1EE3918500206898 /* ItemsOfSetMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemsOfSetMapper.h; sourceTree = "<group>"; };
+		5525EE901EE3918500206898 /* ItemsOfSetMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemsOfSetMapper.m; sourceTree = "<group>"; };
 		558D15331ED91E100055C2DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		559094271EDEF53A00BE4500 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		559094281EDEF53A00BE4500 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
@@ -111,8 +124,8 @@
 		55BAE1391EE08EE600F1CBEE /* RemoteServiceFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteServiceFactory.m; sourceTree = "<group>"; };
 		55BAE13B1EE09C7000F1CBEE /* Assembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Assembly.h; sourceTree = "<group>"; };
 		55BAE13C1EE09C7000F1CBEE /* Assembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Assembly.m; sourceTree = "<group>"; };
-		55BAE13F1EE09E0900F1CBEE /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInViewController.h; sourceTree = "<group>"; };
-		55BAE1401EE09E0900F1CBEE /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInViewController.m; sourceTree = "<group>"; };
+		55BAE13F1EE09E0900F1CBEE /* LogInTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInTableViewController.h; sourceTree = "<group>"; };
+		55BAE1401EE09E0900F1CBEE /* LogInTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInTableViewController.m; sourceTree = "<group>"; };
 		55BAE1411EE09E0900F1CBEE /* SignUpTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpTableViewController.h; sourceTree = "<group>"; };
 		55BAE1421EE09E0900F1CBEE /* SignUpTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpTableViewController.m; sourceTree = "<group>"; };
 		55BAE1431EE09E0900F1CBEE /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
@@ -260,9 +273,21 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		5525EE8B1EE38C0B00206898 /* Mappers */ = {
+			isa = PBXGroup;
+			children = (
+				5525EE8C1EE38C1C00206898 /* SetMapper.h */,
+				5525EE8D1EE38C1C00206898 /* SetMapper.m */,
+				5525EE8F1EE3918500206898 /* ItemsOfSetMapper.h */,
+				5525EE901EE3918500206898 /* ItemsOfSetMapper.m */,
+			);
+			path = Mappers;
+			sourceTree = "<group>";
+		};
 		55BAE1251EDF8B0B00F1CBEE /* ServiceLayer */ = {
 			isa = PBXGroup;
 			children = (
+				5525EE8B1EE38C0B00206898 /* Mappers */,
 				55BAE1301EE088BE00F1CBEE /* ServiceLocator */,
 				55BAE1261EDF8B0B00F1CBEE /* Services */,
 				55BAE1271EDF8B0B00F1CBEE /* Transport */,
@@ -273,9 +298,14 @@
 		55BAE1261EDF8B0B00F1CBEE /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				5525EE881EE376AB00206898 /* BaseService.h */,
+				5525EE891EE376AB00206898 /* BaseService.m */,
 				55BAE1281EDF8B4B00F1CBEE /* AuthServiceProtocol.h */,
 				55BAE12A1EDF8D6D00F1CBEE /* AuthService.h */,
 				55BAE12B1EDF8D6D00F1CBEE /* AuthService.m */,
+				5525EE841EE3723E00206898 /* SetServiceProtocol.h */,
+				5525EE851EE3725100206898 /* SetService.h */,
+				5525EE861EE3725100206898 /* SetService.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -304,12 +334,12 @@
 		55BAE13E1EE09DBA00F1CBEE /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				55BAE13F1EE09E0900F1CBEE /* LogInViewController.h */,
-				55BAE1401EE09E0900F1CBEE /* LogInViewController.m */,
-				55BAE1411EE09E0900F1CBEE /* SignUpTableViewController.h */,
-				55BAE1421EE09E0900F1CBEE /* SignUpTableViewController.m */,
 				55BAE1431EE09E0900F1CBEE /* WelcomeViewController.h */,
 				55BAE1441EE09E0900F1CBEE /* WelcomeViewController.m */,
+				55BAE1411EE09E0900F1CBEE /* SignUpTableViewController.h */,
+				55BAE1421EE09E0900F1CBEE /* SignUpTableViewController.m */,
+				55BAE13F1EE09E0900F1CBEE /* LogInTableViewController.h */,
+				55BAE1401EE09E0900F1CBEE /* LogInTableViewController.m */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -526,8 +556,10 @@
 				5508B9341ED916A600526200 /* MatchOrganizer.m in Sources */,
 				55BAE12C1EDF8D6D00F1CBEE /* AuthService.m in Sources */,
 				5508B9471ED9176B00526200 /* DetailSetTableViewController.m in Sources */,
+				5525EE871EE3725100206898 /* SetService.m in Sources */,
 				5508B9621ED9184B00526200 /* ItemLabel.m in Sources */,
 				55DD034C1ED91A3200BDA097 /* NSMutableArray+Shuffle.m in Sources */,
+				5525EE8A1EE376AB00206898 /* BaseService.m in Sources */,
 				5508B9331ED916A600526200 /* LearnOrganizer.m in Sources */,
 				5508B9461ED9176B00526200 /* CreateSetTableViewController.m in Sources */,
 				55DD03491ED919FA00BDA097 /* UITableView+GettingIndexPath.m in Sources */,
@@ -537,6 +569,7 @@
 				5508B9491ED9176B00526200 /* LearnRoundViewController.m in Sources */,
 				5508B9731ED9186300526200 /* Set.m in Sources */,
 				55BAE1331EE088D100F1CBEE /* ServiceLocator.m in Sources */,
+				5525EE8E1EE38C1C00206898 /* SetMapper.m in Sources */,
 				55BAE1471EE09E0900F1CBEE /* WelcomeViewController.m in Sources */,
 				55BAE13A1EE08EE600F1CBEE /* RemoteServiceFactory.m in Sources */,
 				5508B94C1ED9176B00526200 /* SetsViewController.m in Sources */,
@@ -544,8 +577,9 @@
 				5508B9611ED9184B00526200 /* Circle.m in Sources */,
 				5508B94A1ED9176B00526200 /* MatchItemsCollectionViewController.m in Sources */,
 				55D34EDD1EBA906500A2EE38 /* AppDelegate.m in Sources */,
-				55BAE1451EE09E0900F1CBEE /* LogInViewController.m in Sources */,
+				55BAE1451EE09E0900F1CBEE /* LogInTableViewController.m in Sources */,
 				5508B9661ED9184B00526200 /* LearnProgressStackView.m in Sources */,
+				5525EE911EE3918500206898 /* ItemsOfSetMapper.m in Sources */,
 				55D34EDA1EBA906500A2EE38 /* main.m in Sources */,
 				55BAE12F1EDF928100F1CBEE /* TransportLayer.m in Sources */,
 				5508B9481ED9176B00526200 /* LearnRoundInfoTableViewController.m in Sources */,

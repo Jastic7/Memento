@@ -8,13 +8,18 @@
 
 #import "RemoteServiceFactory.h"
 #import "AuthService.h"
+#import "SetService.h"
 #import "TransportLayer.h"
 
 
 @implementation RemoteServiceFactory
 
 - (id <AuthServiceProtocol>)createAuthService {
-    return [AuthService authServiceWithTrasport:[TransportLayer manager]];
+    return [AuthService createWithTrasport:[TransportLayer manager]];
+}
+
+- (id<SetServiceProtocol>)createSetService {
+    return [SetService createWithTrasport:[TransportLayer manager]];
 }
 
 @end

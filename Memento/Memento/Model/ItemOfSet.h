@@ -57,7 +57,10 @@ typedef NS_ENUM(NSInteger, LearnState) {
  * @return New item with term and definition.
  */
 - (instancetype)initWithTerm:(NSString *)term definition:(NSString *)definition;
+- (instancetype)initWithTerm:(NSString *)term definition:(NSString *)definition learnProgress:(LearnState)progress;
+
 + (instancetype)itemOfSetWithTerm:(NSString *)term definition:(NSString *)definition;
++ (instancetype)itemOfSetWithTerm:(NSString *)term definition:(NSString *)definition learnProgress:(LearnState)progress;
 
 /**
  * @brief Set learnProgress of the item to Mistake.

@@ -10,12 +10,19 @@
 @class User;
 
 typedef void (^AuthSignUpCompletionBlock)(NSError *error);
-typedef void (^AuthLogInCompletionBlock)(User *user, NSError *error);
+typedef void (^AuthLogInCompletionBlock)(NSString *uid, NSError *error);
 
 
 @protocol AuthServiceProtocol <NSObject>
 
-- (void)signUpWithEmail:(NSString *)email password:(NSString *)password completion:(AuthSignUpCompletionBlock)completion;
-- (void)logInWithEmail:(NSString *)email password:(NSString *)password completion:(AuthLogInCompletionBlock)completion;
+- (void)signUpWithEmail:(NSString *)email
+               password:(NSString *)password
+               username:(NSString *)username
+           profileImage:(NSData *)image
+             completion:(AuthSignUpCompletionBlock)completion;
+
+- (void)logInWithEmail:(NSString *)email
+              password:(NSString *)password
+            completion:(AuthLogInCompletionBlock)completion;
 
 @end

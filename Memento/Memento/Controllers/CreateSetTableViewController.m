@@ -111,7 +111,8 @@ static NSString * const kItemOfSetCellID = @"ItemOfSetTableViewCell";
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"term != %@ && definition != %@", @"", @""];
     [self.items filterUsingPredicate:predicate];
     
-    Set *set = [Set setWithTitle:title author:author items:self.items];
+    //TODO:FIX IT
+    Set *set = [Set setWithTitle:title author:author definitionLang:@"" termLang:@"" items:self.items];
     
     [self.delegate saveNewSet:set];
     self.delegate = nil;

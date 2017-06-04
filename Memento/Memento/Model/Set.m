@@ -22,15 +22,21 @@
 #pragma mark - Initializations
 
 - (instancetype)init {
-    return [self initWithTitle:@"" author:@"" items:nil];
+    return [self initWithTitle:@"" author:@"" definitionLang:@"" termLang:@"" items:nil];
 }
 
-- (instancetype)initWithTitle:(NSString *)title author:(NSString *)author items:(NSArray<ItemOfSet *> *)items {
+- (instancetype)initWithTitle:(NSString *)title
+                       author:(NSString *)author
+               definitionLang:(NSString *)defLang
+                     termLang:(NSString *)termLang
+                        items:(NSArray<ItemOfSet *> *)items {
     self = [super init];
     
     if (self) {
         _title = title;
         _author = author;
+        _definitionLang = defLang;
+        _termLang = termLang;
         _items = [NSMutableArray new];
         [self.items addObjectsFromArray:items];
     }
@@ -38,12 +44,16 @@
     return self;
 }
 
-+ (instancetype)setWithTitle:(NSString *)title author:(NSString *)author items:(NSArray<ItemOfSet *> *)items {
-    return [[self alloc] initWithTitle:title author:author items:items];
++ (instancetype)setWithTitle:(NSString *)title
+                      author:(NSString *)author
+              definitionLang:(NSString *)defLang
+                    termLang:(NSString *)termLang
+                       items:(NSArray<ItemOfSet *> *)items {
+    return [[self alloc] initWithTitle:title author:author definitionLang:defLang termLang:termLang items:items ];
 }
 
 + (instancetype)setWithSet:(Set *)set {
-    return [[self alloc] initWithTitle:set.title author:set.author items:set.items];
+    return [[self alloc] initWithTitle:set.title author:set.author definitionLang:set.definitionLang termLang:set.termLang items:set.items];
 }
 
 
@@ -103,7 +113,7 @@
 
 - (Set *)subsetWithRange:(NSRange)range {
     NSArray<ItemOfSet *> *subitems = [self.items subarrayWithRange:range];
-    Set *subset = [Set setWithTitle:self.title author:self.author items:subitems];
+    Set *subset = [Set setWithTitle:self.title author:self.author definitionLang:self.definitionLang termLang:self.termLang items:subitems];
     
     return subset;
 }
