@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "AuthServiceProtocol.h"
 #import "SetServiceProtocol.h"
+#import "UserServiceProtocol.h"
 
 @protocol ServiceFactoryProtocol;
 
@@ -17,6 +18,7 @@
 
 @property (nonatomic, strong, readonly) id <AuthServiceProtocol> authService;
 @property (nonatomic, strong, readonly) id <SetServiceProtocol> setService;
+@property (nonatomic, strong, readonly) id <UserServiceProtocol> userService;
 
 + (instancetype)shared;
 - (void)setServiceFactory:(id <ServiceFactoryProtocol>)serviceFactory;

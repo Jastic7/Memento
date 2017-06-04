@@ -10,11 +10,13 @@
 
 @protocol AuthServiceProtocol;
 @protocol SetServiceProtocol;
+@protocol UserServiceProtocol;
 
 @protocol ServiceFactoryProtocol <NSObject>
 
 - (id <AuthServiceProtocol>)createAuthService;
 - (id <SetServiceProtocol>)createSetService;
+- (id <UserServiceProtocol>)createUserService;
 
 
 @end

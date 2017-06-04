@@ -25,7 +25,7 @@
     }
 }
 
-- (ItemOfSet *)modelFromJsonOfItem:(NSDictionary *)json {
+- (id)modelFromJsonOfObject:(NSDictionary *)json {
     NSString *definition = json[@"definition"];
     NSString *term = json[@"term"];
     LearnState learnProgress = [self parseLearnProgressFromString:json[@"learnProgress"]];
@@ -35,17 +35,5 @@
     return item;
 }
 
-- (NSMutableArray<ItemOfSet *> *)modelsFromJsonOfListItems:(NSDictionary *)json {
-    NSMutableArray <ItemOfSet *> *items = [NSMutableArray array];
-    
-    for (NSString *key in json) {
-        NSDictionary *jsonOfItem = [json objectForKey:key];
-        ItemOfSet *item = [self modelFromJsonOfItem:jsonOfItem];
-        
-        [items addObject:item];
-    }
-    
-    return items;
-}
 
 @end

@@ -18,10 +18,10 @@ typedef void (^FailureCompletionBlock)(NSError *error);
 
 + (instancetype)manager;
 
+- (void)logOut;
+
 - (void)createNewUserWithEmail:(NSString *)email
                       password:(NSString *)password
-                  profileImage:(NSData *)image
-                     jsonModel:(NSDictionary *)jsonModel
                        success:(SuccessCompletionBlock)success
                        failure:(FailureCompletionBlock)failure;
 
@@ -30,9 +30,23 @@ typedef void (^FailureCompletionBlock)(NSError *error);
                    success:(SuccessCompletionBlock)success
                    failure:(FailureCompletionBlock)failure;
 
-- (void)obtainSetListWithPath:(NSString *)path
-            fromUserWithId:(NSString *)uid
+- (void)addListenerForAuthStateChange:(void(^)(id response))listener;
+
+- (void)obtainDataWithPath:(NSString *)path
+                    userId:(NSString *)uid
                    success:(SuccessCompletionBlock)success
                    failure:(FailureCompletionBlock)failure;
+
+- (void)postData:(NSDictionary *)jsonData
+    databasePath:(NSString     *)path
+          userId:(NSString     *)uid
+         success:(SuccessCompletionBlock)success
+         failure:(FailureCompletionBlock)failure;
+
+- (void)uploadData:(NSData   *)data
+       storagePath:(NSString *)path
+            userId:(NSString *)uid
+           success:(SuccessCompletionBlock)success
+           failure:(FailureCompletionBlock)failure;
 
 @end

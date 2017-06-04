@@ -13,7 +13,7 @@
 
 @implementation SetMapper
 
-- (Set *)modelFromJsonOfSet:(NSDictionary *)json {
+- (id)modelFromJsonOfObject:(NSDictionary *)json {
     NSString *author            = json[@"author"];
     NSString *definitionLang    = json[@"definitionLang"];
     NSString *termLang          = json[@"termLang"];
@@ -21,24 +21,11 @@
     
     ItemsOfSetMapper *itemMapper = [ItemsOfSetMapper new];
     
-    NSMutableArray <ItemOfSet *> *items = [itemMapper modelsFromJsonOfListItems:json[@"items"]];
+    NSMutableArray <ItemOfSet *> *items = (NSMutableArray <ItemOfSet *> *)[itemMapper modelsFromJsonOfListObject:json[@"items"]];
     
     Set *set = [Set setWithTitle:title author:author definitionLang:definitionLang termLang:termLang items:items];
     
     return set;
-}
-
-- (NSMutableArray<Set *> *)modelsFromJsonOfListSet:(NSDictionary *)json {
-    NSMutableArray <Set *> *setList = [NSMutableArray array];
-    
-    for (NSString *key in json) {
-        NSDictionary *jsonOfSet = [json objectForKey:key];
-        Set *set = [self modelFromJsonOfSet:jsonOfSet];
-        
-        [setList addObject:set];
-    }
-    
-    return setList;
 }
 
 @end

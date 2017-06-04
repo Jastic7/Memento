@@ -1,5 +1,5 @@
 //
-//  SetMapper.h
+//  UserMapper.h
 //  Memento
 //
 //  Created by Andrey Morozov on 04.06.17.
@@ -8,7 +8,6 @@
 
 #import "BaseMapper.h"
 
-
-@interface SetMapper : BaseMapper
+@interface UserMapper : BaseMapper
 
 @end

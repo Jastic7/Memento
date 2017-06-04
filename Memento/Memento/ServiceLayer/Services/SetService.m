@@ -8,29 +8,29 @@
 
 #import "TransportLayer.h"
 #import "SetService.h"
-#import "Set.h"
 #import "SetMapper.h"
 
 @implementation SetService
 
 - (void)obtainSetListForUserId:(NSString *)uid completion:(SetServiceCompletionBlock)completion {
-    SetMapper *setMapper = [SetMapper new];
-    
     if (uid) {
-        [self.transort obtainSetListWithPath:@"setList/" fromUserWithId:uid success:^(id response) {
+        SetMapper *setMapper = [SetMapper new];
+        NSString *path = @"sets";
+        
+        [self.transort obtainDataWithPath:path userId:uid success:^(id response) {
             
             NSMutableArray <Set *> *listSet;
             if (response) {
-                 listSet = [setMapper modelsFromJsonOfListSet:response];
+                 listSet = (NSMutableArray <Set *> *)[setMapper modelsFromJsonOfListObject:response];
             }
             
             completion(listSet, nil);
             
         } failure:^(NSError *error) {
             NSLog(@"FAILURE");
+            completion(nil, error);
         }];
     }
-    
 }
 
 @end

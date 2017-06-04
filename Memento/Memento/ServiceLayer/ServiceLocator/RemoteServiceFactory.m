@@ -9,6 +9,7 @@
 #import "RemoteServiceFactory.h"
 #import "AuthService.h"
 #import "SetService.h"
+#import "UserService.h"
 #import "TransportLayer.h"
 
 
@@ -20,6 +21,10 @@
 
 - (id<SetServiceProtocol>)createSetService {
     return [SetService createWithTrasport:[TransportLayer manager]];
+}
+
+- (id<UserServiceProtocol>)createUserService {
+    return [UserService createWithTrasport:[TransportLayer manager]];
 }
 
 @end

@@ -30,18 +30,11 @@
 
     
     if ([self isCorrectEmail:email password:password]) {
-        NSMutableDictionary <NSString *, id> *jsonModel = [NSMutableDictionary dictionary];
-        
-        jsonModel[@"username"] = username;
-        jsonModel[@"setList"] = @{};
-        jsonModel[@"setCount"] = @0;
         
         [self.transort createNewUserWithEmail:email
                                      password:password
-                                 profileImage:image
-                                    jsonModel:jsonModel
                                       success:^(id response) {
-                                          completion(response);
+                                          [self uploadUserDataWithId:response userName:username profilePhoto:image completion:completion];
                                       }
                                       failure:^(NSError *error) {
                                           completion(error);
@@ -62,6 +55,14 @@
     }
 }
 
+- (void)logOut {
+    [self.transort logOut];
+}
+
+- (void)addAuthStateChangeListener:(void (^)(NSString *))listener {
+    [self.transort addListenerForAuthStateChange:listener];
+}
+
 
 #pragma mark - private
 
@@ -71,6 +72,30 @@
     completion(uid, nil);
 }
 
+- (void)uploadUserDataWithId:(NSString *)uid userName:(NSString *)username profilePhoto:(NSData *)photoData completion:(AuthSignUpCompletionBlock)completion {
+    NSString *storagePath = @"profileImages";
+    
+    [self.transort uploadData:photoData storagePath:storagePath userId:uid success:^(id response) {
+        NSString *databasePath = @"users";
+        NSString *imageUrl = response;
+        NSDictionary <NSString *, id> *jsonModel = @{
+                                                     @"uid": uid,
+                                                     @"username": username,
+                                                     @"profileImageUrl": imageUrl
+                                                     };
+        
+        [self.transort postData:jsonModel databasePath:databasePath userId:uid success:^(id response) {
+            completion(nil);
+        } failure:^(NSError *error) {
+            completion(error);
+        }];
+        
+    } failure:^(NSError *error) {
+        completion(error);
+    }];
+    
+    
+}
 
 
 @end

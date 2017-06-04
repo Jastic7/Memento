@@ -8,22 +8,40 @@
 
 #import "User.h"
 
+@interface User ()
+
+@property (nonatomic, strong) NSMutableArray <Set *> *setList;
+
+@end
+
 @implementation User
 
-- (instancetype)initWithName:(NSString *)name email:(NSString *)email profilePhotoUrl:(NSURL *)photoUrl {
+- (NSMutableArray<Set *> *)setList {
+    if (!_setList) {
+        _setList = [NSMutableArray array];
+    }
+    
+    return _setList;
+}
+
+- (instancetype)initWithId:(NSString *)uid name:(NSString *)name profilePhotoUrl:(NSURL *)photoUrl {
     self = [super init];
     
     if (self) {
+        _uid             = uid;
         _username        = name;
-        _email           = email;
         _profilePhotoUrl = photoUrl;
     }
     
     return self;
 }
 
-+ (instancetype)userWithName:(NSString *)name email:(NSString *)email profilePhotoUrl:(NSURL *)photoUrl {
-    return [[self alloc] initWithName:name email:email profilePhotoUrl:photoUrl];
++ (instancetype)userWithId:(NSString *)uid name:(NSString *)name profilePhotoUrl:(NSURL *)photoUrl {
+    return [[self alloc] initWithId:uid name:name profilePhotoUrl:photoUrl];
+}
+
+- (void)addSetsFromSetList:(NSMutableArray <Set *> *)setList {
+    [self.setList addObjectsFromArray:setList];
 }
 
 @end

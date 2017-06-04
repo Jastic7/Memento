@@ -1,14 +1,15 @@
 //
-//  SetMapper.h
+//  UserService.h
 //  Memento
 //
 //  Created by Andrey Morozov on 04.06.17.
 //  Copyright © 2017 Andrey Morozov. All rights reserved.
 //
 
-#import "BaseMapper.h"
+#import "BaseService.h"
+#import "UserServiceProtocol.h"
 
 
-@interface SetMapper : BaseMapper
+@interface UserService : BaseService<UserServiceProtocol>
 
 @end

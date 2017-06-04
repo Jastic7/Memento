@@ -6,13 +6,8 @@
 //  Copyright © 2017 Andrey Morozov. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "BaseMapper.h"
 
-@class ItemOfSet;
-
-@interface ItemsOfSetMapper : NSObject
-
-- (ItemOfSet *)modelFromJsonOfItem:(NSDictionary *)json;
-- (NSMutableArray <ItemOfSet *> *)modelsFromJsonOfListItems:(NSDictionary *)json;
+@interface ItemsOfSetMapper : BaseMapper
 
 @end

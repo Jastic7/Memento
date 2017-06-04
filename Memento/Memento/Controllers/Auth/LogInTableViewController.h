@@ -12,7 +12,7 @@
 @protocol LogInTableViewControllerDelegate <NSObject>
 
 - (void)logInViewControllerDidCancelled;
-- (void)logInViewControllerDidLoggedInWithUserId:(NSString *)uid;
+- (void)logInViewControllerDidLoggedIn;
 
 @end
 

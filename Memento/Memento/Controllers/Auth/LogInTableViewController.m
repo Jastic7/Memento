@@ -50,11 +50,7 @@
                              message:errorDescription
                          actionTitle:@"OK"];
         } else {
-//            [self showAlertWithTitle:@"LOGGINED!" message:@"ALL IS GOOD" actionTitle:@"OK"];
-            [serviceLocator.setService obtainSetListForUserId:uid completion:^(NSMutableArray<Set *> *setList, NSError *error) {
-                NSLog(@"COMPLETE");
-                NSLog(@"%lu", (unsigned long)setList.count);
-            }];
+            [self.delegate logInViewControllerDidLoggedIn];
         }
     }];
 }

@@ -7,15 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Set.h"
+
 
 @interface User : NSObject
 
-@property (nonatomic, copy) NSString *uid;
-@property (nonatomic, copy) NSString *username;
-@property (nonatomic, copy) NSString *email;
-@property (nonatomic, copy) NSURL    *profilePhotoUrl;
+@property (nonatomic, copy, readonly) NSString *uid;
+@property (nonatomic, copy, readonly) NSString *username;
+@property (nonatomic, strong, readonly) NSURL    *profilePhotoUrl;
+@property (nonatomic, strong, readonly) NSMutableArray <Set *> *setList;
 
-- (instancetype)initWithName:(NSString *)name email:(NSString *)email profilePhotoUrl:(NSURL *)photoUrl;
-+ (instancetype)userWithName:(NSString *)name email:(NSString *)email profilePhotoUrl:(NSURL *)photoUrl;
+- (instancetype)initWithId:(NSString *)uid name:(NSString *)name profilePhotoUrl:(NSURL *)photoUrl;
++ (instancetype)userWithId:(NSString *)uid name:(NSString *)name profilePhotoUrl:(NSURL *)photoUrl;
+
+- (void)addSetsFromSetList:(NSMutableArray <Set *> *)setList;
 
 @end

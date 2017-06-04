@@ -24,7 +24,7 @@ static ServiceLocator *sharedInstance = nil;
 
 #pragma mark - Setters
 
-- (void)setServiceFactory:(id<ServiceFactoryProtocol>)serviceFactory {
+- (void)setServiceFactory:(id <ServiceFactoryProtocol>)serviceFactory {
     _serviceFactory = serviceFactory;
 }
 
@@ -53,6 +53,10 @@ static ServiceLocator *sharedInstance = nil;
 
 - (id <SetServiceProtocol>)setService {
     return [self.serviceFactory createSetService];
+}
+
+- (id <UserServiceProtocol>)userService {
+    return [self.serviceFactory createUserService];
 }
 
 @end

@@ -47,9 +47,7 @@ static NSString * const kShowLogInSegue = @"showLogInSegue";
 #pragma mark - SignUpTableViewControllerDelegate
 
 - (void)signUpViewControllerDidCancelled {
-    [self dismissViewControllerAnimated:YES completion:^{
-        [self showWaitingAlertWithTitle:@"" message:@"Authorization in progress..."];
-    }];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)signUpViewControllerDidCreatedUserWithEmail:(NSString *)email password:(NSString *)password username:(NSString *)username profilePhoto:(NSURL *)photo {
@@ -68,8 +66,10 @@ static NSString * const kShowLogInSegue = @"showLogInSegue";
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)logInViewControllerDidLoggedInWithUserId:(NSString *)uid {
-    //TODO::ADD IMPLEMENTATION
+- (void)logInViewControllerDidLoggedIn {
+    [self dismissViewControllerAnimated:YES completion:^{
+        [self showWaitingAlertWithTitle:@"" message:@"Authorization in progress..."];
+    }];
 }
 
 
@@ -78,9 +78,12 @@ static NSString * const kShowLogInSegue = @"showLogInSegue";
 - (void)showWaitingAlertWithTitle:(NSString *)title
                           message:(NSString *)message {
     
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title
+                                                                   message:message
+                                                            preferredStyle:UIAlertControllerStyleAlert];
     
-    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc]
+                                                  initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     
     CGRect rect = activityIndicator.frame;
     rect.origin.y = 19.5;
@@ -95,15 +98,9 @@ static NSString * const kShowLogInSegue = @"showLogInSegue";
 }
 
 
-
-
-
-
-
-
-
-
-
+-(void)dealloc {
+    NSLog(@"Welcome dealloced");
+}
 
 
 @end
