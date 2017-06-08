@@ -56,8 +56,8 @@
 		55E181B21EE4441500C1313D /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55E181B11EE4441500C1313D /* Auth.storyboard */; };
 		55E181B61EE470AC00C1313D /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E181B51EE470AC00C1313D /* UserService.m */; };
 		55E181B91EE4723200C1313D /* UserMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E181B81EE4723200C1313D /* UserMapper.m */; };
-		55E181C21EE4B45400C1313D /* ItemOfSetTableViewCell1.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E181C01EE4B45400C1313D /* ItemOfSetTableViewCell1.m */; };
-		55E181C31EE4B45400C1313D /* ItemOfSetTableViewCell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55E181C11EE4B45400C1313D /* ItemOfSetTableViewCell1.xib */; };
+		55E181C21EE4B45400C1313D /* ItemOfSetTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E181C01EE4B45400C1313D /* ItemOfSetTableViewCell.m */; };
+		55E181C31EE4B45400C1313D /* ItemOfSetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55E181C11EE4B45400C1313D /* ItemOfSetTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -162,9 +162,9 @@
 		55E181B51EE470AC00C1313D /* UserService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserService.m; sourceTree = "<group>"; };
 		55E181B71EE4723200C1313D /* UserMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMapper.h; sourceTree = "<group>"; };
 		55E181B81EE4723200C1313D /* UserMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMapper.m; sourceTree = "<group>"; };
-		55E181BF1EE4B45400C1313D /* ItemOfSetTableViewCell1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemOfSetTableViewCell1.h; sourceTree = "<group>"; };
-		55E181C01EE4B45400C1313D /* ItemOfSetTableViewCell1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemOfSetTableViewCell1.m; sourceTree = "<group>"; };
-		55E181C11EE4B45400C1313D /* ItemOfSetTableViewCell1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemOfSetTableViewCell1.xib; sourceTree = "<group>"; };
+		55E181BF1EE4B45400C1313D /* ItemOfSetTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemOfSetTableViewCell.h; sourceTree = "<group>"; };
+		55E181C01EE4B45400C1313D /* ItemOfSetTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemOfSetTableViewCell.m; sourceTree = "<group>"; };
+		55E181C11EE4B45400C1313D /* ItemOfSetTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemOfSetTableViewCell.xib; sourceTree = "<group>"; };
 		F9F8122E197F931FE908B655 /* Pods-Memento.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Memento.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Memento/Pods-Memento.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -261,9 +261,9 @@
 				5508B9541ED9184B00526200 /* EditingItemOfSetTableViewCell.h */,
 				5508B9551ED9184B00526200 /* EditingItemOfSetTableViewCell.m */,
 				5508B9561ED9184B00526200 /* EditingItemOfSetTableViewCell.xib */,
-				55E181BF1EE4B45400C1313D /* ItemOfSetTableViewCell1.h */,
-				55E181C01EE4B45400C1313D /* ItemOfSetTableViewCell1.m */,
-				55E181C11EE4B45400C1313D /* ItemOfSetTableViewCell1.xib */,
+				55E181BF1EE4B45400C1313D /* ItemOfSetTableViewCell.h */,
+				55E181C01EE4B45400C1313D /* ItemOfSetTableViewCell.m */,
+				55E181C11EE4B45400C1313D /* ItemOfSetTableViewCell.xib */,
 				5508B9571ED9184B00526200 /* LearnMode */,
 			);
 			path = View;
@@ -535,7 +535,7 @@
 				5508B9681ED9184B00526200 /* LearnRoundInfoHeader.xib in Resources */,
 				55E181B21EE4441500C1313D /* Auth.storyboard in Resources */,
 				55D34EE31EBA906500A2EE38 /* Main.storyboard in Resources */,
-				55E181C31EE4B45400C1313D /* ItemOfSetTableViewCell1.xib in Resources */,
+				55E181C31EE4B45400C1313D /* ItemOfSetTableViewCell.xib in Resources */,
 				559094311EDF009700BE4500 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -609,7 +609,7 @@
 				5508B9331ED916A600526200 /* LearnOrganizer.m in Sources */,
 				5508B9461ED9176B00526200 /* CreateSetTableViewController.m in Sources */,
 				55DD03491ED919FA00BDA097 /* UITableView+GettingIndexPath.m in Sources */,
-				55E181C21EE4B45400C1313D /* ItemOfSetTableViewCell1.m in Sources */,
+				55E181C21EE4B45400C1313D /* ItemOfSetTableViewCell.m in Sources */,
 				5508B94B1ED9176B00526200 /* MatchPrepareViewController.m in Sources */,
 				55E181B01EE43B1700C1313D /* BaseMapper.m in Sources */,
 				5508B96A1ED9184B00526200 /* SetTableViewCell.m in Sources */,

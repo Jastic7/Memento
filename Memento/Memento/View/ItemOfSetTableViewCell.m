@@ -2,30 +2,22 @@
 //  ItemOfSetTableViewCell.m
 //  Memento
 //
-//  Created by Andrey Morozov on 05.05.17.
+//  Created by Andrey Morozov on 05.06.17.
 //  Copyright © 2017 Andrey Morozov. All rights reserved.
 //
 
 #import "ItemOfSetTableViewCell.h"
+#import "UIColor+PickerColors.h"
 
 @interface ItemOfSetTableViewCell ()
 
-@property (weak, nonatomic) IBOutlet UITextView *termTextView;
-@property (weak, nonatomic) IBOutlet UITextView *definitionTextView;
-
+@property (weak, nonatomic) IBOutlet UILabel *termLabel;
+@property (weak, nonatomic) IBOutlet UILabel *definitionLabel;
 
 @end
 
+
 @implementation ItemOfSetTableViewCell
-
-#pragma mark - Setters
-
-- (void)setDelegate:(id<UITextViewDelegate>)delegate {
-    _delegate = delegate;
-    
-    self.termTextView.delegate = self.delegate;
-    self.definitionTextView.delegate = self.delegate;
-}
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -39,9 +31,20 @@
     return [UINib nibWithNibName:@"ItemOfSetTableViewCell" bundle:nil];
 }
 
-- (void)configureWithTerm:(NSString *)term definition:(NSString *)definition {
-    self.termTextView.text = term;
-    self.definitionTextView.text = definition;
+- (void)configureWithTerm:(NSString *)term
+               definition:(NSString *)definition {
+    [self configureWithTerm:term definition:definition textColor:[UIColor textBlack]];
+}
+
+- (void)configureWithTerm:(NSString *)term
+               definition:(NSString *)definition
+                textColor:(UIColor *)textColor {
+    
+    self.termLabel.text             = term;
+    self.definitionLabel.text       = definition;
+    
+    self.termLabel.textColor        = textColor;
+    self.definitionLabel.textColor  = textColor;
 }
 
 @end
