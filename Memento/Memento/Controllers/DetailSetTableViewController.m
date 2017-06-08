@@ -19,9 +19,9 @@
 #import "LearnOrganizer.h"
 #import "MatchOrganizer.h"
 
-static NSString * const kItemOfSetCellID = @"ItemOfSetTableViewCell";
-static NSString * const kMatchModePrepareSegue = @"matchModePrepareSegue";
-static NSString * const kRoundLearnModeSegue = @"roundLearnModeSegue";
+static NSString * const kItemOfSetCellID        = @"ItemOfSetTableViewCell";
+static NSString * const kMatchModePrepareSegue  = @"matchModePrepareSegue";
+static NSString * const kRoundLearnModeSegue    = @"roundLearnModeSegue";
 
 
 @interface DetailSetTableViewController () <MatchModeDelegate>
@@ -34,8 +34,8 @@ static NSString * const kRoundLearnModeSegue = @"roundLearnModeSegue";
     [super viewDidLoad];
     
     self.tableView.dataSource = self;
-    self.tableView.estimatedRowHeight = 100;
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
+//    self.tableView.estimatedRowHeight = 100;
+//    self.tableView.rowHeight = UITableViewAutomaticDimension;
     [self.tableView registerNib:[ItemOfSetTableViewCell nib] forCellReuseIdentifier:kItemOfSetCellID];
 }
 
@@ -52,7 +52,8 @@ static NSString * const kRoundLearnModeSegue = @"roundLearnModeSegue";
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    ItemOfSetTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kItemOfSetCellID forIndexPath:indexPath];
+    ItemOfSetTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kItemOfSetCellID
+                                                                   forIndexPath:indexPath];
     ItemOfSet *item = self.set[indexPath.row];
     [cell configureWithTerm:item.term definition:item.definition];
     

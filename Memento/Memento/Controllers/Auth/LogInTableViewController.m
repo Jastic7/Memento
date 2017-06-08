@@ -7,8 +7,10 @@
 //
 
 #import "LogInTableViewController.h"
+#import "WaitingAlertViewController.h"
 #import "ServiceLocator.h"
-#import "Assembly.h"
+#import "AuthenticationDelegate.h"
+
 
 @interface LogInTableViewController ()
 
@@ -24,34 +26,35 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [Assembly assemblyServiceLayer];
-    
 }
 
 
 #pragma mark - Actions
 
 - (IBAction)cancelButtonTapped:(id)sender {
-    [self.delegate logInViewControllerDidCancelled];
+    [self.delegate authenticationDidCancelled];
 }
 
 
 - (IBAction)logInButtonTapped:(id)sender {
+    [self showWaitingAlertWithMessage:@"Authorization in progress..."];
+    
     NSString *email = self.emailTextField.text;
     NSString *password = self.passwordTextField.text;
     
     ServiceLocator *serviceLocator = [ServiceLocator shared];
     [serviceLocator.authService logInWithEmail:email password:password completion:^(NSString *uid, NSError *error) {
-        if (error) {
-            NSString *errorDescription = error.localizedDescription;
-            
-            [self showAlertWithTitle:@"Log In failed"
-                             message:errorDescription
-                         actionTitle:@"OK"];
-        } else {
-            [self.delegate logInViewControllerDidLoggedIn];
-        }
+        [self dismissViewControllerAnimated:YES completion:^{
+            if (error) {
+                NSString *errorDescription = error.localizedDescription;
+                
+                [self showAlertWithTitle:@"Authorization failed"
+                                 message:errorDescription
+                             actionTitle:@"OK"];
+            } else {
+                [self.delegate authenticationDidComplete];
+            }
+        }];
     }];
 }
 
@@ -67,6 +70,14 @@
     
     UIAlertAction *action = [UIAlertAction actionWithTitle:actionTitle style:UIAlertActionStyleDefault handler:nil];
     [alert addAction:action];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)showWaitingAlertWithMessage:(NSString *)message {
+    
+    WaitingAlertViewController *alert = [WaitingAlertViewController alertControllerWithMessage:message
+                                                                                preferredStyle:UIAlertControllerStyleAlert];
     
     [self presentViewController:alert animated:YES completion:nil];
 }

@@ -6,7 +6,7 @@
 //  Copyright © 2017 Andrey Morozov. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "Entity.h"
 
 /*!
  * @brief Describe some stage of learning process.
@@ -30,7 +30,7 @@ typedef NS_ENUM(NSInteger, LearnState) {
 /*!
  * @brief Responsible for one learning item from  whole Set.
  */
-@interface ItemOfSet : NSObject <NSCopying>
+@interface ItemOfSet : Entity <NSCopying>
 
 /*!
  * @brief Term of the current item.
@@ -50,6 +50,7 @@ typedef NS_ENUM(NSInteger, LearnState) {
  */
 @property (nonatomic, assign, readonly) LearnState learnProgress;
 
+
 /**
  * @brief Initialize the new item with data.
  * @param term - Term of the new item.
@@ -57,10 +58,11 @@ typedef NS_ENUM(NSInteger, LearnState) {
  * @return New item with term and definition.
  */
 - (instancetype)initWithTerm:(NSString *)term definition:(NSString *)definition;
-- (instancetype)initWithTerm:(NSString *)term definition:(NSString *)definition learnProgress:(LearnState)progress;
+- (instancetype)initWithTerm:(NSString *)term definition:(NSString *)definition learnProgress:(LearnState)progress identifier:(NSString *)identifier;
 
 + (instancetype)itemOfSetWithTerm:(NSString *)term definition:(NSString *)definition;
-+ (instancetype)itemOfSetWithTerm:(NSString *)term definition:(NSString *)definition learnProgress:(LearnState)progress;
++ (instancetype)itemOfSetWithTerm:(NSString *)term definition:(NSString *)definition learnProgress:(LearnState)progress identifier:(NSString *)identifier;
+
 
 /**
  * @brief Set learnProgress of the item to Mistake.

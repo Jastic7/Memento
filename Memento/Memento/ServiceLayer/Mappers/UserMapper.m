@@ -13,13 +13,12 @@
 @implementation UserMapper
 
 - (id)modelFromJsonOfObject:(NSDictionary *)json {
-    NSString *username = json[@"username"];
-    NSString *profilePhotoStringUrl = json[@"profilePhotoUrl"];
-    NSString *uid = json[@"uid"];
+    NSString *uid               = json[@"uid"];
+    NSString *username          = json[@"username"];
+    NSString *email             = json[@"email"];
+    NSString *profilePhotoUrl   = json[@"profilePhotoUrl"];
     
-    NSURL *profilePhotoUrl = [NSURL URLWithString:profilePhotoStringUrl];
-    
-    User *user = [User userWithId:uid name:username profilePhotoUrl:profilePhotoUrl];
+    User *user = [User userWithId:uid name:username email:email profilePhotoUrl:profilePhotoUrl];
     
     return user;
 }
@@ -27,5 +26,17 @@
 - (NSMutableArray<id> *)modelsFromJsonOfListObject:(NSDictionary *)json {
     return nil;
 }
+
+- (NSDictionary *)jsonFromModel:(id)model {
+    User *user = model;
+    
+    NSDictionary *json = @{ @"uid"              : user.uid,
+                            @"username"         : user.username,
+                            @"email"            : user.email,
+                            @"profilePhotoUrl"  : user.profilePhotoUrl };
+    
+    return json;
+}
+
 
 @end

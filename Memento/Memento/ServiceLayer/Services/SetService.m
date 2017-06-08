@@ -9,10 +9,13 @@
 #import "TransportLayer.h"
 #import "SetService.h"
 #import "SetMapper.h"
+#import "Set.h"
+#import "ItemOfSetMapper.h"
+
 
 @implementation SetService
 
-- (void)obtainSetListForUserId:(NSString *)uid completion:(SetServiceCompletionBlock)completion {
+- (void)obtainSetListForUserId:(NSString *)uid completion:(SetServiceDownloadCompletionBlock)completion {
     if (uid) {
         SetMapper *setMapper = [SetMapper new];
         NSString *path = @"sets";
@@ -31,6 +34,26 @@
             completion(nil, error);
         }];
     }
+}
+
+- (void)postSetList:(NSArray<Set *> *)setList
+             userId:(NSString *)uid
+         completion:(SetServiceUploadCompletionBlock)completion {
+    
+    SetMapper *setMapper = [SetMapper new];
+    
+    NSDictionary *jsonData = [setMapper jsonFromModelArray:setList];
+    NSString *path = @"sets";
+    
+    [self.transort postData:jsonData databasePath:path userId:uid success:^(id response) {
+        completion(nil);
+    } failure:^(NSError *error) {
+        completion(error);
+    }];
+}
+
+- (NSString *)configureUnuiqueId {
+    return [self.transort uniqueId];
 }
 
 @end

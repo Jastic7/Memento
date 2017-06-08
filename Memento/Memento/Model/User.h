@@ -14,11 +14,12 @@
 
 @property (nonatomic, copy, readonly) NSString *uid;
 @property (nonatomic, copy, readonly) NSString *username;
-@property (nonatomic, strong, readonly) NSURL    *profilePhotoUrl;
+@property (nonatomic, copy, readonly) NSString *email;
+@property (nonatomic, copy, readonly) NSString *profilePhotoUrl;
 @property (nonatomic, strong, readonly) NSMutableArray <Set *> *setList;
 
-- (instancetype)initWithId:(NSString *)uid name:(NSString *)name profilePhotoUrl:(NSURL *)photoUrl;
-+ (instancetype)userWithId:(NSString *)uid name:(NSString *)name profilePhotoUrl:(NSURL *)photoUrl;
+- (instancetype)initWithId:(NSString *)uid name:(NSString *)name email:(NSString *)email profilePhotoUrl:(NSString *)photoUrl;
++ (instancetype)userWithId:(NSString *)uid name:(NSString *)name email:(NSString *)email profilePhotoUrl:(NSString *)photoUrl;
 
 - (void)addSetsFromSetList:(NSMutableArray <Set *> *)setList;
 

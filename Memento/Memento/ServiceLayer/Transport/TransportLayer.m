@@ -64,8 +64,11 @@ static TransportLayer *sharedInstance = nil;
                       password:(NSString *)password
                        success:(SuccessCompletionBlock)success
                        failure:(FailureCompletionBlock)failure {
+    [self startNetworkActivity];
     
     [[FIRAuth auth] createUserWithEmail:email password:password completion:^(FIRUser * _Nullable user, NSError * _Nullable error) {
+        [self finishNetworkActivity];
+        
         if (user) {
             success(user.uid);
         } else {
@@ -78,8 +81,11 @@ static TransportLayer *sharedInstance = nil;
                   password:(NSString *)password
                    success:(SuccessCompletionBlock)success
                    failure:(FailureCompletionBlock)failure {
+    [self startNetworkActivity];
     
     [[FIRAuth auth] signInWithEmail:email password:password completion:^(FIRUser * _Nullable user, NSError * _Nullable error) {
+        [self finishNetworkActivity];
+        
         if (user) {
             success(user.uid);
         } else {
@@ -90,10 +96,10 @@ static TransportLayer *sharedInstance = nil;
 
 - (void)addListenerForAuthStateChange:(void (^)(id))listener {
     self.authStateChangeHandle = [[FIRAuth auth] addAuthStateDidChangeListener:^(FIRAuth * _Nonnull auth, FIRUser * _Nullable user) {
-        if (!user) {
-            listener(nil);
-        } else {
+        if (user) {
             listener(user.uid);
+        } else {
+            listener(nil);
         }
     }];
 }
@@ -105,10 +111,13 @@ static TransportLayer *sharedInstance = nil;
                     userId:(NSString *)uid
                    success:(SuccessCompletionBlock)success
                    failure:(FailureCompletionBlock)failure {
+    [self startNetworkActivity];
     
     FIRDatabaseReference *requestRef = [self databasePath:path withUserId:uid];
     
     [requestRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        [self finishNetworkActivity];
+        
         NSDictionary *response = [snapshot exists] ? snapshot.value : nil;
         
         NSLog(@"%@", response);
@@ -123,15 +132,18 @@ static TransportLayer *sharedInstance = nil;
 
 #pragma mark - Uploading data
 
-- (void)postData:(NSDictionary *)jsonData
+- (void)postData:(id)jsonData
     databasePath:(NSString *)path
           userId:(NSString *)uid
          success:(SuccessCompletionBlock)success
          failure:(FailureCompletionBlock)failure {
+    [self startNetworkActivity];
     
     FIRDatabaseReference *requestRef = [self databasePath:path withUserId:uid];
     
     [requestRef setValue:jsonData withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
+        [self finishNetworkActivity];
+        
         if (error) {
             failure(error);
         } else {
@@ -145,16 +157,23 @@ static TransportLayer *sharedInstance = nil;
             userId:(NSString *)uid
            success:(SuccessCompletionBlock)success
            failure:(FailureCompletionBlock)failure {
+    [self startNetworkActivity];
     
     FIRStorageReference *requestRef = [self storagePath:path withUserId:uid];
     
     [requestRef putData:data metadata:nil completion:^(FIRStorageMetadata * _Nullable metadata, NSError * _Nullable error) {
+        [self finishNetworkActivity];
+        
         if (error) {
             failure(error);
         } else {
             success(metadata.downloadURL.absoluteString);
         }
     }];
+}
+
+- (NSString *)uniqueId {
+    return [self.rootRefDB childByAutoId].key;
 }
 
 
@@ -166,6 +185,14 @@ static TransportLayer *sharedInstance = nil;
 
 - (FIRStorageReference *)storagePath:(NSString *)path withUserId:(NSString *)uid {
     return [[self.rootRefSR child:path] child:[uid stringByAppendingString:@".jpg"]];
+}
+
+- (void)startNetworkActivity {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: YES];
+}
+
+- (void)finishNetworkActivity {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: NO];
 }
 
 @end

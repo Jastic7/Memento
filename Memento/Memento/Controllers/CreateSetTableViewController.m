@@ -7,21 +7,33 @@
 //
 
 #import "CreateSetTableViewController.h"
-#import "ItemOfSetTableViewCell.h"
+#import "EditingItemOfSetTableViewCell.h"
 #import "ItemOfSet.h"
 #import "Set.h"
 #import "UITableView+GettingIndexPath.h"
 
-static NSString * const kItemOfSetCellID = @"ItemOfSetTableViewCell";
+static NSString * const kEditingItemOfSetCellID = @"EditingItemOfSetTableViewCell";
+
 
 @interface CreateSetTableViewController () <UINavigationBarDelegate, UITextViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray<ItemOfSet *> *items;
-@property (weak, nonatomic) IBOutlet UITextField *titleOfSetTextField;
+@property (nonatomic, weak) IBOutlet UITextField *titleOfSetTextField;
 
 @end
 
+
 @implementation CreateSetTableViewController
+
+#pragma mark - Getters
+
+- (NSMutableArray<ItemOfSet *> *)items {
+    if (!_items) {
+        _items = [NSMutableArray array];
+    }
+    
+    return _items;
+}
 
 
 #pragma mark - LifeCycle
@@ -29,18 +41,13 @@ static NSString * const kItemOfSetCellID = @"ItemOfSetTableViewCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tableView.dataSource = self;
-    self.tableView.estimatedRowHeight = 100;
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    [self configureTableView];
     
-    [self.tableView registerNib:[ItemOfSetTableViewCell nib] forCellReuseIdentifier:kItemOfSetCellID];
-    
-    self.items = [NSMutableArray array];
     ItemOfSet *item = [ItemOfSet new];
     [self.items addObject:item];
 }
 
--(void)viewDidAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
     [self.titleOfSetTextField becomeFirstResponder];
@@ -55,16 +62,13 @@ static NSString * const kItemOfSetCellID = @"ItemOfSetTableViewCell";
 
 #pragma mark - UITableViewDataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.items.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    ItemOfSetTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kItemOfSetCellID forIndexPath:indexPath];
+    EditingItemOfSetTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kEditingItemOfSetCellID
+                                                                          forIndexPath:indexPath];
     cell.delegate = self;
     
     ItemOfSet *item = self.items[indexPath.row];
@@ -95,7 +99,7 @@ static NSString * const kItemOfSetCellID = @"ItemOfSetTableViewCell";
 #pragma mark - Actions: Finish editing
 
 - (IBAction)cancelBarButtonTapped:(UIBarButtonItem *)sender {
-    [self.delegate cancelCreationalNewSet];
+    [self.delegate сreateSetTableViewControllerDidCancel];
     self.delegate = nil;
 }
 
@@ -114,7 +118,7 @@ static NSString * const kItemOfSetCellID = @"ItemOfSetTableViewCell";
     //TODO:FIX IT
     Set *set = [Set setWithTitle:title author:author definitionLang:@"" termLang:@"" items:self.items];
     
-    [self.delegate saveNewSet:set];
+    [self.delegate createSetTableViewControllerDidCreateSet:set];
     self.delegate = nil;
 }
 
@@ -147,7 +151,7 @@ static NSString * const kItemOfSetCellID = @"ItemOfSetTableViewCell";
 
 #pragma mark - UINavigationBarDelegate
 
--(UIBarPosition)positionForBar:(id<UIBarPositioning>)bar {
+- (UIBarPosition)positionForBar:(id<UIBarPositioning>)bar {
     return UIBarPositionTopAttached;
 }
 
@@ -164,5 +168,17 @@ static NSString * const kItemOfSetCellID = @"ItemOfSetTableViewCell";
     [UIView setAnimationsEnabled:YES];
     [self.tableView setContentOffset:currentOffset];
 }
+
+
+#pragma mark - Configuration
+
+- (void)configureTableView {
+    self.tableView.dataSource = self;
+    self.tableView.estimatedRowHeight = 100;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    
+    [self.tableView registerNib:[EditingItemOfSetTableViewCell nib] forCellReuseIdentifier:kEditingItemOfSetCellID];
+}
+
 
 @end

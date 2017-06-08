@@ -11,8 +11,8 @@
 
 @protocol CreateSetTableViewControllerDelegate <NSObject>
 
--(void)cancelCreationalNewSet;
--(void)saveNewSet:(Set *)set;
+-(void)сreateSetTableViewControllerDidCancel;
+-(void)createSetTableViewControllerDidCreateSet:(Set *)set;
 
 @end
 

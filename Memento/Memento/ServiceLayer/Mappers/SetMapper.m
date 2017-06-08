@@ -7,7 +7,7 @@
 //
 
 #import "SetMapper.h"
-#import "ItemsOfSetMapper.h"
+#import "ItemOfSetMapper.h"
 #import "Set.h"
 
 
@@ -18,14 +18,33 @@
     NSString *definitionLang    = json[@"definitionLang"];
     NSString *termLang          = json[@"termLang"];
     NSString *title             = json[@"setTitle"];
+    NSString *identifier        = json[@"id"];
     
-    ItemsOfSetMapper *itemMapper = [ItemsOfSetMapper new];
+    ItemOfSetMapper *itemMapper = [ItemOfSetMapper new];
     
     NSMutableArray <ItemOfSet *> *items = (NSMutableArray <ItemOfSet *> *)[itemMapper modelsFromJsonOfListObject:json[@"items"]];
     
-    Set *set = [Set setWithTitle:title author:author definitionLang:definitionLang termLang:termLang items:items];
+    Set *set = [Set setWithTitle:title author:author definitionLang:definitionLang termLang:termLang identifier:identifier items:items];
     
     return set;
+}
+
+- (NSDictionary *)jsonFromModel:(id)model {
+    Set *set = model;
+    ItemOfSetMapper *itemMapper = [ItemOfSetMapper new];
+    
+    NSDictionary *items = [itemMapper jsonFromModelArray:set.items];
+    NSNumber *itemCount = [NSNumber numberWithUnsignedInteger:set.count];
+    
+    NSDictionary *jsonModel = @{ @"author"          : set.author,
+                                 @"itemCount"       : itemCount,
+                                 @"definitionLang"  : set.definitionLang,
+                                 @"termLang"        : set.termLang,
+                                 @"setTitle"        : set.title,
+                                 @"items"           : items,
+                                 @"id"              : set.identifier };
+    
+    return jsonModel;
 }
 
 @end

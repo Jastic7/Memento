@@ -24,20 +24,21 @@
     return _setList;
 }
 
-- (instancetype)initWithId:(NSString *)uid name:(NSString *)name profilePhotoUrl:(NSURL *)photoUrl {
+- (instancetype)initWithId:(NSString *)uid name:(NSString *)name email:(NSString *)email profilePhotoUrl:(NSString *)photoUrl {
     self = [super init];
     
     if (self) {
         _uid             = uid;
         _username        = name;
+        _email           = email;
         _profilePhotoUrl = photoUrl;
     }
     
     return self;
 }
 
-+ (instancetype)userWithId:(NSString *)uid name:(NSString *)name profilePhotoUrl:(NSURL *)photoUrl {
-    return [[self alloc] initWithId:uid name:name profilePhotoUrl:photoUrl];
++ (instancetype)userWithId:(NSString *)uid name:(NSString *)name email:(NSString *)email profilePhotoUrl:(NSString *)photoUrl {
+    return [[self alloc] initWithId:uid name:name email:email profilePhotoUrl:photoUrl];
 }
 
 - (void)addSetsFromSetList:(NSMutableArray <Set *> *)setList {

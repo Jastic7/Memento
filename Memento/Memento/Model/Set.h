@@ -6,10 +6,11 @@
 //  Copyright © 2017 Andrey Morozov. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "ItemOfSet.h"
+#import "Entity.h"
 
-@interface Set : NSObject <NSCopying>
+
+@interface Set : Entity <NSCopying>
 
 @property (nonatomic, copy, readonly)   NSString *title;
 @property (nonatomic, copy, readonly)   NSString *author;
@@ -18,16 +19,32 @@
 @property (nonatomic, assign, readonly) NSUInteger count;
 @property (nonatomic, assign, readonly) BOOL isEmpty;
 
+@property (nonatomic, strong, readonly) NSMutableArray<ItemOfSet *> *items;
+
 - (instancetype)initWithTitle:(NSString *)title
                        author:(NSString *)author
                definitionLang:(NSString *)defLang
                      termLang:(NSString *)termLang
                         items:(NSArray<ItemOfSet *> *)items;
 
+- (instancetype)initWithTitle:(NSString *)title
+                       author:(NSString *)author
+               definitionLang:(NSString *)defLang
+                     termLang:(NSString *)termLang
+                   identifier:(NSString *)identifier
+                        items:(NSArray<ItemOfSet *> *)items;
+
 + (instancetype)setWithTitle:(NSString *)title
                       author:(NSString *)author
               definitionLang:(NSString *)defLang
                     termLang:(NSString *)termLang
+                       items:(NSArray<ItemOfSet *> *)items;
+
++ (instancetype)setWithTitle:(NSString *)title
+                      author:(NSString *)author
+              definitionLang:(NSString *)defLang
+                    termLang:(NSString *)termLang
+                  identifier:(NSString *)identifier
                        items:(NSArray<ItemOfSet *> *)items;
 
 + (instancetype)setWithSet:(Set *)set;

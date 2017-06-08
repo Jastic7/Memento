@@ -20,19 +20,20 @@
 		5508B9611ED9184B00526200 /* Circle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B94F1ED9184B00526200 /* Circle.m */; };
 		5508B9621ED9184B00526200 /* ItemLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B9511ED9184B00526200 /* ItemLabel.m */; };
 		5508B9631ED9184B00526200 /* ItemOfMatchCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B9531ED9184B00526200 /* ItemOfMatchCollectionViewCell.m */; };
-		5508B9641ED9184B00526200 /* ItemOfSetTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B9551ED9184B00526200 /* ItemOfSetTableViewCell.m */; };
-		5508B9651ED9184B00526200 /* ItemOfSetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5508B9561ED9184B00526200 /* ItemOfSetTableViewCell.xib */; };
+		5508B9641ED9184B00526200 /* EditingItemOfSetTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B9551ED9184B00526200 /* EditingItemOfSetTableViewCell.m */; };
+		5508B9651ED9184B00526200 /* EditingItemOfSetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5508B9561ED9184B00526200 /* EditingItemOfSetTableViewCell.xib */; };
 		5508B9661ED9184B00526200 /* LearnProgressStackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B9591ED9184B00526200 /* LearnProgressStackView.m */; };
 		5508B9671ED9184B00526200 /* LearnRoundInfoHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B95B1ED9184B00526200 /* LearnRoundInfoHeader.m */; };
 		5508B9681ED9184B00526200 /* LearnRoundInfoHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5508B95C1ED9184B00526200 /* LearnRoundInfoHeader.xib */; };
-		5508B9691ED9184B00526200 /* LearnRoundInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B95E1ED9184B00526200 /* LearnRoundInfoTableViewCell.m */; };
 		5508B96A1ED9184B00526200 /* SetTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B9601ED9184B00526200 /* SetTableViewCell.m */; };
 		5508B9721ED9186300526200 /* ItemOfSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B96E1ED9186300526200 /* ItemOfSet.m */; };
 		5508B9731ED9186300526200 /* Set.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B9701ED9186300526200 /* Set.m */; };
+		5513ECF11EE96CE400E2611B /* WaitingAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5513ECF01EE96CE400E2611B /* WaitingAlertViewController.m */; };
 		5525EE871EE3725100206898 /* SetService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5525EE861EE3725100206898 /* SetService.m */; };
 		5525EE8A1EE376AB00206898 /* BaseService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5525EE891EE376AB00206898 /* BaseService.m */; };
 		5525EE8E1EE38C1C00206898 /* SetMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5525EE8D1EE38C1C00206898 /* SetMapper.m */; };
-		5525EE911EE3918500206898 /* ItemsOfSetMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5525EE901EE3918500206898 /* ItemsOfSetMapper.m */; };
+		5525EE911EE3918500206898 /* ItemOfSetMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5525EE901EE3918500206898 /* ItemOfSetMapper.m */; };
+		553B24361EE7105800D51326 /* Entity.m in Sources */ = {isa = PBXBuildFile; fileRef = 553B24351EE7105800D51326 /* Entity.m */; };
 		559094291EDEF53A00BE4500 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 559094281EDEF53A00BE4500 /* User.m */; };
 		559094311EDF009700BE4500 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 559094301EDF009700BE4500 /* GoogleService-Info.plist */; };
 		55BAE12C1EDF8D6D00F1CBEE /* AuthService.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BAE12B1EDF8D6D00F1CBEE /* AuthService.m */; };
@@ -55,6 +56,8 @@
 		55E181B21EE4441500C1313D /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55E181B11EE4441500C1313D /* Auth.storyboard */; };
 		55E181B61EE470AC00C1313D /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E181B51EE470AC00C1313D /* UserService.m */; };
 		55E181B91EE4723200C1313D /* UserMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E181B81EE4723200C1313D /* UserMapper.m */; };
+		55E181C21EE4B45400C1313D /* ItemOfSetTableViewCell1.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E181C01EE4B45400C1313D /* ItemOfSetTableViewCell1.m */; };
+		55E181C31EE4B45400C1313D /* ItemOfSetTableViewCell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55E181C11EE4B45400C1313D /* ItemOfSetTableViewCell1.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -87,22 +90,23 @@
 		5508B9511ED9184B00526200 /* ItemLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemLabel.m; sourceTree = "<group>"; };
 		5508B9521ED9184B00526200 /* ItemOfMatchCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemOfMatchCollectionViewCell.h; sourceTree = "<group>"; };
 		5508B9531ED9184B00526200 /* ItemOfMatchCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemOfMatchCollectionViewCell.m; sourceTree = "<group>"; };
-		5508B9541ED9184B00526200 /* ItemOfSetTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemOfSetTableViewCell.h; sourceTree = "<group>"; };
-		5508B9551ED9184B00526200 /* ItemOfSetTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemOfSetTableViewCell.m; sourceTree = "<group>"; };
-		5508B9561ED9184B00526200 /* ItemOfSetTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemOfSetTableViewCell.xib; sourceTree = "<group>"; };
+		5508B9541ED9184B00526200 /* EditingItemOfSetTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditingItemOfSetTableViewCell.h; sourceTree = "<group>"; };
+		5508B9551ED9184B00526200 /* EditingItemOfSetTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditingItemOfSetTableViewCell.m; sourceTree = "<group>"; };
+		5508B9561ED9184B00526200 /* EditingItemOfSetTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditingItemOfSetTableViewCell.xib; sourceTree = "<group>"; };
 		5508B9581ED9184B00526200 /* LearnProgressStackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnProgressStackView.h; sourceTree = "<group>"; };
 		5508B9591ED9184B00526200 /* LearnProgressStackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearnProgressStackView.m; sourceTree = "<group>"; };
 		5508B95A1ED9184B00526200 /* LearnRoundInfoHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnRoundInfoHeader.h; sourceTree = "<group>"; };
 		5508B95B1ED9184B00526200 /* LearnRoundInfoHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearnRoundInfoHeader.m; sourceTree = "<group>"; };
 		5508B95C1ED9184B00526200 /* LearnRoundInfoHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnRoundInfoHeader.xib; sourceTree = "<group>"; };
-		5508B95D1ED9184B00526200 /* LearnRoundInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnRoundInfoTableViewCell.h; sourceTree = "<group>"; };
-		5508B95E1ED9184B00526200 /* LearnRoundInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearnRoundInfoTableViewCell.m; sourceTree = "<group>"; };
 		5508B95F1ED9184B00526200 /* SetTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetTableViewCell.h; sourceTree = "<group>"; };
 		5508B9601ED9184B00526200 /* SetTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetTableViewCell.m; sourceTree = "<group>"; };
 		5508B96D1ED9186300526200 /* ItemOfSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemOfSet.h; sourceTree = "<group>"; };
 		5508B96E1ED9186300526200 /* ItemOfSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemOfSet.m; sourceTree = "<group>"; };
 		5508B96F1ED9186300526200 /* Set.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Set.h; sourceTree = "<group>"; };
 		5508B9701ED9186300526200 /* Set.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Set.m; sourceTree = "<group>"; };
+		5513ECE51EE8C6C200E2611B /* AuthenticationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationDelegate.h; sourceTree = "<group>"; };
+		5513ECEF1EE96CE400E2611B /* WaitingAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitingAlertViewController.h; sourceTree = "<group>"; };
+		5513ECF01EE96CE400E2611B /* WaitingAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitingAlertViewController.m; sourceTree = "<group>"; };
 		5525EE841EE3723E00206898 /* SetServiceProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetServiceProtocol.h; sourceTree = "<group>"; };
 		5525EE851EE3725100206898 /* SetService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetService.h; sourceTree = "<group>"; };
 		5525EE861EE3725100206898 /* SetService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetService.m; sourceTree = "<group>"; };
@@ -110,8 +114,10 @@
 		5525EE891EE376AB00206898 /* BaseService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseService.m; sourceTree = "<group>"; };
 		5525EE8C1EE38C1C00206898 /* SetMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetMapper.h; sourceTree = "<group>"; };
 		5525EE8D1EE38C1C00206898 /* SetMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetMapper.m; sourceTree = "<group>"; };
-		5525EE8F1EE3918500206898 /* ItemsOfSetMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemsOfSetMapper.h; sourceTree = "<group>"; };
-		5525EE901EE3918500206898 /* ItemsOfSetMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemsOfSetMapper.m; sourceTree = "<group>"; };
+		5525EE8F1EE3918500206898 /* ItemOfSetMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemOfSetMapper.h; sourceTree = "<group>"; };
+		5525EE901EE3918500206898 /* ItemOfSetMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemOfSetMapper.m; sourceTree = "<group>"; };
+		553B24341EE7105800D51326 /* Entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entity.h; sourceTree = "<group>"; };
+		553B24351EE7105800D51326 /* Entity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Entity.m; sourceTree = "<group>"; };
 		558D15331ED91E100055C2DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		559094271EDEF53A00BE4500 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		559094281EDEF53A00BE4500 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
@@ -156,6 +162,9 @@
 		55E181B51EE470AC00C1313D /* UserService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserService.m; sourceTree = "<group>"; };
 		55E181B71EE4723200C1313D /* UserMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMapper.h; sourceTree = "<group>"; };
 		55E181B81EE4723200C1313D /* UserMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMapper.m; sourceTree = "<group>"; };
+		55E181BF1EE4B45400C1313D /* ItemOfSetTableViewCell1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemOfSetTableViewCell1.h; sourceTree = "<group>"; };
+		55E181C01EE4B45400C1313D /* ItemOfSetTableViewCell1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemOfSetTableViewCell1.m; sourceTree = "<group>"; };
+		55E181C11EE4B45400C1313D /* ItemOfSetTableViewCell1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemOfSetTableViewCell1.xib; sourceTree = "<group>"; };
 		F9F8122E197F931FE908B655 /* Pods-Memento.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Memento.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Memento/Pods-Memento.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -213,6 +222,7 @@
 				5508B93F1ED9176B00526200 /* MatchMode */,
 				5508B9441ED9176B00526200 /* SetsViewController.h */,
 				5508B9451ED9176B00526200 /* SetsViewController.m */,
+				5513ECEE1EE96CBF00E2611B /* CustomAlerts */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -248,9 +258,12 @@
 				5508B9511ED9184B00526200 /* ItemLabel.m */,
 				5508B9521ED9184B00526200 /* ItemOfMatchCollectionViewCell.h */,
 				5508B9531ED9184B00526200 /* ItemOfMatchCollectionViewCell.m */,
-				5508B9541ED9184B00526200 /* ItemOfSetTableViewCell.h */,
-				5508B9551ED9184B00526200 /* ItemOfSetTableViewCell.m */,
-				5508B9561ED9184B00526200 /* ItemOfSetTableViewCell.xib */,
+				5508B9541ED9184B00526200 /* EditingItemOfSetTableViewCell.h */,
+				5508B9551ED9184B00526200 /* EditingItemOfSetTableViewCell.m */,
+				5508B9561ED9184B00526200 /* EditingItemOfSetTableViewCell.xib */,
+				55E181BF1EE4B45400C1313D /* ItemOfSetTableViewCell1.h */,
+				55E181C01EE4B45400C1313D /* ItemOfSetTableViewCell1.m */,
+				55E181C11EE4B45400C1313D /* ItemOfSetTableViewCell1.xib */,
 				5508B9571ED9184B00526200 /* LearnMode */,
 			);
 			path = View;
@@ -264,8 +277,6 @@
 				5508B95A1ED9184B00526200 /* LearnRoundInfoHeader.h */,
 				5508B95B1ED9184B00526200 /* LearnRoundInfoHeader.m */,
 				5508B95C1ED9184B00526200 /* LearnRoundInfoHeader.xib */,
-				5508B95D1ED9184B00526200 /* LearnRoundInfoTableViewCell.h */,
-				5508B95E1ED9184B00526200 /* LearnRoundInfoTableViewCell.m */,
 				5508B95F1ED9184B00526200 /* SetTableViewCell.h */,
 				5508B9601ED9184B00526200 /* SetTableViewCell.m */,
 			);
@@ -281,8 +292,19 @@
 				5508B9701ED9186300526200 /* Set.m */,
 				559094271EDEF53A00BE4500 /* User.h */,
 				559094281EDEF53A00BE4500 /* User.m */,
+				553B24341EE7105800D51326 /* Entity.h */,
+				553B24351EE7105800D51326 /* Entity.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		5513ECEE1EE96CBF00E2611B /* CustomAlerts */ = {
+			isa = PBXGroup;
+			children = (
+				5513ECEF1EE96CE400E2611B /* WaitingAlertViewController.h */,
+				5513ECF01EE96CE400E2611B /* WaitingAlertViewController.m */,
+			);
+			path = CustomAlerts;
 			sourceTree = "<group>";
 		};
 		5525EE8B1EE38C0B00206898 /* Mappers */ = {
@@ -292,8 +314,8 @@
 				55E181AF1EE43B1700C1313D /* BaseMapper.m */,
 				5525EE8C1EE38C1C00206898 /* SetMapper.h */,
 				5525EE8D1EE38C1C00206898 /* SetMapper.m */,
-				5525EE8F1EE3918500206898 /* ItemsOfSetMapper.h */,
-				5525EE901EE3918500206898 /* ItemsOfSetMapper.m */,
+				5525EE8F1EE3918500206898 /* ItemOfSetMapper.h */,
+				5525EE901EE3918500206898 /* ItemOfSetMapper.m */,
 				55E181B71EE4723200C1313D /* UserMapper.h */,
 				55E181B81EE4723200C1313D /* UserMapper.m */,
 			);
@@ -353,6 +375,7 @@
 		55BAE13E1EE09DBA00F1CBEE /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				5513ECE51EE8C6C200E2611B /* AuthenticationDelegate.h */,
 				55BAE1431EE09E0900F1CBEE /* WelcomeViewController.h */,
 				55BAE1441EE09E0900F1CBEE /* WelcomeViewController.m */,
 				55BAE1411EE09E0900F1CBEE /* SignUpTableViewController.h */,
@@ -508,10 +531,11 @@
 			files = (
 				55D34EE81EBA906500A2EE38 /* LaunchScreen.storyboard in Resources */,
 				55D34EE51EBA906500A2EE38 /* Assets.xcassets in Resources */,
-				5508B9651ED9184B00526200 /* ItemOfSetTableViewCell.xib in Resources */,
+				5508B9651ED9184B00526200 /* EditingItemOfSetTableViewCell.xib in Resources */,
 				5508B9681ED9184B00526200 /* LearnRoundInfoHeader.xib in Resources */,
 				55E181B21EE4441500C1313D /* Auth.storyboard in Resources */,
 				55D34EE31EBA906500A2EE38 /* Main.storyboard in Resources */,
+				55E181C31EE4B45400C1313D /* ItemOfSetTableViewCell1.xib in Resources */,
 				559094311EDF009700BE4500 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -576,6 +600,7 @@
 				55DD03481ED919FA00BDA097 /* UIColor+PickerColors.m in Sources */,
 				5508B9341ED916A600526200 /* MatchOrganizer.m in Sources */,
 				55BAE12C1EDF8D6D00F1CBEE /* AuthService.m in Sources */,
+				553B24361EE7105800D51326 /* Entity.m in Sources */,
 				5508B9471ED9176B00526200 /* DetailSetTableViewController.m in Sources */,
 				5525EE871EE3725100206898 /* SetService.m in Sources */,
 				5508B9621ED9184B00526200 /* ItemLabel.m in Sources */,
@@ -584,7 +609,7 @@
 				5508B9331ED916A600526200 /* LearnOrganizer.m in Sources */,
 				5508B9461ED9176B00526200 /* CreateSetTableViewController.m in Sources */,
 				55DD03491ED919FA00BDA097 /* UITableView+GettingIndexPath.m in Sources */,
-				5508B9691ED9184B00526200 /* LearnRoundInfoTableViewCell.m in Sources */,
+				55E181C21EE4B45400C1313D /* ItemOfSetTableViewCell1.m in Sources */,
 				5508B94B1ED9176B00526200 /* MatchPrepareViewController.m in Sources */,
 				55E181B01EE43B1700C1313D /* BaseMapper.m in Sources */,
 				5508B96A1ED9184B00526200 /* SetTableViewCell.m in Sources */,
@@ -593,6 +618,7 @@
 				55E181B91EE4723200C1313D /* UserMapper.m in Sources */,
 				55E181B61EE470AC00C1313D /* UserService.m in Sources */,
 				55BAE1331EE088D100F1CBEE /* ServiceLocator.m in Sources */,
+				5513ECF11EE96CE400E2611B /* WaitingAlertViewController.m in Sources */,
 				5525EE8E1EE38C1C00206898 /* SetMapper.m in Sources */,
 				55BAE1471EE09E0900F1CBEE /* WelcomeViewController.m in Sources */,
 				55BAE13A1EE08EE600F1CBEE /* RemoteServiceFactory.m in Sources */,
@@ -603,11 +629,11 @@
 				55D34EDD1EBA906500A2EE38 /* AppDelegate.m in Sources */,
 				55BAE1451EE09E0900F1CBEE /* LogInTableViewController.m in Sources */,
 				5508B9661ED9184B00526200 /* LearnProgressStackView.m in Sources */,
-				5525EE911EE3918500206898 /* ItemsOfSetMapper.m in Sources */,
+				5525EE911EE3918500206898 /* ItemOfSetMapper.m in Sources */,
 				55D34EDA1EBA906500A2EE38 /* main.m in Sources */,
 				55BAE12F1EDF928100F1CBEE /* TransportLayer.m in Sources */,
 				5508B9481ED9176B00526200 /* LearnRoundInfoTableViewController.m in Sources */,
-				5508B9641ED9184B00526200 /* ItemOfSetTableViewCell.m in Sources */,
+				5508B9641ED9184B00526200 /* EditingItemOfSetTableViewCell.m in Sources */,
 				55BAE13D1EE09C7000F1CBEE /* Assembly.m in Sources */,
 				5508B9631ED9184B00526200 /* ItemOfMatchCollectionViewCell.m in Sources */,
 				5508B9721ED9186300526200 /* ItemOfSet.m in Sources */,

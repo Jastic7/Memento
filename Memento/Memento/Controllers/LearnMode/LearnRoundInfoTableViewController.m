@@ -7,13 +7,13 @@
 //
 
 #import "LearnRoundInfoTableViewController.h"
-#import "LearnRoundInfoTableViewCell.h"
+#import "ItemOfSetTableViewCell.h"
 #import "LearnRoundInfoHeader.h"
 #import "UIColor+PickerColors.h"
 #import "Set.h"
 
 static NSString * const kLearnRoundInfoHeaderID = @"LearnRoundInfoHeader";
-static NSString * const kLearnRoundInfoTableViewCellID = @"LearnRoundInfoTableViewCell";
+static NSString * const kItemOfSetTableViewCellID = @"ItemOfSetTableViewCell";
 
 
 @interface LearnRoundInfoTableViewController () <UINavigationBarDelegate>
@@ -98,6 +98,8 @@ static NSString * const kLearnRoundInfoTableViewCellID = @"LearnRoundInfoTableVi
     [super viewDidLoad];
     
     [self.tableView registerNib:[LearnRoundInfoHeader nib] forHeaderFooterViewReuseIdentifier:kLearnRoundInfoHeaderID];
+    [self.tableView registerNib:[ItemOfSetTableViewCell nib] forCellReuseIdentifier:kItemOfSetTableViewCellID];
+    
     [self configureCountLabels];
     
     if (self.isLearningFinished) {
@@ -139,7 +141,7 @@ static NSString * const kLearnRoundInfoTableViewCellID = @"LearnRoundInfoTableVi
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    LearnRoundInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kLearnRoundInfoTableViewCellID forIndexPath:indexPath];
+    ItemOfSetTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kItemOfSetTableViewCellID forIndexPath:indexPath];
     
     ItemOfSet *item = self.items[indexPath.section][indexPath.row];
     
@@ -170,18 +172,18 @@ static NSString * const kLearnRoundInfoTableViewCellID = @"LearnRoundInfoTableVi
 #pragma mark - Configuration
 
 - (void)configureCountLabels {
-    NSUInteger masteredCount    = [self.set countItemsWithLearnState:Mastered];
-    NSUInteger learntCount      = [self.set countItemsWithLearnState:Learnt];
-    NSUInteger unknownCount     = self.set.count - masteredCount - learntCount;
+    NSUInteger masteredCount     = [self.set countItemsWithLearnState:Mastered];
+    NSUInteger learntCount       = [self.set countItemsWithLearnState:Learnt];
+    NSUInteger unknownCount      = self.set.count - masteredCount - learntCount;
     
     self.masteredCountLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)masteredCount];
-    self.learntCountLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)learntCount];
-    self.unknownCountLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)unknownCount];
+    self.learntCountLabel.text   = [NSString stringWithFormat:@"%lu", (unsigned long)learntCount];
+    self.unknownCountLabel.text  = [NSString stringWithFormat:@"%lu", (unsigned long)unknownCount];
 }
 
 #pragma mark - Helpers
 
--(void)dealloc {
+- (void)dealloc {
     NSLog(@"Learn round info left");
 }
 

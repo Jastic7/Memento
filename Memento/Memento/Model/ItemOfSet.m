@@ -7,6 +7,8 @@
 //
 
 #import "ItemOfSet.h"
+#import "ServiceLocator.h"
+
 
 @interface ItemOfSet ()
 
@@ -35,27 +37,31 @@
 }
 
 - (instancetype)initWithTerm:(NSString *)term definition:(NSString *)definition {
-    return [self initWithTerm:term definition:definition learnProgress:Unknown];
+    ServiceLocator *serviceLocator = [ServiceLocator shared];
+    NSString *identifier = [serviceLocator.setService configureUnuiqueId];
+    
+    return [self initWithTerm:term definition:definition learnProgress:Unknown identifier:identifier];
 }
 
-- (instancetype)initWithTerm:(NSString *)term definition:(NSString *)definition learnProgress:(LearnState)progress {
+- (instancetype)initWithTerm:(NSString *)term definition:(NSString *)definition learnProgress:(LearnState)progress identifier:(NSString *)identifier {
     self = [super init];
     
     if (self) {
         _term = term;
         _definition = definition;
         _learnProgress = progress;
+        _identifier = identifier;
     }
     
     return self;
 }
 
 + (instancetype)itemOfSetWithTerm:(NSString *)term definition:(NSString *)definition {
-    return [[self alloc] initWithTerm:term definition:definition learnProgress:Unknown];
+    return [[self alloc] initWithTerm:term definition:definition];
 }
 
-+ (instancetype)itemOfSetWithTerm:(NSString *)term definition:(NSString *)definition learnProgress:(LearnState)progress {
-    return [[self alloc] initWithTerm:term definition:definition learnProgress:progress];
++ (instancetype)itemOfSetWithTerm:(NSString *)term definition:(NSString *)definition learnProgress:(LearnState)progress identifier:(NSString *)identifier {
+    return [[self alloc] initWithTerm:term definition:definition learnProgress:progress identifier:identifier];
 }
 
 

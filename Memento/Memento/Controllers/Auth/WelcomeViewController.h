@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface WelcomeViewController : UIViewController
+
+@property (nonatomic, copy) void (^authenticationCompletion)();
 
 @end

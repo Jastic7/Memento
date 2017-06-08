@@ -8,6 +8,8 @@
 
 #import "Set.h"
 #import "ItemOfSet.h"
+#import "ServiceLocator.h"
+
 @interface Set ()
 
 @property (nonatomic, copy) NSString *title;
@@ -30,6 +32,22 @@
                definitionLang:(NSString *)defLang
                      termLang:(NSString *)termLang
                         items:(NSArray<ItemOfSet *> *)items {
+    
+    ServiceLocator *serviceLocator = [ServiceLocator shared];
+    NSString *identifier = [serviceLocator.setService configureUnuiqueId];
+    
+    self = [self initWithTitle:title author:author definitionLang:defLang termLang:termLang identifier:identifier items:items];
+
+    return self;
+}
+
+- (instancetype)initWithTitle:(NSString *)title
+                       author:(NSString *)author
+               definitionLang:(NSString *)defLang
+                     termLang:(NSString *)termLang
+                   identifier:(NSString *)identifier
+                        items:(NSArray<ItemOfSet *> *)items {
+    
     self = [super init];
     
     if (self) {
@@ -37,7 +55,9 @@
         _author = author;
         _definitionLang = defLang;
         _termLang = termLang;
+        _identifier = identifier;
         _items = [NSMutableArray new];
+        
         [self.items addObjectsFromArray:items];
     }
     
@@ -49,11 +69,28 @@
               definitionLang:(NSString *)defLang
                     termLang:(NSString *)termLang
                        items:(NSArray<ItemOfSet *> *)items {
-    return [[self alloc] initWithTitle:title author:author definitionLang:defLang termLang:termLang items:items ];
+    
+    return [[self alloc] initWithTitle:title author:author definitionLang:defLang termLang:termLang items:items];
 }
 
++ (instancetype)setWithTitle:(NSString *)title
+                      author:(NSString *)author
+              definitionLang:(NSString *)defLang
+                    termLang:(NSString *)termLang
+                  identifier:(NSString *)identifier
+                       items:(NSArray<ItemOfSet *> *)items {
+    
+    return [[self alloc] initWithTitle:title author:author definitionLang:defLang termLang:termLang identifier:identifier items:items];
+}
+
+
 + (instancetype)setWithSet:(Set *)set {
-    return [[self alloc] initWithTitle:set.title author:set.author definitionLang:set.definitionLang termLang:set.termLang items:set.items];
+    return [[self alloc] initWithTitle:set.title
+                                author:set.author
+                        definitionLang:set.definitionLang
+                              termLang:set.termLang
+                            identifier:set.identifier
+                                 items:set.items];
 }
 
 
@@ -63,8 +100,12 @@
     return [self.items count];
 }
 
--(BOOL)isEmpty {
+- (BOOL)isEmpty {
     return self.items.count == 0;
+}
+
+- (NSMutableArray<ItemOfSet *> *)items {
+    return _items;
 }
 
 

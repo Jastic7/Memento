@@ -8,6 +8,7 @@
 
 #import "BaseMapper.h"
 
+
 @implementation BaseMapper
 
 - (id)modelFromJsonOfObject:(NSDictionary *)json {
@@ -25,6 +26,25 @@
     }
     
     return objectList;
+}
+
+
+- (NSDictionary *)jsonFromModel:(id)model {
+    return nil;
+}
+
+- (NSDictionary *)jsonFromModelArray:(NSArray<Entity *> *)models {
+    NSString *uniqueId;
+    NSMutableDictionary *jsonModels = [NSMutableDictionary dictionary];
+    
+    for (Entity *model in models) {
+        uniqueId = model.identifier;
+        NSDictionary *json = [self jsonFromModel:model];
+        
+        jsonModels[uniqueId] = json;
+    }
+    
+    return jsonModels;
 }
 
 @end

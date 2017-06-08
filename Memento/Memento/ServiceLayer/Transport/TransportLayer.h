@@ -37,9 +37,9 @@ typedef void (^FailureCompletionBlock)(NSError *error);
                    success:(SuccessCompletionBlock)success
                    failure:(FailureCompletionBlock)failure;
 
-- (void)postData:(NSDictionary *)jsonData
-    databasePath:(NSString     *)path
-          userId:(NSString     *)uid
+- (void)postData:(id)jsonData
+    databasePath:(NSString *)path
+          userId:(NSString *)uid
          success:(SuccessCompletionBlock)success
          failure:(FailureCompletionBlock)failure;
 
@@ -48,5 +48,7 @@ typedef void (^FailureCompletionBlock)(NSError *error);
             userId:(NSString *)uid
            success:(SuccessCompletionBlock)success
            failure:(FailureCompletionBlock)failure;
+
+- (NSString *)uniqueId;
 
 @end

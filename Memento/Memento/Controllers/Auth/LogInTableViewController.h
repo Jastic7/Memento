@@ -7,17 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "User.h"
 
-@protocol LogInTableViewControllerDelegate <NSObject>
+@protocol AuthenticationDelegate;
 
-- (void)logInViewControllerDidCancelled;
-- (void)logInViewControllerDidLoggedIn;
-
-@end
 
 @interface LogInTableViewController : UITableViewController
 
-@property (nonatomic, weak) id <LogInTableViewControllerDelegate> delegate;
+@property (nonatomic, weak) id <AuthenticationDelegate> delegate;
 
 @end

@@ -8,20 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-
-@protocol SignUpTableViewControllerDelegate <NSObject>
-
-- (void)signUpViewControllerDidCancelled;
-- (void)signUpViewControllerDidCreatedUserWithEmail:(NSString *)email
-                                           password:(NSString *)password
-                                           username:(NSString *)username
-                                       profilePhoto:(UIImage  *)photo;
-
-@end
+@protocol AuthenticationDelegate;
 
 
 @interface SignUpTableViewController : UITableViewController
 
-@property (nonatomic, weak) id <SignUpTableViewControllerDelegate> delegate;
+@property (nonatomic, weak) id <AuthenticationDelegate> delegate;
 
 @end

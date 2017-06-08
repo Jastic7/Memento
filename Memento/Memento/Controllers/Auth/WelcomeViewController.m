@@ -9,12 +9,14 @@
 #import "WelcomeViewController.h"
 #import "SignUpTableViewController.h"
 #import "LogInTableViewController.h"
+#import "AuthenticationDelegate.h"
+
 
 static NSString * const kShowSignUpSegue = @"showSignUpSegue";
 static NSString * const kShowLogInSegue = @"showLogInSegue";
 
 
-@interface WelcomeViewController () <SignUpTableViewControllerDelegate, LogInTableViewControllerDelegate>
+@interface WelcomeViewController () <AuthenticationDelegate>
 
 @property (nonatomic, strong) UIView *authWaitingView;
 
@@ -44,63 +46,20 @@ static NSString * const kShowLogInSegue = @"showLogInSegue";
 }
 
 
-#pragma mark - SignUpTableViewControllerDelegate
+#pragma mark - AuthenticationDelegate
 
-- (void)signUpViewControllerDidCancelled {
+- (void)authenticationDidCancelled {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)signUpViewControllerDidCreatedUserWithEmail:(NSString *)email password:(NSString *)password username:(NSString *)username profilePhoto:(NSURL *)photo {
+- (void)authenticationDidComplete {
     [self dismissViewControllerAnimated:YES completion:^{
-        NSLog(@"User created!");
-        
-        
-    }];
-    
-}
-
-
-#pragma mark - LogInViewControllerDelegate
-
-- (void)logInViewControllerDidCancelled {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)logInViewControllerDidLoggedIn {
-    [self dismissViewControllerAnimated:YES completion:^{
-        [self showWaitingAlertWithTitle:@"" message:@"Authorization in progress..."];
+        self.authenticationCompletion();
     }];
 }
 
-
-#pragma mark - Private
-
-- (void)showWaitingAlertWithTitle:(NSString *)title
-                          message:(NSString *)message {
-    
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title
-                                                                   message:message
-                                                            preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc]
-                                                  initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    
-    CGRect rect = activityIndicator.frame;
-    rect.origin.y = 19.5;
-    rect.origin.x += 20;
-    
-    activityIndicator.frame = rect;
-    [activityIndicator startAnimating];
-    
-    [alert.view addSubview:activityIndicator];
-    
-    [self presentViewController:alert animated:YES completion:nil];
-}
-
-
--(void)dealloc {
+- (void)dealloc {
     NSLog(@"Welcome dealloced");
 }
-
 
 @end

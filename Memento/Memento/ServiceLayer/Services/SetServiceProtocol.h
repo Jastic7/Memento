@@ -10,10 +10,19 @@
 
 @class Set;
 
-typedef void (^SetServiceCompletionBlock)(NSMutableArray <Set *> *setList, NSError *error);
+typedef void (^SetServiceDownloadCompletionBlock)(NSMutableArray <Set *> *setList, NSError *error);
+typedef void (^SetServiceUploadCompletionBlock)(NSError *error);
+
 
 @protocol SetServiceProtocol <NSObject>
 
-- (void)obtainSetListForUserId:(NSString *)uid completion:(SetServiceCompletionBlock)completion;
+- (void)obtainSetListForUserId:(NSString *)uid
+                    completion:(SetServiceDownloadCompletionBlock)completion;
+
+- (void)postSetList:(NSArray <Set *> *)setList
+             userId:(NSString *)uid
+         completion:(SetServiceUploadCompletionBlock)completion;
+
+- (NSString *)configureUnuiqueId;
 
 @end
