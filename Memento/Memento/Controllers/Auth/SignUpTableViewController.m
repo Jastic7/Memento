@@ -112,25 +112,20 @@
 - (IBAction)createAccountButtonTapped:(id)sender {
     [self showWaitingAlertWithMessage:@"Registration in progress..."];
     
-    NSString *username = self.usernameTextField.text;
     NSString *email    = self.emailTextField.text;
     NSString *password = self.passwordTextField.text;
     
     [self.serviceLocator.authService signUpWithEmail:email password:password completion:^(NSString *uid, NSError *error) {
         if (error) {
-            [self dismissViewControllerAnimated:YES completion:^{
+            [self hideWaitingAlertAnimated:YES completion:^{
                 [self showError:error];
             }];
         } else {
-            [self uploadUserProfilePhotoWithUserId:uid completion:^(NSString *url) {
-                if (url) {
-                    User *user = [User userWithId:uid name:username email:email profilePhotoUrl:url];
-                    [self uploadUser:user];
-                }
-            }];
+            [self uploadUserWithId:uid];
         }
     }];
 }
+
 
 #pragma mark - Configuration
 
@@ -141,12 +136,16 @@
 }
 
 
-#pragma mark - ShowingAlerts
+#pragma mark - Alerts
 
 - (void)showWaitingAlertWithMessage:(NSString *)message {
     WaitingAlertViewController *alert = [WaitingAlertViewController alertControllerWithMessage:message];
     
     [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)hideWaitingAlertAnimated:(BOOL)animated completion:(void (^)())completion {
+    [self dismissViewControllerAnimated:animated completion:completion];
 }
 
 - (void)showError:(NSError *)error {
@@ -162,25 +161,15 @@
 
 #pragma mark - Private
 
-- (void)uploadUserProfilePhotoWithUserId:(NSString *)uid completion:(void (^)(NSString *url))completion {
-    UIImage  *profileImage = self.profilePhotoImageView.image;
+- (void)uploadUserWithId:(NSString *)uid {
+    NSString *username = self.usernameTextField.text;
+    NSString *email = self.emailTextField.text;
     
-    NSData *imageData = UIImageJPEGRepresentation(profileImage, 0.9);
+    UIImage *profilePhoto = self.profilePhotoImageView.image;
+    NSData *profilePhotoData = UIImageJPEGRepresentation(profilePhoto, 0.9);
     
-    [self.serviceLocator.userService updateProfilePhotoWithData:imageData uid:uid completion:^(NSString *url, NSError *error) {
-        if (error) {
-            [self dismissViewControllerAnimated:YES completion:^{
-                [self showError:error];
-            }];
-        }
-        
-        completion(url);
-    }];
-}
-
-- (void)uploadUser:(User *)user {
-    [self.serviceLocator.userService postUser:user completion:^(NSError *error) {
-        [self dismissViewControllerAnimated:YES completion:^{
+    [self.serviceLocator.userService postUserWithId:uid username:username email:email profilePhotoData:profilePhotoData completion:^(NSError *error) {
+        [self hideWaitingAlertAnimated:YES completion:^{
             if (error) {
                 [self showError:error];
             } else {
@@ -190,7 +179,7 @@
     }];
 }
 
--(void)dealloc {
+- (void)dealloc {
     NSLog(@"SIGN UP LEFT");
 }
 

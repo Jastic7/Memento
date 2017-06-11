@@ -13,6 +13,8 @@
 typedef void (^SuccessCompletionBlock)(id response);
 typedef void (^FailureCompletionBlock)(NSError *error);
 
+typedef void (^TransportCompletionBlock)(NSError *error);
+
 
 @interface TransportLayer : NSObject
 
@@ -46,7 +48,6 @@ typedef void (^FailureCompletionBlock)(NSError *error);
 
 - (void)postData:(id)jsonData
     databasePath:(NSString *)path
-          userId:(NSString *)uid
          success:(SuccessCompletionBlock)success
          failure:(FailureCompletionBlock)failure;
 

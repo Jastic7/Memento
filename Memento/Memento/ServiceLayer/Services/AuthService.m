@@ -63,8 +63,8 @@
 }
 
 - (void)logOut {
-    [self.transort logOut];
     [self removeUserFromUserDefaults];
+    [self.transort logOut];
 }
 
 - (void)addAuthStateChangeListener:(void (^)(NSString *))listener {

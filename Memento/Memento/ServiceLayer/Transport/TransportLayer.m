@@ -174,7 +174,6 @@ static TransportLayer *sharedInstance = nil;
 
 - (void)postData:(id)jsonData
     databasePath:(NSString *)path
-          userId:(NSString *)uid
          success:(SuccessCompletionBlock)success
          failure:(FailureCompletionBlock)failure {
     [self startNetworkActivity];
@@ -219,8 +218,8 @@ static TransportLayer *sharedInstance = nil;
 
 #pragma mark - Private
 
-- (FIRDatabaseReference *)databasePath:(NSString *)path withUserId:(NSString *)uid {
-    return [[self.rootRefDB child:path] child:uid];
+- (FIRDatabaseReference *)databasePath:(NSString *)path {
+    return [self.rootRefDB child:path];
 }
 
 - (FIRStorageReference *)storagePath:(NSString *)path withUserId:(NSString *)uid {

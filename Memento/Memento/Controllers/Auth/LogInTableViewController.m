@@ -73,7 +73,7 @@
                 [self showError:error];
             }];
         } else {
-            [self updateUserById:uid];
+            [self reloadUserById:uid];
         }
     }];
 }
@@ -81,8 +81,8 @@
 
 #pragma mark - Private
 
-- (void)updateUserById:(NSString *)uid {
-    [self.serviceLocator.userService updateUserById:uid completion:^(NSError *error) {
+- (void)reloadUserById:(NSString *)uid {
+    [self.serviceLocator.userService reloadUserById:uid completion:^(NSError *error) {
         [self dismissViewControllerAnimated:YES completion:^{
             if (error) {
                 [self showError:error];
@@ -107,7 +107,6 @@
 }
 
 - (void)showWaitingAlertWithMessage:(NSString *)message {
-    
     WaitingAlertViewController *alert = [WaitingAlertViewController alertControllerWithMessage:message];
     
     [self presentViewController:alert animated:YES completion:nil];

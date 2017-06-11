@@ -11,6 +11,7 @@
 #import "PasswordSettingTableViewController.h"
 #import "ImagePickerSourceTypePresenterProtocol.h"
 #import "ImagePickerSourceTypePresenter.h"
+#import "InfoAlertViewController.h"
 #import "ServiceLocator.h"
 #import "User.h"
 
@@ -38,13 +39,13 @@ static NSString * const kShowPasswordSettingSegue   = @"showPasswordSettingSegue
 
 #pragma mark - Getters
 
-- (User *)user {
-    if (!_user) {
-        _user = [User userFromUserDefaults];
-    }
-    
-    return _user;
-}
+//- (User *)user {
+//    if (!_user) {
+//        _user = [User userFromUserDefaults];
+//    }
+//    
+//    return _user;
+//}
 
 - (ServiceLocator *)serviceLocator {
     if (!_serviceLocator) {
@@ -52,6 +53,17 @@ static NSString * const kShowPasswordSettingSegue   = @"showPasswordSettingSegue
     }
     
     return _serviceLocator;
+}
+
+- (UIImagePickerController *)imagePicker {
+    if (!_imagePicker) {
+        _imagePicker = [UIImagePickerController new];
+        
+        _imagePicker.delegate = self;
+        _imagePicker.allowsEditing = YES;
+    }
+    
+    return _imagePicker;
 }
 
 - (id <ImagePickerSourceTypePresenterProtocol>)imagePickerSourceTypePresenter {
@@ -68,18 +80,17 @@ static NSString * const kShowPasswordSettingSegue   = @"showPasswordSettingSegue
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.imagePicker.delegate = self;
+    [self configureProfileImageView];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    self.emailLabel.text = self.user.email;
-    
-    [self configureProfileImageView];
-    [self downloadUserProfilePhoto];
+    if (!self.user) {
+        self.user = [User userFromUserDefaults];
+        
+        self.emailLabel.text = self.user.email;
+        [self downloadUserProfilePhoto];
+    }
 }
-
 
 #pragma mark - UIImagePickerControllerDelegate
 
@@ -89,6 +100,7 @@ static NSString * const kShowPasswordSettingSegue   = @"showPasswordSettingSegue
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary <NSString *, id> *)info {
     self.profilePhotoImageView.image = info[UIImagePickerControllerEditedImage];
+    [self uploadUserProfilePhoto];
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -112,52 +124,14 @@ static NSString * const kShowPasswordSettingSegue   = @"showPasswordSettingSegue
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (indexPath.section == 1) {
-        NSString *title = @"Confirm changes";
-        NSString *message = @"You should enter password of your account to make changes";
-        UIAlertController *credentialAlert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction *cancelButton = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
-        UIAlertAction *confirmButton = [UIAlertAction actionWithTitle:@"Confirm" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            NSString *credentials = credentialAlert.textFields[0].text;
-            [self performSegueWithIdentifier:kShowEditEmailSegue sender:credentials];
-        }];
-        
-        [credentialAlert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
-            textField.placeholder = @"Enter password";
-        }];
-        
-        [credentialAlert addAction:cancelButton];
-        [credentialAlert addAction:confirmButton];
-        
-        [self presentViewController:credentialAlert animated:YES completion:nil];
-    }
+
 }
 
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSString *identifier = segue.identifier;
-    
-    if ([identifier isEqualToString:kShowEditEmailSegue]) {
-        EditSettingTableViewController *dvc = segue.destinationViewController;
-        dvc.editableSetting = self.user.email;
-        
-        dvc.editCompletion = ^void(NSString *editedEmail) {
-            [self.serviceLocator.authService updateEmail:editedEmail withCredential:sender completion:^(NSError *error) {
-                if (error) {
-                    NSLog(@"UPDATE EMAIL ERROR");
-                } else {
-                    User *user = [User userWithId:self.user.uid name:self.user.username email:editedEmail profilePhotoUrl:self.user.email];
-                    
-                    [self updateUser:user];
-                }
-            }];
-        };
-        
-    } else if ([identifier isEqualToString:kShowPasswordSettingSegue]) {
-        
-    }
+
 }
 
 - (void)updateUser:(User *)user {
@@ -172,18 +146,41 @@ static NSString * const kShowPasswordSettingSegue   = @"showPasswordSettingSegue
     }];
 }
 
+- (void)showError:(NSError *)error {
+    NSString *errorDescription = error.localizedDescription;
+    
+    InfoAlertViewController *errorAlert = [InfoAlertViewController alertControllerWithTitle:@"User updating failed"
+                                                                                    message:errorDescription
+                                                                               dismissTitle:@"OK"];
+    
+    [self presentViewController:errorAlert animated:YES completion:nil];
+}
+
+
 #pragma mark - Private
 
 - (void)downloadUserProfilePhoto {
     [self.activityIndicator startAnimating];
     
-    NSURL *imageUrl = [NSURL URLWithString:self.user.profilePhotoUrl];
+    NSURL *profilePhotoUrl = [NSURL URLWithString:self.user.profilePhotoUrl];
     UIImage *placeholderImage = [UIImage imageNamed:@"placeholderProfileImage"];
     
-    [self.profilePhotoImageView sd_setImageWithURL:imageUrl placeholderImage:placeholderImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    [self.profilePhotoImageView sd_setImageWithURL:profilePhotoUrl placeholderImage:placeholderImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         [self.activityIndicator stopAnimating];
     }];
 }
+
+- (void)uploadUserProfilePhoto {
+    UIImage *profilePhoto = self.profilePhotoImageView.image;
+    NSData *profilePhotoData = UIImageJPEGRepresentation(profilePhoto, 0.9);
+    
+    [self.serviceLocator.userService postProfilePhotoWithData:profilePhotoData uid:self.user.uid completion:^(NSString *url, NSError *error) {
+        if (error) {
+            [self showError:error];
+        }
+    }];
+}
+
 
 #pragma mark - Configuration
 
