@@ -42,18 +42,15 @@ typedef void (^TransportCompletionBlock)(NSError *error);
 - (void)addListenerForAuthStateChange:(void(^)(id response))listener;
 
 - (void)obtainDataWithPath:(NSString *)path
-                    userId:(NSString *)uid
                    success:(SuccessCompletionBlock)success
                    failure:(FailureCompletionBlock)failure;
 
 - (void)postData:(id)jsonData
     databasePath:(NSString *)path
-         success:(SuccessCompletionBlock)success
-         failure:(FailureCompletionBlock)failure;
+      completion:(TransportCompletionBlock)completion;
 
 - (void)uploadData:(NSData   *)data
        storagePath:(NSString *)path
-            userId:(NSString *)uid
            success:(SuccessCompletionBlock)success
            failure:(FailureCompletionBlock)failure;
 

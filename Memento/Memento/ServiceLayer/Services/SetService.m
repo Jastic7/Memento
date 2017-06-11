@@ -12,15 +12,36 @@
 #import "Set.h"
 #import "ItemOfSetMapper.h"
 
+@interface SetService ()
+
+@property (nonatomic, copy) NSString *rootPath;
+
+@end
+
 
 @implementation SetService
+
+- (NSString *)rootPath {
+    if (!_rootPath) {
+        _rootPath = @"sets";
+    }
+    
+    return _rootPath;
+}
+
+- (NSString *)setPathWithUserId:(NSString *)uid {
+    NSString *setPathFormat = @"%@/%@";
+    NSString *setPath = [NSString stringWithFormat:setPathFormat, self.rootPath, uid];
+    
+    return setPath;
+}
 
 - (void)obtainSetListForUserId:(NSString *)uid completion:(SetServiceDownloadCompletionBlock)completion {
     if (uid) {
         SetMapper *setMapper = [SetMapper new];
-        NSString *path = @"sets";
+        NSString *setPath = [self setPathWithUserId:uid];
         
-        [self.transort obtainDataWithPath:path userId:uid success:^(id response) {
+        [self.transort obtainDataWithPath:setPath success:^(id response) {
             
             NSMutableArray <Set *> *listSet;
             if (response) {
@@ -28,9 +49,7 @@
             }
             
             completion(listSet, nil);
-            
         } failure:^(NSError *error) {
-            NSLog(@"FAILURE");
             completion(nil, error);
         }];
     }
@@ -43,13 +62,9 @@
     SetMapper *setMapper = [SetMapper new];
     
     NSDictionary *jsonData = [setMapper jsonFromModelArray:setList];
-    NSString *path = @"sets";
+    NSString *setPath = [self setPathWithUserId:uid];
     
-    [self.transort postData:jsonData databasePath:path userId:uid success:^(id response) {
-        completion(nil);
-    } failure:^(NSError *error) {
-        completion(error);
-    }];
+    [self.transort postData:jsonData databasePath:setPath completion:completion];
 }
 
 - (NSString *)configureUnuiqueId {

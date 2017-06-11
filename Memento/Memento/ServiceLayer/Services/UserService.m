@@ -16,7 +16,6 @@
 
 @property (nonatomic, strong) UserMapper *userMapper;
 @property (nonatomic, copy) NSString *rootPath;
-@property (nonatomic, copy) NSString *imageUrlPath;
 
 @end
 
@@ -34,13 +33,26 @@
     return _rootPath;
 }
 
-- (NSString *)imageUrlPath {
-    if (!_imageUrlPath) {
-        _imageUrlPath = [self.rootPath stringByAppendingString:@"/profilePhotoUrl"];
-        NSLog(@"%@", _imageUrlPath);
-    }
+- (NSString *)profilePhotoUrlPathWithUserId:(NSString *)uid {
+    NSString *imageUrlPathFormat = @"%@/%@/profilePhotoUrl";
+    NSString *imageUrlPath = [NSString stringWithFormat:imageUrlPathFormat, self.rootPath, uid];
     
-    return _imageUrlPath;
+    NSLog(@"%@", imageUrlPath);
+    
+    return imageUrlPath;
+}
+
+- (NSString *)userPathWithUserId:(NSString *)uid {
+    NSString *userPathFormat = @"%@/%@";
+    NSString *userPath = [NSString stringWithFormat:userPathFormat, self.rootPath, uid];
+    
+    return userPath;
+}
+
+- (NSString *)storageProfilePhotoPathWithUserId:(NSString *)uid; {
+    NSString *storageProfilePhotoPath = [NSString stringWithFormat:@"profileImages/%@", uid];
+    
+    return storageProfilePhotoPath;
 }
 
 - (UserMapper *)userMapper {
@@ -56,7 +68,9 @@
 
 - (void)reloadUserById:(NSString *)uid completion:(UserServiceCompletionBlock)completion {
     if (uid) {
-        [self.transort obtainDataWithPath:self.rootPath userId:uid success:^(id response) {
+        NSString *userPath = [self userPathWithUserId:uid];
+        
+        [self.transort obtainDataWithPath:userPath success:^(id response) {
             User *user = [self.userMapper modelFromJsonOfObject:response];
             [self saveUserIntoUserDefaults:user];
             
@@ -86,17 +100,21 @@
 - (void)postUser:(User *)user completion:(UserServiceCompletionBlock)completion {
     NSDictionary *jsonModel = [self.userMapper jsonFromModel:user];
     
-    [self.transort postData:jsonModel databasePath:self.rootPath userId:user.uid success:^(id response) {
-        [self saveUserIntoUserDefaults:user];
+    NSString *userPath = [self userPathWithUserId:user.uid];
+    
+    [self.transort postData:jsonModel databasePath:userPath completion:^(NSError *error) {
+        if (!error) {
+            [self saveUserIntoUserDefaults:user];
+        }
         
-        completion(nil);
-    } failure:^(NSError *error) {
         completion(error);
     }];
 }
 
 - (void)postProfilePhotoWithData:(NSData *)photoData uid:(NSString *)uid completion:(UserServiceUploadCompletionBlock)completion {
-    [self.transort uploadData:photoData storagePath:@"profileImages" userId:uid success:^(id response) {
+    NSString *storageProfilePhotoPath = [self storageProfilePhotoPathWithUserId:uid];
+    
+    [self.transort uploadData:photoData storagePath:storageProfilePhotoPath success:^(id response) {
         [self updateProfilePhotoUrl:response uid:uid completion:completion];
     } failure:^(NSError *error) {
         completion(nil, error);
@@ -119,12 +137,14 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:url    forKey:@"userPhotoUrl"];
     
-    NSDictionary *data = @{@"profilePhotoUrl" : url};
+    NSString *profilePhotoUrlPath = [self profilePhotoUrlPathWithUserId:uid];
     
-    [self.transort postData:data databasePath:self.rootPath userId:uid success:^(id response) {
-        completion(url, nil);
-    } failure:^(NSError *error) {
-        completion(nil, error);
+    [self.transort postData:url databasePath:profilePhotoUrlPath completion:^(NSError *error) {
+        if (error) {
+            completion(nil, error);
+        } else {
+            completion(url, nil);
+        }
     }];
 }
 

@@ -148,12 +148,11 @@ static TransportLayer *sharedInstance = nil;
 #pragma mark - Downloading data
 
 - (void)obtainDataWithPath:(NSString *)path
-                    userId:(NSString *)uid
                    success:(SuccessCompletionBlock)success
                    failure:(FailureCompletionBlock)failure {
     [self startNetworkActivity];
     
-    FIRDatabaseReference *requestRef = [self databasePath:path withUserId:uid];
+    FIRDatabaseReference *requestRef = [self databasePath:path];
     
     [requestRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         [self finishNetworkActivity];
@@ -174,31 +173,25 @@ static TransportLayer *sharedInstance = nil;
 
 - (void)postData:(id)jsonData
     databasePath:(NSString *)path
-         success:(SuccessCompletionBlock)success
-         failure:(FailureCompletionBlock)failure {
+      completion:(TransportCompletionBlock)completion {
+    
     [self startNetworkActivity];
     
-    FIRDatabaseReference *requestRef = [self databasePath:path withUserId:uid];
+    FIRDatabaseReference *requestRef = [self databasePath:path];
     
     [requestRef setValue:jsonData withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
         [self finishNetworkActivity];
-        
-        if (error) {
-            failure(error);
-        } else {
-            success(uid);
-        }
+        completion(error);
     }];
 }
 
 - (void)uploadData:(NSData *)data
        storagePath:(NSString *)path
-            userId:(NSString *)uid
            success:(SuccessCompletionBlock)success
            failure:(FailureCompletionBlock)failure {
     [self startNetworkActivity];
     
-    FIRStorageReference *requestRef = [self storagePath:path withUserId:uid];
+    FIRStorageReference *requestRef = [self storagePath:path];
     
     [requestRef putData:data metadata:nil completion:^(FIRStorageMetadata * _Nullable metadata, NSError * _Nullable error) {
         [self finishNetworkActivity];
@@ -222,8 +215,8 @@ static TransportLayer *sharedInstance = nil;
     return [self.rootRefDB child:path];
 }
 
-- (FIRStorageReference *)storagePath:(NSString *)path withUserId:(NSString *)uid {
-    return [[self.rootRefSR child:path] child:[uid stringByAppendingString:@".jpg"]];
+- (FIRStorageReference *)storagePath:(NSString *)path {
+    return [self.rootRefSR child:[path stringByAppendingString:@".jpg"]];
 }
 
 - (void)startNetworkActivity {
