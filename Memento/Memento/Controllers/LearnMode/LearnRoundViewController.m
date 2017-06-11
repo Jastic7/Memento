@@ -69,7 +69,7 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [self.organizer checkUserDefinition:textField.text];
     
-    self.textField.text = @"DEFINITION ";
+    self.textField.text = @"";
     
     return YES;
 }

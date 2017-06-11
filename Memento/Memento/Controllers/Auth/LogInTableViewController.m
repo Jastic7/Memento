@@ -8,24 +8,49 @@
 
 #import "LogInTableViewController.h"
 #import "WaitingAlertViewController.h"
+#import "InfoAlertViewController.h"
 #import "ServiceLocator.h"
 #import "AuthenticationDelegate.h"
 
 
 @interface LogInTableViewController ()
 
-@property (weak, nonatomic) IBOutlet UITextField *emailTextField;
-@property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (nonatomic, weak) IBOutlet UITextField *emailTextField;
+@property (nonatomic, weak) IBOutlet UITextField *passwordTextField;
+
+@property (nonatomic, weak) ServiceLocator *serviceLocator;
 
 @end
 
 @implementation LogInTableViewController
+
+#pragma mark - Getters
+
+-(ServiceLocator *)serviceLocator {
+    if (!_serviceLocator ) {
+        _serviceLocator = [ServiceLocator shared];
+    }
+    
+    return _serviceLocator;
+}
 
 
 #pragma mark - LifeCycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    [self.emailTextField becomeFirstResponder];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    [self.view endEditing:YES];
 }
 
 
@@ -42,15 +67,25 @@
     NSString *email = self.emailTextField.text;
     NSString *password = self.passwordTextField.text;
     
-    ServiceLocator *serviceLocator = [ServiceLocator shared];
-    [serviceLocator.authService logInWithEmail:email password:password completion:^(NSString *uid, NSError *error) {
+    [self.serviceLocator.authService logInWithEmail:email password:password completion:^(NSString *uid, NSError *error) {
+        if (error) {
+            [self dismissViewControllerAnimated:YES completion:^{
+                [self showError:error];
+            }];
+        } else {
+            [self updateUserById:uid];
+        }
+    }];
+}
+
+
+#pragma mark - Private
+
+- (void)updateUserById:(NSString *)uid {
+    [self.serviceLocator.userService updateUserById:uid completion:^(NSError *error) {
         [self dismissViewControllerAnimated:YES completion:^{
             if (error) {
-                NSString *errorDescription = error.localizedDescription;
-                
-                [self showAlertWithTitle:@"Authorization failed"
-                                 message:errorDescription
-                             actionTitle:@"OK"];
+                [self showError:error];
             } else {
                 [self.delegate authenticationDidComplete];
             }
@@ -59,25 +94,21 @@
 }
 
 
-#pragma mark - Private
+#pragma mark - Presenting alerts
 
-- (void)showAlertWithTitle:(NSString *)title
-                   message:(NSString *)message
-               actionTitle:(NSString *)actionTitle {
+- (void)showError:(NSError *)error {
+    NSString *errorDescription = error.localizedDescription;
     
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    InfoAlertViewController *errorAlert = [InfoAlertViewController alertControllerWithTitle:@"Registration failed"
+                                                                                    message:errorDescription
+                                                                               dismissTitle:@"OK"];
     
-    
-    UIAlertAction *action = [UIAlertAction actionWithTitle:actionTitle style:UIAlertActionStyleDefault handler:nil];
-    [alert addAction:action];
-    
-    [self presentViewController:alert animated:YES completion:nil];
+    [self presentViewController:errorAlert animated:YES completion:nil];
 }
 
 - (void)showWaitingAlertWithMessage:(NSString *)message {
     
-    WaitingAlertViewController *alert = [WaitingAlertViewController alertControllerWithMessage:message
-                                                                                preferredStyle:UIAlertControllerStyleAlert];
+    WaitingAlertViewController *alert = [WaitingAlertViewController alertControllerWithMessage:message];
     
     [self presentViewController:alert animated:YES completion:nil];
 }

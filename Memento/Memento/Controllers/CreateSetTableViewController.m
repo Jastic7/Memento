@@ -17,8 +17,9 @@ static NSString * const kEditingItemOfSetCellID = @"EditingItemOfSetTableViewCel
 
 @interface CreateSetTableViewController () <UINavigationBarDelegate, UITextViewDelegate>
 
-@property (nonatomic, strong) NSMutableArray<ItemOfSet *> *items;
+@property (nonatomic, strong) NSMutableArray <ItemOfSet *> *items;
 @property (nonatomic, weak) IBOutlet UITextField *titleOfSetTextField;
+@property (nonatomic, copy) NSString *author;
 
 @end
 
@@ -27,7 +28,7 @@ static NSString * const kEditingItemOfSetCellID = @"EditingItemOfSetTableViewCel
 
 #pragma mark - Getters
 
-- (NSMutableArray<ItemOfSet *> *)items {
+- (NSMutableArray <ItemOfSet *> *)items {
     if (!_items) {
         _items = [NSMutableArray array];
     }
@@ -35,6 +36,14 @@ static NSString * const kEditingItemOfSetCellID = @"EditingItemOfSetTableViewCel
     return _items;
 }
 
+- (NSString *)author {
+    if (!_author) {
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        _author = [userDefaults objectForKey:@"userName"];
+    }
+    
+    return _author;
+}
 
 #pragma mark - LifeCycle
 
@@ -104,8 +113,10 @@ static NSString * const kEditingItemOfSetCellID = @"EditingItemOfSetTableViewCel
 }
 
 - (IBAction)doneBarButtonTapped:(UIBarButtonItem *)sender {
+    [self.view endEditing:YES];
+    
     NSString *title = self.titleOfSetTextField.text;
-    NSString *author = @"Jastic7";
+    NSString *author = self.author;
     
     if ([title isEqualToString:@""]) {
         [self showAlertWithTitle:@"Error" message:@"Title of the new set can't be empty."];

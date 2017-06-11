@@ -20,6 +20,7 @@
 
 - (instancetype)initWithId:(NSString *)uid name:(NSString *)name email:(NSString *)email profilePhotoUrl:(NSString *)photoUrl;
 + (instancetype)userWithId:(NSString *)uid name:(NSString *)name email:(NSString *)email profilePhotoUrl:(NSString *)photoUrl;
++ (instancetype)userFromUserDefaults;
 
 - (void)addSetsFromSetList:(NSMutableArray <Set *> *)setList;
 

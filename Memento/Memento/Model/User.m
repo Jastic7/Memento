@@ -41,6 +41,17 @@
     return [[self alloc] initWithId:uid name:name email:email profilePhotoUrl:photoUrl];
 }
 
++ (instancetype)userFromUserDefaults {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    NSString *username  = [userDefaults objectForKey:@"userName"];
+    NSString *email     = [userDefaults objectForKey:@"userEmail"];
+    NSString *photoUrl  = [userDefaults objectForKey:@"userPhotoUrl"];
+    NSString *uid       = [userDefaults objectForKey:@"userId"];
+    
+    return [[self alloc] initWithId:uid name:username email:email profilePhotoUrl:photoUrl];
+}
+
 - (void)addSetsFromSetList:(NSMutableArray <Set *> *)setList {
     [self.setList addObjectsFromArray:setList];
 }

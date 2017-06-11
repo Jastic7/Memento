@@ -34,8 +34,8 @@ static NSString * const kRoundLearnModeSegue    = @"roundLearnModeSegue";
     [super viewDidLoad];
     
     self.tableView.dataSource = self;
-//    self.tableView.estimatedRowHeight = 100;
-//    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 100;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
     [self.tableView registerNib:[ItemOfSetTableViewCell nib] forCellReuseIdentifier:kItemOfSetCellID];
 }
 

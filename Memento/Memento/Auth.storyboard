@@ -295,7 +295,7 @@
                     <connections>
                         <outlet property="emailTextField" destination="wG1-ct-Qnr" id="K97-v4-dmQ"/>
                         <outlet property="passwordTextField" destination="hng-Z0-UdQ" id="EB0-q1-JNi"/>
-                        <outlet property="profilePictureImageView" destination="CbW-r8-HG9" id="Sy1-Db-YSZ"/>
+                        <outlet property="profilePhotoImageView" destination="CbW-r8-HG9" id="3AU-OT-B3n"/>
                         <outlet property="usernameTextField" destination="qNt-HT-xiF" id="Jxb-mT-IGj"/>
                     </connections>
                 </tableViewController>

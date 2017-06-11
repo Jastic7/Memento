@@ -22,6 +22,9 @@
 
 @implementation UserService
 
+
+#pragma mark - Getters
+
 - (NSString *)path {
     if (!_path) {
         _path = @"users";
@@ -38,37 +41,31 @@
     return _userMapper;
 }
 
-- (void)obtainUserWithId:(NSString *)uid completion:(UserServiceCompletionBlock)completion {
+
+#pragma mark - UserServiceProtocol Implementation 
+
+- (void)updateUserById:(NSString *)uid completion:(UserServiceCompletionBlock)completion {
     if (uid) {
-        
         [self.transort obtainDataWithPath:self.path userId:uid success:^(id response) {
             User *user = [self.userMapper modelFromJsonOfObject:response];
-            completion(user, nil);
+            [self saveUserIntoUserDefaults:user];
             
+            completion(nil);
         } failure:^(NSError *error) {
-            completion(nil, error);
+            completion(error);
         }];
     }
-}
-
-- (void)obtainLogginedUserWithCompletion:(UserServiceCompletionBlock)completion {
-    
-    [self.transort obtainDataWithPath:self.path userId:@"" success:^(id response) {
-        User *user = [self.userMapper modelFromJsonOfObject:response];
-        completion(user, nil);
-        
-    } failure:^(NSError *error) {
-        completion(nil, error);
-    }];
 }
 
 - (void)postUser:(User *)user completion:(UserServiceCompletionBlock)completion {
     NSDictionary *jsonModel = [self.userMapper jsonFromModel:user];
     
     [self.transort postData:jsonModel databasePath:self.path userId:user.uid success:^(id response) {
-        completion(user, nil);
+        [self saveUserIntoUserDefaults:user];
+        
+        completion(nil);
     } failure:^(NSError *error) {
-        completion(nil, error);
+        completion(error);
     }];
 }
 
@@ -78,6 +75,18 @@
     } failure:^(NSError *error) {
         completion(nil, error);
     }];
+}
+
+
+#pragma mark - private
+
+- (void)saveUserIntoUserDefaults:(User *)user {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    [userDefaults setObject:user.username           forKey:@"userName"];
+    [userDefaults setObject:user.email              forKey:@"userEmail"];
+    [userDefaults setObject:user.profilePhotoUrl    forKey:@"userPhotoUrl"];
+    [userDefaults setObject:user.uid                forKey:@"userId"];
 }
 
 @end

@@ -10,16 +10,17 @@
 
 @class User;
 
-typedef void (^UserServiceCompletionBlock)(User *user, NSError *error);
+typedef void (^UserServiceCompletionBlock)(NSError *error);
 typedef void (^UserServiceUploadCompletionBlock)(NSString *url, NSError *error);
 
 
 @protocol UserServiceProtocol <NSObject>
 
-- (void)obtainUserWithId:(NSString *)uid completion:(UserServiceCompletionBlock)completion;
-- (void)obtainLogginedUserWithCompletion:(UserServiceCompletionBlock)completion;
+- (void)updateUserById:(NSString *)uid completion:(UserServiceCompletionBlock)completion;
 
 - (void)postUser:(User *)user completion:(UserServiceCompletionBlock)completion;
-- (void)updateProfilePhotoWithData:(NSData *)photoData uid:(NSString *)uid completion:(UserServiceUploadCompletionBlock)completion;
+- (void)updateProfilePhotoWithData:(NSData *)photoData
+                               uid:(NSString *)uid
+                        completion:(UserServiceUploadCompletionBlock)completion;
 
 @end

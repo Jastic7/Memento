@@ -94,6 +94,46 @@ static TransportLayer *sharedInstance = nil;
     }];
 }
 
+
+#pragma mark - Updating
+
+- (void)updateEmail:(NSString *)email withCredential:(NSString *)credential completion:(FailureCompletionBlock)completion {
+    [self startNetworkActivity];
+    
+    FIRUser *user = [FIRAuth auth].currentUser;
+    NSString *oldEmail = user.email;
+    
+    FIRAuthCredential *authCredential = [FIREmailPasswordAuthProvider credentialWithEmail:oldEmail password:credential];
+    
+    [user reauthenticateWithCredential:authCredential completion:^(NSError *_Nullable error) {
+        if (error) {
+            completion(error);
+        } else {
+            [user updateEmail:email completion:^(NSError * _Nullable error) {
+                completion(error);
+            }];
+        }
+    }];
+}
+
+- (void)updatePassword:(NSString *)password
+           completion:(FailureCompletionBlock)completion {
+    [self startNetworkActivity];
+    
+    FIRUser *user = [FIRAuth auth].currentUser;
+    FIRAuthCredential *credential;
+    
+    [user reauthenticateWithCredential:credential completion:^(NSError *_Nullable error) {
+        if (error) {
+            completion(error);
+        } else {
+            [user updatePassword:password completion:^(NSError * _Nullable error) {
+                completion(error);
+            }];
+        }
+    }];
+}
+
 - (void)addListenerForAuthStateChange:(void (^)(id))listener {
     self.authStateChangeHandle = [[FIRAuth auth] addAuthStateDidChangeListener:^(FIRAuth * _Nonnull auth, FIRUser * _Nullable user) {
         if (user) {

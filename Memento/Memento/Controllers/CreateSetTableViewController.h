@@ -11,13 +11,14 @@
 
 @protocol CreateSetTableViewControllerDelegate <NSObject>
 
--(void)сreateSetTableViewControllerDidCancel;
--(void)createSetTableViewControllerDidCreateSet:(Set *)set;
+- (void)сreateSetTableViewControllerDidCancel;
+- (void)createSetTableViewControllerDidCreateSet:(Set *)set;
 
 @end
 
+
 @interface CreateSetTableViewController : UITableViewController
 
-@property (nonatomic, weak) id<CreateSetTableViewControllerDelegate> delegate;
+@property (nonatomic, weak) id <CreateSetTableViewControllerDelegate> delegate;
 
 @end

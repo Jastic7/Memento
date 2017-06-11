@@ -28,12 +28,19 @@
 		5508B96A1ED9184B00526200 /* SetTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B9601ED9184B00526200 /* SetTableViewCell.m */; };
 		5508B9721ED9186300526200 /* ItemOfSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B96E1ED9186300526200 /* ItemOfSet.m */; };
 		5508B9731ED9186300526200 /* Set.m in Sources */ = {isa = PBXBuildFile; fileRef = 5508B9701ED9186300526200 /* Set.m */; };
-		5513ECF11EE96CE400E2611B /* WaitingAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5513ECF01EE96CE400E2611B /* WaitingAlertViewController.m */; };
+		5513ECFB1EE9BC7700E2611B /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5513ECF91EE9BC7700E2611B /* Settings.storyboard */; };
+		5513ED051EE9CCB400E2611B /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5513ED041EE9CCB400E2611B /* SettingsTableViewController.m */; };
+		5513ED081EE9CCC300E2611B /* PasswordSettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5513ED071EE9CCC300E2611B /* PasswordSettingTableViewController.m */; };
+		5513ED0B1EE9CD3F00E2611B /* EditSettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5513ED0A1EE9CD3F00E2611B /* EditSettingTableViewController.m */; };
 		5525EE871EE3725100206898 /* SetService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5525EE861EE3725100206898 /* SetService.m */; };
 		5525EE8A1EE376AB00206898 /* BaseService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5525EE891EE376AB00206898 /* BaseService.m */; };
 		5525EE8E1EE38C1C00206898 /* SetMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5525EE8D1EE38C1C00206898 /* SetMapper.m */; };
 		5525EE911EE3918500206898 /* ItemOfSetMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5525EE901EE3918500206898 /* ItemOfSetMapper.m */; };
 		553B24361EE7105800D51326 /* Entity.m in Sources */ = {isa = PBXBuildFile; fileRef = 553B24351EE7105800D51326 /* Entity.m */; };
+		558C07F31EEC839E0065D7D5 /* InfoAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 558C07F21EEC839E0065D7D5 /* InfoAlertViewController.m */; };
+		558C07F61EEC99610065D7D5 /* WaitingAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 558C07F51EEC99610065D7D5 /* WaitingAlertViewController.m */; };
+		558C08011EECB3CD0065D7D5 /* ImagePickerSourceTypePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 558C08001EECB3CD0065D7D5 /* ImagePickerSourceTypePresenter.m */; };
+		558C08071EECC4610065D7D5 /* ConfirmAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 558C08061EECC4610065D7D5 /* ConfirmAlertViewController.m */; };
 		559094291EDEF53A00BE4500 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 559094281EDEF53A00BE4500 /* User.m */; };
 		559094311EDF009700BE4500 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 559094301EDF009700BE4500 /* GoogleService-Info.plist */; };
 		55BAE12C1EDF8D6D00F1CBEE /* AuthService.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BAE12B1EDF8D6D00F1CBEE /* AuthService.m */; };
@@ -105,8 +112,13 @@
 		5508B96F1ED9186300526200 /* Set.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Set.h; sourceTree = "<group>"; };
 		5508B9701ED9186300526200 /* Set.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Set.m; sourceTree = "<group>"; };
 		5513ECE51EE8C6C200E2611B /* AuthenticationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationDelegate.h; sourceTree = "<group>"; };
-		5513ECEF1EE96CE400E2611B /* WaitingAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitingAlertViewController.h; sourceTree = "<group>"; };
-		5513ECF01EE96CE400E2611B /* WaitingAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitingAlertViewController.m; sourceTree = "<group>"; };
+		5513ECFA1EE9BC7700E2611B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Settings.storyboard; sourceTree = "<group>"; };
+		5513ED031EE9CCB400E2611B /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
+		5513ED041EE9CCB400E2611B /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
+		5513ED061EE9CCC300E2611B /* PasswordSettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordSettingTableViewController.h; sourceTree = "<group>"; };
+		5513ED071EE9CCC300E2611B /* PasswordSettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordSettingTableViewController.m; sourceTree = "<group>"; };
+		5513ED091EE9CD3F00E2611B /* EditSettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditSettingTableViewController.h; sourceTree = "<group>"; };
+		5513ED0A1EE9CD3F00E2611B /* EditSettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditSettingTableViewController.m; sourceTree = "<group>"; };
 		5525EE841EE3723E00206898 /* SetServiceProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetServiceProtocol.h; sourceTree = "<group>"; };
 		5525EE851EE3725100206898 /* SetService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetService.h; sourceTree = "<group>"; };
 		5525EE861EE3725100206898 /* SetService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetService.m; sourceTree = "<group>"; };
@@ -118,6 +130,15 @@
 		5525EE901EE3918500206898 /* ItemOfSetMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemOfSetMapper.m; sourceTree = "<group>"; };
 		553B24341EE7105800D51326 /* Entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entity.h; sourceTree = "<group>"; };
 		553B24351EE7105800D51326 /* Entity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Entity.m; sourceTree = "<group>"; };
+		558C07F11EEC839E0065D7D5 /* InfoAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoAlertViewController.h; sourceTree = "<group>"; };
+		558C07F21EEC839E0065D7D5 /* InfoAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoAlertViewController.m; sourceTree = "<group>"; };
+		558C07F41EEC99610065D7D5 /* WaitingAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitingAlertViewController.h; sourceTree = "<group>"; };
+		558C07F51EEC99610065D7D5 /* WaitingAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitingAlertViewController.m; sourceTree = "<group>"; };
+		558C07FE1EECB3B50065D7D5 /* ImagePickerSourceTypePresenterProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePickerSourceTypePresenterProtocol.h; sourceTree = "<group>"; };
+		558C07FF1EECB3CD0065D7D5 /* ImagePickerSourceTypePresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePickerSourceTypePresenter.h; sourceTree = "<group>"; };
+		558C08001EECB3CD0065D7D5 /* ImagePickerSourceTypePresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePickerSourceTypePresenter.m; sourceTree = "<group>"; };
+		558C08051EECC4610065D7D5 /* ConfirmAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfirmAlertViewController.h; sourceTree = "<group>"; };
+		558C08061EECC4610065D7D5 /* ConfirmAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfirmAlertViewController.m; sourceTree = "<group>"; };
 		558D15331ED91E100055C2DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		559094271EDEF53A00BE4500 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		559094281EDEF53A00BE4500 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
@@ -213,6 +234,7 @@
 		5508B9351ED9176B00526200 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				558C07F01EEC82BA0065D7D5 /* Alerts */,
 				55BAE13E1EE09DBA00F1CBEE /* Auth */,
 				5508B9361ED9176B00526200 /* CreateSetTableViewController.h */,
 				5508B9371ED9176B00526200 /* CreateSetTableViewController.m */,
@@ -222,7 +244,7 @@
 				5508B93F1ED9176B00526200 /* MatchMode */,
 				5508B9441ED9176B00526200 /* SetsViewController.h */,
 				5508B9451ED9176B00526200 /* SetsViewController.m */,
-				5513ECEE1EE96CBF00E2611B /* CustomAlerts */,
+				5513ED021EE9CCAC00E2611B /* Settings */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -298,13 +320,17 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		5513ECEE1EE96CBF00E2611B /* CustomAlerts */ = {
+		5513ED021EE9CCAC00E2611B /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				5513ECEF1EE96CE400E2611B /* WaitingAlertViewController.h */,
-				5513ECF01EE96CE400E2611B /* WaitingAlertViewController.m */,
+				5513ED031EE9CCB400E2611B /* SettingsTableViewController.h */,
+				5513ED041EE9CCB400E2611B /* SettingsTableViewController.m */,
+				5513ED061EE9CCC300E2611B /* PasswordSettingTableViewController.h */,
+				5513ED071EE9CCC300E2611B /* PasswordSettingTableViewController.m */,
+				5513ED091EE9CD3F00E2611B /* EditSettingTableViewController.h */,
+				5513ED0A1EE9CD3F00E2611B /* EditSettingTableViewController.m */,
 			);
-			path = CustomAlerts;
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		5525EE8B1EE38C0B00206898 /* Mappers */ = {
@@ -322,9 +348,33 @@
 			path = Mappers;
 			sourceTree = "<group>";
 		};
+		558C07F01EEC82BA0065D7D5 /* Alerts */ = {
+			isa = PBXGroup;
+			children = (
+				558C07F11EEC839E0065D7D5 /* InfoAlertViewController.h */,
+				558C07F21EEC839E0065D7D5 /* InfoAlertViewController.m */,
+				558C07F41EEC99610065D7D5 /* WaitingAlertViewController.h */,
+				558C07F51EEC99610065D7D5 /* WaitingAlertViewController.m */,
+				558C08051EECC4610065D7D5 /* ConfirmAlertViewController.h */,
+				558C08061EECC4610065D7D5 /* ConfirmAlertViewController.m */,
+			);
+			path = Alerts;
+			sourceTree = "<group>";
+		};
+		558C07FD1EECB3A10065D7D5 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				558C07FE1EECB3B50065D7D5 /* ImagePickerSourceTypePresenterProtocol.h */,
+				558C07FF1EECB3CD0065D7D5 /* ImagePickerSourceTypePresenter.h */,
+				558C08001EECB3CD0065D7D5 /* ImagePickerSourceTypePresenter.m */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		55BAE1251EDF8B0B00F1CBEE /* ServiceLayer */ = {
 			isa = PBXGroup;
 			children = (
+				558C07FD1EECB3A10065D7D5 /* Helpers */,
 				5525EE8B1EE38C0B00206898 /* Mappers */,
 				55BAE1301EE088BE00F1CBEE /* ServiceLocator */,
 				55BAE1261EDF8B0B00F1CBEE /* Services */,
@@ -408,7 +458,9 @@
 			isa = PBXGroup;
 			children = (
 				559094301EDF009700BE4500 /* GoogleService-Info.plist */,
+				55E181B11EE4441500C1313D /* Auth.storyboard */,
 				55D34EE11EBA906500A2EE38 /* Main.storyboard */,
+				5513ECF91EE9BC7700E2611B /* Settings.storyboard */,
 				55BAE1251EDF8B0B00F1CBEE /* ServiceLayer */,
 				5508B96B1ED9186300526200 /* Model */,
 				5508B94D1ED9184B00526200 /* View */,
@@ -419,7 +471,6 @@
 				55C6ACDF1EC8D5AA0062537B /* MatchModeDelegate.h */,
 				55BAE13B1EE09C7000F1CBEE /* Assembly.h */,
 				55BAE13C1EE09C7000F1CBEE /* Assembly.m */,
-				55E181B11EE4441500C1313D /* Auth.storyboard */,
 			);
 			path = Memento;
 			sourceTree = "<group>";
@@ -535,6 +586,7 @@
 				5508B9681ED9184B00526200 /* LearnRoundInfoHeader.xib in Resources */,
 				55E181B21EE4441500C1313D /* Auth.storyboard in Resources */,
 				55D34EE31EBA906500A2EE38 /* Main.storyboard in Resources */,
+				5513ECFB1EE9BC7700E2611B /* Settings.storyboard in Resources */,
 				55E181C31EE4B45400C1313D /* ItemOfSetTableViewCell.xib in Resources */,
 				559094311EDF009700BE4500 /* GoogleService-Info.plist in Resources */,
 			);
@@ -597,12 +649,15 @@
 			files = (
 				559094291EDEF53A00BE4500 /* User.m in Sources */,
 				5508B9671ED9184B00526200 /* LearnRoundInfoHeader.m in Sources */,
+				558C07F31EEC839E0065D7D5 /* InfoAlertViewController.m in Sources */,
 				55DD03481ED919FA00BDA097 /* UIColor+PickerColors.m in Sources */,
+				5513ED081EE9CCC300E2611B /* PasswordSettingTableViewController.m in Sources */,
 				5508B9341ED916A600526200 /* MatchOrganizer.m in Sources */,
 				55BAE12C1EDF8D6D00F1CBEE /* AuthService.m in Sources */,
 				553B24361EE7105800D51326 /* Entity.m in Sources */,
 				5508B9471ED9176B00526200 /* DetailSetTableViewController.m in Sources */,
 				5525EE871EE3725100206898 /* SetService.m in Sources */,
+				558C07F61EEC99610065D7D5 /* WaitingAlertViewController.m in Sources */,
 				5508B9621ED9184B00526200 /* ItemLabel.m in Sources */,
 				55DD034C1ED91A3200BDA097 /* NSMutableArray+Shuffle.m in Sources */,
 				5525EE8A1EE376AB00206898 /* BaseService.m in Sources */,
@@ -618,11 +673,12 @@
 				55E181B91EE4723200C1313D /* UserMapper.m in Sources */,
 				55E181B61EE470AC00C1313D /* UserService.m in Sources */,
 				55BAE1331EE088D100F1CBEE /* ServiceLocator.m in Sources */,
-				5513ECF11EE96CE400E2611B /* WaitingAlertViewController.m in Sources */,
 				5525EE8E1EE38C1C00206898 /* SetMapper.m in Sources */,
 				55BAE1471EE09E0900F1CBEE /* WelcomeViewController.m in Sources */,
+				558C08071EECC4610065D7D5 /* ConfirmAlertViewController.m in Sources */,
 				55BAE13A1EE08EE600F1CBEE /* RemoteServiceFactory.m in Sources */,
 				5508B94C1ED9176B00526200 /* SetsViewController.m in Sources */,
+				5513ED0B1EE9CD3F00E2611B /* EditSettingTableViewController.m in Sources */,
 				55BAE1461EE09E0900F1CBEE /* SignUpTableViewController.m in Sources */,
 				5508B9611ED9184B00526200 /* Circle.m in Sources */,
 				5508B94A1ED9176B00526200 /* MatchItemsCollectionViewController.m in Sources */,
@@ -635,7 +691,9 @@
 				5508B9481ED9176B00526200 /* LearnRoundInfoTableViewController.m in Sources */,
 				5508B9641ED9184B00526200 /* EditingItemOfSetTableViewCell.m in Sources */,
 				55BAE13D1EE09C7000F1CBEE /* Assembly.m in Sources */,
+				5513ED051EE9CCB400E2611B /* SettingsTableViewController.m in Sources */,
 				5508B9631ED9184B00526200 /* ItemOfMatchCollectionViewCell.m in Sources */,
+				558C08011EECB3CD0065D7D5 /* ImagePickerSourceTypePresenter.m in Sources */,
 				5508B9721ED9186300526200 /* ItemOfSet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -643,6 +701,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		5513ECF91EE9BC7700E2611B /* Settings.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5513ECFA1EE9BC7700E2611B /* Base */,
+			);
+			name = Settings.storyboard;
+			sourceTree = "<group>";
+		};
 		55D34EE11EBA906500A2EE38 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

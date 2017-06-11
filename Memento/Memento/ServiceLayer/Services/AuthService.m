@@ -49,12 +49,38 @@
     }
 }
 
+- (void)updateEmail:(NSString *)email
+     withCredential:(NSString *)credential
+         completion:(AuthServiceUpdateCompletionBlock)completion {
+    
+    [self.transort updateEmail:email withCredential:credential completion:completion];
+}
+
+- (void)updatePassword:(NSString *)password completion:(AuthServiceUpdateCompletionBlock)completion {
+    //TODO:ADD CHECKS
+    
+    [self.transort updatePassword:password completion:completion];
+}
+
 - (void)logOut {
     [self.transort logOut];
+    [self removeUserFromUserDefaults];
 }
 
 - (void)addAuthStateChangeListener:(void (^)(NSString *))listener {
     [self.transort addListenerForAuthStateChange:listener];
+}
+
+
+#pragma mark - Private 
+
+- (void)removeUserFromUserDefaults {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    [userDefaults removeObjectForKey:@"userName"];
+    [userDefaults removeObjectForKey:@"userEmail"];
+    [userDefaults removeObjectForKey:@"userPhotoUrl"];
+    [userDefaults removeObjectForKey:@"userId"];
 }
 
 @end

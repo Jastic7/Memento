@@ -75,7 +75,7 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
     [super viewDidLoad];
     
     [self configureTableView];
-    [self configureRefreshControl];
+//    [self configureRefreshControl];
     
     [Assembly assemblyServiceLayer];
     
@@ -91,7 +91,7 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [self downloadData:self.tableView.refreshControl];
+    [self downloadData:nil];
 }
 
 
@@ -134,16 +134,9 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
     } else if ([identifier isEqualToString:kShowWelcomeSegue]) {
         WelcomeViewController *vc = segue.destinationViewController;
         vc.authenticationCompletion = ^() {
-            [self dismissViewControllerAnimated:YES completion:^{
-                [self downloadUserInfo];
-            }];
+            [self dismissViewControllerAnimated:YES completion:nil];
         };
     }
-}
-
-- (IBAction)logout:(id)sender {
-    [self deleteUserInfoFromUserDefaults];
-    [self.serviceLocator.authService logOut];
 }
 
 
@@ -184,47 +177,10 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
 
 #pragma mark - Private
 
-- (void)saveUserInfoIntoUserDefaults:(User *)user {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    
-    [userDefaults setObject:user.username           forKey:@"userName"];
-    [userDefaults setObject:user.email              forKey:@"userEmail"];
-    [userDefaults setObject:user.profilePhotoUrl    forKey:@"userPhotoUrl"];
-    [userDefaults setObject:user.uid                forKey:@"userId"];
-}
-
-- (void)deleteUserInfoFromUserDefaults {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    
-    [userDefaults removeObjectForKey:@"userName"];
-    [userDefaults removeObjectForKey:@"userEmail"];
-    [userDefaults removeObjectForKey:@"userPhotoUrl"];
-    [userDefaults removeObjectForKey:@"userId"];
-}
-
-- (void)downloadUserInfo {
-    [self.serviceLocator.userService obtainLogginedUserWithCompletion:^(User *user, NSError *error) {
-        if (error) {
-            
-        } else {
-            [self saveUserInfoIntoUserDefaults:user];
-            
-            NSLog(@"USER OBTAINED");
-            NSLog(@"%@", user.username);
-            NSLog(@"%@", user.profilePhotoUrl);
-            NSLog(@"%@", user.uid);
-        }
-    }];
-}
-
-
 - (void)downloadData:(UIRefreshControl *)refreshControll {
-    if (!self.uid) {
-        return;
-    }
-    
-    [self.serviceLocator.setService obtainSetListForUserId:self.uid completion:^(NSMutableArray<Set *> *setList, NSError *error) {
-        [refreshControll endRefreshing];
+    [self.serviceLocator.setService obtainSetListForUserId:self.uid
+                                                completion:^(NSMutableArray<Set *> *setList, NSError *error) {
+//        [refreshControll endRefreshing];
         
         self.sets = setList;
         [self.tableView reloadData];
@@ -232,10 +188,6 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
 }
 
 - (void)uploadData {
-    if (!self.uid) {
-        return;
-    }
-    
     [self.serviceLocator.setService postSetList:self.sets userId:self.uid completion:^(NSError *error) {
         
     }];

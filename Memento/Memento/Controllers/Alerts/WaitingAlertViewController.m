@@ -2,12 +2,15 @@
 //  WaitingAlertViewController.m
 //  Memento
 //
-//  Created by Andrey Morozov on 08.06.17.
+//  Created by Andrey Morozov on 11.06.17.
 //  Copyright © 2017 Andrey Morozov. All rights reserved.
 //
 
 #import "WaitingAlertViewController.h"
 
+@interface WaitingAlertViewController ()
+
+@end
 
 @implementation WaitingAlertViewController
 
@@ -22,8 +25,8 @@
 
 #pragma mark - Initialization
 
-+ (instancetype)alertControllerWithMessage:(NSString *)message preferredStyle:(UIAlertControllerStyle)preferredStyle {
-    return [self alertControllerWithTitle:@"" message:message preferredStyle:preferredStyle];
++ (instancetype)alertControllerWithMessage:(NSString *)message {
+    return [self alertControllerWithTitle:@"" message:message preferredStyle:UIAlertControllerStyleAlert];
 }
 
 
@@ -42,8 +45,6 @@
     
     [self.view addSubview:activityIndicator];
 }
-
-
 
 
 @end

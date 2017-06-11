@@ -30,6 +30,13 @@ typedef void (^FailureCompletionBlock)(NSError *error);
                    success:(SuccessCompletionBlock)success
                    failure:(FailureCompletionBlock)failure;
 
+- (void)updateEmail:(NSString *)email
+     withCredential:(NSString *)credential
+         completion:(FailureCompletionBlock)completion;
+
+- (void)updatePassword:(NSString *)password
+            completion:(FailureCompletionBlock)completion;
+
 - (void)addListenerForAuthStateChange:(void(^)(id response))listener;
 
 - (void)obtainDataWithPath:(NSString *)path
