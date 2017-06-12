@@ -16,13 +16,29 @@ typedef void (^SetServiceUploadCompletionBlock)(NSError *error);
 
 @protocol SetServiceProtocol <NSObject>
 
+/*!
+ * @brief Get list of set for a particular user from database.
+ * @param uid User's identifier, whose sets are beeing obtained.
+ * @param completion Callback which is beeing called, when sets are successfully obtained
+ * or error occured.
+ */
 - (void)obtainSetListForUserId:(NSString *)uid
                     completion:(SetServiceDownloadCompletionBlock)completion;
 
+/*!
+ * @brief Post list of set for a particular user to database.
+ * @param uid User's identifier, whose sets are beeing obtained.
+ * @param completion Callback which is beeing called, when sets are successfully posted
+ * or error occured.
+ */
 - (void)postSetList:(NSArray <Set *> *)setList
              userId:(NSString *)uid
          completion:(SetServiceUploadCompletionBlock)completion;
 
+/*!
+ * @brief Configure unique identifier.
+ * @return unique identifier.
+ */
 - (NSString *)configureUnuiqueId;
 
 @end

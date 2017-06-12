@@ -16,14 +16,6 @@
 
 @implementation User
 
-- (NSMutableArray<Set *> *)setList {
-    if (!_setList) {
-        _setList = [NSMutableArray array];
-    }
-    
-    return _setList;
-}
-
 - (instancetype)initWithId:(NSString *)uid name:(NSString *)name email:(NSString *)email profilePhotoUrl:(NSString *)photoUrl {
     self = [super init];
     
@@ -50,10 +42,6 @@
     NSString *uid       = [userDefaults objectForKey:@"userId"];
     
     return [[self alloc] initWithId:uid name:username email:email profilePhotoUrl:photoUrl];
-}
-
-- (void)addSetsFromSetList:(NSMutableArray <Set *> *)setList {
-    [self.setList addObjectsFromArray:setList];
 }
 
 @end

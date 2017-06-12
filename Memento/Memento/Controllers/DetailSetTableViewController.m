@@ -81,6 +81,8 @@ static NSString * const kRoundLearnModeSegue    = @"roundLearnModeSegue";
         LearnRoundViewController *dvc = segue.destinationViewController;
         LearnOrganizer *learnModeOrganizer = [LearnOrganizer createWithSet:self.set];
         
+        learnModeOrganizer.delegate = dvc;
+        
         dvc.organizer = learnModeOrganizer;
         dvc.cancelingBlock = ^void() {
             [self dismissViewControllerAnimated:YES completion:nil];

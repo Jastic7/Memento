@@ -20,21 +20,21 @@
 - (Set *)set;
 
 /**
- * @brief Get set, which configuring for each round in some mode.
+ * @brief Get set, which is configured for each round in some mode.
  * @return Set for each new round.
  */
 - (Set *)roundSet;
 
 /**
- * @brief Initialize organizers set with data from another set.
- * @param set - Data for initialization.
+ * @brief Initialize organizer's set with data from another set.
+ * @param set Data for initialization.
  * @return New initialized organizer.
  */
 - (instancetype)initWithSet:(Set *)set;
 
 /**
  * @brief Create new organizer with data from anodther set.
- * @param set - Data for initialization.
+ * @param set Data for initialization.
  * @return New created organizer.
  */
 + (instancetype)createWithSet:(Set *)set;

@@ -10,4 +10,10 @@
 
 @interface PasswordSettingTableViewController : UITableViewController
 
+/*!
+ * @brief Completion block. It is beeing called, when password 
+ * is updated.
+ */
+@property (nonatomic, copy) void (^editCompletion)();
+
 @end

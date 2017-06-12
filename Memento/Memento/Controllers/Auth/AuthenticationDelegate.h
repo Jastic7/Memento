@@ -11,7 +11,15 @@
 
 @protocol AuthenticationDelegate <NSObject>
 
+/*!
+ * @brief It should be called, when authentication is cancelled.
+ */
 - (void)authenticationDidCancelled;
+
+/*!
+ * @brief It should be called, when authentication is completed.
+ * It means, that the new user is registered or is loggined.
+ */
 - (void)authenticationDidComplete;
 
 @end

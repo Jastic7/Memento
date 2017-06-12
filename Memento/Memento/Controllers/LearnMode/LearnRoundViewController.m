@@ -15,7 +15,7 @@
 static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfoNavigationController";
 
 
-@interface LearnRoundViewController () <UINavigationBarDelegate, UITextFieldDelegate, LearnOrganizerDelegate>
+@interface LearnRoundViewController () <UINavigationBarDelegate, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *textLabel;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
@@ -36,7 +36,6 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
     
     self.navigationBar.delegate = self;
     self.textField.delegate     = self;
-    [self.organizer setDelegate:self];
     
     [self configureTextField];
     [self registerNotifications];
@@ -77,23 +76,26 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
 
 #pragma mark - LearnModeOrganizerDelegate
 
-- (void)didFinishedLearning {
-    [self showRoundInfoViewController];
+- (void)learnOrganizer:(id<LearnOrganizerProtocol>)learnOrganizer didFinishedRound:(NSUInteger)round {
+    [self showRoundInfoViewControllerWithCompletion:^(BOOL finished) {
+        NSString *title = [NSString stringWithFormat:@"Round %lui", (unsigned long)round];
+        [self.navigationItem setTitle: title];
+    }];
 }
 
-- (void)didUpdatedTerm:(NSString *)term withLearnProgress:(LearnState)learnProgress {
+- (void)learnOrganizer:(id<LearnOrganizerProtocol>)learnOrganizer didUpdatedTerm:(NSString *)term withLearnProgress:(LearnState)learnProgress {
     self.textLabel.text = term;
     [self.learnProgressView setLearnState:learnProgress];
 }
 
-- (void)didCheckedUserDefinitionWithLearningState:(LearnState)learnProgress previousState:(LearnState)previousLearnProgress {
+- (void)learnOrganizer:(id<LearnOrganizerProtocol>)learnOrganizer didCheckedDefinitionWithLearningState:(LearnState)learnProgress previousState:(LearnState)previousProgress {
+    
     [UIView animateWithDuration:0.4 animations:^{
-        [self.learnProgressView setLearnState:learnProgress withPreviousState:previousLearnProgress];
+        [self.learnProgressView setLearnState:learnProgress withPreviousState:previousProgress];
     } completion:^(BOOL finished) {
         if (learnProgress != Mistake) {
             [self.organizer updateLearningItem];
         }
-        
     }];
 }
 
@@ -115,9 +117,9 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
     
     CGFloat yOffset = keyboardEndFrame.size.height;
     
-    CGRect currentFrame = self.textField.frame;
-    currentFrame.origin.y = self.view.frame.size.height - yOffset - 50;
-    [self.textField setFrame:currentFrame];
+    CGRect textFieldFrame = self.textField.frame;
+    textFieldFrame.origin.y = self.view.frame.size.height - yOffset - 50;
+    [self.textField setFrame:textFieldFrame];
 }
 
 
@@ -151,6 +153,10 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
         [self.textField becomeFirstResponder];
     };
     
+    [self configureNavigationController:navigationController];
+}
+
+- (void)configureNavigationController:(UINavigationController *)navigationController {
     [self addChildViewController:navigationController];
     [self.view addSubview:navigationController.view];
     [navigationController didMoveToParentViewController:self];
@@ -161,7 +167,7 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
 
 #pragma mark - Views Showing
 
-- (void)showRoundInfoViewController {
+- (void)showRoundInfoViewControllerWithCompletion:(void(^)(BOOL finished))completion {
     if (self.childViewControllers.count == 0) {
         [self.view endEditing:YES];
         
@@ -170,7 +176,7 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
         
         [UIView animateWithDuration:0.3 animations:^{
             childViewController.view.alpha = 1.0;
-        }];
+        } completion:completion];
     }
 }
 

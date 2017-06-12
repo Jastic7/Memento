@@ -80,6 +80,9 @@
                                                 <constraint firstItem="FB1-vp-3hb" firstAttribute="leading" secondItem="UQe-MC-4eK" secondAttribute="leading" constant="8" id="qPj-Rg-SIo"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="Iwg-ka-jgj" kind="show" identifier="showEditEmailSegue" id="dxK-SU-Qhx"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -156,17 +159,16 @@
                         <outlet property="activityIndicator" destination="8zN-Kd-sD7" id="FBy-9Q-RBD"/>
                         <outlet property="emailLabel" destination="FB1-vp-3hb" id="aQp-Rk-F6I"/>
                         <outlet property="profilePhotoImageView" destination="DpM-TD-6DH" id="F1d-pO-2Il"/>
-                        <segue destination="Iwg-ka-jgj" kind="show" identifier="showEditEmailSegue" id="a96-Yz-Q1B"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="apo-f1-cdc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2112.8000000000002" y="791.15442278860576"/>
         </scene>
-        <!--Edit Setting Table View Controller-->
+        <!--Email Setting Table View Controller-->
         <scene sceneID="kK9-gX-s7W">
             <objects>
-                <tableViewController id="Iwg-ka-jgj" customClass="EditSettingTableViewController" sceneMemberID="viewController">
+                <tableViewController id="Iwg-ka-jgj" customClass="EmailSettingTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="ZaV-5g-d8F">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -178,7 +180,7 @@
                                         <rect key="frame" x="0.0" y="35" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9Yv-5y-Yct" id="561-ET-6Qx">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Some text" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CYW-Vi-8M1">
@@ -231,17 +233,17 @@
                             <tableViewSection headerTitle="Previous password" id="S7p-CT-n0R">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Uqu-B9-gBc">
-                                        <rect key="frame" x="0.0" y="56" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="55" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Uqu-B9-gBc" id="wgZ-4a-IHb">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter your old password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jS4-D1-QGu">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter your current password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jS4-D1-QGu">
                                                     <rect key="frame" x="8" y="6" width="359" height="30"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -257,7 +259,7 @@
                             <tableViewSection headerTitle="New password" id="6gw-5w-Arg">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="eoS-ol-4Gb">
-                                        <rect key="frame" x="0.0" y="157" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="155" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eoS-ol-4Gb" id="SOo-Z5-rXK">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -267,7 +269,7 @@
                                                     <rect key="frame" x="8" y="6" width="359" height="30"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -279,7 +281,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="mDD-uD-aVC">
-                                        <rect key="frame" x="0.0" y="201" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="199" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mDD-uD-aVC" id="swZ-OH-R7g">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -289,7 +291,7 @@
                                                     <rect key="frame" x="8" y="6" width="359" height="30"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -317,7 +319,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="confirmPasswordTextField" destination="Tfn-z8-Bjl" id="MuV-Q7-A4E"/>
-                        <outlet property="oldPasswordTextField" destination="jS4-D1-QGu" id="Gsz-mT-DSs"/>
+                        <outlet property="currentPasswordTextField" destination="jS4-D1-QGu" id="BFe-65-Xhs"/>
                         <outlet property="passwordTextField" destination="DK5-BN-qUg" id="j3Q-Sh-50M"/>
                     </connections>
                 </tableViewController>

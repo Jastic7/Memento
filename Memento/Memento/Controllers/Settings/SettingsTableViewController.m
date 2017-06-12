@@ -7,11 +7,11 @@
 //
 
 #import "SettingsTableViewController.h"
-#import "EditSettingTableViewController.h"
+#import "EmailSettingTableViewController.h"
 #import "PasswordSettingTableViewController.h"
-#import "ImagePickerSourceTypePresenterProtocol.h"
-#import "ImagePickerSourceTypePresenter.h"
 #import "InfoAlertViewController.h"
+
+#import "ImagePickerSourceTypePresenter.h"
 #import "ServiceLocator.h"
 #import "User.h"
 
@@ -35,17 +35,10 @@ static NSString * const kShowPasswordSettingSegue   = @"showPasswordSettingSegue
 
 @end
 
+
 @implementation SettingsTableViewController
 
 #pragma mark - Getters
-
-//- (User *)user {
-//    if (!_user) {
-//        _user = [User userFromUserDefaults];
-//    }
-//    
-//    return _user;
-//}
 
 - (ServiceLocator *)serviceLocator {
     if (!_serviceLocator) {
@@ -92,6 +85,14 @@ static NSString * const kShowPasswordSettingSegue   = @"showPasswordSettingSegue
     }
 }
 
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+
 #pragma mark - UIImagePickerControllerDelegate
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
@@ -121,29 +122,26 @@ static NSString * const kShowPasswordSettingSegue   = @"showPasswordSettingSegue
                                                                   message:nil];
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-
-}
 
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSString *identifier = segue.identifier;
-
-}
-
-- (void)updateUser:(User *)user {
-    self.user = user;
     
-    [self.serviceLocator.userService postUser:user completion:^(NSError *error) {
-        if (error) {
-            NSLog(@"ERROR UPDATE USER");
-        } else {
+    if ([identifier isEqualToString:kShowEditEmailSegue]) {
+        EmailSettingTableViewController *dvc = segue.destinationViewController;
+        dvc.editableEmail = self.user.email;
+        dvc.editCompletion = ^void(NSString *editedEmail) {
+            self.user = nil;
             [self.navigationController popViewControllerAnimated:YES];
-        }
-    }];
+        };
+    } else if ([identifier isEqualToString:kShowPasswordSettingSegue]) {
+        PasswordSettingTableViewController *dvc = segue.destinationViewController;
+        dvc.editCompletion = ^void() {
+            [self.navigationController popViewControllerAnimated:YES];
+        };
+    }
+
 }
 
 - (void)showError:(NSError *)error {
@@ -171,8 +169,8 @@ static NSString * const kShowPasswordSettingSegue   = @"showPasswordSettingSegue
 }
 
 - (void)uploadUserProfilePhoto {
-    UIImage *profilePhoto = self.profilePhotoImageView.image;
-    NSData *profilePhotoData = UIImageJPEGRepresentation(profilePhoto, 0.9);
+    UIImage *profilePhoto       = self.profilePhotoImageView.image;
+    NSData  *profilePhotoData   = UIImageJPEGRepresentation(profilePhoto, 0.9);
     
     [self.serviceLocator.userService postProfilePhotoWithData:profilePhotoData uid:self.user.uid completion:^(NSString *url, NSError *error) {
         if (error) {

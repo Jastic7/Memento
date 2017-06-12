@@ -9,8 +9,9 @@
 #import "LogInTableViewController.h"
 #import "WaitingAlertViewController.h"
 #import "InfoAlertViewController.h"
-#import "ServiceLocator.h"
+
 #import "AuthenticationDelegate.h"
+#import "ServiceLocator.h"
 
 
 @interface LogInTableViewController ()
@@ -22,11 +23,12 @@
 
 @end
 
+
 @implementation LogInTableViewController
 
 #pragma mark - Getters
 
--(ServiceLocator *)serviceLocator {
+- (ServiceLocator *)serviceLocator {
     if (!_serviceLocator ) {
         _serviceLocator = [ServiceLocator shared];
     }
@@ -36,10 +38,6 @@
 
 
 #pragma mark - LifeCycle
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-}
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -60,7 +58,6 @@
     [self.delegate authenticationDidCancelled];
 }
 
-
 - (IBAction)logInButtonTapped:(id)sender {
     [self showWaitingAlertWithMessage:@"Authorization in progress..."];
     
@@ -69,8 +66,8 @@
     
     [self.serviceLocator.authService logInWithEmail:email password:password completion:^(NSString *uid, NSError *error) {
         if (error) {
-            [self dismissViewControllerAnimated:YES completion:^{
-                [self showError:error];
+            [self hideWaitingAlertAnimated:YES completion:^{
+                [self showInfoAlertWithError:error];
             }];
         } else {
             [self reloadUserById:uid];
@@ -83,9 +80,9 @@
 
 - (void)reloadUserById:(NSString *)uid {
     [self.serviceLocator.userService reloadUserById:uid completion:^(NSError *error) {
-        [self dismissViewControllerAnimated:YES completion:^{
+        [self hideWaitingAlertAnimated:YES completion:^{
             if (error) {
-                [self showError:error];
+                [self showInfoAlertWithError:error];
             } else {
                 [self.delegate authenticationDidComplete];
             }
@@ -94,9 +91,9 @@
 }
 
 
-#pragma mark - Presenting alerts
+#pragma mark - Alerts
 
-- (void)showError:(NSError *)error {
+- (void)showInfoAlertWithError:(NSError *)error {
     NSString *errorDescription = error.localizedDescription;
     
     InfoAlertViewController *errorAlert = [InfoAlertViewController alertControllerWithTitle:@"Registration failed"
@@ -110,6 +107,10 @@
     WaitingAlertViewController *alert = [WaitingAlertViewController alertControllerWithMessage:message];
     
     [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)hideWaitingAlertAnimated:(BOOL)animated completion:(void (^)())completion {
+    [self dismissViewControllerAnimated:animated completion:completion];
 }
 
 @end

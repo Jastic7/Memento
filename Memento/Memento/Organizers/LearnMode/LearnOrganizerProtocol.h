@@ -10,22 +10,48 @@
 #import "OrganizerProtocol.h"
 #import "ItemOfSet.h"
 
+@protocol LearnOrganizerProtocol;
+
+
 @protocol LearnOrganizerDelegate <NSObject>
 
-- (void)didFinishedLearning;
-- (void)didUpdatedTerm:(NSString *)term withLearnProgress:(LearnState)learnProgress;
-- (void)didCheckedUserDefinitionWithLearningState:(LearnState)learnProgress previousState:(LearnState)previousProgress;
+/*!
+ * @brief It is being called, when round is finished.
+ * @param learnOrganizer Learn organizer.
+ * @param round Number of finished round.
+ */
+- (void)learnOrganizer:(id <LearnOrganizerProtocol>)learnOrganizer didFinishedRound:(NSUInteger)round;
+
+/*!
+ * @brief It is being called, when organizer has obtained next item.
+ * @param learnOrganizer Learn organizer.
+ * @param term Item's term, that should be presented to user.
+ * @param learnProgress Learn progress of item's term.
+ */
+- (void)learnOrganizer:(id <LearnOrganizerProtocol>)learnOrganizer
+        didUpdatedTerm:(NSString *)term
+     withLearnProgress:(LearnState)learnProgress;
+
+/*!
+ * @brief It is being called, when organizer has checked user's answer for current item's term.
+ * @param learnOrganizer Learn organizer.
+ * @param learnProgress New learn progress of current item.
+ * @param previousProgress Previous learn progress of current item.
+ */
+- (void)learnOrganizer:(id <LearnOrganizerProtocol>)learnOrganizer
+didCheckedDefinitionWithLearningState:(LearnState)learnProgress
+         previousState:(LearnState)previousProgress;
 
 @end
 
 
-@protocol LearnOrganizerProtocol <NSObject, OrganizerProtocol>
+@protocol LearnOrganizerProtocol <OrganizerProtocol>
+
+@property (nonatomic, weak) id <LearnOrganizerDelegate> delegate;
 
 - (void)setInitialConfiguration;
 
 - (void)checkUserDefinition:(NSString *)definition;
 - (void)updateLearningItem;
-
-- (void)setDelegate:(id <LearnOrganizerDelegate>)delegate;
 
 @end

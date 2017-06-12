@@ -11,6 +11,13 @@
 
 @protocol ImagePickerSourceTypePresenterProtocol <NSObject>
 
+/*!
+ * @brief Present action sheet with source types for UIImagePicker
+ * @param imagePicker Image picker which is being presented, when source type is choosed.
+ * @param presentingController Controller which will show image picker.
+ * @param title Title of action sheet with source types.
+ * @param message Message in action sheet.
+ */
 - (void)presentSourceTypesForImagePicker:(UIImagePickerController *)imagePicker
                     presentingController:(UIViewController *)presentingController
                                    title:(NSString *)title

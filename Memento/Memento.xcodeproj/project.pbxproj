@@ -31,7 +31,7 @@
 		5513ECFB1EE9BC7700E2611B /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5513ECF91EE9BC7700E2611B /* Settings.storyboard */; };
 		5513ED051EE9CCB400E2611B /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5513ED041EE9CCB400E2611B /* SettingsTableViewController.m */; };
 		5513ED081EE9CCC300E2611B /* PasswordSettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5513ED071EE9CCC300E2611B /* PasswordSettingTableViewController.m */; };
-		5513ED0B1EE9CD3F00E2611B /* EditSettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5513ED0A1EE9CD3F00E2611B /* EditSettingTableViewController.m */; };
+		5513ED0B1EE9CD3F00E2611B /* EmailSettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5513ED0A1EE9CD3F00E2611B /* EmailSettingTableViewController.m */; };
 		5525EE871EE3725100206898 /* SetService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5525EE861EE3725100206898 /* SetService.m */; };
 		5525EE8A1EE376AB00206898 /* BaseService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5525EE891EE376AB00206898 /* BaseService.m */; };
 		5525EE8E1EE38C1C00206898 /* SetMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5525EE8D1EE38C1C00206898 /* SetMapper.m */; };
@@ -117,8 +117,8 @@
 		5513ED041EE9CCB400E2611B /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
 		5513ED061EE9CCC300E2611B /* PasswordSettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordSettingTableViewController.h; sourceTree = "<group>"; };
 		5513ED071EE9CCC300E2611B /* PasswordSettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordSettingTableViewController.m; sourceTree = "<group>"; };
-		5513ED091EE9CD3F00E2611B /* EditSettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditSettingTableViewController.h; sourceTree = "<group>"; };
-		5513ED0A1EE9CD3F00E2611B /* EditSettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditSettingTableViewController.m; sourceTree = "<group>"; };
+		5513ED091EE9CD3F00E2611B /* EmailSettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmailSettingTableViewController.h; sourceTree = "<group>"; };
+		5513ED0A1EE9CD3F00E2611B /* EmailSettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmailSettingTableViewController.m; sourceTree = "<group>"; };
 		5525EE841EE3723E00206898 /* SetServiceProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetServiceProtocol.h; sourceTree = "<group>"; };
 		5525EE851EE3725100206898 /* SetService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetService.h; sourceTree = "<group>"; };
 		5525EE861EE3725100206898 /* SetService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetService.m; sourceTree = "<group>"; };
@@ -327,8 +327,8 @@
 				5513ED041EE9CCB400E2611B /* SettingsTableViewController.m */,
 				5513ED061EE9CCC300E2611B /* PasswordSettingTableViewController.h */,
 				5513ED071EE9CCC300E2611B /* PasswordSettingTableViewController.m */,
-				5513ED091EE9CD3F00E2611B /* EditSettingTableViewController.h */,
-				5513ED0A1EE9CD3F00E2611B /* EditSettingTableViewController.m */,
+				5513ED091EE9CD3F00E2611B /* EmailSettingTableViewController.h */,
+				5513ED0A1EE9CD3F00E2611B /* EmailSettingTableViewController.m */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -678,7 +678,7 @@
 				558C08071EECC4610065D7D5 /* ConfirmAlertViewController.m in Sources */,
 				55BAE13A1EE08EE600F1CBEE /* RemoteServiceFactory.m in Sources */,
 				5508B94C1ED9176B00526200 /* SetsViewController.m in Sources */,
-				5513ED0B1EE9CD3F00E2611B /* EditSettingTableViewController.m in Sources */,
+				5513ED0B1EE9CD3F00E2611B /* EmailSettingTableViewController.m in Sources */,
 				55BAE1461EE09E0900F1CBEE /* SignUpTableViewController.m in Sources */,
 				5508B9611ED9184B00526200 /* Circle.m in Sources */,
 				5508B94A1ED9176B00526200 /* MatchItemsCollectionViewController.m in Sources */,

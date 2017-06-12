@@ -9,10 +9,10 @@
 #import "SignUpTableViewController.h"
 #import "WaitingAlertViewController.h"
 #import "InfoAlertViewController.h"
-#import "ImagePickerSourceTypePresenterProtocol.h"
+
 #import "ImagePickerSourceTypePresenter.h"
-#import "ServiceLocator.h"
 #import "AuthenticationDelegate.h"
+#import "ServiceLocator.h"
 #import "User.h"
 
 
@@ -58,6 +58,7 @@
     
     return _imagePickerSourceTypePresenter;
 }
+
 
 #pragma mark - Life Cycle
 
@@ -118,7 +119,7 @@
     [self.serviceLocator.authService signUpWithEmail:email password:password completion:^(NSString *uid, NSError *error) {
         if (error) {
             [self hideWaitingAlertAnimated:YES completion:^{
-                [self showError:error];
+                [self showInfoAlertWithError:error];
             }];
         } else {
             [self uploadUserWithId:uid];
@@ -148,7 +149,7 @@
     [self dismissViewControllerAnimated:animated completion:completion];
 }
 
-- (void)showError:(NSError *)error {
+- (void)showInfoAlertWithError:(NSError *)error {
     NSString *errorDescription = error.localizedDescription;
     
     InfoAlertViewController *errorAlert = [InfoAlertViewController alertControllerWithTitle:@"Registration failed"
@@ -171,16 +172,12 @@
     [self.serviceLocator.userService postUserWithId:uid username:username email:email profilePhotoData:profilePhotoData completion:^(NSError *error) {
         [self hideWaitingAlertAnimated:YES completion:^{
             if (error) {
-                [self showError:error];
+                [self showInfoAlertWithError:error];
             } else {
                 [self.delegate authenticationDidComplete];
             }
         }];
     }];
-}
-
-- (void)dealloc {
-    NSLog(@"SIGN UP LEFT");
 }
 
 @end

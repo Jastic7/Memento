@@ -7,6 +7,8 @@
 //
 
 #import "ConfirmAlertViewController.h"
+#import "InfoAlertViewController.h"
+
 
 @interface ConfirmAlertViewController ()
 
@@ -16,14 +18,35 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
++ (instancetype)alertControllerWithTitle:(NSString *)title message:(NSString *)message textFieldPlaceholder:(NSString *)placeholder confirmTitle:(NSString *)confirmTitle {
+    
+    ConfirmAlertViewController *confirmAlert = [ConfirmAlertViewController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    
+    __weak typeof(confirmAlert) weakConfirmAlert = confirmAlert;
+    UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:confirmTitle
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * _Nonnull action) {
+        __strong typeof(confirmAlert) strongWeakConfirmAlert = weakConfirmAlert;
+        
+        UITextField *confirmTextField = strongWeakConfirmAlert.textFields[0];
+        [strongWeakConfirmAlert.delegate confirmAlertDidConfirmedWithText:confirmTextField.text];
+        confirmTextField.text = @"";
+    }];
+    
+    [confirmAlert addAction:cancelAction];
+    [confirmAlert addAction:confirmAction];
+    
+    [confirmAlert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.placeholder = placeholder;
+        textField.secureTextEntry = YES;
+    }];
+ 
+    return confirmAlert;
 }
-
 
 
 @end

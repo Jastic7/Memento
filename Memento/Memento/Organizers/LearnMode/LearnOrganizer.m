@@ -12,7 +12,6 @@
 @interface LearnOrganizer ()
 
 @property (nonatomic, strong) Set *set;
-
 @property (nonatomic, strong) Set *learningSet;
 
 /*!
@@ -27,19 +26,19 @@
 
 /*!
  * @brief Responsible for tracking position in whole
- * learning set, which will be using for creating
+ * learning set. It is being used for creation
  * new subset in the new round.
  */
 @property (nonatomic, assign) NSUInteger location;
 
 /*!
  * @brief Responsible for tracking index of learning
- * item from the roundSet.
+ * item from roundSet.
  */
 @property (nonatomic, assign) NSUInteger learningItemIndex;
 
 /*!
- * @brief Current learning item from roundSet in round.
+ * @brief Current learning item from roundSet in current round.
  */
 @property (nonatomic, strong) ItemOfSet *learningItem;
 
@@ -49,13 +48,12 @@
  */
 @property (nonatomic, assign, readonly) BOOL isEnoughItems;
 
-@property (nonatomic, weak) id <LearnOrganizerDelegate> delegate;
-
 @end
 
 
 @implementation LearnOrganizer
 
+@synthesize delegate = _delegate;
 
 #pragma mark - Getters
 
@@ -72,7 +70,7 @@
 }
 
 - (BOOL)isFinished {
-    return self.location >= self.learningSet.count;
+    return self.location > self.learningSet.count;
 }
 
 - (Set *)set {
@@ -81,42 +79,44 @@
 
 #pragma mark - Setters
 
-- (void)setLearningItemIndex:(NSUInteger)roundItemIndex {
-    _learningItemIndex = roundItemIndex;
+- (void)setLearningItemIndex:(NSUInteger)learningItemIndex {
+    _learningItemIndex = learningItemIndex;
     
     if (_learningItemIndex == self.roundSet.count) {
         self.currentRound++;
-        return;
+    } else {
+        self.learningItem = self.roundSet[_learningItemIndex];
     }
-    
-    self.learningItem = self.roundSet[_learningItemIndex];
 }
 
 - (void)setLearningItem:(ItemOfSet *)roundItem {
     _learningItem = roundItem;
     
-    [self.delegate didUpdatedTerm:roundItem.term withLearnProgress:roundItem.learnProgress];
+    [self.delegate learnOrganizer:self didUpdatedTerm:roundItem.term withLearnProgress:roundItem.learnProgress];
 }
 
 - (void)setCurrentRound:(NSUInteger)currentRound {
     _currentRound = currentRound;
-    //FIXME:Call another method
-    [self.delegate didFinishedLearning];
-}
 
-- (void)setDelegate:(id <LearnOrganizerDelegate>)delegate {
-    _delegate = delegate;
+    [self.delegate learnOrganizer:self didFinishedRound:currentRound];
 }
 
 
-#pragma mark - Helpers
+#pragma mark - Initialization
 
-- (void)updateLearningProgressOfItem:(ItemOfSet *)item isUserRight:(BOOL)isCorrectDefinition {
-    if (isCorrectDefinition) {
-        [item increaseLearnProgress];
-    } else {
-        [item failLearnProgress];
+- (instancetype)initWithSet:(Set *)set {
+    self = [super init];
+    
+    if (self) {
+        _set = set;
+        _learningSet = [Set setWithSet:set];
     }
+    
+    return self;
+}
+
++ (instancetype)createWithSet:(Set *)set {
+    return [[self alloc] initWithSet:set];
 }
 
 
@@ -139,42 +139,22 @@
 #pragma mark - Updating
 
 - (void)updateRoundSet {
-    if (self.location > self.learningSet.count) {
-        [self.delegate didFinishedLearning];
+    if ([self isFinished]) {
+        [self.delegate learnOrganizer:self didFinishedRound:self.currentRound];
+    } else {
+        //creates the new range for current round.
+        NSUInteger length = self.isEnoughItems ? kCountItemsInRound : self.learningSet.count - self.location;
+        NSRange range = NSMakeRange(self.location, length);
+        self.location += length;
         
-        return;
+        //fills round set by new items.
+        self.roundSet = [self.learningSet subsetWithRange:range];
+        self.learningItemIndex = 0;
     }
-    
-    //creates the new range for current round.
-    NSUInteger length = self.isEnoughItems ? kCountItemsInRound : self.learningSet.count - self.location;
-    NSRange range = NSMakeRange(self.location, length);
-    self.location += length;
-    
-    //fills round set by new items.
-    self.roundSet = [self.learningSet subsetWithRange:range];
-    self.learningItemIndex = 0;
 }
 
 - (void)updateLearningItem {
     self.learningItemIndex++;
-}
-
-
-#pragma mark - Initialization
-
-- (instancetype)initWithSet:(Set *)set {
-    self = [super init];
-    
-    if (self) {
-        _set = set;
-        _learningSet = [Set setWithSet:set];
-    }
-    
-    return self;
-}
-
-+ (instancetype)createWithSet:(Set *)set {
-    return [[self alloc] initWithSet:set];
 }
 
 
@@ -190,9 +170,20 @@
         [self.learningSet addItem:self.learningItem];
     }
     
-    [self.delegate didCheckedUserDefinitionWithLearningState:self.learningItem.learnProgress previousState:previousState];
+    LearnState itemLearnProgress = self.learningItem.learnProgress;
+    [self.delegate learnOrganizer:self didCheckedDefinitionWithLearningState:itemLearnProgress previousState:previousState];
 }
 
+
+#pragma mark - Helpers
+
+- (void)updateLearningProgressOfItem:(ItemOfSet *)item isUserRight:(BOOL)isCorrectDefinition {
+    if (isCorrectDefinition) {
+        [item increaseLearnProgress];
+    } else {
+        [item failLearnProgress];
+    }
+}
 - (void)dealloc {
     NSLog(@"ORGANIZER LEFT");
 }

@@ -8,6 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
+#import "InfoAlertViewController.h"
+
+@class ConfirmAlertViewController;
+
+@protocol ConfirmAlerViewControllerDelegate <NSObject>
+
+- (void)confirmAlertDidConfirmedWithText:(NSString *)confirmedText;
+
+@end
+
+
 @interface ConfirmAlertViewController : UIAlertController
+
+@property (nonatomic, weak) id <ConfirmAlerViewControllerDelegate> delegate;
+
++ (instancetype)alertControllerWithTitle:(NSString *)title message:(NSString *)message textFieldPlaceholder:(NSString *)placeholder confirmTitle:(NSString *)confirmTitle;
 
 @end

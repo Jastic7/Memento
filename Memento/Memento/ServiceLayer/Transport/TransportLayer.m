@@ -14,6 +14,7 @@ static TransportLayer *sharedInstance = nil;
 
 @interface TransportLayer ()
 
+@property (nonatomic, strong) FIRAuth *auth;
 @property (nonatomic, strong) FIRDatabaseReference *rootRefDB;
 @property (nonatomic, strong) FIRStorageReference  *rootRefSR;
 @property (nonatomic, strong) FIRAuthStateDidChangeListenerHandle authStateChangeHandle;
@@ -24,6 +25,14 @@ static TransportLayer *sharedInstance = nil;
 
 
 #pragma mark - Getters
+
+- (FIRAuth *)auth {
+    if (!_auth) {
+        _auth = [FIRAuth auth];
+    }
+    
+    return _auth;
+}
 
 - (FIRDatabaseReference *)rootRefDB {
     if (!_rootRefDB) {
@@ -57,7 +66,7 @@ static TransportLayer *sharedInstance = nil;
 #pragma mark - Authentication
 
 - (void)logOut {
-    [[FIRAuth auth] signOut:nil];
+    [self.auth signOut:nil];
 }
 
 - (void)createNewUserWithEmail:(NSString *)email
@@ -66,8 +75,10 @@ static TransportLayer *sharedInstance = nil;
                        failure:(FailureCompletionBlock)failure {
     [self startNetworkActivity];
     
-    [[FIRAuth auth] createUserWithEmail:email password:password completion:^(FIRUser * _Nullable user, NSError * _Nullable error) {
-        [self finishNetworkActivity];
+    [self.auth createUserWithEmail:email
+                          password:password
+                        completion:^(FIRUser * _Nullable user, NSError * _Nullable error) {
+        [self stopNetworkActivity];
         
         if (user) {
             success(user.uid);
@@ -83,8 +94,10 @@ static TransportLayer *sharedInstance = nil;
                    failure:(FailureCompletionBlock)failure {
     [self startNetworkActivity];
     
-    [[FIRAuth auth] signInWithEmail:email password:password completion:^(FIRUser * _Nullable user, NSError * _Nullable error) {
-        [self finishNetworkActivity];
+    [self.auth signInWithEmail:email
+                      password:password
+                    completion:^(FIRUser * _Nullable user, NSError * _Nullable error) {
+        [self stopNetworkActivity];
         
         if (user) {
             success(user.uid);
@@ -97,37 +110,45 @@ static TransportLayer *sharedInstance = nil;
 
 #pragma mark - Updating
 
-- (void)updateEmail:(NSString *)email withCredential:(NSString *)credential completion:(FailureCompletionBlock)completion {
+- (void)establishEditedEmail:(NSString *)email
+             currentPassword:(NSString *)password
+                     success:(SuccessCompletionBlock)success
+                     failure:(FailureCompletionBlock)failure {
     [self startNetworkActivity];
     
-    FIRUser *user = [FIRAuth auth].currentUser;
-    NSString *oldEmail = user.email;
+    FIRUser *user = self.auth.currentUser;
     
-    FIRAuthCredential *authCredential = [FIREmailPasswordAuthProvider credentialWithEmail:oldEmail password:credential];
-    
-    [user reauthenticateWithCredential:authCredential completion:^(NSError *_Nullable error) {
+    [self reauthenticateWithCurrentPassword:password completion:^(NSError *error) {
         if (error) {
-            completion(error);
+            [self stopNetworkActivity];
+            failure(error);
         } else {
             [user updateEmail:email completion:^(NSError * _Nullable error) {
-                completion(error);
+                [self stopNetworkActivity];
+                if (error) {
+                    failure(error);
+                } else {
+                    success(user.uid);
+                }
             }];
         }
     }];
 }
 
-- (void)updatePassword:(NSString *)password
-           completion:(FailureCompletionBlock)completion {
+- (void)establishEditedPassword:(NSString *)password
+                currentPassword:(NSString *)currentPassword
+                     completion:(TransportCompletionBlock)completion {
     [self startNetworkActivity];
     
-    FIRUser *user = [FIRAuth auth].currentUser;
-    FIRAuthCredential *credential;
+    FIRUser *user = self.auth.currentUser;
     
-    [user reauthenticateWithCredential:credential completion:^(NSError *_Nullable error) {
+    [self reauthenticateWithCurrentPassword:currentPassword completion:^(NSError *error) {
         if (error) {
+            [self stopNetworkActivity];
             completion(error);
         } else {
             [user updatePassword:password completion:^(NSError * _Nullable error) {
+                [self stopNetworkActivity];
                 completion(error);
             }];
         }
@@ -135,7 +156,7 @@ static TransportLayer *sharedInstance = nil;
 }
 
 - (void)addListenerForAuthStateChange:(void (^)(id))listener {
-    self.authStateChangeHandle = [[FIRAuth auth] addAuthStateDidChangeListener:^(FIRAuth * _Nonnull auth, FIRUser * _Nullable user) {
+    self.authStateChangeHandle = [self.auth addAuthStateDidChangeListener:^(FIRAuth * _Nonnull auth, FIRUser * _Nullable user) {
         if (user) {
             listener(user.uid);
         } else {
@@ -154,18 +175,15 @@ static TransportLayer *sharedInstance = nil;
     
     FIRDatabaseReference *requestRef = [self databasePath:path];
     
-    [requestRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-        [self finishNetworkActivity];
+    [requestRef observeSingleEventOfType:FIRDataEventTypeValue
+                               withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+                                   [self stopNetworkActivity];
         
-        NSDictionary *response = [snapshot exists] ? snapshot.value : nil;
-        
-        NSLog(@"%@", response);
-
-        success(response);
-        
-    } withCancelBlock:^(NSError * _Nonnull error) {
-        failure(error);
-    }];
+                                   NSDictionary *response = [snapshot exists] ? snapshot.value : nil;
+                                   success(response);
+                               }
+                         withCancelBlock:^(NSError * _Nonnull error) { [self stopNetworkActivity]; failure(error); }
+     ];
 }
 
 
@@ -179,9 +197,10 @@ static TransportLayer *sharedInstance = nil;
     
     FIRDatabaseReference *requestRef = [self databasePath:path];
     
-    [requestRef setValue:jsonData withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
-        [self finishNetworkActivity];
-        completion(error);
+    [requestRef setValue:jsonData
+     withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
+         [self stopNetworkActivity];
+         completion(error);
     }];
 }
 
@@ -193,15 +212,16 @@ static TransportLayer *sharedInstance = nil;
     
     FIRStorageReference *requestRef = [self storagePath:path];
     
-    [requestRef putData:data metadata:nil completion:^(FIRStorageMetadata * _Nullable metadata, NSError * _Nullable error) {
-        [self finishNetworkActivity];
+    [requestRef putData:data metadata:nil
+             completion:^(FIRStorageMetadata * _Nullable metadata, NSError * _Nullable error) {
+                 [self stopNetworkActivity];
         
-        if (error) {
-            failure(error);
-        } else {
-            success(metadata.downloadURL.absoluteString);
-        }
-    }];
+                 if (error) {
+                     failure(error);
+                 } else {
+                     success(metadata.downloadURL.absoluteString);
+                 }
+             }];
 }
 
 - (NSString *)uniqueId {
@@ -223,8 +243,17 @@ static TransportLayer *sharedInstance = nil;
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: YES];
 }
 
-- (void)finishNetworkActivity {
+- (void)stopNetworkActivity {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: NO];
+}
+
+- (void)reauthenticateWithCurrentPassword:(NSString *)password completion:(void (^)(NSError *error))completion {
+    FIRUser *currentUser = [FIRAuth auth].currentUser;
+    NSString *currentEmail = currentUser.email;
+    
+    FIRAuthCredential *authCredential = [FIREmailPasswordAuthProvider credentialWithEmail:currentEmail password:password];
+    
+    [currentUser reauthenticateWithCredential:authCredential completion:completion];
 }
 
 @end

@@ -12,14 +12,14 @@
 
 @protocol MatchOrganizerDelegate <NSObject>
 
-- (void) roundSet:(Set *)roundSet didFilledWithRandomItems:(NSMutableArray <NSString *> *)randomItems;
-- (void) didFinishedMatching;
-- (void) didCheckedSelectedItemsWithResult:(BOOL)isMatched;
+- (void)roundSet:(Set *)roundSet didFilledWithRandomItems:(NSMutableArray <NSString *> *)randomItems;
+- (void)didFinishedMatching;
+- (void)didCheckedSelectedItemsWithResult:(BOOL)isMatched;
 
 @end
 
 
-@protocol MatchOrganizerProtocol <NSObject, OrganizerProtocol>
+@protocol MatchOrganizerProtocol <OrganizerProtocol>
 
 - (void)checkSelectedItems:(NSArray <NSString *> *)selectedItems;
 - (void)setDelegate:(id <MatchOrganizerDelegate>) delegate;

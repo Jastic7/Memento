@@ -16,12 +16,10 @@
 @property (nonatomic, copy, readonly) NSString *username;
 @property (nonatomic, copy, readonly) NSString *email;
 @property (nonatomic, copy, readonly) NSString *profilePhotoUrl;
-@property (nonatomic, strong, readonly) NSMutableArray <Set *> *setList;
 
 - (instancetype)initWithId:(NSString *)uid name:(NSString *)name email:(NSString *)email profilePhotoUrl:(NSString *)photoUrl;
 + (instancetype)userWithId:(NSString *)uid name:(NSString *)name email:(NSString *)email profilePhotoUrl:(NSString *)photoUrl;
 + (instancetype)userFromUserDefaults;
 
-- (void)addSetsFromSetList:(NSMutableArray <Set *> *)setList;
 
 @end

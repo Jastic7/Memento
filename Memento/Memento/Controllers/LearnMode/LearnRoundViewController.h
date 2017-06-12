@@ -10,7 +10,7 @@
 #import "LearnOrganizerProtocol.h"
 
 
-@interface LearnRoundViewController : UIViewController
+@interface LearnRoundViewController : UIViewController <LearnOrganizerDelegate>
 
 @property (nonatomic, strong) id <LearnOrganizerProtocol> organizer;
 @property (nonatomic, copy) void (^cancelingBlock)();

@@ -20,6 +20,7 @@
 }
 
 + (instancetype)alertControllerWithTitle:(NSString *)title message:(NSString *)message dismissTitle:(NSString *)dismissTitle {
+    
     InfoAlertViewController *infoAlert = [self alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:dismissTitle style:UIAlertActionStyleDefault handler:nil];

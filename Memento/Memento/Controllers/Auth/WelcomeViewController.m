@@ -18,17 +18,12 @@ static NSString * const kShowLogInSegue = @"showLogInSegue";
 
 @interface WelcomeViewController () <AuthenticationDelegate>
 
-@property (nonatomic, strong) UIView *authWaitingView;
-
 @end
 
 
 @implementation WelcomeViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-}
-
+#pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSString *identifier = segue.identifier;
@@ -46,7 +41,7 @@ static NSString * const kShowLogInSegue = @"showLogInSegue";
 }
 
 
-#pragma mark - AuthenticationDelegate
+#pragma mark - AuthenticationDelegate Implemenation
 
 - (void)authenticationDidCancelled {
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -56,10 +51,6 @@ static NSString * const kShowLogInSegue = @"showLogInSegue";
     [self dismissViewControllerAnimated:YES completion:^{
         self.authenticationCompletion();
     }];
-}
-
-- (void)dealloc {
-    NSLog(@"Welcome dealloced");
 }
 
 @end

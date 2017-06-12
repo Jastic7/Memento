@@ -11,6 +11,9 @@
 
 @interface WelcomeViewController : UIViewController
 
+/*!
+ * @brief Completion block. It is beeing called, when user is authenticated. 
+ */
 @property (nonatomic, copy) void (^authenticationCompletion)();
 
 @end
