@@ -43,7 +43,7 @@
  * @brief Determine state of organizers mode.
  * @return True if some mode is finished. False otherwise.
  */
-- (BOOL) isFinished;
+- (BOOL)isFinished;
 
 /**
  * @brief Update items in roundSet.

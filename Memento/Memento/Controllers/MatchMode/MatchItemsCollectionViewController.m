@@ -7,24 +7,23 @@
 
 #import "MatchItemsCollectionViewController.h"
 #import "ItemOfMatchCollectionViewCell.h"
-#import "MatchModeDelegate.h"
+
 #import "Set.h"
 #import "ItemOfSet.h"
 #import "NSMutableArray+Shuffle.h"
 
-#import "MatchOrganizer.h"
 
 static NSString * const reuseIdentifier = @"ItemOfMatchCollectionViewCell";
 
 
-@interface MatchItemsCollectionViewController () <UICollectionViewDelegateFlowLayout, MatchOrganizerDelegate>
+@interface MatchItemsCollectionViewController () <UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, assign) CGFloat itemsPerRow;
 @property (nonatomic, assign) CGFloat itemsPerColumn;
 @property (nonatomic, assign) UIEdgeInsets sectionInsets;
 
 /*!
- * @brief Contains terms and definitions
+ * @brief Contains pairs of terms and definitions
  * from round set for representing in collection view.
  */
 @property (nonatomic, strong) NSMutableArray <NSString *> *randomItems;
@@ -60,42 +59,30 @@ static NSString * const reuseIdentifier = @"ItemOfMatchCollectionViewCell";
     [super viewDidLoad];
     
     [self configure];
-    
-
-    [self.organizer setDelegate:self];
     [self.organizer updateRoundSet];
 }
-
-- (void)configure {
-    self.itemsPerRow = 3;
-    self.itemsPerColumn = 4;
-    self.sectionInsets = UIEdgeInsetsMake(25, 10, 10, 10);
-    
-    self.collectionView.allowsMultipleSelection = YES;
-}
-
 
 
 #pragma mark - Actions
 
 - (IBAction)exitButtonTapped:(UIButton *)sender {
-    [self.delegate exitMatchMode];
+    self.cancelBlock();
 }
 
 
 #pragma mark - MatchModeOrganizerDelegate
 
-- (void)didFinishedMatching {
-    [self.delegate finishedMatchMode];
+- (void)matchOrganizerDidFinishedMatching:(id<MatchOrganizerProtocol>)matchOrganizer {
+    self.finishMatchBlock();
 }
 
-- (void)roundSet:(Set *)roundSet didFilledWithRandomItems:(NSMutableArray <NSString *> *)randomItems {
-    self.randomItems = randomItems;
+- (void)matchOrganizer:(id<MatchOrganizerProtocol>)matchOrganizer didObtainedRandomItems:(NSMutableArray<NSString *> *)randomItems {
     
+    self.randomItems = randomItems;
     [self.collectionView reloadData];
 }
 
-- (void)didCheckedSelectedItemsWithResult:(BOOL)isMatched {
+- (void)matchOrganizer:(id<MatchOrganizerProtocol>)matchOrganizer didCheckedSelectedItemsWithResult:(BOOL)isMatched {
     NSArray<NSIndexPath *> *selectedIndexPaths = self.collectionView.indexPathsForSelectedItems;
     
     if (isMatched) {
@@ -123,7 +110,6 @@ static NSString * const reuseIdentifier = @"ItemOfMatchCollectionViewCell";
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
 }
-
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.randomItems.count;
@@ -159,18 +145,14 @@ static NSString * const reuseIdentifier = @"ItemOfMatchCollectionViewCell";
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    //get selected item
     NSString *selectedItem = self.randomItems[indexPath.row];
     [self.selectedItems addObject:selectedItem];
     
     if (self.selectedItems.count == 2) {
-        //check items
         [self.organizer checkSelectedItems:self.selectedItems];
         
-        //deselect all items
         [self.selectedItems removeAllObjects];
         
-        //get new potions of items
         if (self.randomItems.count == 0) {
             [self.organizer updateRoundSet];
         }
@@ -186,7 +168,8 @@ static NSString * const reuseIdentifier = @"ItemOfMatchCollectionViewCell";
 #pragma mark - UICollectionViewDelegateFlowLayout
 
 - (CGSize)collectionView:(UICollectionView *)collectionView
-                  layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+                  layout:(UICollectionViewLayout *)collectionViewLayout
+  sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     CGFloat horizontalPaddingSpace = self.sectionInsets.left * (self.itemsPerRow + 1);
     CGFloat verticalPaddingSpace = self.sectionInsets.top * (self.itemsPerColumn + 1);
@@ -210,6 +193,18 @@ static NSString * const reuseIdentifier = @"ItemOfMatchCollectionViewCell";
                    layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
     return self.sectionInsets.left;
 }
+
+
+#pragma mark - Configuration
+
+- (void)configure {
+    self.itemsPerRow = 3;
+    self.itemsPerColumn = 4;
+    self.sectionInsets = UIEdgeInsetsMake(25, 10, 10, 10);
+    
+    self.collectionView.allowsMultipleSelection = YES;
+}
+
 
 - (void)dealloc {
     NSLog(@"Match mode dealloced");

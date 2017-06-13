@@ -97,10 +97,12 @@ static NSString * const kItemOfSetTableViewCellID = @"ItemOfSetTableViewCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.tableView registerNib:[LearnRoundInfoHeader nib] forHeaderFooterViewReuseIdentifier:kLearnRoundInfoHeaderID];
-    [self.tableView registerNib:[ItemOfSetTableViewCell nib] forCellReuseIdentifier:kItemOfSetTableViewCellID];
-    
+    [self registerNibs];
     [self configureCountLabels];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
     if (self.isLearningFinished) {
         [self.learnRoundButton setTitle:@"Start over" forState:UIControlStateNormal];
@@ -156,9 +158,7 @@ static NSString * const kItemOfSetTableViewCellID = @"ItemOfSetTableViewCell";
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     LearnRoundInfoHeader *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:kLearnRoundInfoHeaderID];
-    
     NSString *headerTitle = self.titles[section];
-    
     [header configureWithTitle:headerTitle];
     
     return header;
@@ -179,6 +179,11 @@ static NSString * const kItemOfSetTableViewCellID = @"ItemOfSetTableViewCell";
     self.masteredCountLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)masteredCount];
     self.learntCountLabel.text   = [NSString stringWithFormat:@"%lu", (unsigned long)learntCount];
     self.unknownCountLabel.text  = [NSString stringWithFormat:@"%lu", (unsigned long)unknownCount];
+}
+
+- (void)registerNibs {
+    [self.tableView registerNib:[LearnRoundInfoHeader nib] forHeaderFooterViewReuseIdentifier:kLearnRoundInfoHeaderID];
+    [self.tableView registerNib:[ItemOfSetTableViewCell nib] forCellReuseIdentifier:kItemOfSetTableViewCellID];
 }
 
 #pragma mark - Helpers

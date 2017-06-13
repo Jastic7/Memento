@@ -17,13 +17,12 @@
 @property (nonatomic, strong) Set *matchingSet;
 @property (nonatomic, strong) Set *roundSet;
 
-@property (nonatomic, weak) id <MatchOrganizerDelegate> delegate;
-
 @end
 
 
 @implementation MatchOrganizer
 
+@synthesize delegate = _delegate;
 
 #pragma mark - Getters
 
@@ -41,13 +40,6 @@
 
 - (BOOL)isFinished {
     return self.matchingSet.isEmpty;
-}
-
-
-#pragma mark - Setters
-
-- (void)setDelegate:(id <MatchOrganizerDelegate>)delegate {
-    _delegate = delegate;
 }
 
 
@@ -69,12 +61,11 @@
 }
 
 
-#pragma mark - MatchModeOrganizerDelegate
+#pragma mark - MatchOrganizerProtocol Implementation
 
 - (void)updateRoundSet {
     if (self.isFinished) {
-        //it means, that user matched all items.
-        [self.delegate didFinishedMatching];
+        [self.delegate matchOrganizerDidFinishedMatching:self];
     }
     
     NSUInteger randomIndex;
@@ -83,7 +74,7 @@
     NSMutableArray<NSString *> *randomItems = [NSMutableArray array];
     
     //get 6 items for current round from set by random.
-    for (int i = 0; i < 6 && !self.matchingSet.isEmpty; i++) {
+    for (int i = 0; i < kCountItemsInMatchRound && !self.matchingSet.isEmpty; i++) {
         randomIndex = arc4random() % self.matchingSet.count;
         randomItem = self.matchingSet[randomIndex];
         
@@ -96,8 +87,9 @@
     }
     
     [randomItems shuffle];
-    [self.delegate roundSet:self.roundSet didFilledWithRandomItems:randomItems];
+    [self.delegate matchOrganizer:self didObtainedRandomItems:randomItems];
 }
+
 
 - (void)checkSelectedItems:(NSArray<NSString *> *)selectedItems {
     BOOL isMatched = NO;
@@ -117,7 +109,7 @@
         [self.roundSet removeItem:checkingItem];
     }
     
-    [self.delegate didCheckedSelectedItemsWithResult:isMatched];
+    [self.delegate matchOrganizer:self didCheckedSelectedItemsWithResult:isMatched];
 }
 
 

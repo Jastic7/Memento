@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "MatchOrganizerProtocol.h"
 
+static NSUInteger const kCountItemsInMatchRound = 6;
 
 @interface MatchOrganizer : NSObject <MatchOrganizerProtocol>
 

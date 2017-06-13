@@ -161,7 +161,6 @@
 		55BAE1421EE09E0900F1CBEE /* SignUpTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpTableViewController.m; sourceTree = "<group>"; };
 		55BAE1431EE09E0900F1CBEE /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
 		55BAE1441EE09E0900F1CBEE /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
-		55C6ACDF1EC8D5AA0062537B /* MatchModeDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchModeDelegate.h; sourceTree = "<group>"; };
 		55D34ED51EBA906500A2EE38 /* Memento.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Memento.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55D34ED91EBA906500A2EE38 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		55D34EDB1EBA906500A2EE38 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -468,7 +467,6 @@
 				55D34ED81EBA906500A2EE38 /* Supporting Files */,
 				5508B9291ED916A600526200 /* Organizers */,
 				55DD03431ED919FA00BDA097 /* Categories */,
-				55C6ACDF1EC8D5AA0062537B /* MatchModeDelegate.h */,
 				55BAE13B1EE09C7000F1CBEE /* Assembly.h */,
 				55BAE13C1EE09C7000F1CBEE /* Assembly.m */,
 			);

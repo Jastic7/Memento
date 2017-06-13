@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  SetsViewController.h
 //  Memento
 //
 //  Created by Andrey Morozov on 04.05.17.

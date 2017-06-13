@@ -9,7 +9,7 @@
 #import "LearnRoundViewController.h"
 #import "LearnProgressStackView.h"
 #import "LearnRoundInfoTableViewController.h"
-#import "LearnOrganizer.h"
+#import "OrganizerProtocol.h"
 #import "Circle.h"
 
 static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfoNavigationController";
@@ -17,11 +17,10 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
 
 @interface LearnRoundViewController () <UINavigationBarDelegate, UITextFieldDelegate>
 
-@property (weak, nonatomic) IBOutlet UILabel *textLabel;
-@property (weak, nonatomic) IBOutlet UITextField *textField;
-@property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
-
-@property (weak, nonatomic) IBOutlet LearnProgressStackView *learnProgressView;
+@property (nonatomic, weak) IBOutlet UILabel *textLabel;
+@property (nonatomic, weak) IBOutlet UITextField *textField;
+@property (nonatomic, weak) IBOutlet UINavigationBar *navigationBar;
+@property (nonatomic, weak) IBOutlet LearnProgressStackView *learnProgressView;
 
 @end
 
@@ -40,6 +39,7 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
     [self configureTextField];
     [self registerNotifications];
     [self.organizer setInitialConfiguration];
+    [self showRoundInfoViewController];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -66,7 +66,7 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
 #pragma mark - UITextFieldDelegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [self.organizer checkUserDefinition:textField.text];
+    [self.organizer checkDefinition:textField.text];
     
     self.textField.text = @"";
     
@@ -76,11 +76,8 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
 
 #pragma mark - LearnModeOrganizerDelegate
 
-- (void)learnOrganizer:(id<LearnOrganizerProtocol>)learnOrganizer didFinishedRound:(NSUInteger)round {
-    [self showRoundInfoViewControllerWithCompletion:^(BOOL finished) {
-        NSString *title = [NSString stringWithFormat:@"Round %lui", (unsigned long)round];
-        [self.navigationItem setTitle: title];
-    }];
+- (void)learnOrganizerDidFinishedRound:(id<LearnOrganizerProtocol>)learnOrganizer {
+    [self showRoundInfoViewController];
 }
 
 - (void)learnOrganizer:(id<LearnOrganizerProtocol>)learnOrganizer didUpdatedTerm:(NSString *)term withLearnProgress:(LearnState)learnProgress {
@@ -94,7 +91,7 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
         [self.learnProgressView setLearnState:learnProgress withPreviousState:previousProgress];
     } completion:^(BOOL finished) {
         if (learnProgress != Mistake) {
-            [self.organizer updateLearningItem];
+            [self.organizer selectNextLearningItem];
         }
     }];
 }
@@ -106,8 +103,10 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTextFieldWithNotification:) name:UIKeyboardWillChangeFrameNotification object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTextFieldWithNotification:) name:UIKeyboardWillHideNotification object:nil];
-    
 }
+
+
+#pragma mark - Updating
 
 - (void)updateTextFieldWithNotification:(NSNotification *)notification {
     NSDictionary *info = notification.userInfo;
@@ -167,7 +166,7 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
 
 #pragma mark - Views Showing
 
-- (void)showRoundInfoViewControllerWithCompletion:(void(^)(BOOL finished))completion {
+- (void)showRoundInfoViewController {
     if (self.childViewControllers.count == 0) {
         [self.view endEditing:YES];
         
@@ -176,7 +175,7 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
         
         [UIView animateWithDuration:0.3 animations:^{
             childViewController.view.alpha = 1.0;
-        } completion:completion];
+        }];
     }
 }
 

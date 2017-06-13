@@ -1,5 +1,5 @@
 //
-//  ModeProtocol.h
+//  LearnOrganizerProtocol.h
 //  Memento
 //
 //  Created by Andrey Morozov on 23.05.17.
@@ -18,9 +18,8 @@
 /*!
  * @brief It is being called, when round is finished.
  * @param learnOrganizer Learn organizer.
- * @param round Number of finished round.
  */
-- (void)learnOrganizer:(id <LearnOrganizerProtocol>)learnOrganizer didFinishedRound:(NSUInteger)round;
+- (void)learnOrganizerDidFinishedRound:(id <LearnOrganizerProtocol>)learnOrganizer;
 
 /*!
  * @brief It is being called, when organizer has obtained next item.
@@ -51,7 +50,16 @@ didCheckedDefinitionWithLearningState:(LearnState)learnProgress
 
 - (void)setInitialConfiguration;
 
-- (void)checkUserDefinition:(NSString *)definition;
-- (void)updateLearningItem;
+/*!
+ * @brief Check definition and update current learning item's learn progress.
+ * @param definition Checking definition for current learning item.
+ */
+- (void)checkDefinition:(NSString *)definition;
+
+/*!
+ * @brief Try select next item to learn from learning set.
+ * If learning set is over, then round is being ended.
+ */
+- (void)selectNextLearningItem;
 
 @end

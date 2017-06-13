@@ -8,7 +8,6 @@
 
 #import "MatchPrepareViewController.h"
 #import "MatchItemsCollectionViewController.h"
-#import "MatchModeDelegate.h"
 
 static NSString * const kMatchModeViewControllerID = @"MatchModeViewController";
 
@@ -26,7 +25,7 @@ static NSString * const kMatchModeViewControllerID = @"MatchModeViewController";
 #pragma mark - Actions
 
 - (IBAction)exitButtonTapped:(UIButton *)sender {
-    [self.delegate exitMatchMode];
+    self.cancelBlock();
 }
 
 - (IBAction)startButtonTapped:(UIButton *)sender {
@@ -47,8 +46,11 @@ static NSString * const kMatchModeViewControllerID = @"MatchModeViewController";
     
     MatchItemsCollectionViewController *childViewController = [storyboard instantiateViewControllerWithIdentifier:kMatchModeViewControllerID];
     
-    childViewController.delegate    = self.delegate;
+    childViewController.cancelBlock = self.cancelBlock;
+    childViewController.finishMatchBlock = self.finishMatchBlock;
     childViewController.organizer   = self.organizer;
+    
+    self.organizer.delegate = childViewController;
     
     [self addChildViewController:childViewController];
     [self.view addSubview:childViewController.view];
@@ -57,7 +59,7 @@ static NSString * const kMatchModeViewControllerID = @"MatchModeViewController";
     childViewController.view.alpha = 0;
 }
 
--(void)dealloc {
+- (void)dealloc {
     NSLog(@"PREPARE MATCH VC LEFT");
 }
 

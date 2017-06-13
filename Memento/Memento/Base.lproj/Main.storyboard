@@ -279,7 +279,7 @@
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="barTintColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <items>
-                                    <navigationItem title="Round 1" id="Vry-tv-uRv">
+                                    <navigationItem id="Vry-tv-uRv">
                                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="uz4-Dh-eFZ">
                                             <connections>
                                                 <action selector="cancelTapped:" destination="jsI-YI-fPY" id="cZu-BW-rNv"/>

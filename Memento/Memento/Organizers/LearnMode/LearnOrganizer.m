@@ -20,11 +20,6 @@
 @property (nonatomic, strong) Set *roundSet;
 
 /*!
- * @brief Responsible for tracking number of rounds.
- */
-@property (nonatomic, assign) NSUInteger currentRound;
-
-/*!
  * @brief Responsible for tracking position in whole
  * learning set. It is being used for creation
  * new subset in the new round.
@@ -83,7 +78,7 @@
     _learningItemIndex = learningItemIndex;
     
     if (_learningItemIndex == self.roundSet.count) {
-        self.currentRound++;
+        [self.delegate learnOrganizerDidFinishedRound:self];
     } else {
         self.learningItem = self.roundSet[_learningItemIndex];
     }
@@ -93,12 +88,6 @@
     _learningItem = roundItem;
     
     [self.delegate learnOrganizer:self didUpdatedTerm:roundItem.term withLearnProgress:roundItem.learnProgress];
-}
-
-- (void)setCurrentRound:(NSUInteger)currentRound {
-    _currentRound = currentRound;
-
-    [self.delegate learnOrganizer:self didFinishedRound:currentRound];
 }
 
 
@@ -124,7 +113,6 @@
 
 - (void)setInitialConfiguration {
     self.location = 0;
-    self.currentRound = 0;
 }
 
 - (void)reset {
@@ -133,14 +121,14 @@
     self.learningSet = [Set setWithSet:self.set];
     
     self.location = 0;
-    _currentRound = 0;
 }
+
 
 #pragma mark - Updating
 
 - (void)updateRoundSet {
     if ([self isFinished]) {
-        [self.delegate learnOrganizer:self didFinishedRound:self.currentRound];
+        [self.delegate learnOrganizerDidFinishedRound:self];
     } else {
         //creates the new range for current round.
         NSUInteger length = self.isEnoughItems ? kCountItemsInRound : self.learningSet.count - self.location;
@@ -153,31 +141,31 @@
     }
 }
 
-- (void)updateLearningItem {
+- (void)selectNextLearningItem {
     self.learningItemIndex++;
 }
 
 
 #pragma mark - Checking
 
-- (void)checkUserDefinition:(NSString *)definition {
-    BOOL isCorrectDefinition = [self.learningItem.definition isEqualToString:definition];
+- (void)checkDefinition:(NSString *)definition {
+    BOOL isMatched = [self.learningItem.definition isEqualToString:definition];
     
-    LearnState previousState = self.learningItem.learnProgress;
-    [self updateLearningProgressOfItem:self.learningItem isUserRight:isCorrectDefinition];
+    LearnState previousProgress = self.learningItem.learnProgress;
+    [self updateLearningProgressOfItem:self.learningItem isCorrectDefinition:isMatched];
+    LearnState currentProgress = self.learningItem.learnProgress;
     
-    if (self.learningItem.learnProgress == Unknown || self.learningItem.learnProgress == Learnt) {
+    if (currentProgress == Unknown || currentProgress == Learnt) {
         [self.learningSet addItem:self.learningItem];
     }
     
-    LearnState itemLearnProgress = self.learningItem.learnProgress;
-    [self.delegate learnOrganizer:self didCheckedDefinitionWithLearningState:itemLearnProgress previousState:previousState];
+    [self.delegate learnOrganizer:self didCheckedDefinitionWithLearningState:currentProgress previousState:previousProgress];
 }
 
 
 #pragma mark - Helpers
 
-- (void)updateLearningProgressOfItem:(ItemOfSet *)item isUserRight:(BOOL)isCorrectDefinition {
+- (void)updateLearningProgressOfItem:(ItemOfSet *)item isCorrectDefinition:(BOOL)isCorrectDefinition {
     if (isCorrectDefinition) {
         [item increaseLearnProgress];
     } else {

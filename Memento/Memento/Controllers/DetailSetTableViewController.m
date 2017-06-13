@@ -11,8 +11,6 @@
 #import "LearnRoundViewController.h"
 #import "ItemOfSetTableViewCell.h"
 
-#import "MatchModeDelegate.h"
-
 #import "Set.h"
 #import "ItemOfSet.h"
 
@@ -24,7 +22,7 @@ static NSString * const kMatchModePrepareSegue  = @"matchModePrepareSegue";
 static NSString * const kRoundLearnModeSegue    = @"roundLearnModeSegue";
 
 
-@interface DetailSetTableViewController () <MatchModeDelegate>
+@interface DetailSetTableViewController () 
 
 @end
 
@@ -61,11 +59,6 @@ static NSString * const kRoundLearnModeSegue    = @"roundLearnModeSegue";
 }
 
 
-#pragma mark - UITableViewDelegate
-
-
-
-
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -76,7 +69,9 @@ static NSString * const kRoundLearnModeSegue    = @"roundLearnModeSegue";
         MatchOrganizer *matchModeOrganizer = [MatchOrganizer createWithSet:self.set];
         
         dvc.organizer = matchModeOrganizer;
-        dvc.delegate = self;
+        dvc.cancelBlock = ^void() { [self dismissViewControllerAnimated:YES completion:nil]; };
+        dvc.finishMatchBlock = ^void() { [self dismissViewControllerAnimated:YES completion:nil]; };
+        
     } else if ([identifier isEqualToString:kRoundLearnModeSegue]) {
         LearnRoundViewController *dvc = segue.destinationViewController;
         LearnOrganizer *learnModeOrganizer = [LearnOrganizer createWithSet:self.set];
@@ -84,21 +79,8 @@ static NSString * const kRoundLearnModeSegue    = @"roundLearnModeSegue";
         learnModeOrganizer.delegate = dvc;
         
         dvc.organizer = learnModeOrganizer;
-        dvc.cancelingBlock = ^void() {
-            [self dismissViewControllerAnimated:YES completion:nil];
-        };
+        dvc.cancelingBlock = ^void() { [self dismissViewControllerAnimated:YES completion:nil]; };
     }
-}
-
-
-#pragma mark - MatchModeDelegate
-
-- (void)exitMatchMode {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)finishedMatchMode {
-    [self dismissViewControllerAnimated:NO completion:nil];
 }
 
 @end

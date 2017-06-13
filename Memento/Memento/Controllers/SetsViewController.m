@@ -1,5 +1,5 @@
 //
-//  ViewController.m
+//  SetsViewController.m
 //  Memento
 //
 //  Created by Andrey Morozov on 04.05.17.
@@ -68,6 +68,7 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
     
     return _uid;
 }
+
 
 #pragma mark - LifeCycle
 
@@ -189,7 +190,9 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
 
 - (void)uploadData {
     [self.serviceLocator.setService postSetList:self.sets userId:self.uid completion:^(NSError *error) {
-        
+        if (error) {
+            //TODO:SHOW ERROR.
+        }
     }];
 }
 

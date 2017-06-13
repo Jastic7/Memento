@@ -15,7 +15,7 @@
 @property (nonatomic, strong) Set *set;
 @property (nonatomic, strong) Set *roundSet;
 
-@property (assign, nonatomic) BOOL isLearningFinished;
+@property (nonatomic, assign) BOOL isLearningFinished;
 
 @property (nonatomic, copy) void (^cancelingBlock)();
 @property (nonatomic, copy) void (^prepareForNextRoundBlock)();

@@ -7,14 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MatchOrganizerProtocol.h"
 
-@protocol MatchModeDelegate;
+@protocol MatchOrganizerProtocol;
 
 
 @interface MatchPrepareViewController : UIViewController
 
 @property (nonatomic, strong) id <MatchOrganizerProtocol> organizer;
-@property (nonatomic, weak) id <MatchModeDelegate> delegate;
+
+@property (nonatomic, copy) void (^cancelBlock)();
+@property (nonatomic, copy) void (^finishMatchBlock)();
 
 @end
