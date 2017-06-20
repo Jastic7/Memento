@@ -51,6 +51,7 @@
 		558C08071EECC4610065D7D5 /* ConfirmAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 558C08061EECC4610065D7D5 /* ConfirmAlertViewController.m */; };
 		559094291EDEF53A00BE4500 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 559094281EDEF53A00BE4500 /* User.m */; };
 		559094311EDF009700BE4500 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 559094301EDF009700BE4500 /* GoogleService-Info.plist */; };
+		55A5EEE81EF9C68800DFFC2D /* SpeechService.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A5EEE71EF9C68800DFFC2D /* SpeechService.m */; };
 		55AA02951EF9BC2C00D7CF01 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55AA02941EF9BC2C00D7CF01 /* Assets.xcassets */; };
 		55BAE12C1EDF8D6D00F1CBEE /* AuthService.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BAE12B1EDF8D6D00F1CBEE /* AuthService.m */; };
 		55BAE12F1EDF928100F1CBEE /* TransportLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BAE12E1EDF928100F1CBEE /* TransportLayer.m */; };
@@ -165,6 +166,9 @@
 		559094271EDEF53A00BE4500 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		559094281EDEF53A00BE4500 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		559094301EDF009700BE4500 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		55A5EEE51EF9C58900DFFC2D /* SpeechServiceProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeechServiceProtocol.h; sourceTree = "<group>"; };
+		55A5EEE61EF9C68800DFFC2D /* SpeechService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeechService.h; sourceTree = "<group>"; };
+		55A5EEE71EF9C68800DFFC2D /* SpeechService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeechService.m; sourceTree = "<group>"; };
 		55AA02941EF9BC2C00D7CF01 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		55BAE1281EDF8B4B00F1CBEE /* AuthServiceProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthServiceProtocol.h; sourceTree = "<group>"; };
 		55BAE12A1EDF8D6D00F1CBEE /* AuthService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthService.h; sourceTree = "<group>"; };
@@ -445,6 +449,9 @@
 				55E181B31EE46B0E00C1313D /* UserServiceProtocol.h */,
 				55E181B41EE470AC00C1313D /* UserService.h */,
 				55E181B51EE470AC00C1313D /* UserService.m */,
+				55A5EEE51EF9C58900DFFC2D /* SpeechServiceProtocol.h */,
+				55A5EEE61EF9C68800DFFC2D /* SpeechService.h */,
+				55A5EEE71EF9C68800DFFC2D /* SpeechService.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -745,6 +752,7 @@
 				5508B9661ED9184B00526200 /* LearnProgressStackView.m in Sources */,
 				5525EE911EE3918500206898 /* ItemOfSetMapper.m in Sources */,
 				55D34EDA1EBA906500A2EE38 /* main.m in Sources */,
+				55A5EEE81EF9C68800DFFC2D /* SpeechService.m in Sources */,
 				55BAE12F1EDF928100F1CBEE /* TransportLayer.m in Sources */,
 				5508B9481ED9176B00526200 /* LearnRoundInfoTableViewController.m in Sources */,
 				5521027A1EF7530B00B8FF3A /* SelectLanguageTableViewController.m in Sources */,

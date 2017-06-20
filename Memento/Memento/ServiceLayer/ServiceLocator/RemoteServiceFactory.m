@@ -10,6 +10,7 @@
 #import "AuthService.h"
 #import "SetService.h"
 #import "UserService.h"
+#import "SpeechService.h"
 #import "TransportLayer.h"
 
 
@@ -19,12 +20,16 @@
     return [AuthService createWithTrasport:[TransportLayer manager]];
 }
 
-- (id<SetServiceProtocol>)createSetService {
+- (id <SetServiceProtocol>)createSetService {
     return [SetService createWithTrasport:[TransportLayer manager]];
 }
 
-- (id<UserServiceProtocol>)createUserService {
+- (id <UserServiceProtocol>)createUserService {
     return [UserService createWithTrasport:[TransportLayer manager]];
+}
+
+- (id <SpeechServiceProtocol>)createSpeechService {
+    return [SpeechService createWithTrasport:[TransportLayer manager]];
 }
 
 @end

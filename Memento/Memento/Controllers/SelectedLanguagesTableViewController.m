@@ -8,31 +8,45 @@
 
 #import "SelectedLanguagesTableViewController.h"
 #import "SelectLanguageTableViewController.h"
+#import "ServiceLocator.h"
 
 static NSString * const kSelectLangSegue = @"selectLanguageSegue";
+
 
 @interface SelectedLanguagesTableViewController ()
 
 @property (nonatomic, assign) BOOL isTermSelected;
 @property (nonatomic, copy) NSDictionary <NSString *, NSString *> *languages;
+@property (nonatomic, strong) ServiceLocator *serviceLocator;
 
 @property (weak, nonatomic) IBOutlet UILabel *termLanguageLabel;
 @property (weak, nonatomic) IBOutlet UILabel *definitionLanguageLabel;
 
 @end
 
+
 @implementation SelectedLanguagesTableViewController
 
 #pragma mark - Getters
 
+- (ServiceLocator *)serviceLocator {
+    if (!_serviceLocator) {
+        _serviceLocator = [ServiceLocator shared];
+    }
+    
+    return _serviceLocator;
+}
+
 - (NSDictionary <NSString *, NSString *> *)languages {
     if (!_languages) {
-        _languages = @{@"en-US": @"English",
-                       @"ru-RU": @"Russian"};
+        _languages = self.serviceLocator.speechService.codesToLanguages;
     }
     
     return _languages;
 }
+
+
+#pragma mark - LifeCycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];

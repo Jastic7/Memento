@@ -144,11 +144,11 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
 
 #pragma mark - CreateSetTableViewControllerDelegate
 
-- (void)сreateSetTableViewControllerDidCancel {
+- (void)editSetTableViewControllerDidCancel {
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)createSetTableViewControllerDidCreateSet:(Set *)set {
+- (void)editSetTableViewControllerDidEditSet:(Set *)set {
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     [self.sets addObject:set];
     [self.tableView reloadData];
