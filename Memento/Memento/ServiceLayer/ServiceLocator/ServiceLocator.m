@@ -16,10 +16,40 @@ static ServiceLocator *sharedInstance = nil;
 
 @property (nonatomic, strong) id <ServiceFactoryProtocol> serviceFactory;
 
+@property (nonatomic, strong) id <AuthServiceProtocol> authService;
+@property (nonatomic, strong) id <SetServiceProtocol>  setService;
+@property (nonatomic, strong) id <UserServiceProtocol> userService;
+
 @end
 
 
 @implementation ServiceLocator
+
+#pragma mark - Getters
+
+- (id <AuthServiceProtocol>)authService {
+    if (!_authService) {
+        _authService = [self.serviceFactory createAuthService];
+    }
+    
+    return _authService;
+}
+
+- (id <SetServiceProtocol>)setService {
+    if (!_setService) {
+        _setService = [self.serviceFactory createSetService];
+    }
+    
+    return _setService;
+}
+
+- (id <UserServiceProtocol>)userService {
+    if (!_userService) {
+        _userService = [self.serviceFactory createUserService];
+    }
+    
+    return _userService;
+}
 
 
 #pragma mark - Setters
@@ -42,21 +72,6 @@ static ServiceLocator *sharedInstance = nil;
     });
     
     return sharedInstance;
-}
-
-
-#pragma mark - Implementation
-
-- (id <AuthServiceProtocol>)authService {
-    return [self.serviceFactory createAuthService];
-}
-
-- (id <SetServiceProtocol>)setService {
-    return [self.serviceFactory createSetService];
-}
-
-- (id <UserServiceProtocol>)userService {
-    return [self.serviceFactory createUserService];
 }
 
 @end

@@ -98,7 +98,7 @@
     
     InfoAlertViewController *errorAlert = [InfoAlertViewController alertControllerWithTitle:@"Registration failed"
                                                                                     message:errorDescription
-                                                                               dismissTitle:@"OK"];
+                                                                               dismissTitle:@"OK" handler:nil];
     
     [self presentViewController:errorAlert animated:YES completion:nil];
 }

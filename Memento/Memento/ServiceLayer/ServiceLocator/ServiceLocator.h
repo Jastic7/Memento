@@ -17,7 +17,7 @@
 @interface ServiceLocator : NSObject
 
 @property (nonatomic, strong, readonly) id <AuthServiceProtocol> authService;
-@property (nonatomic, strong, readonly) id <SetServiceProtocol> setService;
+@property (nonatomic, strong, readonly) id <SetServiceProtocol>  setService;
 @property (nonatomic, strong, readonly) id <UserServiceProtocol> userService;
 
 + (instancetype)shared;

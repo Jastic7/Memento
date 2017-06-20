@@ -14,16 +14,14 @@
 
 @implementation InfoAlertViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-
-}
-
-+ (instancetype)alertControllerWithTitle:(NSString *)title message:(NSString *)message dismissTitle:(NSString *)dismissTitle {
++ (instancetype)alertControllerWithTitle:(NSString *)title
+                                 message:(NSString *)message
+                            dismissTitle:(NSString *)dismissTitle
+                                 handler:(void (^)(UIAlertAction *action))handler {
     
     InfoAlertViewController *infoAlert = [self alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:dismissTitle style:UIAlertActionStyleDefault handler:nil];
+    UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:dismissTitle style:UIAlertActionStyleDefault handler:handler];
     
     [infoAlert addAction:dismissAction];
     

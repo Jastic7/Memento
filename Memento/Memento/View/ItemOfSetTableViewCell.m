@@ -27,13 +27,19 @@
     [super setSelected:selected animated:animated];
 }
 
+
+#pragma mark - Helper.
+
 + (UINib *)nib {
     return [UINib nibWithNibName:@"ItemOfSetTableViewCell" bundle:nil];
 }
 
+
+#pragma mark - Configuration
+
 - (void)configureWithTerm:(NSString *)term
                definition:(NSString *)definition {
-    [self configureWithTerm:term definition:definition textColor:[UIColor textBlack]];
+    [self configureWithTerm:term definition:definition textColor:[UIColor textColor]];
 }
 
 - (void)configureWithTerm:(NSString *)term

@@ -69,7 +69,7 @@
 - (void)showError:(NSError *)error {
     NSString *errorDescription = error.localizedDescription;
     
-    InfoAlertViewController *infoAlert = [InfoAlertViewController alertControllerWithTitle:@"Updating failed." message:errorDescription dismissTitle:@"OK"];
+    InfoAlertViewController *infoAlert = [InfoAlertViewController alertControllerWithTitle:@"Updating failed." message:errorDescription dismissTitle:@"OK" handler:nil];
     
     [self presentViewController:infoAlert animated:YES completion:nil];
 }

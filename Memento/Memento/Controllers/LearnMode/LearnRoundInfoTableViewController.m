@@ -147,7 +147,7 @@ static NSString * const kItemOfSetTableViewCellID = @"ItemOfSetTableViewCell";
     
     ItemOfSet *item = self.items[indexPath.section][indexPath.row];
     
-    UIColor *textColor = item.learnProgress == Unknown ? [UIColor failedColor] : [UIColor textBlack];
+    UIColor *textColor = item.learnProgress == Unknown ? [UIColor failedStateColor] : [UIColor textColor];
     [cell configureWithTerm:item.term definition:item.definition textColor:textColor];
     
     return cell;

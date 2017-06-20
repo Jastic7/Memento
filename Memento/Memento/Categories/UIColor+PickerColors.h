@@ -10,12 +10,14 @@
 
 @interface UIColor (PickerColors)
 
-+ (instancetype)fernColor;
-+ (instancetype)mercuryColor;
-+ (instancetype)unknownColor;
-+ (instancetype)failedColor;
++ (instancetype)backgroundColor;
++ (instancetype)buttonBackroundColor;
+
++ (instancetype)learntStateColor;
++ (instancetype)unknownStateColor;
++ (instancetype)failedStateColor;
 
 + (instancetype)deepBlue;
-+ (instancetype)textBlack;
++ (instancetype)textColor;
 
 @end

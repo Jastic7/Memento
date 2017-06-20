@@ -22,7 +22,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholderProfileImage" translatesAutoresizingMaskIntoConstraints="NO" id="DpM-TD-6DH">
-                                    <rect key="frame" x="138" y="8" width="100" height="100"/>
+                                    <rect key="frame" x="137.5" y="8" width="100" height="100"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="100" id="Ac8-9M-jd7"/>
@@ -44,7 +44,7 @@
                                     </connections>
                                 </button>
                                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="8zN-Kd-sD7">
-                                    <rect key="frame" x="178" y="48" width="20" height="20"/>
+                                    <rect key="frame" x="177.5" y="48" width="20" height="20"/>
                                 </activityIndicatorView>
                             </subviews>
                             <constraints>
@@ -176,11 +176,11 @@
                         <sections>
                             <tableViewSection id="YFZ-mI-jkW">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="9Yv-5y-Yct">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="9Yv-5y-Yct">
                                         <rect key="frame" x="0.0" y="35" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9Yv-5y-Yct" id="561-ET-6Qx">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Some text" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CYW-Vi-8M1">
@@ -232,8 +232,8 @@
                         <sections>
                             <tableViewSection headerTitle="Previous password" id="S7p-CT-n0R">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Uqu-B9-gBc">
-                                        <rect key="frame" x="0.0" y="55" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="Uqu-B9-gBc">
+                                        <rect key="frame" x="0.0" y="56" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Uqu-B9-gBc" id="wgZ-4a-IHb">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -259,7 +259,7 @@
                             <tableViewSection headerTitle="New password" id="6gw-5w-Arg">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="eoS-ol-4Gb">
-                                        <rect key="frame" x="0.0" y="155" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="157" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eoS-ol-4Gb" id="SOo-Z5-rXK">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -281,7 +281,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="mDD-uD-aVC">
-                                        <rect key="frame" x="0.0" y="199" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="201" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mDD-uD-aVC" id="swZ-OH-R7g">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -331,7 +331,7 @@
         <scene sceneID="qqW-WS-R2T">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fHQ-cF-lE0" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" id="6xL-Fb-XEx"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="settings_tabbar" id="6xL-Fb-XEx"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Ocl-le-XfI">
@@ -352,5 +352,6 @@
     </scenes>
     <resources>
         <image name="placeholderProfileImage" width="64" height="64"/>
+        <image name="settings_tabbar" width="32" height="32"/>
     </resources>
 </document>

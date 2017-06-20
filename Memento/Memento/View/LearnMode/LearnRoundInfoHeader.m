@@ -30,16 +30,16 @@
     self.titleLabel.textColor = [UIColor whiteColor];
 
     if ([title isEqualToString:@"Unknown"]) {
-        self.leftCircle.backgroundColor     = [UIColor unknownColor];
-        self.rightCircle.backgroundColor    = [UIColor unknownColor];
+        self.leftCircle.backgroundColor     = [UIColor unknownStateColor];
+        self.rightCircle.backgroundColor    = [UIColor unknownStateColor];
         
     } else if ([title isEqualToString:@"Learnt"]) {
-        self.leftCircle.backgroundColor     = [UIColor fernColor];
-        self.rightCircle.backgroundColor    = [UIColor unknownColor];
+        self.leftCircle.backgroundColor     = [UIColor learntStateColor];
+        self.rightCircle.backgroundColor    = [UIColor unknownStateColor];
         
     } else if ([title isEqualToString:@"Mastered"]) {
-        self.leftCircle.backgroundColor     = [UIColor fernColor];
-        self.rightCircle.backgroundColor    = [UIColor fernColor];
+        self.leftCircle.backgroundColor     = [UIColor learntStateColor];
+        self.rightCircle.backgroundColor    = [UIColor learntStateColor];
     }
     
     UIView *view = [[UIView alloc]initWithFrame:CGRectZero];

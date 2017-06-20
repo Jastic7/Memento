@@ -149,7 +149,7 @@ static NSString * const kShowPasswordSettingSegue   = @"showPasswordSettingSegue
     
     InfoAlertViewController *errorAlert = [InfoAlertViewController alertControllerWithTitle:@"User updating failed"
                                                                                     message:errorDescription
-                                                                               dismissTitle:@"OK"];
+                                                                               dismissTitle:@"OK" handler:nil];
     
     [self presentViewController:errorAlert animated:YES completion:nil];
 }

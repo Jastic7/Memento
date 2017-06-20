@@ -10,6 +10,9 @@
 
 @interface InfoAlertViewController : UIAlertController
 
-+ (instancetype)alertControllerWithTitle:(NSString *)title message:(NSString *)message dismissTitle:(NSString *)dismissTitle;
++ (instancetype)alertControllerWithTitle:(NSString *)title
+                                 message:(NSString *)message
+                            dismissTitle:(NSString *)dismissTitle
+                                 handler:(void (^)(UIAlertAction *action))handler;
 
 @end

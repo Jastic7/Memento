@@ -10,19 +10,26 @@
 
 @implementation UIColor (PickerColors)
 
-+ (instancetype)fernColor {
-    return [UIColor colorWithRed:64/255.0 green:128/255.0 blue:0.0 alpha:1.0];
-}
-
-+ (instancetype)mercuryColor {
++ (instancetype)backgroundColor {
     return [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1.0];
 }
 
-+ (instancetype)unknownColor {
++ (instancetype)buttonBackroundColor {
+    return [UIColor colorWithRed:255/255.0 green:102/255.0 blue:102/255.0 alpha:1.0];
+}
+
+
+#pragma mark - LearnProgress colors.
+
++ (instancetype)learntStateColor {
+    return [UIColor colorWithRed:64/255.0 green:128/255.0 blue:0.0 alpha:1.0];
+}
+
++ (instancetype)unknownStateColor {
     return [UIColor colorWithRed:214/255.0 green:214/255.0 blue:214/255.0 alpha:1.0];
 }
 
-+ (instancetype)failedColor {
++ (instancetype)failedStateColor {
     return [UIColor colorWithRed:149/255.0 green:30/255.0 blue:23/255.0 alpha:1.0];
 }
 
@@ -30,7 +37,7 @@
     return [UIColor colorWithRed:0/255.0 green:64/255.0 blue:128/255.0 alpha:1.0];
 }
 
-+ (instancetype)textBlack {
++ (instancetype)textColor {
     return [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1.0];
 }
 

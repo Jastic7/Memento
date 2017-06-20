@@ -19,7 +19,7 @@
 - (void)configureWithState:(CircleState)state {
     switch (state) {
         case EmptyRound:
-            [self configureWithBackgroundColor:[UIColor mercuryColor]
+            [self configureWithBackgroundColor:[UIColor backgroundColor]
                                    borderColor:[UIColor grayColor]
                                    borderWidth:1.0];
             break;
@@ -29,11 +29,11 @@
             break;
             
         case Guessed:
-            [self configureWithBackgroundColor:[UIColor fernColor] borderWidth:0.0];
+            [self configureWithBackgroundColor:[UIColor learntStateColor] borderWidth:0.0];
             break;
             
         case Failed:
-            [self configureWithBackgroundColor:[UIColor failedColor] borderWidth:0.0];
+            [self configureWithBackgroundColor:[UIColor failedStateColor] borderWidth:0.0];
             break;
             
         default:

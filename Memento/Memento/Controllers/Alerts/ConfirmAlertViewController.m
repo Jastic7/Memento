@@ -16,11 +16,10 @@
 
 @implementation ConfirmAlertViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-}
-
-+ (instancetype)alertControllerWithTitle:(NSString *)title message:(NSString *)message textFieldPlaceholder:(NSString *)placeholder confirmTitle:(NSString *)confirmTitle {
++ (instancetype)alertControllerWithTitle:(NSString *)title
+                                 message:(NSString *)message
+                    textFieldPlaceholder:(NSString *)placeholder
+                            confirmTitle:(NSString *)confirmTitle {
     
     ConfirmAlertViewController *confirmAlert = [ConfirmAlertViewController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
     

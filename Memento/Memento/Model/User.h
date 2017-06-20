@@ -17,8 +17,16 @@
 @property (nonatomic, copy, readonly) NSString *email;
 @property (nonatomic, copy, readonly) NSString *profilePhotoUrl;
 
-- (instancetype)initWithId:(NSString *)uid name:(NSString *)name email:(NSString *)email profilePhotoUrl:(NSString *)photoUrl;
-+ (instancetype)userWithId:(NSString *)uid name:(NSString *)name email:(NSString *)email profilePhotoUrl:(NSString *)photoUrl;
+- (instancetype)initWithId:(NSString *)uid
+                      name:(NSString *)name
+                     email:(NSString *)email
+           profilePhotoUrl:(NSString *)photoUrl;
+
++ (instancetype)userWithId:(NSString *)uid
+                      name:(NSString *)name
+                     email:(NSString *)email
+           profilePhotoUrl:(NSString *)photoUrl;
+
 + (instancetype)userFromUserDefaults;
 
 

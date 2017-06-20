@@ -7,7 +7,7 @@
 //
 
 #import "SetsViewController.h"
-#import "CreateSetTableViewController.h"
+#import "EditSetTableViewController.h"
 #import "DetailSetTableViewController.h"
 #import "WelcomeViewController.h"
 
@@ -28,7 +28,7 @@ static NSString * const kDetailSetSegue     = @"detailSetSegue";
 static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
 
 
-@interface SetsViewController () <UITableViewDataSource, UITableViewDelegate, CreateSetTableViewControllerDelegate>
+@interface SetsViewController () <UITableViewDataSource, UITableViewDelegate, EditSetTableViewControllerDelegate>
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, weak) ServiceLocator *serviceLocator;
@@ -124,7 +124,8 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
     NSString *identifier = segue.identifier;
     
     if ([identifier isEqualToString:kCreateNewSetSegue]) {
-        CreateSetTableViewController *vc = segue.destinationViewController;
+        UINavigationController *navController = segue.destinationViewController;
+        EditSetTableViewController *vc = (EditSetTableViewController *)navController.topViewController;
         vc.delegate = self;
         
     } else if ([identifier isEqualToString:kDetailSetSegue]) {
