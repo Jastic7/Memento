@@ -9,11 +9,18 @@
 #import "SpeechService.h"
 #import <AVFoundation/AVFoundation.h>
 
-@interface SpeechService ()
+@interface SpeechService () <AVSpeechSynthesizerDelegate>
 
 @property (nonatomic, strong) AVSpeechSynthesizer *synthesizer;
 
+@property (nonatomic, copy) SpeechStartBlock startBlock;
+@property (nonatomic, copy) SpeechEndBlock endBlock;
+
+@property (nonatomic, assign) NSUInteger currentUtterance;
+@property (nonatomic, assign) NSUInteger totalUtterance;
+
 @end
+
 
 @implementation SpeechService
 
@@ -25,6 +32,7 @@
 - (AVSpeechSynthesizer *)synthesizer {
     if (!_synthesizer) {
         _synthesizer = [[AVSpeechSynthesizer alloc] init];
+        _synthesizer.delegate = self;
     }
     
     return _synthesizer;
@@ -64,11 +72,48 @@
 
 #pragma mark - SpeechServiceProtocol implementation
 
-- (void)speakText:(NSString *)text withLanguageCode:(NSString *)langCode {
-    AVSpeechUtterance *utterance = [AVSpeechUtterance speechUtteranceWithString:text];
-    utterance.voice = [AVSpeechSynthesisVoice voiceWithLanguage:langCode];
+- (void)speakWords:(NSArray<NSString *> *)words
+ withLanguageCodes:(NSArray<NSString *> *)langCodes
+  speechStartBlock:(SpeechStartBlock)startBlock
+    speechEndBlock:(SpeechEndBlock)endBlock {
     
-    [self.synthesizer speakUtterance:utterance];
+    if (!self.synthesizer.isSpeaking) {
+        self.startBlock = startBlock;
+        self.endBlock = endBlock;
+        
+        self.currentUtterance = 0;
+        self.totalUtterance = words.count;
+        
+        for (int i = 0; i < words.count; i++) {
+            NSString *word = words[i];
+            NSString *lang = langCodes[i];
+            
+            AVSpeechUtterance *utterance = [AVSpeechUtterance speechUtteranceWithString:word];
+            utterance.voice = [AVSpeechSynthesisVoice voiceWithLanguage:lang];
+            
+            [self.synthesizer speakUtterance:utterance];
+        }
+        
+    } else {
+        [self.synthesizer continueSpeaking];
+    }
+}
+
+
+#pragma mark - AVSpeechSynthesizerDelegate
+
+- (void)speechSynthesizer:(AVSpeechSynthesizer *)synthesizer didStartSpeechUtterance:(AVSpeechUtterance *)utterance {
+    if (self.currentUtterance == 0) {
+        self.startBlock();
+    }
+    
+    self.currentUtterance += 1;
+}
+
+- (void)speechSynthesizer:(AVSpeechSynthesizer *)synthesizer didFinishSpeechUtterance:(AVSpeechUtterance *)utterance {
+    if (self.currentUtterance == self.totalUtterance) {
+        self.endBlock();
+    }
 }
 
 @end

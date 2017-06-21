@@ -19,16 +19,15 @@
 
 @implementation EditingItemOfSetTableViewCell
 
-- (void)setDelegate:(id<UITextViewDelegate>)delegate {
+- (void)setDelegate:(id <UITextViewDelegate>)delegate {
     _delegate = delegate;
     
-    self.termTextView.delegate = self.delegate;
-    self.definitionTextView.delegate = self.delegate;
+    self.termTextView.delegate = _delegate;
+    self.definitionTextView.delegate = _delegate;
 }
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

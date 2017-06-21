@@ -69,11 +69,19 @@ static NSString * const kRoundLearnModeSegue    = @"roundLearnModeSegue";
     ItemOfSetTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kItemOfSetCellID
                                                                    forIndexPath:indexPath];
     ItemOfSet *item = self.set[indexPath.row];
-    [cell configureWithTerm:item.term definition:item.definition speakerHandler:^(NSString *term, NSString *definition) {
-        NSLog(@"Speak with %@, %@", term, definition);
+    
+    __weak typeof(self) weakSelf = self;
+    [cell configureWithTerm:item.term definition:item.definition speakerHandler:^(NSString *term, NSString *definition, ItemOfSetTableViewCell *cell) {
+        __strong typeof(self)strongWeakSelf = weakSelf;
         
-        [self.serviceLocator.speechService speakText:term withLanguageCode:self.set.termLang];
-        [self.serviceLocator.speechService speakText:definition withLanguageCode:self.set.definitionLang];
+        NSArray <NSString *> *words = @[term, definition];
+        NSArray <NSString *> *langs = @[strongWeakSelf.set.termLang, strongWeakSelf.set.definitionLang];
+        
+        [strongWeakSelf.serviceLocator.speechService speakWords:words
+                                    withLanguageCodes:langs
+                                     speechStartBlock:^{ [cell activateSpeaker]; }
+                                       speechEndBlock:^{ [cell inactivateSpeaker]; }
+         ];
     }];
     
     return cell;

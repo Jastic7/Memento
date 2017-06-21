@@ -8,11 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void (^SpeechStartBlock)();
+typedef void (^SpeechEndBlock)();
+
+
 @protocol SpeechServiceProtocol <NSObject>
 
 @property (nonatomic, copy) NSDictionary <NSString *, NSString *> *codesToLanguages;
 @property (nonatomic, copy) NSDictionary <NSString *, NSString *> *languagesToCodes;
 
-- (void)speakText:(NSString *)text withLanguageCode:(NSString *)langCode;
+- (void)speakWords:(NSArray <NSString *> *)words
+ withLanguageCodes:(NSArray <NSString *> *)langCodes
+  speechStartBlock:(SpeechStartBlock)startBlock
+    speechEndBlock:(SpeechEndBlock)endBlock;
 
 @end

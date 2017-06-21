@@ -8,17 +8,24 @@
 
 #import <UIKit/UIKit.h>
 
+@class ItemOfSetTableViewCell;
+
+typedef void (^SpeakerHandler)(NSString *term, NSString *definition, ItemOfSetTableViewCell *cell);
+
 @interface ItemOfSetTableViewCell : UITableViewCell
 
 + (UINib *)nib;
 
 - (void)configureWithTerm:(NSString *)term
                definition:(NSString *)definition
-           speakerHandler:(void (^)(NSString *term, NSString *definition))speakerHandler;
+           speakerHandler:(SpeakerHandler)handler;
 
 - (void)configureWithTerm:(NSString *)term
                definition:(NSString *)definition
                 textColor:(UIColor *)textColor
-           speakerHandler:(void (^)(NSString *term, NSString *definition))speakerHandler;
+           speakerHandler:(SpeakerHandler)handler;
+
+- (void)activateSpeaker;
+- (void)inactivateSpeaker;
 
 @end
