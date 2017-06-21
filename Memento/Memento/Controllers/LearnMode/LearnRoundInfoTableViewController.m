@@ -148,7 +148,9 @@ static NSString * const kItemOfSetTableViewCellID = @"ItemOfSetTableViewCell";
     ItemOfSet *item = self.items[indexPath.section][indexPath.row];
     
     UIColor *textColor = item.learnProgress == Unknown ? [UIColor failedStateColor] : [UIColor textColor];
-    [cell configureWithTerm:item.term definition:item.definition textColor:textColor];
+    [cell configureWithTerm:item.term definition:item.definition textColor:textColor speakerHandler:^(NSString *term, NSString *definition) {
+        NSLog(@"Speak with %@, %@", term, definition);
+    }];
     
     return cell;
 }

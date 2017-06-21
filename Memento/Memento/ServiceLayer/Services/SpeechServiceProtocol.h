@@ -13,4 +13,6 @@
 @property (nonatomic, copy) NSDictionary <NSString *, NSString *> *codesToLanguages;
 @property (nonatomic, copy) NSDictionary <NSString *, NSString *> *languagesToCodes;
 
+- (void)speakText:(NSString *)text withLanguageCode:(NSString *)langCode;
+
 @end

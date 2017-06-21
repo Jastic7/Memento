@@ -15,37 +15,53 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="82"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iIx-Zx-uSU" id="5zx-qb-3sT">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="81.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="82"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jAv-j9-RUo">
                         <rect key="frame" x="8" y="8" width="359" height="66"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="bUK-Gw-un3" customClass="LearnProgressStackView">
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="bUK-Gw-un3" customClass="LearnProgressStackView">
                                 <rect key="frame" x="0.0" y="0.0" width="359" height="66"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ynU-Qg-A9W" customClass="ItemLabel">
-                                        <rect key="frame" x="0.0" y="0.0" width="177" height="66"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="155.5" height="66"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ai2-NQ-0rc" customClass="ItemLabel">
-                                        <rect key="frame" x="182" y="0.0" width="177" height="66"/>
+                                        <rect key="frame" x="157.5" y="0.0" width="155.5" height="66"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pWv-gg-Dnv">
+                                        <rect key="frame" x="315" y="0.0" width="44" height="66"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="speaker" translatesAutoresizingMaskIntoConstraints="NO" id="dCF-z4-3Kl">
+                                                <rect key="frame" x="7" y="18" width="30" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="jWz-h6-WyU"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="ynU-Qg-A9W" firstAttribute="top" secondItem="bUK-Gw-un3" secondAttribute="top" id="4mm-Vq-5BE"/>
+                                    <constraint firstAttribute="bottom" secondItem="pWv-gg-Dnv" secondAttribute="bottom" id="95B-Vz-Lx8"/>
                                     <constraint firstAttribute="bottom" secondItem="ai2-NQ-0rc" secondAttribute="bottom" id="9J6-pV-li2"/>
                                     <constraint firstItem="ynU-Qg-A9W" firstAttribute="leading" secondItem="bUK-Gw-un3" secondAttribute="leading" id="BvY-eo-4xg"/>
-                                    <constraint firstAttribute="trailing" secondItem="ai2-NQ-0rc" secondAttribute="trailing" id="E0O-3l-eVU"/>
+                                    <constraint firstAttribute="trailing" secondItem="pWv-gg-Dnv" secondAttribute="trailing" id="HDT-TG-WwJ"/>
+                                    <constraint firstItem="ynU-Qg-A9W" firstAttribute="width" secondItem="ai2-NQ-0rc" secondAttribute="width" id="d8n-ur-NFH"/>
                                     <constraint firstItem="ai2-NQ-0rc" firstAttribute="top" secondItem="bUK-Gw-un3" secondAttribute="top" id="kg6-Ew-8ej"/>
                                     <constraint firstAttribute="bottom" secondItem="ynU-Qg-A9W" secondAttribute="bottom" id="wdF-jG-LqI"/>
+                                    <constraint firstItem="pWv-gg-Dnv" firstAttribute="top" secondItem="bUK-Gw-un3" secondAttribute="top" id="z8S-3Z-1Ej"/>
                                 </constraints>
                             </stackView>
                         </subviews>
@@ -69,9 +85,14 @@
             <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="definitionLabel" destination="ai2-NQ-0rc" id="gRf-Kj-j2o"/>
+                <outlet property="speakerImageView" destination="dCF-z4-3Kl" id="dWY-Fc-kXp"/>
+                <outlet property="speakerView" destination="pWv-gg-Dnv" id="D02-v5-07b"/>
                 <outlet property="termLabel" destination="ynU-Qg-A9W" id="Tfm-Nj-q1i"/>
             </connections>
             <point key="canvasLocation" x="33.5" y="58"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="speaker" width="64" height="64"/>
+    </resources>
 </document>

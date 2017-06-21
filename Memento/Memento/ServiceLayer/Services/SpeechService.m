@@ -7,8 +7,11 @@
 //
 
 #import "SpeechService.h"
+#import <AVFoundation/AVFoundation.h>
 
 @interface SpeechService ()
+
+@property (nonatomic, strong) AVSpeechSynthesizer *synthesizer;
 
 @end
 
@@ -19,7 +22,15 @@
 
 #pragma mark - Getters
 
-- (NSDictionary<NSString *,NSString *> *)languagesToCodes {
+- (AVSpeechSynthesizer *)synthesizer {
+    if (!_synthesizer) {
+        _synthesizer = [[AVSpeechSynthesizer alloc] init];
+    }
+    
+    return _synthesizer;
+}
+
+- (NSDictionary<NSString *, NSString *> *)languagesToCodes {
     if (!_languagesToCodes) {
         _languagesToCodes = @{@"Arabic" : @"ar-SA",
                               @"Chinese": @"zh-CN",
@@ -48,6 +59,16 @@
     }
     
     return _codesToLanguages;
+}
+
+
+#pragma mark - SpeechServiceProtocol implementation
+
+- (void)speakText:(NSString *)text withLanguageCode:(NSString *)langCode {
+    AVSpeechUtterance *utterance = [AVSpeechUtterance speechUtteranceWithString:text];
+    utterance.voice = [AVSpeechSynthesisVoice voiceWithLanguage:langCode];
+    
+    [self.synthesizer speakUtterance:utterance];
 }
 
 @end

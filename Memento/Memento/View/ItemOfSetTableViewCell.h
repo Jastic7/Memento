@@ -13,10 +13,12 @@
 + (UINib *)nib;
 
 - (void)configureWithTerm:(NSString *)term
-               definition:(NSString *)definition;
+               definition:(NSString *)definition
+           speakerHandler:(void (^)(NSString *term, NSString *definition))speakerHandler;
 
 - (void)configureWithTerm:(NSString *)term
                definition:(NSString *)definition
-                textColor:(UIColor *)textColor;
+                textColor:(UIColor *)textColor
+           speakerHandler:(void (^)(NSString *term, NSString *definition))speakerHandler;
 
 @end

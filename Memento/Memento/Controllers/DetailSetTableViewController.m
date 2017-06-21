@@ -13,6 +13,7 @@
 
 #import "Set.h"
 #import "ItemOfSet.h"
+#import "ServiceLocator.h"
 
 #import "LearnOrganizer.h"
 #import "MatchOrganizer.h"
@@ -24,9 +25,24 @@ static NSString * const kRoundLearnModeSegue    = @"roundLearnModeSegue";
 
 @interface DetailSetTableViewController () 
 
+@property (nonatomic, strong) ServiceLocator *serviceLocator;
+
 @end
 
 @implementation DetailSetTableViewController
+
+#pragma mark - Getters
+
+- (ServiceLocator *)serviceLocator {
+    if (!_serviceLocator) {
+        _serviceLocator = [ServiceLocator shared];
+    }
+    
+    return _serviceLocator;
+}
+
+
+#pragma mark - LifeCycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -53,7 +69,12 @@ static NSString * const kRoundLearnModeSegue    = @"roundLearnModeSegue";
     ItemOfSetTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kItemOfSetCellID
                                                                    forIndexPath:indexPath];
     ItemOfSet *item = self.set[indexPath.row];
-    [cell configureWithTerm:item.term definition:item.definition];
+    [cell configureWithTerm:item.term definition:item.definition speakerHandler:^(NSString *term, NSString *definition) {
+        NSLog(@"Speak with %@, %@", term, definition);
+        
+        [self.serviceLocator.speechService speakText:term withLanguageCode:self.set.termLang];
+        [self.serviceLocator.speechService speakText:definition withLanguageCode:self.set.definitionLang];
+    }];
     
     return cell;
 }
