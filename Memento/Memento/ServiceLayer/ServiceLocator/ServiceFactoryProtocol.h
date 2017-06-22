@@ -12,6 +12,7 @@
 @protocol SetServiceProtocol;
 @protocol UserServiceProtocol;
 @protocol SpeechServiceProtocol;
+@protocol UserDefaultsServiceProtocol;
 
 @protocol ServiceFactoryProtocol <NSObject>
 
@@ -19,5 +20,6 @@
 - (id <SetServiceProtocol>)createSetService;
 - (id <UserServiceProtocol>)createUserService;
 - (id <SpeechServiceProtocol>)createSpeechService;
+- (id <UserDefaultsServiceProtocol>)createUserDefaultsService;
 
 @end

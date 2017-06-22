@@ -20,11 +20,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [FIRApp configure];
     
-//    AVSpeechSynthesizer *synthesizer = [[AVSpeechSynthesizer alloc]init];
-//    AVSpeechUtterance *utterance = [AVSpeechUtterance speechUtteranceWithString:@"Some text"];
-//    
-//    [synthesizer speakUtterance:utterance];
-    
     return YES;
 }
 

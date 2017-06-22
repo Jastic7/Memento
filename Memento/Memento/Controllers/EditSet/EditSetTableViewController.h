@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@class ItemOfSet;
 @class Set;
 
 @protocol EditSetTableViewControllerDelegate <NSObject>
@@ -20,5 +21,6 @@
 @interface EditSetTableViewController : UITableViewController
 
 @property (nonatomic, weak) id <EditSetTableViewControllerDelegate> delegate;
+@property (nonatomic, strong) NSMutableArray <ItemOfSet *> *items;
 
 @end

@@ -8,12 +8,22 @@
 
 #import <UIKit/UIKit.h>
 
+@class EditingItemOfSetTableViewCell;
+
+@protocol EditingItemOfSetTableViewCellDelegate <NSObject>
+
+- (void)editingItemOfSetCell:(EditingItemOfSetTableViewCell *)cell didChangeItemInTextView:(UITextView *)textView;
+- (void)editingItemOfSetCell:(EditingItemOfSetTableViewCell *)cell didEndEditingItemInTextView:(UITextView *)textView;
+
+@end
+
+
 @interface EditingItemOfSetTableViewCell : UITableViewCell
 
-@property (nonatomic, weak) id <UITextViewDelegate> delegate;
+@property (nonatomic, weak) id <EditingItemOfSetTableViewCellDelegate> delegate;
 
 + (UINib *)nib;
 
 - (void)configureWithTerm:(NSString *)term definition:(NSString *)definition;
-
+- (void)becomeActive;
 @end

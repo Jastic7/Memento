@@ -11,6 +11,7 @@
 #import "SetService.h"
 #import "UserService.h"
 #import "SpeechService.h"
+#import "UserDefaultsService.h"
 #import "TransportLayer.h"
 
 
@@ -30,6 +31,10 @@
 
 - (id <SpeechServiceProtocol>)createSpeechService {
     return [SpeechService createWithTrasport:[TransportLayer manager]];
+}
+
+- (id <UserDefaultsServiceProtocol>)createUserDefaultsService {
+    return [UserDefaultsService createWithTrasport:[TransportLayer manager]];
 }
 
 @end

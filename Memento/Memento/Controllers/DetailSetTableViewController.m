@@ -9,6 +9,7 @@
 #import "DetailSetTableViewController.h"
 #import "MatchPrepareViewController.h"
 #import "LearnRoundViewController.h"
+#import "EditSetTableViewController.h"
 #import "ItemOfSetTableViewCell.h"
 
 #import "Set.h"
@@ -21,6 +22,7 @@
 static NSString * const kItemOfSetCellID        = @"ItemOfSetTableViewCell";
 static NSString * const kMatchModePrepareSegue  = @"matchModePrepareSegue";
 static NSString * const kRoundLearnModeSegue    = @"roundLearnModeSegue";
+static NSString * const kEditSetSegue           = @"editSetSegue";
 
 
 @interface DetailSetTableViewController () 
@@ -109,6 +111,12 @@ static NSString * const kRoundLearnModeSegue    = @"roundLearnModeSegue";
         
         dvc.organizer = learnModeOrganizer;
         dvc.cancelingBlock = ^void() { [self dismissViewControllerAnimated:YES completion:nil]; };
+    
+    } else if ([identifier isEqualToString:kEditSetSegue]) {
+        UINavigationController *navController = segue.destinationViewController;
+        EditSetTableViewController *dvc = (EditSetTableViewController *)navController.topViewController;
+        
+        dvc.items = self.set.items;
     }
 }
 

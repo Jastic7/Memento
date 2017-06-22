@@ -7,9 +7,12 @@
 //
 
 #import "LearnOrganizer.h"
+#import "ServiceLocator.h"
 #import "Set.h"
 
 @interface LearnOrganizer ()
+
+@property (nonatomic, strong) ServiceLocator *serviceLocator;
 
 @property (nonatomic, strong) Set *set;
 @property (nonatomic, strong) Set *learningSet;
@@ -43,6 +46,8 @@
  */
 @property (nonatomic, assign, readonly) BOOL isEnoughItems;
 
+@property (nonatomic, assign) BOOL isAudioEnabled;
+
 @end
 
 
@@ -51,6 +56,14 @@
 @synthesize delegate = _delegate;
 
 #pragma mark - Getters
+
+- (ServiceLocator *)serviceLocator {
+    if (!_serviceLocator) {
+        _serviceLocator = [ServiceLocator shared];
+    }
+    
+    return _serviceLocator;
+}
 
 - (Set *)roundSet {
     if (!_roundSet) {
@@ -87,6 +100,10 @@
 - (void)setLearningItem:(ItemOfSet *)roundItem {
     _learningItem = roundItem;
     
+    if (self.isAudioEnabled) {
+        [self.serviceLocator.speechService speakWords:@[roundItem.term] withLanguageCodes:@[self.set.termLang] speechStartBlock:nil speechEndBlock:nil];
+    }
+    
     [self.delegate learnOrganizer:self didUpdatedTerm:roundItem.term withLearnProgress:roundItem.learnProgress];
 }
 
@@ -119,7 +136,6 @@
     [self.set resetAllLearnProgress];
     
     self.learningSet = [Set setWithSet:self.set];
-    
     self.location = 0;
 }
 
@@ -137,6 +153,7 @@
         
         //fills round set by new items.
         self.roundSet = [self.learningSet subsetWithRange:range];
+        self.isAudioEnabled = [self.serviceLocator.userDefaultsService isAudioEnabled];
         self.learningItemIndex = 0;
     }
 }
@@ -159,7 +176,8 @@
         [self.learningSet addItem:self.learningItem];
     }
     
-    [self.delegate learnOrganizer:self didCheckedDefinitionWithLearningState:currentProgress previousState:previousProgress];
+    [self.delegate learnOrganizer:self didCheckedDefinitionWithLearningState:currentProgress
+                    previousState:previousProgress];
 }
 
 

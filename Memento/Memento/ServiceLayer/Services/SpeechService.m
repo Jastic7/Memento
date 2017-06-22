@@ -103,7 +103,7 @@
 #pragma mark - AVSpeechSynthesizerDelegate
 
 - (void)speechSynthesizer:(AVSpeechSynthesizer *)synthesizer didStartSpeechUtterance:(AVSpeechUtterance *)utterance {
-    if (self.currentUtterance == 0) {
+    if ((self.currentUtterance == 0) && (self.startBlock) ){
         self.startBlock();
     }
     
@@ -111,7 +111,7 @@
 }
 
 - (void)speechSynthesizer:(AVSpeechSynthesizer *)synthesizer didFinishSpeechUtterance:(AVSpeechUtterance *)utterance {
-    if (self.currentUtterance == self.totalUtterance) {
+    if ((self.currentUtterance == self.totalUtterance) && (self.endBlock)) {
         self.endBlock();
     }
 }

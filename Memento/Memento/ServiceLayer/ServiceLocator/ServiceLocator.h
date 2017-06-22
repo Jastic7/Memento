@@ -11,6 +11,8 @@
 #import "SetServiceProtocol.h"
 #import "UserServiceProtocol.h"
 #import "SpeechServiceProtocol.h"
+#import "UserDefaultsServiceProtocol.h"
+
 
 @protocol ServiceFactoryProtocol;
 
@@ -21,6 +23,7 @@
 @property (nonatomic, strong, readonly) id <SetServiceProtocol>  setService;
 @property (nonatomic, strong, readonly) id <UserServiceProtocol> userService;
 @property (nonatomic, strong, readonly) id <SpeechServiceProtocol> speechService;
+@property (nonatomic, strong, readonly) id <UserDefaultsServiceProtocol> userDefaultsService;
 
 + (instancetype)shared;
 - (void)setServiceFactory:(id <ServiceFactoryProtocol>)serviceFactory;

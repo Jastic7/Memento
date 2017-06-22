@@ -20,6 +20,7 @@ static ServiceLocator *sharedInstance = nil;
 @property (nonatomic, strong) id <SetServiceProtocol>  setService;
 @property (nonatomic, strong) id <UserServiceProtocol> userService;
 @property (nonatomic, strong) id <SpeechServiceProtocol> speechService;
+@property (nonatomic, strong) id <UserDefaultsServiceProtocol> userDefualtsService;
 
 @end
 
@@ -58,6 +59,14 @@ static ServiceLocator *sharedInstance = nil;
     }
     
     return _speechService;
+}
+
+- (id <UserDefaultsServiceProtocol>)userDefaultsService {
+    if (!_userDefualtsService) {
+        _userDefualtsService = [self.serviceFactory createUserDefaultsService];
+    }
+    
+    return _userDefualtsService;
 }
 
 

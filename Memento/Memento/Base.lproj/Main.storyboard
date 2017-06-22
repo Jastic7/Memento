@@ -123,7 +123,7 @@
             </objects>
             <point key="canvasLocation" x="2114.4000000000001" y="37.331334332833585"/>
         </scene>
-        <!--Detail Set Table View Controller-->
+        <!--Title-->
         <scene sceneID="Ko2-p8-krQ">
             <objects>
                 <tableViewController id="Eg5-yh-EAG" customClass="DetailSetTableViewController" sceneMemberID="viewController">
@@ -174,6 +174,13 @@
                             <outlet property="delegate" destination="Eg5-yh-EAG" id="qAp-gd-G3J"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Title" id="Xmg-y8-5ZS">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="cAy-el-WGm">
+                            <connections>
+                                <segue destination="whK-Ao-VA2" kind="presentation" identifier="editSetSegue" id="Z8g-v2-Hb0"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KsI-08-4y4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -469,10 +476,10 @@
             </objects>
             <point key="canvasLocation" x="4551" y="896"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Learn Settings Table View Controller-->
         <scene sceneID="DEg-Lu-C7l">
             <objects>
-                <tableViewController id="EEo-0x-Q64" sceneMemberID="viewController">
+                <tableViewController id="EEo-0x-Q64" customClass="LearnSettingsTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="KbH-lk-UDA">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -508,20 +515,12 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Pg7-Dk-uJ9">
-                                        <rect key="frame" x="0.0" y="100" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Pg7-Dk-uJ9" id="vKp-kU-P01">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection id="L38-iW-o6Z">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="EjJ-C3-dGF">
-                                        <rect key="frame" x="0.0" y="180" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="136" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EjJ-C3-dGF" id="4bN-E0-NAs">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -530,9 +529,12 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FXb-tm-u7A">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
-                                                    <state key="normal" title="Restart learn">
+                                                    <state key="normal" title="Reset learn progress">
                                                         <color key="titleColor" red="0.84024292229999997" green="0.3419549167" blue="0.23800191279999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="resetProgressButtonTapped:" destination="EEo-0x-Q64" eventType="touchUpInside" id="ZWE-zx-tkO"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -551,6 +553,9 @@
                             <outlet property="delegate" destination="EEo-0x-Q64" id="PKw-EH-qPr"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="audioEnabledSwitch" destination="8zW-aZ-sF4" id="YpI-Ot-Oc1"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fJo-8q-iuY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -619,7 +624,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mh6-Cf-C1V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3666" y="36"/>
+            <point key="canvasLocation" x="3862" y="36"/>
         </scene>
         <!--Title-->
         <scene sceneID="WUX-EK-WSn">
@@ -696,7 +701,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O2p-KV-TIH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4449" y="36"/>
+            <point key="canvasLocation" x="4670" y="36"/>
         </scene>
         <!--Auth-->
         <scene sceneID="QH9-JU-vyG">
@@ -781,10 +786,13 @@
                 <viewControllerPlaceholder storyboardName="EditSet" id="whK-Ao-VA2" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="egw-hh-tQk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2730" y="-624"/>
+            <point key="canvasLocation" x="2546" y="505"/>
         </scene>
     </scenes>
     <resources>
         <image name="sets_tabbar" width="32" height="32"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Z8g-v2-Hb0"/>
+    </inferredMetricsTieBreakers>
 </document>

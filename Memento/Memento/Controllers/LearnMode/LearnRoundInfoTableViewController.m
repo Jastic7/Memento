@@ -10,6 +10,7 @@
 #import "ItemOfSetTableViewCell.h"
 #import "LearnRoundInfoHeader.h"
 #import "UIColor+PickerColors.h"
+#import "ServiceLocator.h"
 #import "Set.h"
 
 static NSString * const kLearnRoundInfoHeaderID = @"LearnRoundInfoHeader";
@@ -17,6 +18,8 @@ static NSString * const kItemOfSetTableViewCellID = @"ItemOfSetTableViewCell";
 
 
 @interface LearnRoundInfoTableViewController () <UINavigationBarDelegate>
+
+@property (strong, nonatomic) ServiceLocator *serviceLocator;
 
 @property (strong, nonatomic) NSMutableArray <ItemOfSet *> *unknownItems;
 @property (strong, nonatomic) NSMutableArray <ItemOfSet *> *learntItems;
@@ -35,6 +38,14 @@ static NSString * const kItemOfSetTableViewCellID = @"ItemOfSetTableViewCell";
 
 
 #pragma mark - Getters
+
+- (ServiceLocator *)serviceLocator {
+    if (!_serviceLocator) {
+        _serviceLocator = [ServiceLocator shared];
+    }
+    
+    return _serviceLocator;
+}
 
 - (NSMutableArray<ItemOfSet *> *)unknownItems {
     if (!_unknownItems) {
@@ -148,8 +159,19 @@ static NSString * const kItemOfSetTableViewCellID = @"ItemOfSetTableViewCell";
     ItemOfSet *item = self.items[indexPath.section][indexPath.row];
     
     UIColor *textColor = item.learnProgress == Unknown ? [UIColor failedStateColor] : [UIColor textColor];
+    
+    __weak typeof(self) weakSelf = self;
     [cell configureWithTerm:item.term definition:item.definition textColor:textColor speakerHandler:^(NSString *term, NSString *definition, ItemOfSetTableViewCell *cell) {
-        NSLog(@"Speak with %@, %@", term, definition);
+        __strong typeof(self)strongWeakSelf = weakSelf;
+        
+        NSArray <NSString *> *words = @[term, definition];
+        NSArray <NSString *> *langs = @[strongWeakSelf.set.termLang, strongWeakSelf.set.definitionLang];
+        
+        [strongWeakSelf.serviceLocator.speechService speakWords:words
+                                              withLanguageCodes:langs
+                                               speechStartBlock:^{ [cell activateSpeaker]; }
+                                                 speechEndBlock:^{ [cell inactivateSpeaker]; }
+         ];
     }];
     
     return cell;

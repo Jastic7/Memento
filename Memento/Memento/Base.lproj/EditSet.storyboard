@@ -13,7 +13,7 @@
         <!--Edit Set Table View Controller-->
         <scene sceneID="gfr-LV-xwG">
             <objects>
-                <tableViewController id="pWI-6z-sSu" customClass="EditSetTableViewController" sceneMemberID="viewController">
+                <tableViewController automaticallyAdjustsScrollViewInsets="NO" id="pWI-6z-sSu" customClass="EditSetTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="75" sectionHeaderHeight="28" sectionFooterHeight="28" id="VBY-QZ-LO7">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

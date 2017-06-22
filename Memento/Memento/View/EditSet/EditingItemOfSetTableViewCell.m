@@ -9,7 +9,7 @@
 #import "EditingItemOfSetTableViewCell.h"
 #import "EditingTextView.h"
 
-@interface EditingItemOfSetTableViewCell ()
+@interface EditingItemOfSetTableViewCell () <UITextViewDelegate>
 
 @property (weak, nonatomic) IBOutlet EditingTextView *termTextView;
 @property (weak, nonatomic) IBOutlet EditingTextView *definitionTextView;
@@ -19,13 +19,6 @@
 
 @implementation EditingItemOfSetTableViewCell
 
-- (void)setDelegate:(id <UITextViewDelegate>)delegate {
-    _delegate = delegate;
-    
-    self.termTextView.delegate = _delegate;
-    self.definitionTextView.delegate = _delegate;
-}
-
 - (void)awakeFromNib {
     [super awakeFromNib];
 }
@@ -34,13 +27,37 @@
     [super setSelected:selected animated:animated];
 }
 
-+ (UINib *)nib {
-    return [UINib nibWithNibName:@"EditingItemOfSetTableViewCell" bundle:nil];
-}
+
+#pragma mark - Configuration
 
 - (void)configureWithTerm:(NSString *)term definition:(NSString *)definition {
     self.termTextView.text = term;
     self.definitionTextView.text = definition;
+    
+    self.termTextView.delegate = self;
+    self.definitionTextView.delegate = self;
+}
+
+
+#pragma mark - UITextViewDelegate
+
+- (void)textViewDidChange:(UITextView *)textView {
+    [self.delegate editingItemOfSetCell:self didChangeItemInTextView:textView];
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView {
+    [self.delegate editingItemOfSetCell:self didEndEditingItemInTextView:textView];
+}
+
+
+#pragma mark - Helpers
+
++ (UINib *)nib {
+    return [UINib nibWithNibName:@"EditingItemOfSetTableViewCell" bundle:nil];
+}
+
+- (void)becomeActive {
+    [self.termTextView becomeFirstResponder];
 }
 
 @end
