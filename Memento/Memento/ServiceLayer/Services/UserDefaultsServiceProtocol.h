@@ -11,5 +11,6 @@
 @protocol UserDefaultsServiceProtocol <NSObject>
 
 @property (nonatomic, assign) BOOL isAudioEnabled;
+@property (nonatomic, copy, readonly) NSString *userName;
 
 @end

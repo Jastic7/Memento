@@ -27,13 +27,23 @@ typedef void (^SetServiceUploadCompletionBlock)(NSError *error);
 
 /*!
  * @brief Post list of set for a particular user to database.
- * @param uid User's identifier, whose sets are beeing obtained.
+ * @param uid User's identifier, whose sets are beeing posted.
  * @param completion Callback which is beeing called, when sets are successfully posted
  * or error occured.
  */
 - (void)postSetList:(NSArray <Set *> *)setList
              userId:(NSString *)uid
          completion:(SetServiceUploadCompletionBlock)completion;
+
+/*!
+ * @brief Post set for a particular user to database.
+ * @param uid User's identifier, whose set is beeing posted.
+ * @param completion Callback which is beeing called, when set is successfully posted
+ * or error occured.
+ */
+- (void)postSet:(Set *)set
+         userId:(NSString *)uid
+     completion:(SetServiceUploadCompletionBlock)completion;
 
 /*!
  * @brief Configure unique identifier.

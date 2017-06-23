@@ -44,8 +44,12 @@
 #pragma mark - Path Helpers
 
 - (NSString *)setPathWithUserId:(NSString *)uid {
-    NSString *setPathFormat = @"%@/%@";
-    NSString *setPath = [NSString stringWithFormat:setPathFormat, self.rootPath, uid];
+    return [self setPathWithUserId:uid setId:@""];
+}
+
+- (NSString *)setPathWithUserId:(NSString *)uid setId:(NSString *)setId {
+    NSString *setPathFormat = @"%@/%@/%@";
+    NSString *setPath = [NSString stringWithFormat:setPathFormat, self.rootPath, uid, setId];
     
     return setPath;
 }
@@ -72,8 +76,15 @@
 - (void)postSetList:(NSArray<Set *> *)setList
              userId:(NSString *)uid
          completion:(SetServiceUploadCompletionBlock)completion {
-    NSDictionary *jsonData = [self.setMapper jsonFromModelArray:setList];
-    NSString *setPath = [self setPathWithUserId:uid];
+
+    for (Set *set in setList) {
+        [self postSet:set userId:uid completion:completion];
+    }
+}
+
+- (void)postSet:(Set *)set userId:(NSString *)uid completion:(SetServiceUploadCompletionBlock)completion {
+    NSDictionary *jsonData = [self.setMapper jsonFromModel:set];
+    NSString *setPath = [self setPathWithUserId:uid setId:set.identifier];
     
     [self.transort postData:jsonData databasePath:setPath completion:completion];
 }

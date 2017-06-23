@@ -14,8 +14,9 @@
 
 @property (nonatomic, copy, readonly)   NSString *title;
 @property (nonatomic, copy, readonly)   NSString *author;
-@property (nonatomic, copy, readonly)   NSString *definitionLang;
 @property (nonatomic, copy, readonly)   NSString *termLang;
+@property (nonatomic, copy, readonly)   NSString *definitionLang;
+
 @property (nonatomic, assign, readonly) NSUInteger count;
 @property (nonatomic, assign, readonly) BOOL isEmpty;
 
@@ -49,6 +50,8 @@
 
 + (instancetype)setWithSet:(Set *)set;
 
+- (void)updateWithTitle:(NSString *)title termLang:(NSString *)termLang defLang:(NSString *)defLang;
+
 /*!
  * @brief Add new item to the current set items.
  * @param item The item to be added.
@@ -71,6 +74,8 @@
  * @brief Remove all items from the current set items.
  */
 - (void)removeAllItems;
+
+- (void)filterWithPredicate:(NSPredicate *)predicate;
 
 
 /*!

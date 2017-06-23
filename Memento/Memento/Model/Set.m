@@ -14,6 +14,8 @@
 
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *author;
+@property (nonatomic, copy) NSString *termLang;
+@property (nonatomic, copy) NSString *definitionLang;
 @property (nonatomic, strong) NSMutableArray<ItemOfSet *> *items;
 
 @end
@@ -24,7 +26,7 @@
 #pragma mark - Initializations
 
 - (instancetype)init {
-    return [self initWithTitle:@"" author:@"" definitionLang:@"" termLang:@"" items:nil];
+    return [self initWithTitle:nil author:@"" definitionLang:@"" termLang:@"" items:nil];
 }
 
 - (instancetype)initWithTitle:(NSString *)title
@@ -109,6 +111,15 @@
 }
 
 
+#pragma mark - Updating
+
+- (void)updateWithTitle:(NSString *)title termLang:(NSString *)termLang defLang:(NSString *)defLang {
+    self.title = title;
+    self.termLang = termLang;
+    self.definitionLang = defLang;
+}
+
+
 #pragma mark - Adding
 
 - (void)addItem:(ItemOfSet *)item {
@@ -128,6 +139,13 @@
 
 - (void)removeAllItems {
     [self.items removeAllObjects];
+}
+
+
+#pragma mark - Filtering
+
+- (void)filterWithPredicate:(NSPredicate *)predicate {
+    [self.items filterUsingPredicate:predicate];
 }
 
 
@@ -199,12 +217,15 @@
 }
 
 
-#pragma mark - Copying.
+#pragma mark - NSCopying.
 
 - (id)copyWithZone:(NSZone *)zone {
     Set *copySet = [[[self class] allocWithZone:zone] init];
-    copySet.title = self.title;
-    copySet.author = self.author;
+    
+    copySet.author          = self.author;
+    copySet.title           = self.title;
+    copySet.termLang        = self.termLang;
+    copySet.definitionLang  = self.definitionLang;
     
     for (ItemOfSet *item in self.items) {
         [copySet.items addObject:[item copy]];

@@ -25,7 +25,7 @@ static NSString * const kRoundLearnModeSegue    = @"roundLearnModeSegue";
 static NSString * const kEditSetSegue           = @"editSetSegue";
 
 
-@interface DetailSetTableViewController () 
+@interface DetailSetTableViewController () <EditSetTableViewControllerDelegate>
 
 @property (nonatomic, strong) ServiceLocator *serviceLocator;
 
@@ -53,6 +53,11 @@ static NSString * const kEditSetSegue           = @"editSetSegue";
     self.tableView.estimatedRowHeight = 100;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     [self.tableView registerNib:[ItemOfSetTableViewCell nib] forCellReuseIdentifier:kItemOfSetCellID];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self uploadSet];
 }
 
 
@@ -90,6 +95,18 @@ static NSString * const kEditSetSegue           = @"editSetSegue";
 }
 
 
+#pragma mark - EditSetTableViewControllerDelegate
+
+- (void)editSetTableViewControllerDidCancel {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)editSetTableViewControllerDidEditSet:(Set *)set {
+    [self uploadSet];
+    [self.tableView reloadData];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -116,8 +133,21 @@ static NSString * const kEditSetSegue           = @"editSetSegue";
         UINavigationController *navController = segue.destinationViewController;
         EditSetTableViewController *dvc = (EditSetTableViewController *)navController.topViewController;
         
-        dvc.items = self.set.items;
+        dvc.editableSet = self.set;
+        dvc.delegate = self;
     }
+}
+
+
+#pragma mark - Private
+
+- (void)uploadSet {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *uid = [userDefaults objectForKey:@"userId"];
+    
+    [self.serviceLocator.setService postSet:self.set userId:uid completion:^(NSError *error) {
+        
+    }];
 }
 
 @end

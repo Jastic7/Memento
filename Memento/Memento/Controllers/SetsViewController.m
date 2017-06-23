@@ -34,6 +34,7 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
 @property (nonatomic, weak) ServiceLocator *serviceLocator;
 
 @property (nonatomic, strong) NSMutableArray<Set *> *sets;
+@property (nonatomic, strong) NSIndexPath *selectedRow;
 
 @property (nonatomic, copy) NSString *uid;
 
@@ -87,12 +88,16 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
             [self performSegueWithIdentifier:kShowWelcomeSegue sender:nil];
         }
     }];
+    
+    [self downloadData:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [self downloadData:nil];
+    if (self.selectedRow) {
+        [self.tableView reloadRowsAtIndexPaths:@[self.selectedRow] withRowAnimation:UITableViewRowAnimationFade];
+    }
 }
 
 
@@ -115,6 +120,7 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    self.selectedRow = indexPath;
 }
 
 

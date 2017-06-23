@@ -9,7 +9,7 @@
 #import "UserDefaultsService.h"
 
 static NSString * const kAudioEnabledKey = @"isAudioEnabled";
-
+static NSString * const kUserName = @"userName";
 
 @interface UserDefaultsService ()
 
@@ -47,6 +47,12 @@ static NSString * const kAudioEnabledKey = @"isAudioEnabled";
     NSString *state = isAudioEnabled ? @"YES" : @"NO";
     [self.userDefaults setObject:state forKey:kAudioEnabledKey];
 }
+
+- (NSString *)userName {
+    return [self.userDefaults objectForKey:kUserName];
+}
+
+
 
 
 
