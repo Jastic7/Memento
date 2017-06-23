@@ -53,6 +53,7 @@ static NSString * const kAudioEnabledKey = @"isAudioEnabled";
 #pragma mark - Actions
 
 - (IBAction)resetProgressButtonTapped:(id)sender {
+    self.resetProgressBlock();
 }
 
 

@@ -175,7 +175,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Title" id="Xmg-y8-5ZS">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="cAy-el-WGm">
+                        <barButtonItem key="rightBarButtonItem" image="configuration" id="cAy-el-WGm">
                             <connections>
                                 <segue destination="whK-Ao-VA2" kind="presentation" identifier="editSetSegue" id="Z8g-v2-Hb0"/>
                             </connections>
@@ -458,9 +458,9 @@
                                 <action selector="cancelButtonTapped:" destination="Bdc-gY-Z8a" id="gWa-9F-E8I"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="c0w-ft-thr">
+                        <barButtonItem key="rightBarButtonItem" image="configuration" id="c0w-ft-thr">
                             <connections>
-                                <segue destination="EEo-0x-Q64" kind="show" id="wg2-MZ-CCi"/>
+                                <segue destination="EEo-0x-Q64" kind="show" identifier="learnSettingsSegue" id="wg2-MZ-CCi"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -790,6 +790,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="configuration" width="32" height="32"/>
         <image name="sets_tabbar" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>

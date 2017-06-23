@@ -10,4 +10,6 @@
 
 @interface LearnSettingsTableViewController : UITableViewController
 
+@property (nonatomic, copy) void (^resetProgressBlock)();
+
 @end

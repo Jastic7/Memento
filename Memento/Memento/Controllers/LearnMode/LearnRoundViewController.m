@@ -143,6 +143,10 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
     childViewController.set                 = self.organizer.set;
     
     childViewController.cancelingBlock           = self.cancelingBlock;
+    childViewController.resetProgressBlock = ^void() {
+        [self.organizer reset];
+    };
+    
     childViewController.prepareForNextRoundBlock = ^void() {
         if (self.organizer.isFinished) {
             [self.organizer reset];

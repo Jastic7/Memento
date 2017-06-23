@@ -18,6 +18,7 @@
 @property (nonatomic, assign) BOOL isLearningFinished;
 
 @property (nonatomic, copy) void (^cancelingBlock)();
+@property (nonatomic, copy) void (^resetProgressBlock)();
 @property (nonatomic, copy) void (^prepareForNextRoundBlock)();
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "LearnRoundInfoTableViewController.h"
+#import "LearnSettingsTableViewController.h"
 #import "ItemOfSetTableViewCell.h"
 #import "LearnRoundInfoHeader.h"
 #import "UIColor+PickerColors.h"
@@ -15,6 +16,7 @@
 
 static NSString * const kLearnRoundInfoHeaderID = @"LearnRoundInfoHeader";
 static NSString * const kItemOfSetTableViewCellID = @"ItemOfSetTableViewCell";
+static NSString * const kLearnSettingsSegue = @"learnSettingsSegue";
 
 
 @interface LearnRoundInfoTableViewController () <UINavigationBarDelegate>
@@ -193,6 +195,21 @@ static NSString * const kItemOfSetTableViewCellID = @"ItemOfSetTableViewCell";
 }
 
 
+#pragma mark - Navigation
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    NSString *identifier = segue.identifier;
+    
+    if ([identifier isEqualToString:kLearnSettingsSegue]) {
+        LearnSettingsTableViewController *dvc = segue.destinationViewController;
+        dvc.resetProgressBlock = ^void() {
+            self.resetProgressBlock();
+            [self resetProgress];
+            [self.navigationController popViewControllerAnimated:YES];
+        };
+    }
+}
+
 #pragma mark - Configuration
 
 - (void)configureCountLabels {
@@ -211,6 +228,16 @@ static NSString * const kItemOfSetTableViewCellID = @"ItemOfSetTableViewCell";
 }
 
 #pragma mark - Helpers
+
+- (void)resetProgress {
+    [self.unknownItems removeAllObjects];
+    [self.learntItems removeAllObjects];
+    [self.masteredItems removeAllObjects];
+    [self.items removeAllObjects];
+    
+    [self configureCountLabels];
+    [self.tableView reloadData];
+}
 
 - (void)dealloc {
     NSLog(@"Learn round info left");

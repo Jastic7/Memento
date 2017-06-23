@@ -78,7 +78,7 @@
 }
 
 - (BOOL)isFinished {
-    return self.location > self.learningSet.count;
+    return self.location >= self.learningSet.count;
 }
 
 - (Set *)set {
