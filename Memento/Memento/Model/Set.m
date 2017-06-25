@@ -113,10 +113,11 @@
 
 #pragma mark - Updating
 
-- (void)updateWithTitle:(NSString *)title termLang:(NSString *)termLang defLang:(NSString *)defLang {
+- (void)updateWithTitle:(NSString *)title termLang:(NSString *)termLang defLang:(NSString *)defLang items:(NSMutableArray<ItemOfSet *> *)items {
     self.title = title;
     self.termLang = termLang;
     self.definitionLang = defLang;
+    self.items = items;
 }
 
 

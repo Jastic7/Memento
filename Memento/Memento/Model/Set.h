@@ -50,7 +50,7 @@
 
 + (instancetype)setWithSet:(Set *)set;
 
-- (void)updateWithTitle:(NSString *)title termLang:(NSString *)termLang defLang:(NSString *)defLang;
+- (void)updateWithTitle:(NSString *)title termLang:(NSString *)termLang defLang:(NSString *)defLang items:(NSMutableArray <ItemOfSet *> *)items;
 
 /*!
  * @brief Add new item to the current set items.

@@ -33,10 +33,8 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, weak) ServiceLocator *serviceLocator;
 
-@property (nonatomic, strong) NSMutableArray<Set *> *sets;
-@property (nonatomic, strong) NSIndexPath *selectedRow;
-
-@property (nonatomic, copy) NSString *uid;
+@property (nonatomic, strong) NSMutableArray <Set *> *sets;
+@property (nonatomic, strong) NSIndexPath *indexPathOfSelectedSet;
 
 @end
 
@@ -45,7 +43,7 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
 
 #pragma mark - Getters
 
-- (NSMutableArray<Set *> *)sets {
+- (NSMutableArray <Set *> *)sets {
     if (!_sets) {
         _sets = [NSMutableArray array];
     }
@@ -61,33 +59,17 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
     return _serviceLocator;
 }
 
-- (NSString *)uid {
-    if (!_uid) {
-        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-        _uid = [userDefaults objectForKey:@"userId"];
-    }
-    
-    return _uid;
-}
-
 
 #pragma mark - LifeCycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self configureTableView];
-//    [self configureRefreshControl];
-    
     [Assembly assemblyServiceLayer];
     
-    [self.serviceLocator.authService addAuthStateChangeListener:^(NSString *uid) {
-        self.uid = uid;
-        
-        if (!uid) {
-            [self performSegueWithIdentifier:kShowWelcomeSegue sender:nil];
-        }
-    }];
+    [self configureTableView];
+    [self registerAuthStateNotification];
+//    [self configureRefreshControl];
     
     [self downloadData:nil];
 }
@@ -95,8 +77,8 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    if (self.selectedRow) {
-        [self.tableView reloadRowsAtIndexPaths:@[self.selectedRow] withRowAnimation:UITableViewRowAnimationFade];
+    if (self.indexPathOfSelectedSet) {
+        [self.tableView reloadRowsAtIndexPaths:@[self.indexPathOfSelectedSet] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
 
@@ -120,7 +102,22 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    self.selectedRow = indexPath;
+    self.indexPathOfSelectedSet = indexPath;
+}
+
+
+#pragma mark - CreateSetTableViewControllerDelegate
+
+- (void)editSetTableViewControllerDidCancel {
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)editSetTableViewControllerDidEditSet:(Set *)set {
+    [self.sets addObject:set];
+    [self.tableView reloadRowsAtIndexPaths:@[self.indexPathOfSelectedSet] withRowAnimation:NO];
+    
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    [self uploadData];
 }
 
 
@@ -142,26 +139,28 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
     } else if ([identifier isEqualToString:kShowWelcomeSegue]) {
         WelcomeViewController *vc = segue.destinationViewController;
         vc.authenticationCompletion = ^() {
-            [self dismissViewControllerAnimated:YES completion:nil];
+            [self dismissViewControllerAnimated:YES completion:^{
+                [self downloadData:nil];
+            }];
         };
     }
 }
 
 
-#pragma mark - CreateSetTableViewControllerDelegate
+#pragma mark - Register Notification
 
-- (void)editSetTableViewControllerDidCancel {
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+- (void)registerAuthStateNotification {
+    [self.serviceLocator.authService addAuthStateChangeListener:^(NSString *uid) {
+        if (!uid) {
+            [self.navigationController popToRootViewControllerAnimated:NO];
+            [self performSegueWithIdentifier:kShowWelcomeSegue sender:nil];
+            
+            [self.sets removeAllObjects];
+            [self.tableView reloadData];
+            self.indexPathOfSelectedSet = nil;
+        }
+    }];
 }
-
-- (void)editSetTableViewControllerDidEditSet:(Set *)set {
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-    [self.sets addObject:set];
-    [self.tableView reloadData];
-    
-    [self uploadData];
-}
-
 
 #pragma mark - Configuration 
 
@@ -186,8 +185,7 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
 #pragma mark - Private
 
 - (void)downloadData:(UIRefreshControl *)refreshControll {
-    [self.serviceLocator.setService obtainSetListForUserId:self.uid
-                                                completion:^(NSMutableArray<Set *> *setList, NSError *error) {
+    [self.serviceLocator.setService obtainSetListWithCompletion:^(NSMutableArray<Set *> *setList, NSError *error) {
 //        [refreshControll endRefreshing];
         
         self.sets = setList;
@@ -196,9 +194,9 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
 }
 
 - (void)uploadData {
-    [self.serviceLocator.setService postSetList:self.sets userId:self.uid completion:^(NSError *error) {
+    [self.serviceLocator.setService postSetList:self.sets completion:^(NSError *error) {
         if (error) {
-            //TODO:SHOW ERROR.
+            
         }
     }];
 }

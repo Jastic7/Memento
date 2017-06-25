@@ -8,9 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
+@class User;
+
+
 @protocol UserDefaultsServiceProtocol <NSObject>
 
 @property (nonatomic, assign) BOOL isAudioEnabled;
-@property (nonatomic, copy, readonly) NSString *userName;
+
+- (NSString *)userName;
+- (NSString *)userId;
+
+- (void)saveUser:(User *)user;
+- (void)removeUser;
 
 @end

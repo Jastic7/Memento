@@ -142,8 +142,8 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
     childViewController.roundSet            = self.organizer.roundSet;
     childViewController.set                 = self.organizer.set;
     
-    childViewController.cancelingBlock           = self.cancelingBlock;
-    childViewController.resetProgressBlock = ^void() {
+    childViewController.cancelingBlock      = self.cancelingBlock;
+    childViewController.resetProgressBlock  = ^void() {
         [self.organizer reset];
     };
     
@@ -181,10 +181,6 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
             childViewController.view.alpha = 1.0;
         }];
     }
-}
-
-- (void)dealloc {
-    NSLog(@"LEARN ROUND LEFT");
 }
 
 @end

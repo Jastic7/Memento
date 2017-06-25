@@ -11,11 +11,13 @@
 #import "SetMapper.h"
 #import "Set.h"
 #import "ItemOfSetMapper.h"
+#import "ServiceLocator.h"
 
 @interface SetService ()
 
 @property (nonatomic, copy) NSString *rootPath;
 @property (nonatomic, strong) SetMapper *setMapper;
+@property (nonatomic, weak) ServiceLocator *serviceLocator;
 
 @end
 
@@ -40,6 +42,13 @@
     return _setMapper;
 }
 
+- (ServiceLocator *)serviceLocator {
+    if (!_serviceLocator) {
+        _serviceLocator = [ServiceLocator shared];
+    }
+    
+    return _serviceLocator;
+}
 
 #pragma mark - Path Helpers
 
@@ -73,6 +82,11 @@
      ];
 }
 
+- (void)obtainSetListWithCompletion:(SetServiceDownloadCompletionBlock)completion {
+    NSString *uid = [self.serviceLocator.userDefaultsService userId];
+    [self obtainSetListForUserId:uid completion:completion];
+}
+
 - (void)postSetList:(NSArray<Set *> *)setList
              userId:(NSString *)uid
          completion:(SetServiceUploadCompletionBlock)completion {
@@ -82,11 +96,21 @@
     }
 }
 
+- (void)postSetList:(NSArray<Set *> *)setList completion:(SetServiceUploadCompletionBlock)completion {
+    NSString *uid = [self.serviceLocator.userDefaultsService userId];
+    [self postSetList:setList userId:uid completion:completion];
+}
+
 - (void)postSet:(Set *)set userId:(NSString *)uid completion:(SetServiceUploadCompletionBlock)completion {
     NSDictionary *jsonData = [self.setMapper jsonFromModel:set];
     NSString *setPath = [self setPathWithUserId:uid setId:set.identifier];
     
     [self.transort postData:jsonData databasePath:setPath completion:completion];
+}
+
+-(void)postSet:(Set *)set completion:(SetServiceUploadCompletionBlock)completion {
+    NSString *uid = [self.serviceLocator.userDefaultsService userId];
+    [self postSet:set userId:uid completion:completion];
 }
 
 - (NSString *)configureUnuiqueId {

@@ -110,6 +110,7 @@ static NSString * const kLearnSettingsSegue = @"learnSettingsSegue";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self uploadRoundResults];
     [self registerNibs];
     [self configureCountLabels];
 }
@@ -222,10 +223,6 @@ static NSString * const kLearnSettingsSegue = @"learnSettingsSegue";
     self.unknownCountLabel.text  = [NSString stringWithFormat:@"%lu", (unsigned long)unknownCount];
 }
 
-- (void)registerNibs {
-    [self.tableView registerNib:[LearnRoundInfoHeader nib] forHeaderFooterViewReuseIdentifier:kLearnRoundInfoHeaderID];
-    [self.tableView registerNib:[ItemOfSetTableViewCell nib] forCellReuseIdentifier:kItemOfSetTableViewCellID];
-}
 
 #pragma mark - Helpers
 
@@ -239,8 +236,17 @@ static NSString * const kLearnSettingsSegue = @"learnSettingsSegue";
     [self.tableView reloadData];
 }
 
-- (void)dealloc {
-    NSLog(@"Learn round info left");
+- (void)registerNibs {
+    [self.tableView registerNib:[LearnRoundInfoHeader nib] forHeaderFooterViewReuseIdentifier:kLearnRoundInfoHeaderID];
+    [self.tableView registerNib:[ItemOfSetTableViewCell nib] forCellReuseIdentifier:kItemOfSetTableViewCellID];
+}
+
+- (void)uploadRoundResults {
+    [self.serviceLocator.setService postSet:self.set completion:^(NSError *error) {
+        if (error) {
+            
+        }
+    }];
 }
 
 @end

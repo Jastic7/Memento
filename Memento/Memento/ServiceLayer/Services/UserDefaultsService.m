@@ -7,9 +7,14 @@
 //
 
 #import "UserDefaultsService.h"
+#import "User.h"
 
 static NSString * const kAudioEnabledKey = @"isAudioEnabled";
+
+static NSString * const kUserId = @"userId";
 static NSString * const kUserName = @"userName";
+static NSString * const kUserEmail = @"userEmail";
+static NSString * const kUserPhotoUrl = @"userPhotoUrl";
 
 @interface UserDefaultsService ()
 
@@ -52,8 +57,25 @@ static NSString * const kUserName = @"userName";
     return [self.userDefaults objectForKey:kUserName];
 }
 
+- (NSString *)userId {
+    return [self.userDefaults objectForKey:kUserId];
+}
 
 
+- (void)saveUser:(User *)user {
+    [self.userDefaults setObject:user.uid                forKey:kUserId];
+    [self.userDefaults setObject:user.username           forKey:kUserName];
+    [self.userDefaults setObject:user.email              forKey:kUserEmail];
+    [self.userDefaults setObject:user.profilePhotoUrl    forKey:kUserPhotoUrl];
+    
+}
+
+-(void)removeUser {
+    [self.userDefaults removeObjectForKey:kUserName];
+    [self.userDefaults removeObjectForKey:kUserPhotoUrl];
+    [self.userDefaults removeObjectForKey:kUserPhotoUrl];
+    [self.userDefaults removeObjectForKey:@"userId"];
+}
 
 
 

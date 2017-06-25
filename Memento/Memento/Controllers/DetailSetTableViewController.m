@@ -49,23 +49,11 @@ static NSString * const kEditSetSegue           = @"editSetSegue";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tableView.dataSource = self;
-    self.tableView.estimatedRowHeight = 100;
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    [self.tableView registerNib:[ItemOfSetTableViewCell nib] forCellReuseIdentifier:kItemOfSetCellID];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self uploadSet];
+    [self configureTableView];
 }
 
 
 #pragma mark - UITableViewDataSource
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.set.count;
@@ -78,18 +66,19 @@ static NSString * const kEditSetSegue           = @"editSetSegue";
     ItemOfSet *item = self.set[indexPath.row];
     
     __weak typeof(self) weakSelf = self;
-    [cell configureWithTerm:item.term definition:item.definition speakerHandler:^(NSString *term, NSString *definition, ItemOfSetTableViewCell *cell) {
-        __strong typeof(self)strongWeakSelf = weakSelf;
+    [cell configureWithTerm:item.term
+                 definition:item.definition
+             speakerHandler:^(NSString *term, NSString *definition, ItemOfSetTableViewCell *cell) {
+                 
+                 __strong typeof(self)strongWeakSelf = weakSelf;
+                 NSArray <NSString *> *words = @[term, definition];
+                 NSArray <NSString *> *langs = @[strongWeakSelf.set.termLang, strongWeakSelf.set.definitionLang];
         
-        NSArray <NSString *> *words = @[term, definition];
-        NSArray <NSString *> *langs = @[strongWeakSelf.set.termLang, strongWeakSelf.set.definitionLang];
-        
-        [strongWeakSelf.serviceLocator.speechService speakWords:words
-                                    withLanguageCodes:langs
-                                     speechStartBlock:^{ [cell activateSpeaker]; }
-                                       speechEndBlock:^{ [cell inactivateSpeaker]; }
-         ];
-    }];
+                 [strongWeakSelf.serviceLocator.speechService speakWords:words
+                                                       withLanguageCodes:langs
+                                                        speechStartBlock:^{ [cell activateSpeaker]; }
+                                                          speechEndBlock:^{ [cell inactivateSpeaker]; }];
+             }];
     
     return cell;
 }
@@ -142,12 +131,18 @@ static NSString * const kEditSetSegue           = @"editSetSegue";
 #pragma mark - Private
 
 - (void)uploadSet {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *uid = [userDefaults objectForKey:@"userId"];
-    
-    [self.serviceLocator.setService postSet:self.set userId:uid completion:^(NSError *error) {
+    [self.serviceLocator.setService postSet:self.set completion:^(NSError *error) {
         
     }];
+}
+
+
+#pragma mark - Configuration
+
+- (void)configureTableView {
+    self.tableView.estimatedRowHeight = 100;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    [self.tableView registerNib:[ItemOfSetTableViewCell nib] forCellReuseIdentifier:kItemOfSetCellID];
 }
 
 @end

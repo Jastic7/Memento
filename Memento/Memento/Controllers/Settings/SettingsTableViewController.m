@@ -74,6 +74,7 @@ static NSString * const kShowPasswordSettingSegue   = @"showPasswordSettingSegue
     [super viewDidLoad];
     
     [self configureProfileImageView];
+    [self registerAuthNotification];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -179,6 +180,15 @@ static NSString * const kShowPasswordSettingSegue   = @"showPasswordSettingSegue
     }];
 }
 
+#pragma mark - Register Notification
+
+- (void)registerAuthNotification {
+    [self.serviceLocator.authService addAuthStateChangeListener:^(NSString *uid) {
+        if (!uid) {
+            self.tabBarController.selectedIndex = 0;
+        }
+    }];
+}
 
 #pragma mark - Configuration
 
