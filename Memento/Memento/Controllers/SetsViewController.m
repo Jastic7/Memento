@@ -113,8 +113,10 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
 }
 
 - (void)editSetTableViewControllerDidEditSet:(Set *)set {
+    NSIndexPath *lastRow = [NSIndexPath indexPathForRow:self.sets.count inSection:0];
+    
     [self.sets addObject:set];
-    [self.tableView reloadRowsAtIndexPaths:@[self.indexPathOfSelectedSet] withRowAnimation:NO];
+    [self.tableView insertRowsAtIndexPaths:@[lastRow] withRowAnimation:UITableViewRowAnimationNone];
     
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     [self uploadData];

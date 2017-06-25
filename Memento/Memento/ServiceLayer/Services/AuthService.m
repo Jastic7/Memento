@@ -7,9 +7,26 @@
 //
 #import "AuthService.h"
 #import "TransportLayer.h"
+#import "ServiceLocator.h"
 
+@interface AuthService ()
+
+@property (nonatomic, weak) ServiceLocator *serviceLocator;
+
+@end
 
 @implementation AuthService
+
+#pragma mark - Getters
+
+- (ServiceLocator *)serviceLocator {
+    if (!_serviceLocator) {
+        _serviceLocator = [ServiceLocator shared];
+    }
+    
+    return _serviceLocator;
+}
+
 
 #pragma mark - AuthServiceProtocol Implementation
 
@@ -36,7 +53,7 @@
 }
 
 - (void)logOut {
-    [self removeUserFromUserDefaults];
+    [self.serviceLocator.userDefaultsService removeUser];
     [self.transort logOut];
 }
 
@@ -44,16 +61,5 @@
     [self.transort addListenerForAuthStateChange:listener];
 }
 
-
-#pragma mark - Private 
-
-- (void)removeUserFromUserDefaults {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    
-    [userDefaults removeObjectForKey:@"userName"];
-    [userDefaults removeObjectForKey:@"userEmail"];
-    [userDefaults removeObjectForKey:@"userPhotoUrl"];
-    [userDefaults removeObjectForKey:@"userId"];
-}
 
 @end

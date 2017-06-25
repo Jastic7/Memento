@@ -25,6 +25,11 @@ typedef void (^SetServiceUploadCompletionBlock)(NSError *error);
 - (void)obtainSetListForUserId:(NSString *)uid
                     completion:(SetServiceDownloadCompletionBlock)completion;
 
+/*!
+ * @brief Get list of set for a current loggined user from database.
+ * @param completion Callback which is beeing called, when sets are successfully obtained
+ * or error occured.
+ */
 - (void)obtainSetListWithCompletion:(SetServiceDownloadCompletionBlock)completion;
 
 /*!
@@ -37,6 +42,11 @@ typedef void (^SetServiceUploadCompletionBlock)(NSError *error);
              userId:(NSString *)uid
          completion:(SetServiceUploadCompletionBlock)completion;
 
+/*!
+ * @brief Post list of set for the current loggined user to database.
+ * @param completion Callback which is beeing called, when sets are successfully posted
+ * or error occured.
+ */
 - (void)postSetList:(NSArray <Set *> *)setList
          completion:(SetServiceUploadCompletionBlock)completion;
 
@@ -50,6 +60,11 @@ typedef void (^SetServiceUploadCompletionBlock)(NSError *error);
          userId:(NSString *)uid
      completion:(SetServiceUploadCompletionBlock)completion;
 
+/*!
+ * @brief Post set for the current loggined user to database.
+ * @param completion Callback which is beeing called, when set is successfully posted
+ * or error occured.
+ */
 - (void)postSet:(Set *)set
      completion:(SetServiceUploadCompletionBlock)completion;
 

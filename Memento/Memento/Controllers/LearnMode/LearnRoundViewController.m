@@ -135,19 +135,19 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
 - (void)configureRoundInfoViewController {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
-    UINavigationController *navigationController = [storyboard instantiateViewControllerWithIdentifier:kLearnRoundInfoNavigationControllerID];
-    LearnRoundInfoTableViewController *childViewController = (LearnRoundInfoTableViewController *)navigationController.topViewController;
+    UINavigationController *childNavigationController = [storyboard instantiateViewControllerWithIdentifier:kLearnRoundInfoNavigationControllerID];
+    LearnRoundInfoTableViewController *roundInfoViewController = (LearnRoundInfoTableViewController *)childNavigationController.topViewController;
     
-    childViewController.isLearningFinished  = self.organizer.isFinished;
-    childViewController.roundSet            = self.organizer.roundSet;
-    childViewController.set                 = self.organizer.set;
+    roundInfoViewController.isLearningFinished  = self.organizer.isFinished;
+    roundInfoViewController.roundSet            = self.organizer.roundSet;
+    roundInfoViewController.set                 = self.organizer.set;
     
-    childViewController.cancelingBlock      = self.cancelingBlock;
-    childViewController.resetProgressBlock  = ^void() {
+    roundInfoViewController.cancelingBlock      = self.cancelingBlock;
+    roundInfoViewController.resetProgressBlock  = ^void() {
         [self.organizer reset];
     };
     
-    childViewController.prepareForNextRoundBlock = ^void() {
+    roundInfoViewController.prepareForNextRoundBlock = ^void() {
         if (self.organizer.isFinished) {
             [self.organizer reset];
         }
@@ -156,15 +156,15 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
         [self.textField becomeFirstResponder];
     };
     
-    [self configureNavigationController:navigationController];
+    [self configureNavigationController:childNavigationController];
 }
 
-- (void)configureNavigationController:(UINavigationController *)navigationController {
-    [self addChildViewController:navigationController];
-    [self.view addSubview:navigationController.view];
-    [navigationController didMoveToParentViewController:self];
+- (void)configureNavigationController:(UINavigationController *)childNavigationController {
+    [self addChildViewController:childNavigationController];
+    [self.view addSubview:childNavigationController.view];
+    [childNavigationController didMoveToParentViewController:self];
     
-    navigationController.view.alpha = 0;
+    childNavigationController.view.alpha = 0;
 }
 
 

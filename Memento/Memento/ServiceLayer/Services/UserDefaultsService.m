@@ -72,9 +72,9 @@ static NSString * const kUserPhotoUrl = @"userPhotoUrl";
 
 -(void)removeUser {
     [self.userDefaults removeObjectForKey:kUserName];
+    [self.userDefaults removeObjectForKey:kUserEmail];
     [self.userDefaults removeObjectForKey:kUserPhotoUrl];
-    [self.userDefaults removeObjectForKey:kUserPhotoUrl];
-    [self.userDefaults removeObjectForKey:@"userId"];
+    [self.userDefaults removeObjectForKey:kUserId];
 }
 
 

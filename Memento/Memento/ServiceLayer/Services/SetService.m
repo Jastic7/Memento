@@ -87,6 +87,7 @@
     [self obtainSetListForUserId:uid completion:completion];
 }
 
+
 - (void)postSetList:(NSArray<Set *> *)setList
              userId:(NSString *)uid
          completion:(SetServiceUploadCompletionBlock)completion {
@@ -100,6 +101,7 @@
     NSString *uid = [self.serviceLocator.userDefaultsService userId];
     [self postSetList:setList userId:uid completion:completion];
 }
+
 
 - (void)postSet:(Set *)set userId:(NSString *)uid completion:(SetServiceUploadCompletionBlock)completion {
     NSDictionary *jsonData = [self.setMapper jsonFromModel:set];
