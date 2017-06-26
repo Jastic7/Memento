@@ -19,6 +19,6 @@
  * @brief Completion block with edited email. 
  * It is beeing called, when email is updated.
  */
-@property (nonatomic, copy) void (^editCompletion)(NSString *editedEmail);
+@property (nonatomic, copy) void (^editCompletion)();
 
 @end

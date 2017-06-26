@@ -18,13 +18,13 @@
 
 @implementation ItemOfMatchCollectionViewCell
 
--(void)setSelected:(BOOL)selected {
+- (void)setSelected:(BOOL)selected {
     [super setSelected:selected];
     
     self.backgroundColor = selected ? [UIColor yellowColor] : [UIColor lightGrayColor];
 }
 
--(void)configureWithText:(NSString *)text {
+- (void)configureWithText:(NSString *)text {
     self.textLabel.text = text;
 }
 

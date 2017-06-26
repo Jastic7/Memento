@@ -79,7 +79,7 @@ static NSString * const kShowPasswordSettingSegue   = @"showPasswordSettingSegue
 
 - (void)viewWillAppear:(BOOL)animated {
     if (!self.user) {
-        self.user = [User userFromUserDefaults];
+        self.user = [self.serviceLocator.userDefaultsService user];
         
         self.emailLabel.text = self.user.email;
         [self downloadUserProfilePhoto];
@@ -112,7 +112,6 @@ static NSString * const kShowPasswordSettingSegue   = @"showPasswordSettingSegue
 
 - (IBAction)logoutButtonTapped:(id)sender {
     self.user = nil;
-    
     [self.serviceLocator.authService logOut];
 }
 
@@ -132,7 +131,7 @@ static NSString * const kShowPasswordSettingSegue   = @"showPasswordSettingSegue
     if ([identifier isEqualToString:kShowEditEmailSegue]) {
         EmailSettingTableViewController *dvc = segue.destinationViewController;
         dvc.editableEmail = self.user.email;
-        dvc.editCompletion = ^void(NSString *editedEmail) {
+        dvc.editCompletion = ^void() {
             self.user = nil;
             [self.navigationController popViewControllerAnimated:YES];
         };
@@ -173,7 +172,7 @@ static NSString * const kShowPasswordSettingSegue   = @"showPasswordSettingSegue
     UIImage *profilePhoto       = self.profilePhotoImageView.image;
     NSData  *profilePhotoData   = UIImageJPEGRepresentation(profilePhoto, 0.9);
     
-    [self.serviceLocator.userService postProfilePhotoWithData:profilePhotoData uid:self.user.uid completion:^(NSString *url, NSError *error) {
+    [self.serviceLocator.userService postProfilePhotoWithData:profilePhotoData completion:^(NSString *url, NSError *error) {
         if (error) {
             [self showError:error];
         }

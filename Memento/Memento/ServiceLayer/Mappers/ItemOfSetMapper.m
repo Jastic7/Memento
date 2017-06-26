@@ -26,7 +26,7 @@
     }
 }
 
-- (NSString *)codeLearnProgressByState:(LearnState)state {
+- (NSString *)encodeLearnProgressByState:(LearnState)state {
     switch (state) {
         case Mistake:
             return @"failed";
@@ -46,14 +46,12 @@
     
     LearnState learnProgress = [self parseLearnProgressFromString:json[@"learnProgress"]];
     
-    ItemOfSet *item = [ItemOfSet itemOfSetWithTerm:term definition:definition learnProgress:learnProgress identifier:identifier];
-    
-    return item;
+    return [ItemOfSet itemOfSetWithTerm:term definition:definition learnProgress:learnProgress identifier:identifier];
 }
 
 - (NSDictionary *)jsonFromModel:(id)model {
     ItemOfSet *item = model;
-    NSString *learnProgress = [self codeLearnProgressByState:item.learnProgress];
+    NSString *learnProgress = [self encodeLearnProgressByState:item.learnProgress];
     
     NSDictionary <NSString *, id> *jsonModel = @{ @"term"           : item.term,
                                                   @"definition"     : item.definition,

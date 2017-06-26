@@ -12,6 +12,7 @@
 #import "WelcomeViewController.h"
 
 #import "SetTableViewCell.h"
+#import "PreloaderView.h"
 
 #import "Set.h"
 #import "ItemOfSet.h"
@@ -35,6 +36,8 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
 
 @property (nonatomic, strong) NSMutableArray <Set *> *sets;
 @property (nonatomic, strong) NSIndexPath *indexPathOfSelectedSet;
+@property (nonatomic, strong) UILabel *emptyStateLabel;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 @end
 
@@ -59,6 +62,22 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
     return _serviceLocator;
 }
 
+- (UILabel *)emptyStateLabel {
+    if (!_emptyStateLabel) {
+        _emptyStateLabel = [self configureEmptyStateLabel];
+    }
+    
+    return _emptyStateLabel;
+}
+
+-(UIRefreshControl *)refreshControl {
+    if (!_refreshControl) {
+        _refreshControl = [self configureRefreshControl];
+    }
+    
+    return _refreshControl;
+}
+
 
 #pragma mark - LifeCycle
 
@@ -69,9 +88,10 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
     
     [self configureTableView];
     [self registerAuthStateNotification];
-//    [self configureRefreshControl];
+    [self configureRefreshControl];
     
-    [self downloadData:nil];
+    [self.refreshControl beginRefreshing];
+    [self downloadSets:self.refreshControl];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -86,6 +106,10 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (self.sets.count > 0) {
+        [self.emptyStateLabel removeFromSuperview];
+    }
+    
     return self.sets.count;
 }
 
@@ -119,7 +143,7 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
     [self.tableView insertRowsAtIndexPaths:@[lastRow] withRowAnimation:UITableViewRowAnimationNone];
     
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-    [self uploadData];
+    [self uploadSets];
 }
 
 
@@ -142,7 +166,7 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
         WelcomeViewController *vc = segue.destinationViewController;
         vc.authenticationCompletion = ^() {
             [self dismissViewControllerAnimated:YES completion:^{
-                [self downloadData:nil];
+                [self downloadSets:self.refreshControl];
             }];
         };
     }
@@ -164,6 +188,7 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
     }];
 }
 
+
 #pragma mark - Configuration 
 
 - (void)configureTableView {
@@ -171,36 +196,87 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
     self.tableView.delegate = self;
     self.tableView.estimatedRowHeight = 150;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
+    
+    if ([[NSProcessInfo processInfo] isOperatingSystemAtLeastVersion:(NSOperatingSystemVersion){10, 0, 0}]) {
+        self.tableView.refreshControl = self.refreshControl;
+    } else {
+        self.tableView.backgroundView = self.refreshControl;
+    }
 }
 
-- (void)configureRefreshControl {
+- (UILabel *)configureEmptyStateLabel {
+    UIFont *font = [UIFont systemFontOfSize:17 weight:UIFontWeightBold];
+    NSString *emptyStateText = @"Just tap plus button to add first set!";
+    
+    NSDictionary *attributes = @{NSFontAttributeName: font};
+    CGSize labelSize = [emptyStateText sizeWithAttributes:attributes];
+    CGFloat xPos = 0;
+    CGFloat yPos = 0;
+    CGRect labelRect = CGRectMake(xPos, yPos, labelSize.width, labelSize.height);
+    
+    UILabel *emptyStateLabel = [[UILabel alloc] initWithFrame:labelRect];
+    emptyStateLabel.font = font;
+    emptyStateLabel.text = emptyStateText;
+    emptyStateLabel.textAlignment = NSTextAlignmentCenter;
+    emptyStateLabel.textColor = [UIColor grayColor];
+    
+    return emptyStateLabel;
+}
+
+- (UIRefreshControl *)configureRefreshControl {
     UIRefreshControl *refreshControl = [UIRefreshControl new];
-    NSString *title = @"Pull to request";
+    NSString *title = @"Pull to download new sets";
     
     refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:title];
-    [refreshControl addTarget:self action:@selector(downloadData:) forControlEvents:UIControlEventAllEvents];
+    [refreshControl addTarget:self action:@selector(downloadSets:) forControlEvents:UIControlEventValueChanged];
     
-    self.tableView.refreshControl = refreshControl;
+    return refreshControl;
 }
 
 
 #pragma mark - Private
 
-- (void)downloadData:(UIRefreshControl *)refreshControll {
+- (void)downloadSets:(UIRefreshControl *)refreshControl {
+    [self.emptyStateLabel removeFromSuperview];
+    
     [self.serviceLocator.setService obtainSetListWithCompletion:^(NSMutableArray<Set *> *setList, NSError *error) {
-//        [refreshControll endRefreshing];
+        [self.tableView beginUpdates];
+            [refreshControl endRefreshing];
+        [self.tableView endUpdates];
+        
+        if (setList.count == 0) {
+            [self showEmptyStateLabel];
+        }
         
         self.sets = setList;
         [self.tableView reloadData];
     }];
 }
 
-- (void)uploadData {
+- (void)uploadSets {
     [self.serviceLocator.setService postSetList:self.sets completion:^(NSError *error) {
         if (error) {
             
         }
     }];
+}
+
+- (void)showEmptyStateLabel {
+    [self updateEmptyStateLabelLayout];
+    [self.tableView addSubview:self.emptyStateLabel];
+    [self.emptyStateLabel bringSubviewToFront:self.tableView];
+    
+}
+
+- (void)viewWillLayoutSubviews {
+    [self updateEmptyStateLabelLayout];
+}
+
+- (void)updateEmptyStateLabelLayout {
+    CGRect rect = self.emptyStateLabel.frame;
+    rect.origin.x = (self.tableView.bounds.size.width - self.emptyStateLabel.frame.size.width ) / 2;
+    rect.origin.y = (self.tableView.bounds.size.height - self.emptyStateLabel.frame.size.height) / 2;
+    self.emptyStateLabel.frame = rect;
 }
 
 @end

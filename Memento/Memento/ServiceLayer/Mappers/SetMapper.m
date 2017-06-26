@@ -24,9 +24,7 @@
     
     NSMutableArray <ItemOfSet *> *items = (NSMutableArray <ItemOfSet *> *)[itemMapper modelsFromJsonOfListObject:json[@"items"]];
     
-    Set *set = [Set setWithTitle:title author:author definitionLang:definitionLang termLang:termLang identifier:identifier items:items];
-    
-    return set;
+    return [Set setWithTitle:title author:author definitionLang:definitionLang termLang:termLang identifier:identifier items:items];
 }
 
 - (NSDictionary *)jsonFromModel:(id)model {

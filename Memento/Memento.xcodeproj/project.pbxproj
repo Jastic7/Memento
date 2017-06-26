@@ -33,7 +33,6 @@
 		551E912E1EF5E1B10091DB14 /* EditingItemOfSetTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 551E912C1EF5E1B10091DB14 /* EditingItemOfSetTableViewCell.m */; };
 		551E912F1EF5E1B10091DB14 /* EditingItemOfSetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 551E912D1EF5E1B10091DB14 /* EditingItemOfSetTableViewCell.xib */; };
 		551E91321EF5E8120091DB14 /* EditingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 551E91311EF5E8120091DB14 /* EditingTextView.m */; };
-		551E91351EF5F8DD0091DB14 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 551E91341EF5F8DD0091DB14 /* TestViewController.m */; };
 		551E913A1EF707720091DB14 /* AddItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 551E91381EF707720091DB14 /* AddItemTableViewCell.m */; };
 		551E913B1EF707720091DB14 /* AddItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 551E91391EF707720091DB14 /* AddItemTableViewCell.xib */; };
 		552102771EF752FE00B8FF3A /* SelectedLanguagesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 552102761EF752FE00B8FF3A /* SelectedLanguagesTableViewController.m */; };
@@ -132,8 +131,6 @@
 		551E912D1EF5E1B10091DB14 /* EditingItemOfSetTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EditingItemOfSetTableViewCell.xib; path = EditSet/EditingItemOfSetTableViewCell.xib; sourceTree = "<group>"; };
 		551E91301EF5E8120091DB14 /* EditingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditingTextView.h; path = EditSet/EditingTextView.h; sourceTree = "<group>"; };
 		551E91311EF5E8120091DB14 /* EditingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditingTextView.m; path = EditSet/EditingTextView.m; sourceTree = "<group>"; };
-		551E91331EF5F8DD0091DB14 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
-		551E91341EF5F8DD0091DB14 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		551E91371EF707720091DB14 /* AddItemTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddItemTableViewCell.h; path = EditSet/AddItemTableViewCell.h; sourceTree = "<group>"; };
 		551E91381EF707720091DB14 /* AddItemTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddItemTableViewCell.m; path = EditSet/AddItemTableViewCell.m; sourceTree = "<group>"; };
 		551E91391EF707720091DB14 /* AddItemTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AddItemTableViewCell.xib; path = EditSet/AddItemTableViewCell.xib; sourceTree = "<group>"; };
@@ -538,8 +535,6 @@
 				55DD03431ED919FA00BDA097 /* Categories */,
 				55BAE13B1EE09C7000F1CBEE /* Assembly.h */,
 				55BAE13C1EE09C7000F1CBEE /* Assembly.m */,
-				551E91331EF5F8DD0091DB14 /* TestViewController.h */,
-				551E91341EF5F8DD0091DB14 /* TestViewController.m */,
 			);
 			path = Memento;
 			sourceTree = "<group>";
@@ -731,7 +726,6 @@
 				5525EE871EE3725100206898 /* SetService.m in Sources */,
 				558C07F61EEC99610065D7D5 /* WaitingAlertViewController.m in Sources */,
 				5508B9621ED9184B00526200 /* ItemLabel.m in Sources */,
-				551E91351EF5F8DD0091DB14 /* TestViewController.m in Sources */,
 				55DD034C1ED91A3200BDA097 /* NSMutableArray+Shuffle.m in Sources */,
 				5525EE8A1EE376AB00206898 /* BaseService.m in Sources */,
 				5508B9331ED916A600526200 /* LearnOrganizer.m in Sources */,

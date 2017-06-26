@@ -10,13 +10,14 @@
 #import "User.h"
 #import "UserMapper.h"
 #import "TransportLayer.h"
+#import "ServiceLocator.h"
 
 
 @interface UserService ()
 
 @property (nonatomic, strong) UserMapper *userMapper;
 @property (nonatomic, copy) NSString *rootPath;
-@property (nonatomic, strong) NSUserDefaults *userDefaults;
+@property (nonatomic, weak) ServiceLocator *serviceLocator;
 
 @end
 
@@ -42,12 +43,12 @@
     return _rootPath;
 }
 
-- (NSUserDefaults *)userDefaults {
-    if (!_userDefaults) {
-        _userDefaults = [NSUserDefaults standardUserDefaults];
+- (ServiceLocator *)serviceLocator {
+    if (!_serviceLocator) {
+        _serviceLocator = [ServiceLocator shared];
     }
     
-    return _userDefaults;
+    return _serviceLocator;
 }
 
 #pragma mark - Paths
@@ -117,7 +118,7 @@
         [self.transort obtainDataWithPath:userPath
                                   success:^(id response) {
                                       User *user = [self.userMapper modelFromJsonOfObject:response];
-                                      [self saveUserIntoUserDefaults:user];
+                                      [self.serviceLocator.userDefaultsService saveUser:user];
                 
                                       completion(nil);
                                   }
@@ -143,12 +144,11 @@
 
 - (void)postUser:(User *)user completion:(UserServiceCompletionBlock)completion {
     NSDictionary *jsonModel = [self.userMapper jsonFromModel:user];
-    
     NSString *userPath = [self userPathWithUserId:user.uid];
     
     [self.transort postData:jsonModel databasePath:userPath completion:^(NSError *error) {
         if (!error) {
-            [self saveUserIntoUserDefaults:user];
+            [self.serviceLocator.userDefaultsService saveUser:user];
         }
         
         completion(error);
@@ -167,20 +167,18 @@
      ];
 }
 
+- (void)postProfilePhotoWithData:(NSData *)photoData completion:(UserServiceUploadCompletionBlock)completion {
+    NSString *uid = [self.serviceLocator.userDefaultsService userId];
+    [self postProfilePhotoWithData:photoData uid:uid completion:completion];
+}
+
 
 #pragma mark - private
-
-- (void)saveUserIntoUserDefaults:(User *)user {
-    [self.userDefaults setObject:user.username           forKey:@"userName"];
-    [self.userDefaults setObject:user.email              forKey:@"userEmail"];
-    [self.userDefaults setObject:user.profilePhotoUrl    forKey:@"userPhotoUrl"];
-    [self.userDefaults setObject:user.uid                forKey:@"userId"];
-}
 
 - (void)updateProfilePhotoUrl:(NSString *)url
                           uid:(NSString *)uid
                    completion:(UserServiceUploadCompletionBlock)completion {
-    [self.userDefaults setObject:url forKey:@"userPhotoUrl"];
+    [self.serviceLocator.userDefaultsService updateUserPhotoUrl:url];
     
     NSString *profilePhotoUrlPath = [self profilePhotoUrlPathWithUserId:uid];
     
@@ -196,10 +194,9 @@
 - (void)updateEmail:(NSString *)editedEmail
                 uid:(NSString *)uid
          completion:(UserServiceCompletionBlock)completion {
-    [self.userDefaults setObject:editedEmail forKey:@"userEmail"];
+    [self.serviceLocator.userDefaultsService updateUserEmail:editedEmail];
     
     NSString *emailPath = [self emailPathWithUserId:uid];
-    
     [self.transort postData:editedEmail databasePath:emailPath completion:completion];
 }
 

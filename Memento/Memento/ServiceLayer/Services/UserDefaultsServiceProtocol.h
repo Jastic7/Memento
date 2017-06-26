@@ -18,6 +18,10 @@
 - (NSString *)userName;
 - (NSString *)userId;
 
+- (void)updateUserPhotoUrl:(NSString *)photoUrl;
+- (void)updateUserEmail:(NSString *)email;
+
+- (User *)user;
 - (void)saveUser:(User *)user;
 - (void)removeUser;
 

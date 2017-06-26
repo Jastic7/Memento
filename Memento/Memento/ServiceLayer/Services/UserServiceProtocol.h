@@ -84,4 +84,14 @@ typedef void (^UserServiceUploadCompletionBlock)(NSString *url, NSError *error);
                              uid:(NSString *)uid
                       completion:(UserServiceUploadCompletionBlock)completion;
 
+/*!
+ @brief Upload photo data of the current loggined user to the database. And reload url of profile photo
+ * in NSUserDefaults.
+ @param photoData Profile photo of user.
+ @param completion Completion block which is being called, when photo is uploaded to the database
+ * or error is occured. It contains url of the uploaded photo, if there is no error.
+ */
+- (void)postProfilePhotoWithData:(NSData *)photoData
+                      completion:(UserServiceUploadCompletionBlock)completion;
+
 @end

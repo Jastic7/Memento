@@ -12,7 +12,7 @@
 
 @implementation LearnProgressStackView
 
--(void)setLearnState:(LearnState)learnState {
+- (void)setLearnState:(LearnState)learnState {
 
     switch (learnState) {
         case Unknown:

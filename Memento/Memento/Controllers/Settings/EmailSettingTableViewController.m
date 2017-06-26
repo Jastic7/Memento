@@ -59,7 +59,7 @@
 
 #pragma mark - ConfirmAlerViewControllerDelegate
 
--(void)confirmAlertDidConfirmedWithText:(NSString *)confirmedText {
+- (void)confirmAlertDidConfirmedWithText:(NSString *)confirmedText {
     [self updateEmail:self.textField.text withPassword:confirmedText];
 }
 
@@ -82,7 +82,7 @@
         if (error) {
             [self showError:error];
         } else {
-            self.editCompletion(editedEmail);
+            self.editCompletion();
         }
     }];
 }

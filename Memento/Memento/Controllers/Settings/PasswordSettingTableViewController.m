@@ -36,13 +36,16 @@
     NSString *currentPassword    = self.currentPasswordTextField.text;
     
     ServiceLocator *serviceLocator = [ServiceLocator shared];
-    [serviceLocator.userService establishEditedPassword:editedPassword currentPassword:currentPassword confirmPassword:confirmPassword completion:^(NSError *error) {
-        if (error) {
-            [self showError:error];
-        } else {
-            self.editCompletion();
-        }
-    }];
+    [serviceLocator.userService establishEditedPassword:editedPassword
+                                        currentPassword:currentPassword
+                                        confirmPassword:confirmPassword
+                                             completion:^(NSError *error) {
+                                                 if (error) {
+                                                     [self showError:error];
+                                                 } else {
+                                                     self.editCompletion();
+                                                 }
+                                             }];
 }
 
 

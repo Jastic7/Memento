@@ -18,9 +18,7 @@
     NSString *email             = json[@"email"];
     NSString *profilePhotoUrl   = json[@"profilePhotoUrl"];
     
-    User *user = [User userWithId:uid name:username email:email profilePhotoUrl:profilePhotoUrl];
-    
-    return user;
+    return [User userWithId:uid name:username email:email profilePhotoUrl:profilePhotoUrl];
 }
 
 - (NSMutableArray<id> *)modelsFromJsonOfListObject:(NSDictionary *)json {

@@ -62,6 +62,24 @@ static NSString * const kUserPhotoUrl = @"userPhotoUrl";
 }
 
 
+- (void)updateUserPhotoUrl:(NSString *)photoUrl {
+    [self.userDefaults setObject:photoUrl forKey:kUserPhotoUrl];
+}
+
+- (void)updateUserEmail:(NSString *)email {
+    [self.userDefaults setObject:email forKey:kUserEmail];
+}
+
+- (User *)user {
+    NSString *uid       = [self userId];
+    NSString *name      = [self userName];
+    NSString *email     = [self.userDefaults objectForKey:kUserEmail];
+    NSString *photoUrl  = [self.userDefaults objectForKey:kUserPhotoUrl];
+    
+    return [User userWithId:uid name:name email:email profilePhotoUrl:photoUrl];
+    
+}
+
 - (void)saveUser:(User *)user {
     [self.userDefaults setObject:user.uid                forKey:kUserId];
     [self.userDefaults setObject:user.username           forKey:kUserName];
