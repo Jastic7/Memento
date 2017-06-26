@@ -8,8 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol AlertPresenterProtocol;
+
+
 @interface Assembly : NSObject
 
 + (void)assemblyServiceLayer;
++ (id <AlertPresenterProtocol>)assembledAlertPresenter;
 
 @end

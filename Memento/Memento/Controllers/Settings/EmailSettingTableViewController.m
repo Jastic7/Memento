@@ -7,14 +7,14 @@
 //
 
 #import "EmailSettingTableViewController.h"
-#import "ConfirmAlertViewController.h"
-#import "InfoAlertViewController.h"
+#import "AlertPresenterProtocol.h"
 #import "ServiceLocator.h"
+#import "Assembly.h"
 
-@interface EmailSettingTableViewController () <ConfirmAlerViewControllerDelegate>
+@interface EmailSettingTableViewController () <ConfirmAlertViewControllerDelegate>
 
 @property (nonatomic, weak) IBOutlet UITextField *textField;
-@property (nonatomic, strong) ConfirmAlertViewController *confirmAlert;
+@property (nonatomic, strong) id <AlertPresenterProtocol> alertPresenter;
 
 @end
 
@@ -23,21 +23,12 @@
 
 #pragma mark - Getters
 
-- (ConfirmAlertViewController *)confirmAlert {
-    if (!_confirmAlert) {
-        NSString *title = @"Confirmation";
-        NSString *message = @"You should enter your password to save new email. Otherwise, changes will not be saved.";
-        NSString *placeholder = @"Enter password";
-        NSString *confirm = @"Confirm";
-        
-        _confirmAlert = [ConfirmAlertViewController alertControllerWithTitle:title
-                                                                     message:message
-                                                        textFieldPlaceholder:placeholder
-                                                                confirmTitle:confirm];
-        _confirmAlert.delegate = self;
+- (id <AlertPresenterProtocol>)alertPresenter {
+    if (!_alertPresenter) {
+        _alertPresenter = [Assembly assembledAlertPresenter];
     }
     
-    return _confirmAlert;
+    return _alertPresenter;
 }
 
 
@@ -53,7 +44,9 @@
 #pragma mark - Actions
 
 - (IBAction)saveButtonTapped:(id)sender {
-    [self presentViewController:self.confirmAlert animated:YES completion:nil];
+    NSString *confirmMessage = @"You should enter your password to save new email. Otherwise, changes will not be saved.";
+    NSString *placeholder = @"Enter password";
+    [self.alertPresenter showConfirmationWithMessage:confirmMessage inputPlaceholder:placeholder delegate:self presentingController:self];
 }
 
 
@@ -66,21 +59,13 @@
 
 #pragma mark - Private
 
-- (void)showError:(NSError *)error {
-    NSString *errorDescription = error.localizedDescription;
-    
-    InfoAlertViewController *infoAlert = [InfoAlertViewController alertControllerWithTitle:@"Updating failed." message:errorDescription dismissTitle:@"OK" handler:nil];
-    
-    [self presentViewController:infoAlert animated:YES completion:nil];
-}
-
 - (void)updateEmail:(NSString *)editedEmail withPassword:(NSString *)password {
 
     ServiceLocator *serviceLocator = [ServiceLocator shared];
     [serviceLocator.userService establishEditedEmail:editedEmail currentPassword:password completion:^(NSError *error) {
         
         if (error) {
-            [self showError:error];
+            [self.alertPresenter showError:error title:@"Updating failed" presentingController:self];
         } else {
             self.editCompletion();
         }

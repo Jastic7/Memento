@@ -211,7 +211,7 @@
                                 <color key="barTintColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <items>
                                     <navigationItem id="Vry-tv-uRv">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="uz4-Dh-eFZ">
+                                        <barButtonItem key="leftBarButtonItem" image="cancel" id="uz4-Dh-eFZ">
                                             <connections>
                                                 <action selector="cancelTapped:" destination="jsI-YI-fPY" id="cZu-BW-rNv"/>
                                             </connections>
@@ -460,7 +460,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Round info" id="pKN-yh-02E">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="cLZ-zW-VeA">
+                        <barButtonItem key="leftBarButtonItem" image="cancel" id="cLZ-zW-VeA">
                             <connections>
                                 <action selector="cancelButtonTapped:" destination="Bdc-gY-Z8a" id="gWa-9F-E8I"/>
                             </connections>
@@ -797,6 +797,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="cancel" width="16" height="16"/>
         <image name="configuration" width="32" height="32"/>
         <image name="sets_tabbar" width="32" height="32"/>
     </resources>

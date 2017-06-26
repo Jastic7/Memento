@@ -15,6 +15,8 @@
 #import "Set.h"
 #import "ItemOfSet.h"
 #import "ServiceLocator.h"
+#import "AlertPresenterProtocol.h"
+#import "Assembly.h"
 
 #import "LearnOrganizer.h"
 #import "MatchOrganizer.h"
@@ -28,6 +30,7 @@ static NSString * const kEditSetSegue           = @"editSetSegue";
 @interface DetailSetTableViewController () <EditSetTableViewControllerDelegate>
 
 @property (nonatomic, strong) ServiceLocator *serviceLocator;
+@property (nonatomic, strong) id <AlertPresenterProtocol> alertPresenter;
 
 @end
 
@@ -41,6 +44,14 @@ static NSString * const kEditSetSegue           = @"editSetSegue";
     }
     
     return _serviceLocator;
+}
+
+- (id <AlertPresenterProtocol>)alertPresenter {
+    if (!_alertPresenter) {
+        _alertPresenter = [Assembly assembledAlertPresenter];
+    }
+    
+    return _alertPresenter;
 }
 
 
@@ -132,6 +143,9 @@ static NSString * const kEditSetSegue           = @"editSetSegue";
 
 - (void)uploadSet {
     [self.serviceLocator.setService postSet:self.set completion:^(NSError *error) {
+        if (error) {
+            [self.alertPresenter showError:error title:@"Set doesn't updated" presentingController:self];
+        }
         
     }];
 }

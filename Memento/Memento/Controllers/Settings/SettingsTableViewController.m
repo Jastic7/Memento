@@ -9,11 +9,11 @@
 #import "SettingsTableViewController.h"
 #import "EmailSettingTableViewController.h"
 #import "PasswordSettingTableViewController.h"
-#import "InfoAlertViewController.h"
 
-#import "ImagePickerSourceTypePresenter.h"
+#import "AlertPresenterProtocol.h"
 #import "ServiceLocator.h"
 #import "User.h"
+#import "Assembly.h"
 
 #import <SDWebImage/UIImageView+WebCache.h>
 
@@ -28,7 +28,7 @@ static NSString * const kShowPasswordSettingSegue   = @"showPasswordSettingSegue
 @property (nonatomic, weak) IBOutlet UILabel *emailLabel;
 
 @property (nonatomic, strong) UIImagePickerController *imagePicker;
-@property (nonatomic, strong) id <ImagePickerSourceTypePresenterProtocol> imagePickerSourceTypePresenter;
+@property (nonatomic, strong) id <AlertPresenterProtocol> alertPresenter;
 
 @property (nonatomic, strong) User *user;
 @property (nonatomic, weak) ServiceLocator *serviceLocator;
@@ -59,12 +59,12 @@ static NSString * const kShowPasswordSettingSegue   = @"showPasswordSettingSegue
     return _imagePicker;
 }
 
-- (id <ImagePickerSourceTypePresenterProtocol>)imagePickerSourceTypePresenter {
-    if (!_imagePickerSourceTypePresenter) {
-        _imagePickerSourceTypePresenter = [ImagePickerSourceTypePresenter new];
+- (id <AlertPresenterProtocol>)alertPresenter {
+    if (!_alertPresenter) {
+        _alertPresenter = [Assembly assembledAlertPresenter];
     }
     
-    return _imagePickerSourceTypePresenter;
+    return _alertPresenter;
 }
 
 
@@ -116,10 +116,7 @@ static NSString * const kShowPasswordSettingSegue   = @"showPasswordSettingSegue
 }
 
 - (IBAction)choosePhotoButtonTapped:(id)sender {
-    [self.imagePickerSourceTypePresenter presentSourceTypesForImagePicker:self.imagePicker
-                                                     presentingController:self
-                                                                    title:@"Choose source for your profile image"
-                                                                  message:nil];
+    [self.alertPresenter showSourceTypesForImagePicker:self.imagePicker title:@"Choose source for your profile image" message:@"" presentingController:self];
 }
 
 
@@ -144,16 +141,6 @@ static NSString * const kShowPasswordSettingSegue   = @"showPasswordSettingSegue
 
 }
 
-- (void)showError:(NSError *)error {
-    NSString *errorDescription = error.localizedDescription;
-    
-    InfoAlertViewController *errorAlert = [InfoAlertViewController alertControllerWithTitle:@"User updating failed"
-                                                                                    message:errorDescription
-                                                                               dismissTitle:@"OK" handler:nil];
-    
-    [self presentViewController:errorAlert animated:YES completion:nil];
-}
-
 
 #pragma mark - Private
 
@@ -174,7 +161,7 @@ static NSString * const kShowPasswordSettingSegue   = @"showPasswordSettingSegue
     
     [self.serviceLocator.userService postProfilePhotoWithData:profilePhotoData completion:^(NSString *url, NSError *error) {
         if (error) {
-            [self showError:error];
+            [self.alertPresenter showError:error title:@"User updating failed" presentingController:self];
         }
     }];
 }

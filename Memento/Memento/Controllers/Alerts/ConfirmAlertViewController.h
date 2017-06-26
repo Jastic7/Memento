@@ -12,7 +12,7 @@
 
 @class ConfirmAlertViewController;
 
-@protocol ConfirmAlerViewControllerDelegate <NSObject>
+@protocol ConfirmAlertViewControllerDelegate <NSObject>
 
 - (void)confirmAlertDidConfirmedWithText:(NSString *)confirmedText;
 
@@ -21,7 +21,7 @@
 
 @interface ConfirmAlertViewController : UIAlertController
 
-@property (nonatomic, weak) id <ConfirmAlerViewControllerDelegate> delegate;
+@property (nonatomic, weak) id <ConfirmAlertViewControllerDelegate> delegate;
 
 + (instancetype)alertControllerWithTitle:(NSString *)title message:(NSString *)message textFieldPlaceholder:(NSString *)placeholder confirmTitle:(NSString *)confirmTitle;
 

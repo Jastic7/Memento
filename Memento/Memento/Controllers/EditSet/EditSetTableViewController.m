@@ -8,14 +8,15 @@
 
 #import "EditSetTableViewController.h"
 #import "SelectedLanguagesTableViewController.h"
-#import "InfoAlertViewController.h"
 
 #import "EditingItemOfSetTableViewCell.h"
 #import "AddItemTableViewCell.h"
 
 #import "ServiceLocator.h"
+#import "AlertPresenterProtocol.h"
 #import "ItemOfSet.h"
 #import "Set.h"
+#import "Assembly.h"
 
 #import "UITableView+GettingIndexPath.h"
 
@@ -39,6 +40,7 @@ static NSString * const kSelectedLangSegue      = @"selectedLanguagesSegue";
 
 @property (nonatomic, strong) NSMutableArray <ItemOfSet *> *items;
 @property (nonatomic, strong) NSPredicate *emptyItemPredicate;
+@property (nonatomic, strong) id <AlertPresenterProtocol> alertPresenter;
 
 @property (nonatomic, assign) EditingMode editingMode;
 @property (nonatomic, assign) BOOL isSetCorrect;
@@ -65,6 +67,14 @@ static NSString * const kSelectedLangSegue      = @"selectedLanguagesSegue";
     }
     
     return _emptyItemPredicate;
+}
+
+- (id <AlertPresenterProtocol>)alertPresenter {
+    if (!_alertPresenter) {
+        _alertPresenter = [Assembly assembledAlertPresenter];
+    }
+    
+    return _alertPresenter;
 }
 
 
@@ -197,13 +207,15 @@ static NSString * const kSelectedLangSegue      = @"selectedLanguagesSegue";
     self.isSetCorrect = YES;
     
     if (![self isTitleCorrect]) {
-        [self showInfoAlertWithTitle:@"Error" message:@"Title of the new set should be non empty." dismissTitle:@"OK" handler:nil];
+        [self.alertPresenter showInfoMessage:@"Title of the new set should be non empty." title:@"Oops.." actionTitle:@"OK" handler:nil presentingController:self];
         self.isSetCorrect = NO;
         
     } else if (![self isLanguagesSelected]) {
-        [self showInfoAlertWithTitle:@"Error" message:@"You should select languages for terms and definitions" dismissTitle:@"Select language" handler:^(UIAlertAction *action) {
-            [self performSegueWithIdentifier:kSelectedLangSegue sender:nil];
-        }];
+        [self.alertPresenter showInfoMessage:@"You should select languages for terms and definitions"
+                                       title:@"Oops.."
+                                 actionTitle:@"Select language"
+                                     handler:^(UIAlertAction *action) { [self performSegueWithIdentifier:kSelectedLangSegue sender:nil]; }
+                        presentingController:self];
         self.isSetCorrect = NO;
     }
 }
@@ -228,16 +240,6 @@ static NSString * const kSelectedLangSegue      = @"selectedLanguagesSegue";
     [self.tableView endUpdates];
     
     [CATransaction commit];
-}
-
-- (void)showInfoAlertWithTitle:(NSString *)title
-                       message:(NSString *)message
-                  dismissTitle:(NSString *)dismissTitle
-                       handler:(void (^)(UIAlertAction *action))handler {
-    
-    InfoAlertViewController *infoAlert = [InfoAlertViewController alertControllerWithTitle:title message:message dismissTitle:dismissTitle handler:handler];
-    
-    [self presentViewController:infoAlert animated:YES completion:nil];
 }
 
 - (BOOL)isLastRowAtIndexPath:(NSIndexPath *)indexPath {

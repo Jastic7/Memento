@@ -9,13 +9,17 @@
 #import "Assembly.h"
 #import "ServiceLocator.h"
 #import "RemoteServiceFactory.h"
-
+#import "AlertPresenter.h"
 
 @implementation Assembly
 
 + (void)assemblyServiceLayer {
     ServiceLocator *serviceLocator = [ServiceLocator shared];
     [serviceLocator setServiceFactory:[RemoteServiceFactory new]];
+}
+
++ (id <AlertPresenterProtocol>)assembledAlertPresenter {
+    return [AlertPresenter new];
 }
 
 @end

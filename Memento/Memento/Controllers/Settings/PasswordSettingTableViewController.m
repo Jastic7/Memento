@@ -7,19 +7,32 @@
 //
 
 #import "PasswordSettingTableViewController.h"
-#import "InfoAlertViewController.h"
 #import "ServiceLocator.h"
+#import "AlertPresenterProtocol.h"
+#import "Assembly.h"
 
 @interface PasswordSettingTableViewController ()
 
-@property (weak, nonatomic) IBOutlet UITextField *currentPasswordTextField;
-@property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
-@property (weak, nonatomic) IBOutlet UITextField *confirmPasswordTextField;
+@property (nonatomic, weak) IBOutlet UITextField *currentPasswordTextField;
+@property (nonatomic, weak) IBOutlet UITextField *passwordTextField;
+@property (nonatomic, weak) IBOutlet UITextField *confirmPasswordTextField;
+@property (nonatomic, strong) id <AlertPresenterProtocol> alertPresenter;
 
 @end
 
 
 @implementation PasswordSettingTableViewController
+
+#pragma mark - Getters 
+
+-(id<AlertPresenterProtocol>)alertPresenter {
+    if (!_alertPresenter) {
+        _alertPresenter = [Assembly assembledAlertPresenter];
+    }
+    
+    return _alertPresenter;
+}
+
 
 #pragma mark - LifeCycle
 
@@ -33,7 +46,7 @@
 - (IBAction)saveButtonTapped:(id)sender {
     NSString *editedPassword    = self.passwordTextField.text;
     NSString *confirmPassword   = self.confirmPasswordTextField.text;
-    NSString *currentPassword    = self.currentPasswordTextField.text;
+    NSString *currentPassword   = self.currentPasswordTextField.text;
     
     ServiceLocator *serviceLocator = [ServiceLocator shared];
     [serviceLocator.userService establishEditedPassword:editedPassword
@@ -41,22 +54,11 @@
                                         confirmPassword:confirmPassword
                                              completion:^(NSError *error) {
                                                  if (error) {
-                                                     [self showError:error];
+                                                     [self.alertPresenter showError:error title:@"Updating failed" presentingController:self];
                                                  } else {
                                                      self.editCompletion();
                                                  }
                                              }];
-}
-
-
-#pragma mark - Private
-
-- (void)showError:(NSError *)error {
-    NSString *errorDescription = error.localizedDescription;
-    
-    InfoAlertViewController *infoAlert = [InfoAlertViewController alertControllerWithTitle:@"Updating failed." message:errorDescription dismissTitle:@"OK" handler:nil];
-    
-    [self presentViewController:infoAlert animated:YES completion:nil];
 }
 
 @end

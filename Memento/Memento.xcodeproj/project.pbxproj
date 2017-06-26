@@ -54,6 +54,7 @@
 		559094311EDF009700BE4500 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 559094301EDF009700BE4500 /* GoogleService-Info.plist */; };
 		55A5EEE81EF9C68800DFFC2D /* SpeechService.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A5EEE71EF9C68800DFFC2D /* SpeechService.m */; };
 		55AA02951EF9BC2C00D7CF01 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55AA02941EF9BC2C00D7CF01 /* Assets.xcassets */; };
+		55B3E16C1F016AEC003961E3 /* AlertPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B3E16B1F016AEC003961E3 /* AlertPresenter.m */; };
 		55BAE12C1EDF8D6D00F1CBEE /* AuthService.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BAE12B1EDF8D6D00F1CBEE /* AuthService.m */; };
 		55BAE12F1EDF928100F1CBEE /* TransportLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BAE12E1EDF928100F1CBEE /* TransportLayer.m */; };
 		55BAE1331EE088D100F1CBEE /* ServiceLocator.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BAE1321EE088D100F1CBEE /* ServiceLocator.m */; };
@@ -174,6 +175,9 @@
 		55A5EEE61EF9C68800DFFC2D /* SpeechService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeechService.h; sourceTree = "<group>"; };
 		55A5EEE71EF9C68800DFFC2D /* SpeechService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeechService.m; sourceTree = "<group>"; };
 		55AA02941EF9BC2C00D7CF01 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		55B3E1691F016AD4003961E3 /* AlertPresenterProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertPresenterProtocol.h; sourceTree = "<group>"; };
+		55B3E16A1F016AEC003961E3 /* AlertPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertPresenter.h; sourceTree = "<group>"; };
+		55B3E16B1F016AEC003961E3 /* AlertPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertPresenter.m; sourceTree = "<group>"; };
 		55BAE1281EDF8B4B00F1CBEE /* AuthServiceProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthServiceProtocol.h; sourceTree = "<group>"; };
 		55BAE12A1EDF8D6D00F1CBEE /* AuthService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthService.h; sourceTree = "<group>"; };
 		55BAE12B1EDF8D6D00F1CBEE /* AuthService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthService.m; sourceTree = "<group>"; };
@@ -425,6 +429,9 @@
 				558C07FE1EECB3B50065D7D5 /* ImagePickerSourceTypePresenterProtocol.h */,
 				558C07FF1EECB3CD0065D7D5 /* ImagePickerSourceTypePresenter.h */,
 				558C08001EECB3CD0065D7D5 /* ImagePickerSourceTypePresenter.m */,
+				55B3E1691F016AD4003961E3 /* AlertPresenterProtocol.h */,
+				55B3E16A1F016AEC003961E3 /* AlertPresenter.h */,
+				55B3E16B1F016AEC003961E3 /* AlertPresenter.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -733,6 +740,7 @@
 				55DD03491ED919FA00BDA097 /* UITableView+GettingIndexPath.m in Sources */,
 				55501CA31EFC7815007B732C /* LearnSettingsTableViewController.m in Sources */,
 				551E912E1EF5E1B10091DB14 /* EditingItemOfSetTableViewCell.m in Sources */,
+				55B3E16C1F016AEC003961E3 /* AlertPresenter.m in Sources */,
 				55E181C21EE4B45400C1313D /* ItemOfSetTableViewCell.m in Sources */,
 				551E913A1EF707720091DB14 /* AddItemTableViewCell.m in Sources */,
 				5508B94B1ED9176B00526200 /* MatchPrepareViewController.m in Sources */,

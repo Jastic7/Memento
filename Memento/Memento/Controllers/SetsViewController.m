@@ -12,13 +12,12 @@
 #import "WelcomeViewController.h"
 
 #import "SetTableViewCell.h"
-#import "PreloaderView.h"
 
 #import "Set.h"
 #import "ItemOfSet.h"
 #import "ServiceLocator.h"
+#import "AlertPresenterProtocol.h"
 #import "Assembly.h"
-#import "User.h"
 
 
 @import FirebaseAuth;
@@ -34,10 +33,12 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, weak) ServiceLocator *serviceLocator;
 
+
 @property (nonatomic, strong) NSMutableArray <Set *> *sets;
 @property (nonatomic, strong) NSIndexPath *indexPathOfSelectedSet;
 @property (nonatomic, strong) UILabel *emptyStateLabel;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (nonatomic, strong) id <AlertPresenterProtocol> alertPresenter;
 
 @end
 
@@ -70,7 +71,7 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
     return _emptyStateLabel;
 }
 
--(UIRefreshControl *)refreshControl {
+- (UIRefreshControl *)refreshControl {
     if (!_refreshControl) {
         _refreshControl = [self configureRefreshControl];
     }
@@ -78,6 +79,13 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
     return _refreshControl;
 }
 
+- (id <AlertPresenterProtocol>)alertPresenter {
+    if (!_alertPresenter) {
+        _alertPresenter = [Assembly assembledAlertPresenter];
+    }
+    
+    return _alertPresenter;
+}
 
 #pragma mark - LifeCycle
 
@@ -240,6 +248,10 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
     [self.emptyStateLabel removeFromSuperview];
     
     [self.serviceLocator.setService obtainSetListWithCompletion:^(NSMutableArray<Set *> *setList, NSError *error) {
+        if (error) {
+            [self.alertPresenter showError:error title:@"Sets doesn't downloaded" presentingController:self];
+        }
+        
         [self.tableView beginUpdates];
             [refreshControl endRefreshing];
         [self.tableView endUpdates];
@@ -256,7 +268,7 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
 - (void)uploadSets {
     [self.serviceLocator.setService postSetList:self.sets completion:^(NSError *error) {
         if (error) {
-            
+            [self.alertPresenter showError:error title:@"Set doesn't uploaded" presentingController:self];
         }
     }];
 }

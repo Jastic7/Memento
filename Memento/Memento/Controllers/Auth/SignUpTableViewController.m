@@ -7,13 +7,12 @@
 //
 
 #import "SignUpTableViewController.h"
-#import "WaitingAlertViewController.h"
-#import "InfoAlertViewController.h"
 
-#import "ImagePickerSourceTypePresenter.h"
+#import "AlertPresenterProtocol.h"
 #import "AuthenticationDelegate.h"
 #import "ServiceLocator.h"
 #import "User.h"
+#import "Assembly.h"
 
 
 @interface SignUpTableViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
@@ -24,7 +23,7 @@
 @property (nonatomic, weak) IBOutlet UITextField *passwordTextField;
 
 @property (nonatomic, strong) UIImagePickerController *imagePicker;
-@property (nonatomic, strong) id <ImagePickerSourceTypePresenterProtocol> imagePickerSourceTypePresenter;
+@property (nonatomic, strong) id <AlertPresenterProtocol> alertPresenter;
 
 @property (nonatomic, weak) ServiceLocator *serviceLocator;
 
@@ -38,6 +37,9 @@
 - (UIImagePickerController *)imagePicker {
     if (!_imagePicker) {
         _imagePicker = [UIImagePickerController new];
+        
+        _imagePicker.delegate = self;
+        _imagePicker.allowsEditing = YES;
     }
     
     return _imagePicker;
@@ -51,14 +53,13 @@
     return _serviceLocator;
 }
 
-- (id <ImagePickerSourceTypePresenterProtocol>)imagePickerSourceTypePresenter {
-    if (!_imagePickerSourceTypePresenter) {
-        _imagePickerSourceTypePresenter = [ImagePickerSourceTypePresenter new];
+- (id <AlertPresenterProtocol>)alertPresenter {
+    if (!_alertPresenter) {
+        _alertPresenter = [Assembly assembledAlertPresenter];
     }
     
-    return _imagePickerSourceTypePresenter;
+    return _alertPresenter;
 }
-
 
 #pragma mark - Life Cycle
 
@@ -72,9 +73,6 @@
     [super viewDidAppear:animated];
  
     [self.usernameTextField becomeFirstResponder];
-    
-    self.imagePicker.delegate = self;
-    self.imagePicker.allowsEditing = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -100,10 +98,7 @@
 #pragma mark - Actions
 
 - (IBAction)chooseProfilePhotoTapped:(id)sender {
-    [self.imagePickerSourceTypePresenter presentSourceTypesForImagePicker:self.imagePicker
-                                                     presentingController:self
-                                                                    title:@"Choose source for your profile image"
-                                                                  message:nil];
+    [self.alertPresenter showSourceTypesForImagePicker:self.imagePicker title:@"Choose source for your profile image" message:@"" presentingController:self];
 }
 
 - (IBAction)cancelDidTapped:(id)sender {
@@ -111,15 +106,15 @@
 }
 
 - (IBAction)createAccountButtonTapped:(id)sender {
-    [self showWaitingAlertWithMessage:@"Registration in progress..."];
+    [self.alertPresenter showPreloaderWithMessage:@"Registration in progress..." presentingController:self];
     
     NSString *email    = self.emailTextField.text;
     NSString *password = self.passwordTextField.text;
     
     [self.serviceLocator.authService signUpWithEmail:email password:password completion:^(NSString *uid, NSError *error) {
         if (error) {
-            [self hideWaitingAlertAnimated:YES completion:^{
-                [self showInfoAlertWithError:error];
+            [self.alertPresenter hidePreloaderWithCompletion:^{
+                [self.alertPresenter showError:error title:@"Registration failed" presentingController:self];
             }];
         } else {
             [self uploadUserWithId:uid];
@@ -137,29 +132,6 @@
 }
 
 
-#pragma mark - Alerts
-
-- (void)showWaitingAlertWithMessage:(NSString *)message {
-    WaitingAlertViewController *alert = [WaitingAlertViewController alertControllerWithMessage:message];
-    
-    [self presentViewController:alert animated:YES completion:nil];
-}
-
-- (void)hideWaitingAlertAnimated:(BOOL)animated completion:(void (^)())completion {
-    [self dismissViewControllerAnimated:animated completion:completion];
-}
-
-- (void)showInfoAlertWithError:(NSError *)error {
-    NSString *errorDescription = error.localizedDescription;
-    
-    InfoAlertViewController *errorAlert = [InfoAlertViewController alertControllerWithTitle:@"Registration failed"
-                                                                                    message:errorDescription
-                                                                               dismissTitle:@"OK" handler:nil];
-    
-    [self presentViewController:errorAlert animated:YES completion:nil];
-}
-
-
 #pragma mark - Private
 
 - (void)uploadUserWithId:(NSString *)uid {
@@ -170,9 +142,9 @@
     NSData *profilePhotoData = UIImageJPEGRepresentation(profilePhoto, 0.9);
     
     [self.serviceLocator.userService postUserWithId:uid username:username email:email profilePhotoData:profilePhotoData completion:^(NSError *error) {
-        [self hideWaitingAlertAnimated:YES completion:^{
+        [self.alertPresenter hidePreloaderWithCompletion:^{
             if (error) {
-                [self showInfoAlertWithError:error];
+                [self.alertPresenter showError:error title:@"Registration failed" presentingController:self];
             } else {
                 [self.delegate authenticationDidComplete];
             }
