@@ -73,7 +73,11 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
 
 - (UIRefreshControl *)refreshControl {
     if (!_refreshControl) {
-        _refreshControl = [self configureRefreshControl];
+        _refreshControl = [UIRefreshControl new];
+        NSString *title = @"Sets are downloading...";
+        
+        _refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:title];
+        [_refreshControl addTarget:self action:@selector(downloadSets:) forControlEvents:UIControlEventValueChanged];
     }
     
     return _refreshControl;
@@ -96,9 +100,9 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
     
     [self configureTableView];
     [self registerAuthStateNotification];
-    [self configureRefreshControl];
     
     [self.refreshControl beginRefreshing];
+    [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentOffset.y-self.refreshControl.frame.size.height) animated:YES];
     [self downloadSets:self.refreshControl];
 }
 
@@ -108,6 +112,11 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
     if (self.indexPathOfSelectedSet) {
         [self.tableView reloadRowsAtIndexPaths:@[self.indexPathOfSelectedSet] withRowAnimation:UITableViewRowAnimationFade];
     }
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [self.refreshControl endRefreshing];
 }
 
 
@@ -135,6 +144,17 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     self.indexPathOfSelectedSet = indexPath;
+}
+
+
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    CGFloat offset = self.tableView.contentOffset.y;
+    if (offset < -150) {
+        NSString *title = @"Sets are downloading...";
+        self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:title];
+    }
 }
 
 
@@ -231,16 +251,6 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
     return emptyStateLabel;
 }
 
-- (UIRefreshControl *)configureRefreshControl {
-    UIRefreshControl *refreshControl = [UIRefreshControl new];
-    NSString *title = @"Pull to download new sets";
-    
-    refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:title];
-    [refreshControl addTarget:self action:@selector(downloadSets:) forControlEvents:UIControlEventValueChanged];
-    
-    return refreshControl;
-}
-
 
 #pragma mark - Private
 
@@ -252,6 +262,9 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
             [self.alertPresenter showError:error title:@"Sets doesn't downloaded" presentingController:self];
         }
         
+        NSString *title = @"Pull to download new sets";
+        self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:title];
+        
         [self.tableView beginUpdates];
             [refreshControl endRefreshing];
         [self.tableView endUpdates];
@@ -262,13 +275,14 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
         
         self.sets = setList;
         [self.tableView reloadData];
+        
     }];
 }
 
 - (void)uploadSets {
     [self.serviceLocator.setService postSetList:self.sets completion:^(NSError *error) {
         if (error) {
-            [self.alertPresenter showError:error title:@"Set doesn't uploaded" presentingController:self];
+            [self.alertPresenter showError:error title:@"Sets doesn't uploaded" presentingController:self];
         }
     }];
 }
@@ -281,6 +295,7 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
 }
 
 - (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
     [self updateEmptyStateLabelLayout];
 }
 
