@@ -55,6 +55,9 @@
 		55A5EEE81EF9C68800DFFC2D /* SpeechService.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A5EEE71EF9C68800DFFC2D /* SpeechService.m */; };
 		55AA02951EF9BC2C00D7CF01 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55AA02941EF9BC2C00D7CF01 /* Assets.xcassets */; };
 		55B3E16C1F016AEC003961E3 /* AlertPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B3E16B1F016AEC003961E3 /* AlertPresenter.m */; };
+		55B3E1721F01F03E003961E3 /* FeatureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B3E1711F01F03E003961E3 /* FeatureView.m */; };
+		55B3E1741F01F049003961E3 /* FeatureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55B3E1731F01F049003961E3 /* FeatureView.xib */; };
+		55B3E1771F01F284003961E3 /* Feature.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B3E1761F01F284003961E3 /* Feature.m */; };
 		55BAE12C1EDF8D6D00F1CBEE /* AuthService.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BAE12B1EDF8D6D00F1CBEE /* AuthService.m */; };
 		55BAE12F1EDF928100F1CBEE /* TransportLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BAE12E1EDF928100F1CBEE /* TransportLayer.m */; };
 		55BAE1331EE088D100F1CBEE /* ServiceLocator.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BAE1321EE088D100F1CBEE /* ServiceLocator.m */; };
@@ -178,6 +181,11 @@
 		55B3E1691F016AD4003961E3 /* AlertPresenterProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertPresenterProtocol.h; sourceTree = "<group>"; };
 		55B3E16A1F016AEC003961E3 /* AlertPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertPresenter.h; sourceTree = "<group>"; };
 		55B3E16B1F016AEC003961E3 /* AlertPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertPresenter.m; sourceTree = "<group>"; };
+		55B3E1701F01F03E003961E3 /* FeatureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeatureView.h; sourceTree = "<group>"; };
+		55B3E1711F01F03E003961E3 /* FeatureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeatureView.m; sourceTree = "<group>"; };
+		55B3E1731F01F049003961E3 /* FeatureView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeatureView.xib; sourceTree = "<group>"; };
+		55B3E1751F01F284003961E3 /* Feature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Feature.h; sourceTree = "<group>"; };
+		55B3E1761F01F284003961E3 /* Feature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Feature.m; sourceTree = "<group>"; };
 		55BAE1281EDF8B4B00F1CBEE /* AuthServiceProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthServiceProtocol.h; sourceTree = "<group>"; };
 		55BAE12A1EDF8D6D00F1CBEE /* AuthService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthService.h; sourceTree = "<group>"; };
 		55BAE12B1EDF8D6D00F1CBEE /* AuthService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthService.m; sourceTree = "<group>"; };
@@ -316,6 +324,9 @@
 				5508B9531ED9184B00526200 /* ItemOfMatchCollectionViewCell.m */,
 				5521027E1EF7547E00B8FF3A /* EditSet */,
 				5508B9571ED9184B00526200 /* LearnMode */,
+				55B3E1701F01F03E003961E3 /* FeatureView.h */,
+				55B3E1711F01F03E003961E3 /* FeatureView.m */,
+				55B3E1731F01F049003961E3 /* FeatureView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -345,6 +356,8 @@
 				559094281EDEF53A00BE4500 /* User.m */,
 				553B24341EE7105800D51326 /* Entity.h */,
 				553B24351EE7105800D51326 /* Entity.m */,
+				55B3E1751F01F284003961E3 /* Feature.h */,
+				55B3E1761F01F284003961E3 /* Feature.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -657,6 +670,7 @@
 				55E181B21EE4441500C1313D /* Auth.storyboard in Resources */,
 				551E913B1EF707720091DB14 /* AddItemTableViewCell.xib in Resources */,
 				55D34EE31EBA906500A2EE38 /* Main.storyboard in Resources */,
+				55B3E1741F01F049003961E3 /* FeatureView.xib in Resources */,
 				551E912F1EF5E1B10091DB14 /* EditingItemOfSetTableViewCell.xib in Resources */,
 				5513ECFB1EE9BC7700E2611B /* Settings.storyboard in Resources */,
 				55E181C31EE4B45400C1313D /* ItemOfSetTableViewCell.xib in Resources */,
@@ -757,10 +771,12 @@
 				55BAE1471EE09E0900F1CBEE /* WelcomeViewController.m in Sources */,
 				558C08071EECC4610065D7D5 /* ConfirmAlertViewController.m in Sources */,
 				55501CA71EFC79B5007B732C /* UserDefaultsService.m in Sources */,
+				55B3E1721F01F03E003961E3 /* FeatureView.m in Sources */,
 				55BAE13A1EE08EE600F1CBEE /* RemoteServiceFactory.m in Sources */,
 				5508B94C1ED9176B00526200 /* SetsViewController.m in Sources */,
 				5513ED0B1EE9CD3F00E2611B /* EmailSettingTableViewController.m in Sources */,
 				55BAE1461EE09E0900F1CBEE /* SignUpTableViewController.m in Sources */,
+				55B3E1771F01F284003961E3 /* Feature.m in Sources */,
 				5508B9611ED9184B00526200 /* Circle.m in Sources */,
 				5508B94A1ED9176B00526200 /* MatchItemsCollectionViewController.m in Sources */,
 				55D34EDD1EBA906500A2EE38 /* AppDelegate.m in Sources */,
