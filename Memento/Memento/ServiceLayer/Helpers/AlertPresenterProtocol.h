@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ConfirmAlertViewController.h"
+
+@protocol AlertFactoryProtocol;
+
 
 @protocol AlertPresenterProtocol <NSObject>
+
+- (void)setAlertFactory:(id <AlertFactoryProtocol>)alertFactory;
 
 - (void)showError:(NSError *)error title:(NSString *)title presentingController:(UIViewController *)presentingController;
 
@@ -26,7 +30,7 @@
 
 - (void)showConfirmationWithMessage:(NSString *)message
                    inputPlaceholder:(NSString *)placeholder
-                           delegate:(id <ConfirmAlertViewControllerDelegate>)delegate
+                     confirmHandler:(void (^)(UIAlertAction *action, NSString *confirmedText))handler
                presentingController:(UIViewController *)presentingController;
 
 /*!

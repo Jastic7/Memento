@@ -17,7 +17,7 @@ static NSString * const kShowSignUpSegue = @"showSignUpSegue";
 static NSString * const kShowLogInSegue = @"showLogInSegue";
 
 
-@interface WelcomeViewController () <AuthenticationDelegate, UIScrollViewDelegate>
+@interface WelcomeViewController () <AuthenticationDelegate, UIScrollViewDelegate, UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIVisualEffectView *visualEffectView;
 @property (weak, nonatomic) IBOutlet UIPageControl *featurePageControl;
@@ -36,6 +36,7 @@ static NSString * const kShowLogInSegue = @"showLogInSegue";
     [self configureFeatures];
     [self configureScrollView];
 }
+
 
 #pragma mark - Navigation
 
@@ -73,15 +74,15 @@ static NSString * const kShowLogInSegue = @"showLogInSegue";
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     NSUInteger page = scrollView.contentOffset.x / scrollView.frame.size.width;
     self.featurePageControl.currentPage = page;
-    NSLog(@"CONTENT OFFSET X =  %f", scrollView.contentOffset.x);
 }
+
 
 #pragma mark - Configure
 
 - (void)configureFeatures {
-    Feature *feature1 = [Feature featureWithName:@"Cards." detailDescription:@"Create your own cards with any information and learn it!" imageName:@"cards_feature"];
-    Feature *feature2 = [Feature featureWithName:@"Learn mode." detailDescription:@"Try our learn mode with special methodic - it is absolutely amazing!" imageName:@"learnmode_feature"];
-    Feature *feature3 = [Feature featureWithName:@"Match mode." detailDescription:@"Lets into match mode. You should find pairs of terms and definitions!" imageName:@"matchmode_feature"];
+    Feature *feature1 = [Feature featureWithName:@"Cards." detailDescription:@"Create your own cards with information and learn it!" imageName:@"cards_feature"];
+    Feature *feature2 = [Feature featureWithName:@"Learn mode." detailDescription:@"Learn set with special methodic - it is  amazing!" imageName:@"learnmode_feature"];
+    Feature *feature3 = [Feature featureWithName:@"Match mode." detailDescription:@"Find pairs of terms and their definitions!" imageName:@"matchmode_feature"];
     
     self.features = [NSArray arrayWithObjects:feature1, feature2, feature3, nil];
 }
@@ -92,6 +93,7 @@ static NSString * const kShowLogInSegue = @"showLogInSegue";
     CGFloat height = 100;
     CGFloat width = self.view.bounds.size.width;
     CGRect scrollRect = CGRectMake(x, y, width, height);
+    
     self.featureScrollView.frame = scrollRect;
     
     [self.featureScrollView setPagingEnabled:YES];
@@ -116,12 +118,19 @@ static NSString * const kShowLogInSegue = @"showLogInSegue";
         
         CGFloat width = self.featureScrollView.bounds.size.width;
         CGFloat height = self.featureScrollView.bounds.size.height;
-        CGFloat xPos = width * index;
-        NSLog(@"POSITION = %f", xPos);
-        CGFloat yPos = featureView.frame.origin.y;
-        CGRect featureFrame = CGRectMake(xPos, yPos, width, height);
+        CGFloat x = width * index;
+        CGFloat y = featureView.frame.origin.y;
+        CGRect featureFrame = CGRectMake(x, y, width, height);
         
         featureView.frame = featureFrame;
     }
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+    return UIInterfaceOrientationPortrait;
 }
 @end

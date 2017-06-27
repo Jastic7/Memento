@@ -9,6 +9,7 @@
 #import "Assembly.h"
 #import "ServiceLocator.h"
 #import "RemoteServiceFactory.h"
+#import "AlertFactory.h"
 #import "AlertPresenter.h"
 
 @implementation Assembly
@@ -19,7 +20,10 @@
 }
 
 + (id <AlertPresenterProtocol>)assembledAlertPresenter {
-    return [AlertPresenter new];
+    AlertPresenter *alertPresenter = [AlertPresenter new];
+    [alertPresenter setAlertFactory:[AlertFactory new]];
+    
+    return alertPresenter;
 }
 
 @end

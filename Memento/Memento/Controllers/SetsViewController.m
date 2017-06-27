@@ -75,9 +75,9 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
     if (!_refreshControl) {
         _refreshControl = [UIRefreshControl new];
         NSString *title = @"Sets are downloading...";
-        
         _refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:title];
         [_refreshControl addTarget:self action:@selector(downloadSets:) forControlEvents:UIControlEventValueChanged];
+        _refreshControl.backgroundColor = [UIColor clearColor];
     }
     
     return _refreshControl;
@@ -100,10 +100,6 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
     
     [self configureTableView];
     [self registerAuthStateNotification];
-    
-    [self.refreshControl beginRefreshing];
-    [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentOffset.y-self.refreshControl.frame.size.height) animated:YES];
-    [self downloadSets:self.refreshControl];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -194,6 +190,8 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
         WelcomeViewController *vc = segue.destinationViewController;
         vc.authenticationCompletion = ^() {
             [self dismissViewControllerAnimated:YES completion:^{
+                [self.refreshControl beginRefreshing];
+                [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentOffset.y-self.refreshControl.frame.size.height) animated:YES];
                 [self downloadSets:self.refreshControl];
             }];
         };
@@ -212,6 +210,16 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
             [self.sets removeAllObjects];
             [self.tableView reloadData];
             self.indexPathOfSelectedSet = nil;
+        } else {
+            static dispatch_once_t onceToken;
+            dispatch_once(&onceToken, ^{
+                if (self.presentedViewController == nil) {
+                    [self.refreshControl beginRefreshing];
+                    [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentOffset.y-self.refreshControl.frame.size.height) animated:YES];
+                    [self.refreshControl layoutIfNeeded];
+                    [self downloadSets:self.refreshControl];
+                }
+            });
         }
     }];
 }

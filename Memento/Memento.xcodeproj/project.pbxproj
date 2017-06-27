@@ -46,10 +46,6 @@
 		553B24361EE7105800D51326 /* Entity.m in Sources */ = {isa = PBXBuildFile; fileRef = 553B24351EE7105800D51326 /* Entity.m */; };
 		55501CA31EFC7815007B732C /* LearnSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55501CA21EFC7815007B732C /* LearnSettingsTableViewController.m */; };
 		55501CA71EFC79B5007B732C /* UserDefaultsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 55501CA61EFC79B5007B732C /* UserDefaultsService.m */; };
-		558C07F31EEC839E0065D7D5 /* InfoAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 558C07F21EEC839E0065D7D5 /* InfoAlertViewController.m */; };
-		558C07F61EEC99610065D7D5 /* WaitingAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 558C07F51EEC99610065D7D5 /* WaitingAlertViewController.m */; };
-		558C08011EECB3CD0065D7D5 /* ImagePickerSourceTypePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 558C08001EECB3CD0065D7D5 /* ImagePickerSourceTypePresenter.m */; };
-		558C08071EECC4610065D7D5 /* ConfirmAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 558C08061EECC4610065D7D5 /* ConfirmAlertViewController.m */; };
 		559094291EDEF53A00BE4500 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 559094281EDEF53A00BE4500 /* User.m */; };
 		559094311EDF009700BE4500 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 559094301EDF009700BE4500 /* GoogleService-Info.plist */; };
 		55A5EEE81EF9C68800DFFC2D /* SpeechService.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A5EEE71EF9C68800DFFC2D /* SpeechService.m */; };
@@ -79,6 +75,7 @@
 		55E181B91EE4723200C1313D /* UserMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E181B81EE4723200C1313D /* UserMapper.m */; };
 		55E181C21EE4B45400C1313D /* ItemOfSetTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E181C01EE4B45400C1313D /* ItemOfSetTableViewCell.m */; };
 		55E181C31EE4B45400C1313D /* ItemOfSetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55E181C11EE4B45400C1313D /* ItemOfSetTableViewCell.xib */; };
+		55FDE9EE1F030593007DEFD1 /* AlertFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 55FDE9ED1F030593007DEFD1 /* AlertFactory.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -161,15 +158,6 @@
 		55501CA41EFC7967007B732C /* UserDefaultsServiceProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDefaultsServiceProtocol.h; sourceTree = "<group>"; };
 		55501CA51EFC79B5007B732C /* UserDefaultsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDefaultsService.h; sourceTree = "<group>"; };
 		55501CA61EFC79B5007B732C /* UserDefaultsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDefaultsService.m; sourceTree = "<group>"; };
-		558C07F11EEC839E0065D7D5 /* InfoAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoAlertViewController.h; sourceTree = "<group>"; };
-		558C07F21EEC839E0065D7D5 /* InfoAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoAlertViewController.m; sourceTree = "<group>"; };
-		558C07F41EEC99610065D7D5 /* WaitingAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitingAlertViewController.h; sourceTree = "<group>"; };
-		558C07F51EEC99610065D7D5 /* WaitingAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitingAlertViewController.m; sourceTree = "<group>"; };
-		558C07FE1EECB3B50065D7D5 /* ImagePickerSourceTypePresenterProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePickerSourceTypePresenterProtocol.h; sourceTree = "<group>"; };
-		558C07FF1EECB3CD0065D7D5 /* ImagePickerSourceTypePresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePickerSourceTypePresenter.h; sourceTree = "<group>"; };
-		558C08001EECB3CD0065D7D5 /* ImagePickerSourceTypePresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePickerSourceTypePresenter.m; sourceTree = "<group>"; };
-		558C08051EECC4610065D7D5 /* ConfirmAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfirmAlertViewController.h; sourceTree = "<group>"; };
-		558C08061EECC4610065D7D5 /* ConfirmAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfirmAlertViewController.m; sourceTree = "<group>"; };
 		558D15331ED91E100055C2DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		559094271EDEF53A00BE4500 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		559094281EDEF53A00BE4500 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
@@ -227,6 +215,9 @@
 		55E181BF1EE4B45400C1313D /* ItemOfSetTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemOfSetTableViewCell.h; sourceTree = "<group>"; };
 		55E181C01EE4B45400C1313D /* ItemOfSetTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemOfSetTableViewCell.m; sourceTree = "<group>"; };
 		55E181C11EE4B45400C1313D /* ItemOfSetTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemOfSetTableViewCell.xib; sourceTree = "<group>"; };
+		55FDE9EB1F030567007DEFD1 /* AlertFactoryProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertFactoryProtocol.h; sourceTree = "<group>"; };
+		55FDE9EC1F030593007DEFD1 /* AlertFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertFactory.h; sourceTree = "<group>"; };
+		55FDE9ED1F030593007DEFD1 /* AlertFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertFactory.m; sourceTree = "<group>"; };
 		F9F8122E197F931FE908B655 /* Pods-Memento.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Memento.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Memento/Pods-Memento.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -275,7 +266,6 @@
 		5508B9351ED9176B00526200 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				558C07F01EEC82BA0065D7D5 /* Alerts */,
 				55BAE13E1EE09DBA00F1CBEE /* Auth */,
 				552102741EF752D100B8FF3A /* EditSet */,
 				5508B9381ED9176B00526200 /* DetailSetTableViewController.h */,
@@ -423,28 +413,15 @@
 			path = Mappers;
 			sourceTree = "<group>";
 		};
-		558C07F01EEC82BA0065D7D5 /* Alerts */ = {
-			isa = PBXGroup;
-			children = (
-				558C07F11EEC839E0065D7D5 /* InfoAlertViewController.h */,
-				558C07F21EEC839E0065D7D5 /* InfoAlertViewController.m */,
-				558C07F41EEC99610065D7D5 /* WaitingAlertViewController.h */,
-				558C07F51EEC99610065D7D5 /* WaitingAlertViewController.m */,
-				558C08051EECC4610065D7D5 /* ConfirmAlertViewController.h */,
-				558C08061EECC4610065D7D5 /* ConfirmAlertViewController.m */,
-			);
-			path = Alerts;
-			sourceTree = "<group>";
-		};
 		558C07FD1EECB3A10065D7D5 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				558C07FE1EECB3B50065D7D5 /* ImagePickerSourceTypePresenterProtocol.h */,
-				558C07FF1EECB3CD0065D7D5 /* ImagePickerSourceTypePresenter.h */,
-				558C08001EECB3CD0065D7D5 /* ImagePickerSourceTypePresenter.m */,
 				55B3E1691F016AD4003961E3 /* AlertPresenterProtocol.h */,
 				55B3E16A1F016AEC003961E3 /* AlertPresenter.h */,
 				55B3E16B1F016AEC003961E3 /* AlertPresenter.m */,
+				55FDE9EB1F030567007DEFD1 /* AlertFactoryProtocol.h */,
+				55FDE9EC1F030593007DEFD1 /* AlertFactory.h */,
+				55FDE9ED1F030593007DEFD1 /* AlertFactory.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -736,7 +713,6 @@
 			files = (
 				559094291EDEF53A00BE4500 /* User.m in Sources */,
 				5508B9671ED9184B00526200 /* LearnRoundInfoHeader.m in Sources */,
-				558C07F31EEC839E0065D7D5 /* InfoAlertViewController.m in Sources */,
 				55DD03481ED919FA00BDA097 /* UIColor+PickerColors.m in Sources */,
 				5513ED081EE9CCC300E2611B /* PasswordSettingTableViewController.m in Sources */,
 				552102811EF754E600B8FF3A /* SelectLanguageTableViewCell.m in Sources */,
@@ -745,7 +721,6 @@
 				553B24361EE7105800D51326 /* Entity.m in Sources */,
 				5508B9471ED9176B00526200 /* DetailSetTableViewController.m in Sources */,
 				5525EE871EE3725100206898 /* SetService.m in Sources */,
-				558C07F61EEC99610065D7D5 /* WaitingAlertViewController.m in Sources */,
 				5508B9621ED9184B00526200 /* ItemLabel.m in Sources */,
 				55DD034C1ED91A3200BDA097 /* NSMutableArray+Shuffle.m in Sources */,
 				5525EE8A1EE376AB00206898 /* BaseService.m in Sources */,
@@ -767,9 +742,9 @@
 				552102771EF752FE00B8FF3A /* SelectedLanguagesTableViewController.m in Sources */,
 				551E91321EF5E8120091DB14 /* EditingTextView.m in Sources */,
 				55BAE1331EE088D100F1CBEE /* ServiceLocator.m in Sources */,
+				55FDE9EE1F030593007DEFD1 /* AlertFactory.m in Sources */,
 				5525EE8E1EE38C1C00206898 /* SetMapper.m in Sources */,
 				55BAE1471EE09E0900F1CBEE /* WelcomeViewController.m in Sources */,
-				558C08071EECC4610065D7D5 /* ConfirmAlertViewController.m in Sources */,
 				55501CA71EFC79B5007B732C /* UserDefaultsService.m in Sources */,
 				55B3E1721F01F03E003961E3 /* FeatureView.m in Sources */,
 				55BAE13A1EE08EE600F1CBEE /* RemoteServiceFactory.m in Sources */,
@@ -791,7 +766,6 @@
 				55BAE13D1EE09C7000F1CBEE /* Assembly.m in Sources */,
 				5513ED051EE9CCB400E2611B /* SettingsTableViewController.m in Sources */,
 				5508B9631ED9184B00526200 /* ItemOfMatchCollectionViewCell.m in Sources */,
-				558C08011EECB3CD0065D7D5 /* ImagePickerSourceTypePresenter.m in Sources */,
 				5508B9721ED9186300526200 /* ItemOfSet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

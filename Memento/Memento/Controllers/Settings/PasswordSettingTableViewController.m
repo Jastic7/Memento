@@ -25,7 +25,7 @@
 
 #pragma mark - Getters 
 
--(id<AlertPresenterProtocol>)alertPresenter {
+- (id <AlertPresenterProtocol>)alertPresenter {
     if (!_alertPresenter) {
         _alertPresenter = [Assembly assembledAlertPresenter];
     }
@@ -44,6 +44,8 @@
 #pragma mark - Actions
 
 - (IBAction)saveButtonTapped:(id)sender {
+    [self.alertPresenter showPreloaderWithMessage:@"Saving new password...\n\n" presentingController:self];
+    
     NSString *editedPassword    = self.passwordTextField.text;
     NSString *confirmPassword   = self.confirmPasswordTextField.text;
     NSString *currentPassword   = self.currentPasswordTextField.text;
@@ -53,11 +55,13 @@
                                         currentPassword:currentPassword
                                         confirmPassword:confirmPassword
                                              completion:^(NSError *error) {
-                                                 if (error) {
-                                                     [self.alertPresenter showError:error title:@"Updating failed" presentingController:self];
-                                                 } else {
-                                                     self.editCompletion();
-                                                 }
+                                                 [self.alertPresenter hidePreloaderWithCompletion:^{
+                                                     if (error) {
+                                                         [self.alertPresenter showError:error title:@"Saving failed" presentingController:self];
+                                                     } else {
+                                                         self.editCompletion();
+                                                     }
+                                                 }];
                                              }];
 }
 

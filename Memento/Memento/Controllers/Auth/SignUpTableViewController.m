@@ -106,7 +106,7 @@
 }
 
 - (IBAction)createAccountButtonTapped:(id)sender {
-    [self.alertPresenter showPreloaderWithMessage:@"Registration in progress..." presentingController:self];
+    [self.alertPresenter showPreloaderWithMessage:@"Registration in progress...\n\n" presentingController:self];
     
     NSString *email    = self.emailTextField.text;
     NSString *password = self.passwordTextField.text;

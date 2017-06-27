@@ -342,7 +342,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="fyL-RY-lQm">
-                        <barButtonItem key="leftBarButtonItem" image="1496184050_cancel" id="apy-Hx-ezV">
+                        <barButtonItem key="leftBarButtonItem" image="cancel" id="apy-Hx-ezV">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="cancelDidTapped:" destination="ZJW-Az-PbH" id="crF-p9-s58"/>
@@ -490,7 +490,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="1496184050_cancel" width="16" height="16"/>
         <image name="cancel" width="16" height="16"/>
         <image name="login_background" width="808" height="1293"/>
     </resources>

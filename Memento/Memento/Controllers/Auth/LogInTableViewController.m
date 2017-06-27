@@ -67,7 +67,7 @@
 }
 
 - (IBAction)logInButtonTapped:(id)sender {
-    [self.alertPresenter showPreloaderWithMessage:@"Authorization in progress..." presentingController:self];
+    [self.alertPresenter showPreloaderWithMessage:@"Authorization in progress...\n\n" presentingController:self];
     
     NSString *email = self.emailTextField.text;
     NSString *password = self.passwordTextField.text;
