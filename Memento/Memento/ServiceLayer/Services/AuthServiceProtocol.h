@@ -21,11 +21,13 @@ typedef void (^AuthServiceUpdateCompletionBlock)(NSError *error);
  * @brief Register new user.
  * @param email User's email.
  * @param password User's password.
+ * @param confirmPassword Confirmation of user's password.
  * @param completion Callback when registration is successfully finished
  * or occured error.
  */
 - (void)signUpWithEmail:(NSString *)email
                password:(NSString *)password
+        confirmPassword:(NSString *)confirmPassword
              completion:(AuthServiceCompletionBlock)completion;
 
 /*!

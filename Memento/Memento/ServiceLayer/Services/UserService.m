@@ -104,9 +104,7 @@
     if ([self isPassword:password matchWithConfirmPassword:confirmPassword]) {
         [self.transort establishEditedPassword:password currentPassword:currentPassword completion:completion];
     } else {
-        NSDictionary *userInfo = @{
-                                   NSLocalizedDescriptionKey : NSLocalizedString(@"New password and confirm password should be equal", nil)
-                                   };
+        NSDictionary *userInfo = @{NSLocalizedDescriptionKey : NSLocalizedString(@"New password and confirm password should be equal", nil)};
         NSError *confirmError = [NSError errorWithDomain:@"Memento" code:-7 userInfo:userInfo];
         completion(confirmError);
     }

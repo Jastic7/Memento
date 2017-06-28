@@ -11,7 +11,7 @@
 #import "ServiceLocator.h"
 #import "Assembly.h"
 
-@interface EmailSettingTableViewController ()
+@interface EmailSettingTableViewController () <UITextFieldDelegate>
 
 @property (nonatomic, weak) IBOutlet UITextField *textField;
 @property (nonatomic, strong) id <AlertPresenterProtocol> alertPresenter;
@@ -36,8 +36,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.textField.text = self.editableEmail;
+    [self configureTextField];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.textField becomeFirstResponder];
+}
+
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [self saveButtonTapped:nil];
+    return YES;
 }
 
 
@@ -58,6 +70,13 @@
                                 presentingController:self];
 }
 
+
+#pragma mark - Configuration
+
+- (void)configureTextField {
+    self.textField.text = self.editableEmail;
+    self.textField.delegate = self;
+}
 
 #pragma mark - Private
 

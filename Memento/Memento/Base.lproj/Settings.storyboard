@@ -187,7 +187,7 @@
                                                     <rect key="frame" x="8" y="6" width="359" height="30"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -206,13 +206,7 @@
                             <outlet property="delegate" destination="Iwg-ka-jgj" id="EkD-kS-fat"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="B8y-uB-Sqn">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="ZGn-tS-4xs">
-                            <connections>
-                                <action selector="saveButtonTapped:" destination="Iwg-ka-jgj" id="jic-Ys-58O"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="B8y-uB-Sqn"/>
                     <connections>
                         <outlet property="textField" destination="CYW-Vi-8M1" id="cfP-ot-PnS"/>
                     </connections>
@@ -243,7 +237,7 @@
                                                     <rect key="frame" x="8" y="6" width="359" height="30"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="next" secureTextEntry="YES"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -258,7 +252,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="New password" id="6gw-5w-Arg">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="eoS-ol-4Gb">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="eoS-ol-4Gb">
                                         <rect key="frame" x="0.0" y="157" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eoS-ol-4Gb" id="SOo-Z5-rXK">
@@ -269,7 +263,7 @@
                                                     <rect key="frame" x="8" y="6" width="359" height="30"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="next" secureTextEntry="YES"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -280,7 +274,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="mDD-uD-aVC">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="mDD-uD-aVC">
                                         <rect key="frame" x="0.0" y="201" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mDD-uD-aVC" id="swZ-OH-R7g">
@@ -291,7 +285,7 @@
                                                     <rect key="frame" x="8" y="6" width="359" height="30"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -310,13 +304,7 @@
                             <outlet property="delegate" destination="KfN-Pz-QRM" id="vlc-sk-fgJ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="epu-RJ-6XO">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="5Ph-uW-7V3">
-                            <connections>
-                                <action selector="saveButtonTapped:" destination="KfN-Pz-QRM" id="kZn-Lr-bCs"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="epu-RJ-6XO"/>
                     <connections>
                         <outlet property="confirmPasswordTextField" destination="Tfn-z8-Bjl" id="MuV-Q7-A4E"/>
                         <outlet property="currentPasswordTextField" destination="jS4-D1-QGu" id="BFe-65-Xhs"/>

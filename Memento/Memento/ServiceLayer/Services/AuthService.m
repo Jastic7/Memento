@@ -32,13 +32,20 @@
 
 - (void)signUpWithEmail:(NSString *)email
                password:(NSString *)password
+        confirmPassword:(NSString *)confirmPassword
              completion:(AuthServiceCompletionBlock)completion {
+    if ([self isPassword:password matchWithConfirmPassword:confirmPassword]) {
+        [self.transort createNewUserWithEmail:email
+                                     password:password
+                                      success:^(id response) { completion(response, nil); }
+                                      failure:^(NSError *error) { completion(nil, error); }
+         ];
+    } else {
+        NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : NSLocalizedString(@"Password and confirm password should be equal",nil)};
+        NSError *confirmError = [NSError errorWithDomain:@"Memento" code:-7 userInfo:userInfo];
+        completion(nil, confirmError);
+    }
     
-    [self.transort createNewUserWithEmail:email
-                                 password:password
-                                  success:^(id response) { completion(response, nil); }
-                                  failure:^(NSError *error) { completion(nil, error); }
-     ];
 }
 
 - (void)logInWithEmail:(NSString *)email
@@ -61,5 +68,11 @@
     [self.transort addListenerForAuthStateChange:listener];
 }
 
+
+#pragma mark - Private
+
+- (BOOL)isPassword:(NSString *)password matchWithConfirmPassword:(NSString *)confirmPassword {
+    return [password isEqualToString:confirmPassword];
+}
 
 @end

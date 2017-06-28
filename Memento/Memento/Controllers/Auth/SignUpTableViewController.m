@@ -15,12 +15,13 @@
 #import "Assembly.h"
 
 
-@interface SignUpTableViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface SignUpTableViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate>
 
 @property (nonatomic, weak) IBOutlet UIImageView *profilePhotoImageView;
 @property (nonatomic, weak) IBOutlet UITextField *usernameTextField;
 @property (nonatomic, weak) IBOutlet UITextField *emailTextField;
 @property (nonatomic, weak) IBOutlet UITextField *passwordTextField;
+@property (weak, nonatomic) IBOutlet UITextField *confirmPasswordTextField;
 
 @property (nonatomic, strong) UIImagePickerController *imagePicker;
 @property (nonatomic, strong) id <AlertPresenterProtocol> alertPresenter;
@@ -66,6 +67,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self configureTextFieldDelegates];
     [self configureProfileImageView];
 }
 
@@ -95,10 +97,30 @@
 }
 
 
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if ([textField isEqual:self.usernameTextField]) {
+        [self.emailTextField becomeFirstResponder];
+    } else if ([textField isEqual:self.emailTextField]) {
+        [self.passwordTextField becomeFirstResponder];
+    } else if ([textField isEqual:self.passwordTextField]) {
+        [self.confirmPasswordTextField becomeFirstResponder];
+    } else {
+        [self createAccountButtonTapped:nil];
+    }
+    
+    return YES;
+}
+
+
 #pragma mark - Actions
 
 - (IBAction)chooseProfilePhotoTapped:(id)sender {
-    [self.alertPresenter showSourceTypesForImagePicker:self.imagePicker title:@"Choose source for your profile image" message:@"" presentingController:self];
+    [self.alertPresenter showSourceTypesForImagePicker:self.imagePicker
+                                                 title:@"Choose source for your profile image"
+                                               message:@""
+                                  presentingController:self];
 }
 
 - (IBAction)cancelDidTapped:(id)sender {
@@ -110,8 +132,9 @@
     
     NSString *email    = self.emailTextField.text;
     NSString *password = self.passwordTextField.text;
+    NSString *confirm  = self.confirmPasswordTextField.text;
     
-    [self.serviceLocator.authService signUpWithEmail:email password:password completion:^(NSString *uid, NSError *error) {
+    [self.serviceLocator.authService signUpWithEmail:email password:password confirmPassword:confirm completion:^(NSString *uid, NSError *error) {
         if (error) {
             [self.alertPresenter hidePreloaderWithCompletion:^{
                 [self.alertPresenter showError:error title:@"Registration failed" presentingController:self];
@@ -129,6 +152,13 @@
     self.profilePhotoImageView.image = [UIImage imageNamed:@"userProfileDefaultImage"];
     self.profilePhotoImageView.layer.cornerRadius = 50;
     [self.profilePhotoImageView setClipsToBounds:YES];
+}
+
+- (void)configureTextFieldDelegates {
+    self.usernameTextField.delegate         = self;
+    self.emailTextField.delegate            = self;
+    self.passwordTextField.delegate         = self;
+    self.confirmPasswordTextField.delegate  = self;
 }
 
 

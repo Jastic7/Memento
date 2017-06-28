@@ -110,7 +110,7 @@
     [self.transort postData:jsonData databasePath:setPath completion:completion];
 }
 
--(void)postSet:(Set *)set completion:(SetServiceUploadCompletionBlock)completion {
+- (void)postSet:(Set *)set completion:(SetServiceUploadCompletionBlock)completion {
     NSString *uid = [self.serviceLocator.userDefaultsService userId];
     [self postSet:set userId:uid completion:completion];
 }

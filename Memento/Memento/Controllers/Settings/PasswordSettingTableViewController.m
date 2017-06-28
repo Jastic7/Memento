@@ -11,7 +11,7 @@
 #import "AlertPresenterProtocol.h"
 #import "Assembly.h"
 
-@interface PasswordSettingTableViewController ()
+@interface PasswordSettingTableViewController () <UITextFieldDelegate>
 
 @property (nonatomic, weak) IBOutlet UITextField *currentPasswordTextField;
 @property (nonatomic, weak) IBOutlet UITextField *passwordTextField;
@@ -38,6 +38,29 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self configureDelegates];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    [self.currentPasswordTextField becomeFirstResponder];
+}
+
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if ([textField isEqual:self.currentPasswordTextField]) {
+        [self.passwordTextField becomeFirstResponder];
+    } else if ([textField isEqual:self.passwordTextField]) {
+        [self.confirmPasswordTextField becomeFirstResponder];
+    } else {
+        [self saveButtonTapped:nil];
+    }
+    
+    return YES;
 }
 
 
@@ -63,6 +86,15 @@
                                                      }
                                                  }];
                                              }];
+}
+
+
+#pragma mark - Configure
+
+- (void)configureDelegates {
+    self.currentPasswordTextField.delegate = self;
+    self.passwordTextField.delegate        = self;
+    self.confirmPasswordTextField.delegate = self;
 }
 
 @end

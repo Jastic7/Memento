@@ -14,7 +14,7 @@
 #import "Assembly.h"
 
 
-@interface LogInTableViewController ()
+@interface LogInTableViewController () <UITextFieldDelegate>
 
 @property (nonatomic, weak) IBOutlet UITextField *emailTextField;
 @property (nonatomic, weak) IBOutlet UITextField *passwordTextField;
@@ -51,6 +51,8 @@
     [super viewDidAppear:animated];
     
     [self.emailTextField becomeFirstResponder];
+    self.emailTextField.delegate = self;
+    self.passwordTextField.delegate = self;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -59,6 +61,18 @@
     [self.view endEditing:YES];
 }
 
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if ([textField isEqual:self.emailTextField]) {
+        [self.passwordTextField becomeFirstResponder];
+    } else {
+        [self logInButtonTapped:nil];
+    }
+    
+    return YES;
+}
 
 #pragma mark - Actions
 

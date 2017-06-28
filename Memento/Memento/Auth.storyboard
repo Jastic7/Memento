@@ -213,7 +213,7 @@
                             <tableViewSection headerTitle="New account" id="8If-tS-fmR">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="HQk-Rr-3VD">
-                                        <rect key="frame" x="0.0" y="206" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="205.5" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HQk-Rr-3VD" id="mlG-Sy-xGK">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -223,7 +223,7 @@
                                                     <rect key="frame" x="8" y="6" width="304" height="30"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -235,7 +235,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Yx7-Bs-Kis">
-                                        <rect key="frame" x="0.0" y="250" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="249.5" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Yx7-Bs-Kis" id="50f-LN-UMw">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -245,7 +245,7 @@
                                                     <rect key="frame" x="8" y="6" width="304" height="30"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -261,7 +261,7 @@
                             <tableViewSection headerTitle="Security" id="YxL-vc-JzZ">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="NFf-ms-RqF">
-                                        <rect key="frame" x="0.0" y="351" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="349.5" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NFf-ms-RqF" id="5ov-e6-VBj">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -271,7 +271,7 @@
                                                     <rect key="frame" x="8" y="6" width="304" height="30"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="next" secureTextEntry="YES"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -283,7 +283,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="jGn-w6-osv">
-                                        <rect key="frame" x="0.0" y="395" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="393.5" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jGn-w6-osv" id="rma-Hr-zgu">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -293,7 +293,7 @@
                                                     <rect key="frame" x="8" y="6" width="304" height="30"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -309,7 +309,7 @@
                             <tableViewSection headerTitle="" id="bhf-Js-JLH">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="51" id="DC9-bY-JWO">
-                                        <rect key="frame" x="0.0" y="475" width="320" height="51"/>
+                                        <rect key="frame" x="0.0" y="473.5" width="320" height="51"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DC9-bY-JWO" id="ug8-22-IIl">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
@@ -350,6 +350,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="confirmPasswordTextField" destination="d7b-Pl-zXR" id="0mv-06-a3f"/>
                         <outlet property="emailTextField" destination="wG1-ct-Qnr" id="K97-v4-dmQ"/>
                         <outlet property="passwordTextField" destination="hng-Z0-UdQ" id="EB0-q1-JNi"/>
                         <outlet property="profilePhotoImageView" destination="CbW-r8-HG9" id="3AU-OT-B3n"/>
@@ -401,7 +402,7 @@
                                                     <rect key="frame" x="8" y="6" width="304" height="30"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -423,7 +424,7 @@
                                                     <rect key="frame" x="8" y="6" width="304" height="30"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
