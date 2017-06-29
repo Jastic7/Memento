@@ -62,6 +62,7 @@
 		55BAE1451EE09E0900F1CBEE /* LogInTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BAE1401EE09E0900F1CBEE /* LogInTableViewController.m */; };
 		55BAE1461EE09E0900F1CBEE /* SignUpTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BAE1421EE09E0900F1CBEE /* SignUpTableViewController.m */; };
 		55BAE1471EE09E0900F1CBEE /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BAE1441EE09E0900F1CBEE /* WelcomeViewController.m */; };
+		55BE2D2F1F054DDA00866DD7 /* Memento.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 55BE2D2D1F054DDA00866DD7 /* Memento.xcdatamodeld */; };
 		55D34EDA1EBA906500A2EE38 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D34ED91EBA906500A2EE38 /* main.m */; };
 		55D34EDD1EBA906500A2EE38 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D34EDC1EBA906500A2EE38 /* AppDelegate.m */; };
 		55D34EE31EBA906500A2EE38 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55D34EE11EBA906500A2EE38 /* Main.storyboard */; };
@@ -192,6 +193,7 @@
 		55BAE1421EE09E0900F1CBEE /* SignUpTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpTableViewController.m; sourceTree = "<group>"; };
 		55BAE1431EE09E0900F1CBEE /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
 		55BAE1441EE09E0900F1CBEE /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
+		55BE2D2E1F054DDA00866DD7 /* Memento.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Memento.xcdatamodel; sourceTree = "<group>"; };
 		55D34ED51EBA906500A2EE38 /* Memento.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Memento.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55D34ED91EBA906500A2EE38 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		55D34EDB1EBA906500A2EE38 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -500,6 +502,7 @@
 		55D34ECC1EBA906500A2EE38 = {
 			isa = PBXGroup;
 			children = (
+				55BE2D2D1F054DDA00866DD7 /* Memento.xcdatamodeld */,
 				55D34ED71EBA906500A2EE38 /* Memento */,
 				55D34ED61EBA906500A2EE38 /* Products */,
 				DB01291980CB7DB12BB46845 /* Pods */,
@@ -749,6 +752,7 @@
 				55B3E1721F01F03E003961E3 /* FeatureView.m in Sources */,
 				55BAE13A1EE08EE600F1CBEE /* RemoteServiceFactory.m in Sources */,
 				5508B94C1ED9176B00526200 /* SetsViewController.m in Sources */,
+				55BE2D2F1F054DDA00866DD7 /* Memento.xcdatamodeld in Sources */,
 				5513ED0B1EE9CD3F00E2611B /* EmailSettingTableViewController.m in Sources */,
 				55BAE1461EE09E0900F1CBEE /* SignUpTableViewController.m in Sources */,
 				55B3E1771F01F284003961E3 /* Feature.m in Sources */,
@@ -948,6 +952,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		55BE2D2D1F054DDA00866DD7 /* Memento.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				55BE2D2E1F054DDA00866DD7 /* Memento.xcdatamodel */,
+			);
+			currentVersion = 55BE2D2E1F054DDA00866DD7 /* Memento.xcdatamodel */;
+			path = Memento.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 55D34ECD1EBA906500A2EE38 /* Project object */;
 }
