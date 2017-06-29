@@ -65,8 +65,8 @@ static TransportLayer *sharedInstance = nil;
 
 #pragma mark - Authentication
 
-- (void)logOut {
-    [self.auth signOut:nil];
+- (void)logOut:(NSError *)error {
+    [self.auth signOut:&error];
 }
 
 - (void)createNewUserWithEmail:(NSString *)email

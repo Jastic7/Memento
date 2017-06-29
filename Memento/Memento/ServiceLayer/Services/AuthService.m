@@ -60,8 +60,12 @@
 }
 
 - (void)logOut {
-    [self.serviceLocator.userDefaultsService removeUser];
-    [self.transort logOut];
+    NSError *error;
+    [self.transort logOut:error];
+    
+    if (!error) {
+        [self.serviceLocator.userDefaultsService removeUser];
+    }
 }
 
 - (void)addAuthStateChangeListener:(void (^)(NSString *))listener {

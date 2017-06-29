@@ -22,7 +22,7 @@ typedef void (^TransportCompletionBlock)(NSError *error);
 /*!
  * @brief De-authenticate current user.
  */
-- (void)logOut;
+- (void)logOut:(NSError *)error;
 
 /*!
  * @brief Create new account in database and authenticate user.

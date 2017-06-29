@@ -52,7 +52,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Memento" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F2S-UG-Bsy">
-                                        <rect key="frame" x="55" y="100" width="211" height="56"/>
+                                        <rect key="frame" x="55" y="80" width="211" height="56"/>
                                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="45"/>
                                         <color key="textColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="0.79577390940000003" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -112,7 +112,7 @@
                                     <constraint firstItem="uTV-Uw-axb" firstAttribute="top" secondItem="ubi-j4-lbS" secondAttribute="bottom" constant="8" id="9dH-hi-QtO"/>
                                     <constraint firstAttribute="trailing" secondItem="uTV-Uw-axb" secondAttribute="trailing" constant="8" id="I9W-RY-qLt"/>
                                     <constraint firstItem="7RC-fB-h9x" firstAttribute="top" secondItem="YXn-xB-u83" secondAttribute="bottom" constant="8" symbolic="YES" id="NDI-81-21R"/>
-                                    <constraint firstItem="F2S-UG-Bsy" firstAttribute="top" secondItem="bj1-Ke-ri5" secondAttribute="top" constant="100" id="NUh-Gv-fv7"/>
+                                    <constraint firstItem="F2S-UG-Bsy" firstAttribute="top" secondItem="bj1-Ke-ri5" secondAttribute="top" constant="80" id="NUh-Gv-fv7"/>
                                     <constraint firstItem="ubi-j4-lbS" firstAttribute="top" secondItem="7RC-fB-h9x" secondAttribute="bottom" constant="8" id="OCr-uD-4KT"/>
                                     <constraint firstItem="YXn-xB-u83" firstAttribute="centerX" secondItem="7RC-fB-h9x" secondAttribute="centerX" id="XOq-4w-LCD"/>
                                     <constraint firstItem="7RC-fB-h9x" firstAttribute="centerX" secondItem="bj1-Ke-ri5" secondAttribute="centerX" id="Xf6-yA-0DR"/>
