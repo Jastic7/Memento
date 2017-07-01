@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Settings Table View Controller-->
+        <!--Settings-->
         <scene sceneID="mhW-8l-Rst">
             <objects>
                 <tableViewController id="KYm-gG-1S9" customClass="SettingsTableViewController" sceneMemberID="viewController">
@@ -154,7 +154,7 @@
                             <outlet property="delegate" destination="KYm-gG-1S9" id="30h-bD-N6D"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="CjQ-dB-JvX"/>
+                    <navigationItem key="navigationItem" title="Settings" id="CjQ-dB-JvX"/>
                     <connections>
                         <outlet property="activityIndicator" destination="8zN-Kd-sD7" id="FBy-9Q-RBD"/>
                         <outlet property="emailLabel" destination="FB1-vp-3hb" id="aQp-Rk-F6I"/>

@@ -7,8 +7,9 @@
 //
 
 #import "AppDelegate.h"
+#import "Assembly.h"
 #import "Firebase.h"
-@import AVFoundation;
+#import "AFNetworking/AFNetworkReachabilityManager.h"
 
 @interface AppDelegate ()
 
@@ -19,6 +20,20 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [FIRApp configure];
+    
+//    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
+//    
+//    [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+//        if (status == AFNetworkReachabilityStatusNotReachable) {
+//            [Assembly assemblyLocalServiceLayer];
+//        } else {
+//            [Assembly assemblyRemoteServiceLayer];
+//        }
+//    }];
+    
+    UIFont *font = [UIFont systemFontOfSize:18 weight:UIFontWeightLight];
+    [[UINavigationBar appearance] setTitleTextAttributes: @{NSForegroundColorAttributeName : [UIColor whiteColor],
+                                                            NSFontAttributeName: font}];
     
     return YES;
 }

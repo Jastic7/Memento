@@ -38,7 +38,7 @@
 
 - (instancetype)initWithTerm:(NSString *)term definition:(NSString *)definition {
     ServiceLocator *serviceLocator = [ServiceLocator shared];
-    NSString *identifier = [serviceLocator.setService configureUnuiqueId];
+    NSString *identifier = [serviceLocator.authService configureUnuiqueId];
     
     return [self initWithTerm:term definition:definition learnProgress:Unknown identifier:identifier];
 }
@@ -48,7 +48,7 @@
     
     if (self) {
         _term = term;
-        _definition = definition;
+        _definition =  definition;
         _learnProgress = progress;
         _identifier = identifier;
     }
@@ -103,5 +103,6 @@
     
     return copyItem;
 }
+
 
 @end

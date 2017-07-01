@@ -68,10 +68,6 @@ typedef void (^SetServiceUploadCompletionBlock)(NSError *error);
 - (void)postSet:(Set *)set
      completion:(SetServiceUploadCompletionBlock)completion;
 
-/*!
- * @brief Configure unique identifier.
- * @return unique identifier.
- */
-- (NSString *)configureUnuiqueId;
+- (void)deleteSetWithId:(NSString *)setId completion:(SetServiceUploadCompletionBlock)completion;
 
 @end

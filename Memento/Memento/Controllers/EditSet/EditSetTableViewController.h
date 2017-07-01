@@ -14,6 +14,7 @@
 
 - (void)editSetTableViewControllerDidCancel;
 - (void)editSetTableViewControllerDidEditSet:(Set *)set;
+- (void)editSetTableViewControllerDidDeleteSet:(Set *)set;
 
 @end
 

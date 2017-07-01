@@ -8,14 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-@class TransportLayer;
+@protocol TransportLayerProtocol;
 
 
 @interface BaseService : NSObject
 
-@property (nonatomic, strong, readonly) TransportLayer *transort;
+@property (nonatomic, strong, readonly) id <TransportLayerProtocol> transort;
 
-- (instancetype)initWithTrasport:(TransportLayer *)transport;
-+ (instancetype)createWithTrasport:(TransportLayer *)transport;
+- (instancetype)initWithTrasport:(id <TransportLayerProtocol>)transport;
++ (instancetype)createWithTrasport:(id <TransportLayerProtocol>)transport;
 
 @end

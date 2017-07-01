@@ -19,7 +19,7 @@
 #import "AlertPresenterProtocol.h"
 #import "Assembly.h"
 
-
+#import <AFNetworking/AFNetworkReachabilityManager.h>
 @import FirebaseAuth;
 
 static NSString * const kSetCellID          = @"SetTableViewCell";
@@ -96,10 +96,27 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [Assembly assemblyServiceLayer];
+//    [Assembly assemblyServiceLayer];
+    
+    [self.refreshControl beginRefreshing];
+
+    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
+    
+    [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        if (status == AFNetworkReachabilityStatusNotReachable || status == AFNetworkReachabilityStatusUnknown) {
+            [Assembly assemblyLocalServiceLayer];
+        } else {
+            [Assembly assemblyRemoteServiceLayer];
+        }
+        
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            [self registerAuthStateNotification];
+        });
+        
+    }];
     
     [self configureTableView];
-    [self registerAuthStateNotification];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -154,7 +171,7 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
 }
 
 
-#pragma mark - CreateSetTableViewControllerDelegate
+#pragma mark - EditSetTableViewControllerDelegate
 
 - (void)editSetTableViewControllerDidCancel {
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
@@ -170,6 +187,10 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
     [self uploadSets];
 }
 
+- (void)editSetTableViewControllerDidDeleteSet:(Set *)set {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 #pragma mark - Navigation
 
@@ -178,20 +199,30 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
     
     if ([identifier isEqualToString:kCreateNewSetSegue]) {
         UINavigationController *navController = segue.destinationViewController;
-        EditSetTableViewController *vc = (EditSetTableViewController *)navController.topViewController;
-        vc.delegate = self;
+        EditSetTableViewController *dvc = (EditSetTableViewController *)navController.topViewController;
+        dvc.delegate = self;
         
     } else if ([identifier isEqualToString:kDetailSetSegue]) {
-        DetailSetTableViewController *vc = segue.destinationViewController;
+        DetailSetTableViewController *dvc = segue.destinationViewController;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-        vc.set = self.sets[indexPath.row];
+        dvc.set = self.sets[indexPath.row];
+        dvc.deleteSetCompletion = ^(Set *deletedSet) {
+            [self.sets removeObjectAtIndex:self.indexPathOfSelectedSet.row];
+            
+            [self.tableView beginUpdates];
+                [self.tableView deleteRowsAtIndexPaths:@[self.indexPathOfSelectedSet] withRowAnimation:UITableViewRowAnimationNone];
+                self.indexPathOfSelectedSet = nil;
+            [self.tableView endUpdates];
+        
+            [self.navigationController popViewControllerAnimated:YES];
+        };
         
     } else if ([identifier isEqualToString:kShowWelcomeSegue]) {
-        WelcomeViewController *vc = segue.destinationViewController;
-        vc.authenticationCompletion = ^() {
+        WelcomeViewController *dvc = segue.destinationViewController;
+        dvc.authenticationCompletion = ^() {
             [self dismissViewControllerAnimated:YES completion:^{
                 [self.refreshControl beginRefreshing];
-                [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentOffset.y-self.refreshControl.frame.size.height) animated:YES];
+                [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentOffset.y - self.refreshControl.frame.size.height) animated:YES];
                 [self downloadSets:self.refreshControl];
             }];
         };

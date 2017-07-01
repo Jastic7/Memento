@@ -25,8 +25,7 @@
  * @param matchOrganizer MatchOrganizer.
  * @param randomItems Array of pairs terms and definitions for round.
  */
-- (void)matchOrganizer:(id <MatchOrganizerProtocol>)matchOrganizer
-didObtainedRandomItems:(NSMutableArray <NSString *> *)randomItems;
+- (void)matchOrganizer:(id <MatchOrganizerProtocol>)matchOrganizer didObtainedRandomItems:(NSMutableArray <NSString *> *)randomItems;
 
 /*!
  * @brief It is being called, when organizer has checked selected items.

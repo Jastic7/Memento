@@ -1,8 +1,8 @@
 //
-//  TransportLayer.h
+//  TransportLayerProtocol.h
 //  Memento
 //
-//  Created by Andrey Morozov on 01.06.17.
+//  Created by Andrey Morozov on 30.06.17.
 //  Copyright © 2017 Andrey Morozov. All rights reserved.
 //
 
@@ -10,14 +10,10 @@
 
 typedef void (^SuccessCompletionBlock)(id response);
 typedef void (^FailureCompletionBlock)(NSError *error);
-
 typedef void (^TransportCompletionBlock)(NSError *error);
 
 
-@interface TransportLayer : NSObject
-
-
-+ (instancetype)manager;
+@protocol TransportLayerProtocol <NSObject>
 
 /*!
  * @brief De-authenticate current user.
@@ -28,7 +24,7 @@ typedef void (^TransportCompletionBlock)(NSError *error);
  * @brief Create new account in database and authenticate user.
  * @param email Email of the registrating user.
  * @param password Password of the registrating user.
- * @param success Callback which is being called, when user is successfully registered. 
+ * @param success Callback which is being called, when user is successfully registered.
  * Contains user identifier.
  * @param failure Callback whick is being called, when error is occured.
  */
@@ -82,24 +78,24 @@ typedef void (^TransportCompletionBlock)(NSError *error);
 
 /*!
  * @brief Obtain data from database.
- * @param path Path to the obtaining data.
+ * @param parameters Path to the obtaining data.
  * @param success Callback which is being called, when data is successfully obtained.
  * Contains obtained data.
  * @param failure Callback whick is being called, when error is occured.
  */
-- (void)obtainDataWithPath:(NSString *)path
-                   success:(SuccessCompletionBlock)success
-                   failure:(FailureCompletionBlock)failure;
+- (void)obtainDataWithParameters:(NSDictionary <NSString *, NSString *> *)parameters
+                         success:(SuccessCompletionBlock)success
+                         failure:(FailureCompletionBlock)failure;
 
 /*!
  * @brief Post data to the database.
  * @param jsonData Posting data.
- * @param path Path to the posting data.
+ * @param parameters Path to the posting data.
  * @param completion Callback which is being called, when data is successfully posted
  * or error is occured.
  */
 - (void)postData:(id)jsonData
-    databasePath:(NSString *)path
+      parameters:(NSDictionary <NSString *, NSString *> *)parameters
       completion:(TransportCompletionBlock)completion;
 
 /*!

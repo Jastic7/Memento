@@ -14,5 +14,6 @@
 @property (nonatomic, copy) NSString *definitionLanguageCode;
 
 @property (nonatomic, copy) void (^completionWithLanguages)(NSString *termLang, NSString *definitionLang);
+@property (nonatomic, copy) void (^deleteSetCompletion)();
 
 @end

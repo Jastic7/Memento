@@ -6,12 +6,12 @@
 //  Copyright © 2017 Andrey Morozov. All rights reserved.
 //
 
-#import "TransportLayer.h"
 #import "SetService.h"
 #import "SetMapper.h"
 #import "Set.h"
 #import "ItemOfSetMapper.h"
 #import "ServiceLocator.h"
+#import "TransportLayerProtocol.h"
 
 @interface SetService ()
 
@@ -26,12 +26,15 @@
 
 #pragma mark - Getters
 
-- (NSString *)rootPath {
-    if (!_rootPath) {
-        _rootPath = @"sets";
-    }
+- (NSDictionary <NSString *, NSString *> *)parametersWithUserId:(NSString *)userId dataId:(NSString *)dataId {
+    NSString *dataType = @"sets";
+
+    NSMutableDictionary <NSString *, NSString *> *parameters = [NSMutableDictionary dictionary];
+    [parameters setValue:dataType forKey:@"dataType"];
+    [parameters setValue:dataId forKey:@"dataId"];
+    [parameters setValue:userId forKey:@"ownerId"];
     
-    return _rootPath;
+    return parameters;
 }
 
 - (SetMapper *)setMapper {
@@ -67,18 +70,17 @@
 #pragma mark - SetServiceProtocol Implementation
 
 - (void)obtainSetListForUserId:(NSString *)uid completion:(SetServiceDownloadCompletionBlock)completion {
-    NSString *setPath = [self setPathWithUserId:uid];
+    NSDictionary *parameters = [self parametersWithUserId:uid dataId:nil];
+    [self.transort obtainDataWithParameters:parameters
+                                    success:^(id response) {
+                                        NSMutableArray <Set *> *listSet;
+                                        if (response) {
+                                            listSet = (NSMutableArray <Set *> *)[self.setMapper modelsFromJsonOfListObject:response];
+                                        }
     
-    [self.transort obtainDataWithPath:setPath
-                              success:^(id response) {
-                                  NSMutableArray <Set *> *listSet;
-                                  if (response) {
-                                      listSet = (NSMutableArray <Set *> *)[self.setMapper modelsFromJsonOfListObject:response];
-                                  }
-    
-                                  completion(listSet, nil);
-                              }
-                              failure:^(NSError *error) { completion(nil, error);}
+                                        completion(listSet, nil);
+                                    }
+                                    failure:^(NSError *error) { completion(nil, error);}
      ];
 }
 
@@ -105,9 +107,9 @@
 
 - (void)postSet:(Set *)set userId:(NSString *)uid completion:(SetServiceUploadCompletionBlock)completion {
     NSDictionary *jsonData = [self.setMapper jsonFromModel:set];
-    NSString *setPath = [self setPathWithUserId:uid setId:set.identifier];
     
-    [self.transort postData:jsonData databasePath:setPath completion:completion];
+    NSDictionary *parameteres = [self parametersWithUserId:uid dataId:set.identifier];
+    [self.transort postData:jsonData parameters:parameteres completion:completion];
 }
 
 - (void)postSet:(Set *)set completion:(SetServiceUploadCompletionBlock)completion {
@@ -115,8 +117,12 @@
     [self postSet:set userId:uid completion:completion];
 }
 
-- (NSString *)configureUnuiqueId {
-    return [self.transort uniqueId];
+- (void)deleteSetWithId:(NSString *)setId completion:(SetServiceUploadCompletionBlock)completion {
+    NSString *uid = [self.serviceLocator.userDefaultsService userId];
+    NSDictionary *parameters = [self parametersWithUserId:uid dataId:setId];
+    [self.transort postData:nil parameters:parameters completion:completion];
 }
+
+
 
 @end

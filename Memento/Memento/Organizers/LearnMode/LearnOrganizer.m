@@ -116,6 +116,8 @@
     if (self) {
         _set = set;
         _learningSet = [Set setWithSet:set];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"learnProgress != 2"];
+        [_learningSet filterWithPredicate:predicate];
     }
     
     return self;
@@ -162,11 +164,18 @@
     self.learningItemIndex++;
 }
 
+- (NSString *)getRightAnswer {
+    return self.learningItem.definition;
+}
+
 
 #pragma mark - Checking
 
 - (void)checkDefinition:(NSString *)definition {
-    BOOL isMatched = [self.learningItem.definition isEqualToString:definition];
+    NSString *rightDefinition = [self.learningItem.definition lowercaseString];
+    NSString *enteredDefinition = [definition lowercaseString];
+    
+    BOOL isMatched = [rightDefinition  isEqualToString:enteredDefinition];
     
     LearnState previousProgress = self.learningItem.learnProgress;
     [self updateLearningProgressOfItem:self.learningItem isCorrectDefinition:isMatched];
@@ -189,9 +198,6 @@
     } else {
         [item failLearnProgress];
     }
-}
-- (void)dealloc {
-    NSLog(@"ORGANIZER LEFT");
 }
 
 @end

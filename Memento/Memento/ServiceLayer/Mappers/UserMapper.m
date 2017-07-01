@@ -13,7 +13,7 @@
 @implementation UserMapper
 
 - (id)modelFromJsonOfObject:(NSDictionary *)json {
-    NSString *uid               = json[@"uid"];
+    NSString *uid               = json[@"identifier"];
     NSString *username          = json[@"username"];
     NSString *email             = json[@"email"];
     NSString *profilePhotoUrl   = json[@"profilePhotoUrl"];
@@ -28,7 +28,7 @@
 - (NSDictionary *)jsonFromModel:(id)model {
     User *user = model;
     
-    NSDictionary *json = @{ @"uid"              : user.uid,
+    NSDictionary *json = @{ @"identifier"       : user.uid,
                             @"username"         : user.username,
                             @"email"            : user.email,
                             @"profilePhotoUrl"  : user.profilePhotoUrl };

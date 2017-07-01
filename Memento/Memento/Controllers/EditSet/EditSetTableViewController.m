@@ -19,7 +19,7 @@
 #import "Assembly.h"
 
 #import "UITableView+GettingIndexPath.h"
-
+#import <BGTableViewRowActionWithImage/BGTableViewRowActionWithImage.h>
 
 typedef NS_ENUM(NSInteger, EditingMode) {
     CreateNewSet,
@@ -41,6 +41,7 @@ static NSString * const kSelectedLangSegue      = @"selectedLanguagesSegue";
 @property (nonatomic, strong) NSMutableArray <ItemOfSet *> *items;
 @property (nonatomic, strong) NSPredicate *emptyItemPredicate;
 @property (nonatomic, strong) id <AlertPresenterProtocol> alertPresenter;
+@property (nonatomic, strong) NSMutableCharacterSet *removingSymbols;
 
 @property (nonatomic, assign) EditingMode editingMode;
 @property (nonatomic, assign) BOOL isSetCorrect;
@@ -75,6 +76,14 @@ static NSString * const kSelectedLangSegue      = @"selectedLanguagesSegue";
     }
     
     return _alertPresenter;
+}
+
+- (NSCharacterSet *)removingSymbols {
+    if (!_removingSymbols) {
+        _removingSymbols = [NSMutableCharacterSet symbolCharacterSet];
+        [_removingSymbols addCharactersInString:@" \n"];
+    }
+    return _removingSymbols;
 }
 
 
@@ -126,6 +135,38 @@ static NSString * const kSelectedLangSegue      = @"selectedLanguagesSegue";
     }
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return ![self isLastRowAtIndexPath:indexPath];
+}
+
+
+- (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UITableViewCell *currentCell = [tableView cellForRowAtIndexPath:indexPath];
+    NSUInteger height = currentCell.frame.size.height;
+    NSUInteger topOffset = 45;
+    UIImage *image = [UIImage imageNamed:@"deleteRow"];
+    UIColor *backgroundColor = tableView.backgroundColor;
+    
+    
+    UITableViewRowAction *deleteAction = [BGTableViewRowActionWithImage rowActionWithStyle:UITableViewRowActionStyleDefault
+                                                                                     title:@"Delete"
+                                                                                titleColor:[UIColor blackColor]
+                                                                           backgroundColor:backgroundColor
+                                                                                     image:image
+                                                                             forCellHeight:(height + topOffset)
+                                                                                   handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
+        [self.view endEditing:YES];
+        [self.items removeObjectAtIndex:indexPath.row];
+        
+        [tableView beginUpdates];
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [tableView endUpdates];
+    }];
+    
+    return @[deleteAction];
+}
+
 
 #pragma mark - EditingItemOfSetTableViewCellDelegate
 
@@ -137,10 +178,11 @@ static NSString * const kSelectedLangSegue      = @"selectedLanguagesSegue";
     NSIndexPath *indexPath = [self.tableView indexPathForSubview:textView];
     ItemOfSet *item = self.items[indexPath.row];
     
+    NSString *editedText = [self stringByTrimmingSpaces:textView.text];
     if (textView.tag == 1000) {
-        item.term = textView.text;
+        item.term = editedText;
     } else if (textView.tag == 2000) {
-        item.definition = textView.text;
+        item.definition = editedText;
     }
 }
 
@@ -186,6 +228,10 @@ static NSString * const kSelectedLangSegue      = @"selectedLanguagesSegue";
             self.termLanguage = termLang;
             self.definitionLanguage = definitionLang;
         };
+        dvc.deleteSetCompletion = ^() {
+            [self.navigationController popViewControllerAnimated:YES];
+            [self.delegate editSetTableViewControllerDidDeleteSet:self.editableSet];
+        };
     }
 }
 
@@ -218,6 +264,10 @@ static NSString * const kSelectedLangSegue      = @"selectedLanguagesSegue";
                         presentingController:self];
         self.isSetCorrect = NO;
     }
+}
+
+- (NSString *)stringByTrimmingSpaces:(NSString *)string {
+    return [string stringByTrimmingCharactersInSet:self.removingSymbols];
 }
 
 

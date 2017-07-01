@@ -11,6 +11,13 @@
 
 static NSString * const kMatchModeViewControllerID = @"MatchModeViewController";
 
+@interface MatchPrepareViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
+@property (weak, nonatomic) IBOutlet UIButton *startButton;
+
+@end
+
 
 @implementation MatchPrepareViewController
 
@@ -29,6 +36,7 @@ static NSString * const kMatchModeViewControllerID = @"MatchModeViewController";
 }
 
 - (IBAction)startButtonTapped:(UIButton *)sender {
+    [self.organizer reset];
     if (self.childViewControllers.count == 0) {
         [self configureMatchModeViewController];
         MatchItemsCollectionViewController *childViewController = self.childViewControllers[0];
@@ -46,9 +54,12 @@ static NSString * const kMatchModeViewControllerID = @"MatchModeViewController";
     
     MatchItemsCollectionViewController *childViewController = [storyboard instantiateViewControllerWithIdentifier:kMatchModeViewControllerID];
     
-    childViewController.cancelBlock = self.cancelBlock;
-    childViewController.finishMatchBlock = self.finishMatchBlock;
-    childViewController.organizer   = self.organizer;
+    childViewController.organizer        = self.organizer;
+    childViewController.cancelBlock      = self.cancelBlock;
+    childViewController.finishMatchBlock = ^void(NSString *timeResult) {
+        self.titleLabel.text = timeResult;
+        self.descriptionLabel.text = @"You found all pairs by that time.\n Can better? Try again!";
+    };
     
     self.organizer.delegate = childViewController;
     
@@ -57,10 +68,6 @@ static NSString * const kMatchModeViewControllerID = @"MatchModeViewController";
     [childViewController didMoveToParentViewController:self];
     
     childViewController.view.alpha = 0;
-}
-
-- (void)dealloc {
-    NSLog(@"PREPARE MATCH VC LEFT");
 }
 
 @end

@@ -73,6 +73,7 @@ static NSString * const kShowPasswordSettingSegue   = @"showPasswordSettingSegue
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+//    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
     [self configureProfileImageView];
     [self registerAuthNotification];
 }

@@ -14,6 +14,6 @@
 
 @property (nonatomic, strong) id <MatchOrganizerProtocol> organizer;
 @property (nonatomic, copy) void (^cancelBlock)();
-@property (nonatomic, copy) void (^finishMatchBlock)();
+@property (nonatomic, copy) void (^finishMatchBlock)(NSString *timeResult);
 
 @end

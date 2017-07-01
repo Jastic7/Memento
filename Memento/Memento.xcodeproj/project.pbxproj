@@ -39,6 +39,7 @@
 		5521027A1EF7530B00B8FF3A /* SelectLanguageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 552102791EF7530B00B8FF3A /* SelectLanguageTableViewController.m */; };
 		5521027D1EF7535E00B8FF3A /* EditSet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5521027B1EF7535E00B8FF3A /* EditSet.storyboard */; };
 		552102811EF754E600B8FF3A /* SelectLanguageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 552102801EF754E600B8FF3A /* SelectLanguageTableViewCell.m */; };
+		55215FDD1F079B3F003F55C5 /* MatchHeaderCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55215FDC1F079B3F003F55C5 /* MatchHeaderCollectionReusableView.m */; };
 		5525EE871EE3725100206898 /* SetService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5525EE861EE3725100206898 /* SetService.m */; };
 		5525EE8A1EE376AB00206898 /* BaseService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5525EE891EE376AB00206898 /* BaseService.m */; };
 		5525EE8E1EE38C1C00206898 /* SetMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5525EE8D1EE38C1C00206898 /* SetMapper.m */; };
@@ -55,7 +56,7 @@
 		55B3E1741F01F049003961E3 /* FeatureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55B3E1731F01F049003961E3 /* FeatureView.xib */; };
 		55B3E1771F01F284003961E3 /* Feature.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B3E1761F01F284003961E3 /* Feature.m */; };
 		55BAE12C1EDF8D6D00F1CBEE /* AuthService.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BAE12B1EDF8D6D00F1CBEE /* AuthService.m */; };
-		55BAE12F1EDF928100F1CBEE /* TransportLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BAE12E1EDF928100F1CBEE /* TransportLayer.m */; };
+		55BAE12F1EDF928100F1CBEE /* RemoteTransportLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BAE12E1EDF928100F1CBEE /* RemoteTransportLayer.m */; };
 		55BAE1331EE088D100F1CBEE /* ServiceLocator.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BAE1321EE088D100F1CBEE /* ServiceLocator.m */; };
 		55BAE13A1EE08EE600F1CBEE /* RemoteServiceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BAE1391EE08EE600F1CBEE /* RemoteServiceFactory.m */; };
 		55BAE13D1EE09C7000F1CBEE /* Assembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BAE13C1EE09C7000F1CBEE /* Assembly.m */; };
@@ -63,6 +64,8 @@
 		55BAE1461EE09E0900F1CBEE /* SignUpTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BAE1421EE09E0900F1CBEE /* SignUpTableViewController.m */; };
 		55BAE1471EE09E0900F1CBEE /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BAE1441EE09E0900F1CBEE /* WelcomeViewController.m */; };
 		55BE2D2F1F054DDA00866DD7 /* Memento.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 55BE2D2D1F054DDA00866DD7 /* Memento.xcdatamodeld */; };
+		55BE2D331F05609500866DD7 /* LocalTransportLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BE2D321F05609500866DD7 /* LocalTransportLayer.m */; };
+		55BE2D391F05C4DD00866DD7 /* LocalServiceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BE2D381F05C4DD00866DD7 /* LocalServiceFactory.m */; };
 		55D34EDA1EBA906500A2EE38 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D34ED91EBA906500A2EE38 /* main.m */; };
 		55D34EDD1EBA906500A2EE38 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D34EDC1EBA906500A2EE38 /* AppDelegate.m */; };
 		55D34EE31EBA906500A2EE38 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55D34EE11EBA906500A2EE38 /* Main.storyboard */; };
@@ -141,8 +144,10 @@
 		552102781EF7530B00B8FF3A /* SelectLanguageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectLanguageTableViewController.h; sourceTree = "<group>"; };
 		552102791EF7530B00B8FF3A /* SelectLanguageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectLanguageTableViewController.m; sourceTree = "<group>"; };
 		5521027C1EF7535E00B8FF3A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/EditSet.storyboard; sourceTree = "<group>"; };
-		5521027F1EF754E600B8FF3A /* SelectLanguageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectLanguageTableViewCell.h; sourceTree = "<group>"; };
-		552102801EF754E600B8FF3A /* SelectLanguageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectLanguageTableViewCell.m; sourceTree = "<group>"; };
+		5521027F1EF754E600B8FF3A /* SelectLanguageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelectLanguageTableViewCell.h; path = EditSet/SelectLanguageTableViewCell.h; sourceTree = "<group>"; };
+		552102801EF754E600B8FF3A /* SelectLanguageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SelectLanguageTableViewCell.m; path = EditSet/SelectLanguageTableViewCell.m; sourceTree = "<group>"; };
+		55215FDB1F079B3F003F55C5 /* MatchHeaderCollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchHeaderCollectionReusableView.h; sourceTree = "<group>"; };
+		55215FDC1F079B3F003F55C5 /* MatchHeaderCollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchHeaderCollectionReusableView.m; sourceTree = "<group>"; };
 		5525EE841EE3723E00206898 /* SetServiceProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetServiceProtocol.h; sourceTree = "<group>"; };
 		5525EE851EE3725100206898 /* SetService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetService.h; sourceTree = "<group>"; };
 		5525EE861EE3725100206898 /* SetService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetService.m; sourceTree = "<group>"; };
@@ -178,8 +183,8 @@
 		55BAE1281EDF8B4B00F1CBEE /* AuthServiceProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthServiceProtocol.h; sourceTree = "<group>"; };
 		55BAE12A1EDF8D6D00F1CBEE /* AuthService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthService.h; sourceTree = "<group>"; };
 		55BAE12B1EDF8D6D00F1CBEE /* AuthService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthService.m; sourceTree = "<group>"; };
-		55BAE12D1EDF928100F1CBEE /* TransportLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransportLayer.h; sourceTree = "<group>"; };
-		55BAE12E1EDF928100F1CBEE /* TransportLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransportLayer.m; sourceTree = "<group>"; };
+		55BAE12D1EDF928100F1CBEE /* RemoteTransportLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteTransportLayer.h; sourceTree = "<group>"; };
+		55BAE12E1EDF928100F1CBEE /* RemoteTransportLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteTransportLayer.m; sourceTree = "<group>"; };
 		55BAE1311EE088D100F1CBEE /* ServiceLocator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceLocator.h; sourceTree = "<group>"; };
 		55BAE1321EE088D100F1CBEE /* ServiceLocator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceLocator.m; sourceTree = "<group>"; };
 		55BAE1371EE0894600F1CBEE /* ServiceFactoryProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceFactoryProtocol.h; sourceTree = "<group>"; };
@@ -194,6 +199,11 @@
 		55BAE1431EE09E0900F1CBEE /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
 		55BAE1441EE09E0900F1CBEE /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
 		55BE2D2E1F054DDA00866DD7 /* Memento.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Memento.xcdatamodel; sourceTree = "<group>"; };
+		55BE2D311F05609500866DD7 /* LocalTransportLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalTransportLayer.h; sourceTree = "<group>"; };
+		55BE2D321F05609500866DD7 /* LocalTransportLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalTransportLayer.m; sourceTree = "<group>"; };
+		55BE2D361F05A7DA00866DD7 /* TransportLayerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransportLayerProtocol.h; sourceTree = "<group>"; };
+		55BE2D371F05C4DD00866DD7 /* LocalServiceFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalServiceFactory.h; sourceTree = "<group>"; };
+		55BE2D381F05C4DD00866DD7 /* LocalServiceFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalServiceFactory.m; sourceTree = "<group>"; };
 		55D34ED51EBA906500A2EE38 /* Memento.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Memento.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55D34ED91EBA906500A2EE38 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		55D34EDB1EBA906500A2EE38 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -308,14 +318,14 @@
 		5508B94D1ED9184B00526200 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				5508B94E1ED9184B00526200 /* Circle.h */,
-				5508B94F1ED9184B00526200 /* Circle.m */,
 				5508B9501ED9184B00526200 /* ItemLabel.h */,
 				5508B9511ED9184B00526200 /* ItemLabel.m */,
-				5508B9521ED9184B00526200 /* ItemOfMatchCollectionViewCell.h */,
-				5508B9531ED9184B00526200 /* ItemOfMatchCollectionViewCell.m */,
+				55E181BF1EE4B45400C1313D /* ItemOfSetTableViewCell.h */,
+				55E181C01EE4B45400C1313D /* ItemOfSetTableViewCell.m */,
+				55E181C11EE4B45400C1313D /* ItemOfSetTableViewCell.xib */,
 				5521027E1EF7547E00B8FF3A /* EditSet */,
 				5508B9571ED9184B00526200 /* LearnMode */,
+				55863A461F080C0500727762 /* MatchMode */,
 				55B3E1701F01F03E003961E3 /* FeatureView.h */,
 				55B3E1711F01F03E003961E3 /* FeatureView.m */,
 				55B3E1731F01F049003961E3 /* FeatureView.xib */,
@@ -326,6 +336,8 @@
 		5508B9571ED9184B00526200 /* LearnMode */ = {
 			isa = PBXGroup;
 			children = (
+				5508B94E1ED9184B00526200 /* Circle.h */,
+				5508B94F1ED9184B00526200 /* Circle.m */,
 				5508B9581ED9184B00526200 /* LearnProgressStackView.h */,
 				5508B9591ED9184B00526200 /* LearnProgressStackView.m */,
 				5508B95A1ED9184B00526200 /* LearnRoundInfoHeader.h */,
@@ -383,9 +395,6 @@
 		5521027E1EF7547E00B8FF3A /* EditSet */ = {
 			isa = PBXGroup;
 			children = (
-				55E181BF1EE4B45400C1313D /* ItemOfSetTableViewCell.h */,
-				55E181C01EE4B45400C1313D /* ItemOfSetTableViewCell.m */,
-				55E181C11EE4B45400C1313D /* ItemOfSetTableViewCell.xib */,
 				551E912B1EF5E1B10091DB14 /* EditingItemOfSetTableViewCell.h */,
 				551E912C1EF5E1B10091DB14 /* EditingItemOfSetTableViewCell.m */,
 				551E912D1EF5E1B10091DB14 /* EditingItemOfSetTableViewCell.xib */,
@@ -413,6 +422,17 @@
 				55E181B81EE4723200C1313D /* UserMapper.m */,
 			);
 			path = Mappers;
+			sourceTree = "<group>";
+		};
+		55863A461F080C0500727762 /* MatchMode */ = {
+			isa = PBXGroup;
+			children = (
+				5508B9521ED9184B00526200 /* ItemOfMatchCollectionViewCell.h */,
+				5508B9531ED9184B00526200 /* ItemOfMatchCollectionViewCell.m */,
+				55215FDB1F079B3F003F55C5 /* MatchHeaderCollectionReusableView.h */,
+				55215FDC1F079B3F003F55C5 /* MatchHeaderCollectionReusableView.m */,
+			);
+			path = MatchMode;
 			sourceTree = "<group>";
 		};
 		558C07FD1EECB3A10065D7D5 /* Helpers */ = {
@@ -467,8 +487,11 @@
 		55BAE1271EDF8B0B00F1CBEE /* Transport */ = {
 			isa = PBXGroup;
 			children = (
-				55BAE12D1EDF928100F1CBEE /* TransportLayer.h */,
-				55BAE12E1EDF928100F1CBEE /* TransportLayer.m */,
+				55BE2D361F05A7DA00866DD7 /* TransportLayerProtocol.h */,
+				55BAE12D1EDF928100F1CBEE /* RemoteTransportLayer.h */,
+				55BAE12E1EDF928100F1CBEE /* RemoteTransportLayer.m */,
+				55BE2D311F05609500866DD7 /* LocalTransportLayer.h */,
+				55BE2D321F05609500866DD7 /* LocalTransportLayer.m */,
 			);
 			path = Transport;
 			sourceTree = "<group>";
@@ -481,6 +504,8 @@
 				55BAE1371EE0894600F1CBEE /* ServiceFactoryProtocol.h */,
 				55BAE1381EE08EE600F1CBEE /* RemoteServiceFactory.h */,
 				55BAE1391EE08EE600F1CBEE /* RemoteServiceFactory.m */,
+				55BE2D371F05C4DD00866DD7 /* LocalServiceFactory.h */,
+				55BE2D381F05C4DD00866DD7 /* LocalServiceFactory.m */,
 			);
 			path = ServiceLocator;
 			sourceTree = "<group>";
@@ -741,12 +766,14 @@
 				5508B9491ED9176B00526200 /* LearnRoundViewController.m in Sources */,
 				5508B9731ED9186300526200 /* Set.m in Sources */,
 				55E181B91EE4723200C1313D /* UserMapper.m in Sources */,
+				55BE2D391F05C4DD00866DD7 /* LocalServiceFactory.m in Sources */,
 				55E181B61EE470AC00C1313D /* UserService.m in Sources */,
 				552102771EF752FE00B8FF3A /* SelectedLanguagesTableViewController.m in Sources */,
 				551E91321EF5E8120091DB14 /* EditingTextView.m in Sources */,
 				55BAE1331EE088D100F1CBEE /* ServiceLocator.m in Sources */,
 				55FDE9EE1F030593007DEFD1 /* AlertFactory.m in Sources */,
 				5525EE8E1EE38C1C00206898 /* SetMapper.m in Sources */,
+				55215FDD1F079B3F003F55C5 /* MatchHeaderCollectionReusableView.m in Sources */,
 				55BAE1471EE09E0900F1CBEE /* WelcomeViewController.m in Sources */,
 				55501CA71EFC79B5007B732C /* UserDefaultsService.m in Sources */,
 				55B3E1721F01F03E003961E3 /* FeatureView.m in Sources */,
@@ -755,6 +782,7 @@
 				55BE2D2F1F054DDA00866DD7 /* Memento.xcdatamodeld in Sources */,
 				5513ED0B1EE9CD3F00E2611B /* EmailSettingTableViewController.m in Sources */,
 				55BAE1461EE09E0900F1CBEE /* SignUpTableViewController.m in Sources */,
+				55BE2D331F05609500866DD7 /* LocalTransportLayer.m in Sources */,
 				55B3E1771F01F284003961E3 /* Feature.m in Sources */,
 				5508B9611ED9184B00526200 /* Circle.m in Sources */,
 				5508B94A1ED9176B00526200 /* MatchItemsCollectionViewController.m in Sources */,
@@ -764,7 +792,7 @@
 				5525EE911EE3918500206898 /* ItemOfSetMapper.m in Sources */,
 				55D34EDA1EBA906500A2EE38 /* main.m in Sources */,
 				55A5EEE81EF9C68800DFFC2D /* SpeechService.m in Sources */,
-				55BAE12F1EDF928100F1CBEE /* TransportLayer.m in Sources */,
+				55BAE12F1EDF928100F1CBEE /* RemoteTransportLayer.m in Sources */,
 				5508B9481ED9176B00526200 /* LearnRoundInfoTableViewController.m in Sources */,
 				5521027A1EF7530B00B8FF3A /* SelectLanguageTableViewController.m in Sources */,
 				55BAE13D1EE09C7000F1CBEE /* Assembly.m in Sources */,

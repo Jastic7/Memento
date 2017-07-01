@@ -42,7 +42,7 @@
 - (id)modelFromJsonOfObject:(NSDictionary *)json {
     NSString *definition = json[@"definition"];
     NSString *term       = json[@"term"];
-    NSString *identifier = json[@"id"];
+    NSString *identifier = json[@"identifier"];
     
     LearnState learnProgress = [self parseLearnProgressFromString:json[@"learnProgress"]];
     
@@ -56,7 +56,7 @@
     NSDictionary <NSString *, id> *jsonModel = @{ @"term"           : item.term,
                                                   @"definition"     : item.definition,
                                                   @"learnProgress"  : learnProgress,
-                                                  @"id"             : item.identifier };
+                                                  @"identifier"     : item.identifier };
     
     return jsonModel;
 }

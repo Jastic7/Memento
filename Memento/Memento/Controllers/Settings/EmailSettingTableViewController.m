@@ -44,6 +44,10 @@
     [self.textField becomeFirstResponder];
 }
 
+-(void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.textField resignFirstResponder];
+}
 
 #pragma mark - UITextFieldDelegate
 

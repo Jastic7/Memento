@@ -6,8 +6,8 @@
 //  Copyright © 2017 Andrey Morozov. All rights reserved.
 //
 #import "AuthService.h"
-#import "TransportLayer.h"
 #import "ServiceLocator.h"
+#import "TransportLayerProtocol.h"
 
 @interface AuthService ()
 
@@ -70,6 +70,10 @@
 
 - (void)addAuthStateChangeListener:(void (^)(NSString *))listener {
     [self.transort addListenerForAuthStateChange:listener];
+}
+
+- (NSString *)configureUnuiqueId {
+    return [self.transort uniqueId];
 }
 
 

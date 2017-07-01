@@ -31,6 +31,7 @@ static NSString * const kEditSetSegue           = @"editSetSegue";
 
 @property (nonatomic, strong) ServiceLocator *serviceLocator;
 @property (nonatomic, strong) id <AlertPresenterProtocol> alertPresenter;
+@property (nonatomic, weak) IBOutlet UILabel *titleLabel;
 
 @end
 
@@ -60,6 +61,7 @@ static NSString * const kEditSetSegue           = @"editSetSegue";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.titleLabel.text = self.set.title;
     [self configureTableView];
 }
 
@@ -107,6 +109,19 @@ static NSString * const kEditSetSegue           = @"editSetSegue";
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)editSetTableViewControllerDidDeleteSet:(Set *)set {
+    NSString *setId = set.identifier;
+    [self.serviceLocator.setService deleteSetWithId:setId completion:^(NSError *error) {
+        if (error) {
+            [self.alertPresenter showError:error title:@"Deletion failed" presentingController:self];
+        } else {
+            [self dismissViewControllerAnimated:YES completion:^{
+                self.deleteSetCompletion(set);
+            }];
+        }
+    }];
+}
+
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -118,7 +133,6 @@ static NSString * const kEditSetSegue           = @"editSetSegue";
         
         dvc.organizer = matchModeOrganizer;
         dvc.cancelBlock = ^void() { [self dismissViewControllerAnimated:YES completion:nil]; };
-        dvc.finishMatchBlock = ^void() { [self dismissViewControllerAnimated:YES completion:nil]; };
         
     } else if ([identifier isEqualToString:kRoundLearnModeSegue]) {
         LearnRoundViewController *dvc = segue.destinationViewController;

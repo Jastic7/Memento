@@ -9,9 +9,8 @@
 #import "UserService.h"
 #import "User.h"
 #import "UserMapper.h"
-#import "TransportLayer.h"
 #import "ServiceLocator.h"
-
+#import "TransportLayerProtocol.h"
 
 @interface UserService ()
 
@@ -35,14 +34,6 @@
     return _userMapper;
 }
 
-- (NSString *)rootPath {
-    if (!_rootPath) {
-        _rootPath = @"users";
-    }
-    
-    return _rootPath;
-}
-
 - (ServiceLocator *)serviceLocator {
     if (!_serviceLocator) {
         _serviceLocator = [ServiceLocator shared];
@@ -53,35 +44,22 @@
 
 #pragma mark - Paths
 
-- (NSString *)emailPathWithUserId:(NSString *)uid {
-    NSString *emailPathFormat = @"%@/%@/email";
-    NSString *emailPath = [NSString stringWithFormat:emailPathFormat, self.rootPath, uid];
-    
-    return emailPath;
-}
-
-- (NSString *)profilePhotoUrlPathWithUserId:(NSString *)uid {
-    NSString *imageUrlPathFormat = @"%@/%@/profilePhotoUrl";
-    NSString *imageUrlPath = [NSString stringWithFormat:imageUrlPathFormat, self.rootPath, uid];
-    
-    NSLog(@"%@", imageUrlPath);
-    
-    return imageUrlPath;
-}
-
-- (NSString *)userPathWithUserId:(NSString *)uid {
-    NSString *userPathFormat = @"%@/%@";
-    NSString *userPath = [NSString stringWithFormat:userPathFormat, self.rootPath, uid];
-    
-    return userPath;
-}
-
 - (NSString *)storageProfilePhotoPathWithUserId:(NSString *)uid; {
     NSString *storageProfilePhotoPath = [NSString stringWithFormat:@"profileImages/%@", uid];
     
     return storageProfilePhotoPath;
 }
 
+- (NSDictionary *)parametersWithUserId:(NSString *)userId dataId:(NSString *)dataId {
+    NSString *dataType = @"users";
+    
+    NSMutableDictionary <NSString *, NSString *> *parameters = [NSMutableDictionary dictionary];
+    [parameters setValue:dataType forKey:@"dataType"];
+    [parameters setValue:dataId forKey:@"dataId"];
+    [parameters setValue:userId forKey:@"ownerId"];
+    
+    return parameters;
+}
 
 #pragma mark - UserServiceProtocol Implementation 
 
@@ -111,17 +89,16 @@
 }
 
 - (void)reloadUserById:(NSString *)uid completion:(UserServiceCompletionBlock)completion {
-        NSString *userPath = [self userPathWithUserId:uid];
-        
-        [self.transort obtainDataWithPath:userPath
-                                  success:^(id response) {
-                                      User *user = [self.userMapper modelFromJsonOfObject:response];
-                                      [self.serviceLocator.userDefaultsService saveUser:user];
+    NSDictionary *parameters = [self parametersWithUserId:uid dataId:nil];
+    [self.transort obtainDataWithParameters:parameters
+                                    success:^(id response) {
+                                        User *user = [self.userMapper modelFromJsonOfObject:response];
+                                        [self.serviceLocator.userDefaultsService saveUser:user];
                 
-                                      completion(nil);
-                                  }
-                                  failure:^(NSError *error) { completion(error); }
-         ];
+                                        completion(nil);
+                                    }
+                                    failure:^(NSError *error) { completion(error); }
+     ];
 }
 
 - (void)postUserWithId:(NSString *)uid
@@ -142,9 +119,8 @@
 
 - (void)postUser:(User *)user completion:(UserServiceCompletionBlock)completion {
     NSDictionary *jsonModel = [self.userMapper jsonFromModel:user];
-    NSString *userPath = [self userPathWithUserId:user.uid];
-    
-    [self.transort postData:jsonModel databasePath:userPath completion:^(NSError *error) {
+    NSDictionary *parameters = [self parametersWithUserId:user.uid dataId:nil];
+    [self.transort postData:jsonModel parameters:parameters completion:^(NSError *error) {
         if (!error) {
             [self.serviceLocator.userDefaultsService saveUser:user];
         }
@@ -178,9 +154,8 @@
                    completion:(UserServiceUploadCompletionBlock)completion {
     [self.serviceLocator.userDefaultsService updateUserPhotoUrl:url];
     
-    NSString *profilePhotoUrlPath = [self profilePhotoUrlPathWithUserId:uid];
-    
-    [self.transort postData:url databasePath:profilePhotoUrlPath completion:^(NSError *error) {
+    NSDictionary *parameters = [self parametersWithUserId:uid dataId:@"profilePhotoUrl"];
+    [self.transort postData:url parameters:parameters completion:^(NSError *error) {
         if (error) {
             completion(nil, error);
         } else {
@@ -194,8 +169,8 @@
          completion:(UserServiceCompletionBlock)completion {
     [self.serviceLocator.userDefaultsService updateUserEmail:editedEmail];
     
-    NSString *emailPath = [self emailPathWithUserId:uid];
-    [self.transort postData:editedEmail databasePath:emailPath completion:completion];
+    NSDictionary *parameters = [self parametersWithUserId:uid dataId:@"email"];
+    [self.transort postData:editedEmail parameters:parameters completion:completion];
 }
 
 - (BOOL)isPassword:(NSString *)password matchWithConfirmPassword:(NSString *)confirmPassword {

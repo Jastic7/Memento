@@ -13,7 +13,8 @@
 
 @interface Assembly : NSObject
 
-+ (void)assemblyServiceLayer;
++ (void)assemblyLocalServiceLayer;
++ (void)assemblyRemoteServiceLayer;
 + (id <AlertPresenterProtocol>)assembledAlertPresenter;
 
 @end

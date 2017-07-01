@@ -27,5 +27,6 @@
 
 + (instancetype)shared;
 - (void)setServiceFactory:(id <ServiceFactoryProtocol>)serviceFactory;
+- (void)resetServices;
 
 @end

@@ -36,7 +36,7 @@
                         items:(NSArray<ItemOfSet *> *)items {
     
     ServiceLocator *serviceLocator = [ServiceLocator shared];
-    NSString *identifier = [serviceLocator.setService configureUnuiqueId];
+    NSString *identifier = [serviceLocator.authService configureUnuiqueId];
     
     self = [self initWithTitle:title author:author definitionLang:defLang termLang:termLang identifier:identifier items:items];
 

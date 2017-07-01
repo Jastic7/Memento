@@ -54,7 +54,7 @@ static NSString * const kSelectLangSegue = @"selectLanguageSegue";
     [self configureLanguageLabels];
 }
 
--(void)viewWillDisappear:(BOOL)animated {
+- (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
     self.completionWithLanguages(self.termLanguageCode, self.definitionLanguageCode);
@@ -107,8 +107,12 @@ static NSString * const kSelectLangSegue = @"selectLanguageSegue";
     }
 }
 
-- (IBAction)saveButtonTapped:(id)sender {
-    self.completionWithLanguages(self.termLanguageCode, self.definitionLanguageCode);
+
+#pragma mark - Actions
+
+- (IBAction)deleteTapped:(id)sender {
+    self.deleteSetCompletion();
 }
+
 
 @end

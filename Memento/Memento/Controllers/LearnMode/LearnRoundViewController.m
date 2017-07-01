@@ -9,8 +9,10 @@
 #import "LearnRoundViewController.h"
 #import "LearnProgressStackView.h"
 #import "LearnRoundInfoTableViewController.h"
+#import "AlertPresenterProtocol.h"
 #import "OrganizerProtocol.h"
 #import "Circle.h"
+#import "Assembly.h"
 
 static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfoNavigationController";
 
@@ -21,12 +23,22 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
 @property (nonatomic, weak) IBOutlet UITextField *textField;
 @property (nonatomic, weak) IBOutlet UINavigationBar *navigationBar;
 @property (nonatomic, weak) IBOutlet LearnProgressStackView *learnProgressView;
+@property (nonatomic, weak) IBOutlet UIButton *helpButton;
+@property (nonatomic, strong) id <AlertPresenterProtocol> alertPresenter;
 
 @end
 
 
 @implementation LearnRoundViewController
 
+#pragma mark - Getters
+
+-(id <AlertPresenterProtocol>)alertPresenter {
+    if (!_alertPresenter) {
+        _alertPresenter = [Assembly assembledAlertPresenter];
+    }
+    return _alertPresenter;
+}
 
 #pragma mark - LifeCycle
 
@@ -37,6 +49,7 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
     self.textField.delegate     = self;
     
     [self configureTextField];
+    [self configureHelpButton];
     [self registerNotifications];
     [self.organizer setInitialConfiguration];
     [self showRoundInfoViewController];
@@ -55,6 +68,12 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
     self.cancelingBlock();
 }
 
+- (IBAction)helpButtonTapped:(id)sender {
+    NSString *answer = [self.organizer getRightAnswer];
+    
+    [self.alertPresenter showInfoMessage:answer title:@"Right answer" actionTitle:@"OK" handler:nil presentingController:self];
+}
+
 
 #pragma mark - UINavigationBarDelegate
 
@@ -67,9 +86,7 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [self.organizer checkDefinition:textField.text];
-    
     self.textField.text = @"";
-    
     return YES;
 }
 
@@ -109,16 +126,33 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
 #pragma mark - Updating
 
 - (void)updateTextFieldWithNotification:(NSNotification *)notification {
-    NSDictionary *info = notification.userInfo;
+    if ([notification.name isEqual:UIKeyboardWillHideNotification]) {
+        [self configureTextField];
+        [self configureHelpButton];
+    } else {
+        NSDictionary *info = notification.userInfo;
+        
+        CGRect keyboardEndFrameScreenCoordinates = [info[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+        CGRect keyboardEndFrame = [self.view convertRect:keyboardEndFrameScreenCoordinates toView:self.view.window];
+        
+        CGFloat yOffset = keyboardEndFrame.size.height;
+        
+        CGRect textFieldFrame = self.textField.frame;
+        textFieldFrame.origin.y = self.view.frame.size.height - yOffset - textFieldFrame.size.height - 6;
+        [self.textField setFrame:textFieldFrame];
+        [self configureHelpButton];
+    }
+}
+
+- (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
     
-    CGRect keyboardEndFrameScreenCoordinates = [info[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    CGRect keyboardEndFrame = [self.view convertRect:keyboardEndFrameScreenCoordinates toView:self.view.window];
+    CGRect textFieldRect = self.textField.frame;
+    CGFloat xOffset = textFieldRect.origin.x;
+    textFieldRect.size.width = self.view.bounds.size.width - 2 * xOffset;
+    self.textField.frame = textFieldRect;
     
-    CGFloat yOffset = keyboardEndFrame.size.height;
-    
-    CGRect textFieldFrame = self.textField.frame;
-    textFieldFrame.origin.y = self.view.frame.size.height - yOffset - 50;
-    [self.textField setFrame:textFieldFrame];
+    [self configureHelpButton];
 }
 
 
@@ -126,10 +160,23 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
 
 - (void)configureTextField {
     CGFloat xOffset = 16;
+    CGFloat yOffset = 16;
     CGFloat width = self.view.bounds.size.width - 2 * xOffset;
-    CGRect frame = CGRectMake(xOffset, 400, width, 44);
+    CGFloat height = 44;
+    CGFloat yPos = self.view.bounds.size.height - height - yOffset;
+    CGRect frame = CGRectMake(xOffset, yPos, width, height);
     
-    [self.textField setFrame:frame];
+    self.textField.frame = frame;
+}
+
+- (void)configureHelpButton {
+    [self.helpButton.layer setCornerRadius:3.0];
+    CGRect textFieldRect = self.textField.frame;
+    CGRect helpRect = self.helpButton.frame;
+    helpRect.origin.y = textFieldRect.origin.y - helpRect.size.height - 10;
+    CGFloat rightX = CGRectGetMaxX(textFieldRect);
+    helpRect.origin.x = rightX - helpRect.size.width;
+    self.helpButton.frame = helpRect;
 }
 
 - (void)configureRoundInfoViewController {
@@ -143,17 +190,19 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
     roundInfoViewController.set                 = self.organizer.set;
     
     roundInfoViewController.cancelingBlock      = self.cancelingBlock;
+    
+    __weak typeof(self)weakSelf = self;
     roundInfoViewController.resetProgressBlock  = ^void() {
-        [self.organizer reset];
+        [weakSelf.organizer reset];
     };
     
     roundInfoViewController.prepareForNextRoundBlock = ^void() {
-        if (self.organizer.isFinished) {
-            [self.organizer reset];
+        if (weakSelf.organizer.isFinished) {
+            [weakSelf.organizer reset];
         }
         
-        [self.organizer updateRoundSet];
-        [self.textField becomeFirstResponder];
+        [weakSelf.organizer updateRoundSet];
+        [weakSelf.textField becomeFirstResponder];
     };
     
     [self configureNavigationController:childNavigationController];

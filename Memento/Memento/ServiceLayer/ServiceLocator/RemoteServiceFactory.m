@@ -12,29 +12,29 @@
 #import "UserService.h"
 #import "SpeechService.h"
 #import "UserDefaultsService.h"
-#import "TransportLayer.h"
+#import "RemoteTransportLayer.h"
 
 
 @implementation RemoteServiceFactory
 
 - (id <AuthServiceProtocol>)createAuthService {
-    return [AuthService createWithTrasport:[TransportLayer manager]];
+    return [AuthService createWithTrasport:[RemoteTransportLayer manager]];
 }
 
 - (id <SetServiceProtocol>)createSetService {
-    return [SetService createWithTrasport:[TransportLayer manager]];
+    return [SetService createWithTrasport:[RemoteTransportLayer manager]];
 }
 
 - (id <UserServiceProtocol>)createUserService {
-    return [UserService createWithTrasport:[TransportLayer manager]];
+    return [UserService createWithTrasport:[RemoteTransportLayer manager]];
 }
 
 - (id <SpeechServiceProtocol>)createSpeechService {
-    return [SpeechService createWithTrasport:[TransportLayer manager]];
+    return [SpeechService createWithTrasport:[RemoteTransportLayer manager]];
 }
 
 - (id <UserDefaultsServiceProtocol>)createUserDefaultsService {
-    return [UserDefaultsService createWithTrasport:[TransportLayer manager]];
+    return [UserDefaultsService createWithTrasport:[RemoteTransportLayer manager]];
 }
 
 @end

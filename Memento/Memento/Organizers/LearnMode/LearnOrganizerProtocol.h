@@ -62,4 +62,6 @@ didCheckedDefinitionWithLearningState:(LearnState)learnProgress
  */
 - (void)selectNextLearningItem;
 
+- (NSString *)getRightAnswer;
+
 @end

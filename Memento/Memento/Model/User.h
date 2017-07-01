@@ -27,7 +27,4 @@
                      email:(NSString *)email
            profilePhotoUrl:(NSString *)photoUrl;
 
-+ (instancetype)userFromUserDefaults;
-
-
 @end

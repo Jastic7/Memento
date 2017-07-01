@@ -17,8 +17,8 @@
     NSString *author            = json[@"author"];
     NSString *definitionLang    = json[@"definitionLang"];
     NSString *termLang          = json[@"termLang"];
-    NSString *title             = json[@"setTitle"];
-    NSString *identifier        = json[@"id"];
+    NSString *title             = json[@"title"];
+    NSString *identifier        = json[@"identifier"];
     
     ItemOfSetMapper *itemMapper = [ItemOfSetMapper new];
     
@@ -28,19 +28,18 @@
 }
 
 - (NSDictionary *)jsonFromModel:(id)model {
+    
     Set *set = model;
     ItemOfSetMapper *itemMapper = [ItemOfSetMapper new];
     
     NSDictionary *items = [itemMapper jsonFromModelArray:set.items];
-    NSNumber *itemCount = [NSNumber numberWithUnsignedInteger:set.count];
     
     NSDictionary *jsonModel = @{ @"author"          : set.author,
-                                 @"itemCount"       : itemCount,
                                  @"definitionLang"  : set.definitionLang,
                                  @"termLang"        : set.termLang,
-                                 @"setTitle"        : set.title,
+                                 @"title"           : set.title,
                                  @"items"           : items,
-                                 @"id"              : set.identifier };
+                                 @"identifier"      : set.identifier };
     
     return jsonModel;
 }

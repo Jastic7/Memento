@@ -13,7 +13,7 @@
 
 #pragma mark - Initialization
 
-- (instancetype)initWithTrasport:(TransportLayer *)transport {
+- (instancetype)initWithTrasport:(id <TransportLayerProtocol>)transport {
     self = [super init];
     
     if (self) {
@@ -23,7 +23,7 @@
     return self;
 }
 
-+ (instancetype)createWithTrasport:(TransportLayer *)transport {
++ (instancetype)createWithTrasport:(id <TransportLayerProtocol>)transport {
     return [[self alloc] initWithTrasport:transport];
 }
 

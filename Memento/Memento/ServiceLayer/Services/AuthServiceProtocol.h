@@ -52,4 +52,10 @@ typedef void (^AuthServiceUpdateCompletionBlock)(NSError *error);
  */
 - (void)addAuthStateChangeListener:(void(^)(NSString *uid))listener;
 
+/*!
+ * @brief Configure unique identifier.
+ * @return unique identifier.
+ */
+- (NSString *)configureUnuiqueId;
+
 @end

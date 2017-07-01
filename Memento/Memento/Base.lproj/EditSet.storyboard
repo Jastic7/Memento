@@ -140,6 +140,35 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="Selected languages" id="z1D-Sh-198">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="kjY-hS-hAG">
+                                        <rect key="frame" x="0.0" y="201" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kjY-hS-hAG" id="0ZQ-E5-662">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ib2-1H-IYN">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                                    <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="18"/>
+                                                    <state key="normal" title="Delete set"/>
+                                                    <connections>
+                                                        <action selector="deleteTapped:" destination="AlX-y4-kpO" eventType="touchUpInside" id="qC5-Y1-HJM"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ib2-1H-IYN" firstAttribute="top" secondItem="0ZQ-E5-662" secondAttribute="top" id="NNR-Rm-qSP"/>
+                                                <constraint firstItem="ib2-1H-IYN" firstAttribute="leading" secondItem="0ZQ-E5-662" secondAttribute="leading" id="WhY-q4-0sk"/>
+                                                <constraint firstAttribute="bottom" secondItem="ib2-1H-IYN" secondAttribute="bottom" id="dWb-6g-N5X"/>
+                                                <constraint firstAttribute="trailing" secondItem="ib2-1H-IYN" secondAttribute="trailing" id="dZK-Nv-37q"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="AlX-y4-kpO" id="GS6-wB-bFU"/>
@@ -155,7 +184,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DHH-lS-BRI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4399" y="-743"/>
+            <point key="canvasLocation" x="4397.6000000000004" y="-743.47826086956525"/>
         </scene>
         <!--Select Language Table View Controller-->
         <scene sceneID="U0v-4n-hyv">
