@@ -94,11 +94,6 @@ static NSString * const kSelectedLangSegue      = @"selectedLanguagesSegue";
     [self.items addObject:item];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    [self.titleOfSetTextField becomeFirstResponder];
-}
-
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     [self.view endEditing:YES];

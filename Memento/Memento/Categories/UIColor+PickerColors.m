@@ -14,8 +14,12 @@
     return [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1.0];
 }
 
-+ (instancetype)buttonBackroundColor {
-    return [UIColor colorWithRed:255/255.0 green:102/255.0 blue:102/255.0 alpha:1.0];
++ (instancetype)buttonBackroundColorWithAplha:(CGFloat)alpha {
+    return [UIColor colorWithRed:255/255.0 green:102/255.0 blue:102/255.0 alpha:alpha];
+}
+
++ (instancetype)buttonPressedBackgroundColorWithAplha:(CGFloat)alpha {
+    return [UIColor colorWithRed:203/255.0 green:100/255.0 blue:97/255.0 alpha:alpha];
 }
 
 
@@ -42,6 +46,3 @@
 }
 
 @end
-
-
-

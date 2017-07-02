@@ -38,6 +38,7 @@
 
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
+    self.saveChangesBlock();
 }
 
 

@@ -19,12 +19,6 @@
 
 @implementation SetTableViewCell
 
-- (void)setSelected:(BOOL)selected {
-    [super setSelected:selected];
-    
-    self.setView.backgroundColor = selected ? [UIColor unknownStateColor] : [UIColor whiteColor];
-}
-
 - (void)configureWithTitle:(NSString *)title termsCount:(NSUInteger)count author:(NSString *)author {
     self.titleLabel.text = title;
     self.countTermsLabel.text = [NSString stringWithFormat:@"%lu terms", (unsigned long)count];

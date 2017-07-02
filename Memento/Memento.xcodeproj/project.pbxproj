@@ -49,6 +49,7 @@
 		55501CA71EFC79B5007B732C /* UserDefaultsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 55501CA61EFC79B5007B732C /* UserDefaultsService.m */; };
 		55863A501F0873C000727762 /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 55863A4F1F0873C000727762 /* CoreDataManager.m */; };
 		55863A531F09785B00727762 /* ManagedObjectsMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 55863A521F09785B00727762 /* ManagedObjectsMapper.m */; };
+		55863A561F0985E700727762 /* CustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 55863A551F0985E700727762 /* CustomButton.m */; };
 		559094291EDEF53A00BE4500 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 559094281EDEF53A00BE4500 /* User.m */; };
 		559094311EDF009700BE4500 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 559094301EDF009700BE4500 /* GoogleService-Info.plist */; };
 		55A5EEE81EF9C68800DFFC2D /* SpeechService.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A5EEE71EF9C68800DFFC2D /* SpeechService.m */; };
@@ -170,6 +171,8 @@
 		55863A4F1F0873C000727762 /* CoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataManager.m; sourceTree = "<group>"; };
 		55863A511F09785B00727762 /* ManagedObjectsMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagedObjectsMapper.h; sourceTree = "<group>"; };
 		55863A521F09785B00727762 /* ManagedObjectsMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManagedObjectsMapper.m; sourceTree = "<group>"; };
+		55863A541F0985E700727762 /* CustomButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomButton.h; sourceTree = "<group>"; };
+		55863A551F0985E700727762 /* CustomButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomButton.m; sourceTree = "<group>"; };
 		558D15331ED91E100055C2DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		559094271EDEF53A00BE4500 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		559094281EDEF53A00BE4500 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
@@ -337,6 +340,8 @@
 				55B3E1701F01F03E003961E3 /* FeatureView.h */,
 				55B3E1711F01F03E003961E3 /* FeatureView.m */,
 				55B3E1731F01F049003961E3 /* FeatureView.xib */,
+				55863A541F0985E700727762 /* CustomButton.h */,
+				55863A551F0985E700727762 /* CustomButton.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -752,6 +757,7 @@
 				559094291EDEF53A00BE4500 /* User.m in Sources */,
 				5508B9671ED9184B00526200 /* LearnRoundInfoHeader.m in Sources */,
 				55DD03481ED919FA00BDA097 /* UIColor+PickerColors.m in Sources */,
+				55863A561F0985E700727762 /* CustomButton.m in Sources */,
 				5513ED081EE9CCC300E2611B /* PasswordSettingTableViewController.m in Sources */,
 				552102811EF754E600B8FF3A /* SelectLanguageTableViewCell.m in Sources */,
 				5508B9341ED916A600526200 /* MatchOrganizer.m in Sources */,

@@ -1,0 +1,26 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+use_frameworks!
+
+target 'Memento' do
+
+  	#Firebase
+
+	pod 'Firebase'
+	pod 'Firebase/Database'
+	pod 'Firebase/Auth'
+	pod 'Firebase/Storage'
+	
+	#SDWebImage
+
+	pod 'SDWebImage', '~>3.8'
+
+	#AFNetworking
+
+	pod 'AFNetworking', '~> 3.0'
+
+	#BGTableViewRowActionWithImage
+
+	pod "BGTableViewRowActionWithImage"
+
+end

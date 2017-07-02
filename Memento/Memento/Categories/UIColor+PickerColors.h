@@ -11,7 +11,8 @@
 @interface UIColor (PickerColors)
 
 + (instancetype)backgroundColor;
-+ (instancetype)buttonBackroundColor;
++ (instancetype)buttonBackroundColorWithAplha:(CGFloat)alpha;
++ (instancetype)buttonPressedBackgroundColorWithAplha:(CGFloat)alpha;
 
 + (instancetype)learntStateColor;
 + (instancetype)unknownStateColor;
