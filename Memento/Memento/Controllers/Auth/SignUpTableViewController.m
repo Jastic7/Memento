@@ -35,16 +35,16 @@
 
 #pragma mark - Getters
 
-- (UIImagePickerController *)imagePicker {
-    if (!_imagePicker) {
-        _imagePicker = [UIImagePickerController new];
-        
-        _imagePicker.delegate = self;
-        _imagePicker.allowsEditing = YES;
-    }
-    
-    return _imagePicker;
-}
+//- (UIImagePickerController *)imagePicker {
+//    if (!_imagePicker) {
+//        _imagePicker = [UIImagePickerController new];
+//        
+//        _imagePicker.delegate = self;
+//        _imagePicker.allowsEditing = YES;
+//    }
+//    
+//    return _imagePicker;
+//}
 
 - (ServiceLocator *)serviceLocator {
     if (!_serviceLocator) {
@@ -73,7 +73,8 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
- 
+    
+    [self configureImagePicker];
     [self.usernameTextField becomeFirstResponder];
 }
 
@@ -159,6 +160,17 @@
     self.emailTextField.delegate            = self;
     self.passwordTextField.delegate         = self;
     self.confirmPasswordTextField.delegate  = self;
+}
+
+- (void)configureImagePicker {
+    if (!self.imagePicker) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            self.imagePicker = [UIImagePickerController new];
+            
+            self.imagePicker.delegate = self;
+            self.imagePicker.allowsEditing = YES;
+        });
+    }
 }
 
 

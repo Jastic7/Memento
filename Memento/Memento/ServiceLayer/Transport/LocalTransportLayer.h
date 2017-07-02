@@ -9,8 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "TransportLayerProtocol.h"
 
+@class CoreDataManager;
+
 @interface LocalTransportLayer : NSObject <TransportLayerProtocol>
 
-+ (instancetype)managerWithModelName:(NSString *)modelName;
++ (instancetype)managerWithCoreDataManager:(CoreDataManager *)coreDataManager;
 
 @end

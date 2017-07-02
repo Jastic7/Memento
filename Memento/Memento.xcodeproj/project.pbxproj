@@ -47,6 +47,7 @@
 		553B24361EE7105800D51326 /* Entity.m in Sources */ = {isa = PBXBuildFile; fileRef = 553B24351EE7105800D51326 /* Entity.m */; };
 		55501CA31EFC7815007B732C /* LearnSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55501CA21EFC7815007B732C /* LearnSettingsTableViewController.m */; };
 		55501CA71EFC79B5007B732C /* UserDefaultsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 55501CA61EFC79B5007B732C /* UserDefaultsService.m */; };
+		55863A501F0873C000727762 /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 55863A4F1F0873C000727762 /* CoreDataManager.m */; };
 		559094291EDEF53A00BE4500 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 559094281EDEF53A00BE4500 /* User.m */; };
 		559094311EDF009700BE4500 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 559094301EDF009700BE4500 /* GoogleService-Info.plist */; };
 		55A5EEE81EF9C68800DFFC2D /* SpeechService.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A5EEE71EF9C68800DFFC2D /* SpeechService.m */; };
@@ -164,6 +165,8 @@
 		55501CA41EFC7967007B732C /* UserDefaultsServiceProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDefaultsServiceProtocol.h; sourceTree = "<group>"; };
 		55501CA51EFC79B5007B732C /* UserDefaultsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDefaultsService.h; sourceTree = "<group>"; };
 		55501CA61EFC79B5007B732C /* UserDefaultsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDefaultsService.m; sourceTree = "<group>"; };
+		55863A4E1F0873C000727762 /* CoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataManager.h; sourceTree = "<group>"; };
+		55863A4F1F0873C000727762 /* CoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataManager.m; sourceTree = "<group>"; };
 		558D15331ED91E100055C2DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		559094271EDEF53A00BE4500 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		559094281EDEF53A00BE4500 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
@@ -444,6 +447,8 @@
 				55FDE9EB1F030567007DEFD1 /* AlertFactoryProtocol.h */,
 				55FDE9EC1F030593007DEFD1 /* AlertFactory.h */,
 				55FDE9ED1F030593007DEFD1 /* AlertFactory.m */,
+				55863A4E1F0873C000727762 /* CoreDataManager.h */,
+				55863A4F1F0873C000727762 /* CoreDataManager.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -781,6 +786,7 @@
 				5508B94C1ED9176B00526200 /* SetsViewController.m in Sources */,
 				55BE2D2F1F054DDA00866DD7 /* Memento.xcdatamodeld in Sources */,
 				5513ED0B1EE9CD3F00E2611B /* EmailSettingTableViewController.m in Sources */,
+				55863A501F0873C000727762 /* CoreDataManager.m in Sources */,
 				55BAE1461EE09E0900F1CBEE /* SignUpTableViewController.m in Sources */,
 				55BE2D331F05609500866DD7 /* LocalTransportLayer.m in Sources */,
 				55B3E1771F01F284003961E3 /* Feature.m in Sources */,

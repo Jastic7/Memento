@@ -48,17 +48,6 @@ static NSString * const kShowPasswordSettingSegue   = @"showPasswordSettingSegue
     return _serviceLocator;
 }
 
-- (UIImagePickerController *)imagePicker {
-    if (!_imagePicker) {
-        _imagePicker = [UIImagePickerController new];
-        
-        _imagePicker.delegate = self;
-        _imagePicker.allowsEditing = YES;
-    }
-    
-    return _imagePicker;
-}
-
 - (id <AlertPresenterProtocol>)alertPresenter {
     if (!_alertPresenter) {
         _alertPresenter = [Assembly assembledAlertPresenter];
@@ -73,7 +62,6 @@ static NSString * const kShowPasswordSettingSegue   = @"showPasswordSettingSegue
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
     [self configureProfileImageView];
     [self registerAuthNotification];
 }
@@ -85,6 +73,11 @@ static NSString * const kShowPasswordSettingSegue   = @"showPasswordSettingSegue
         self.emailLabel.text = self.user.email;
         [self downloadUserProfilePhoto];
     }
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self configureImagePicker];
 }
 
 
@@ -167,6 +160,7 @@ static NSString * const kShowPasswordSettingSegue   = @"showPasswordSettingSegue
     }];
 }
 
+
 #pragma mark - Register Notification
 
 - (void)registerAuthNotification {
@@ -177,11 +171,23 @@ static NSString * const kShowPasswordSettingSegue   = @"showPasswordSettingSegue
     }];
 }
 
+
 #pragma mark - Configuration
 
 - (void)configureProfileImageView {
     self.profilePhotoImageView.layer.cornerRadius = 50;
     [self.profilePhotoImageView setClipsToBounds:YES];
+}
+
+- (void)configureImagePicker {
+    if (!self.imagePicker) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            self.imagePicker = [UIImagePickerController new];
+            
+            self.imagePicker.delegate = self;
+            self.imagePicker.allowsEditing = YES;
+        });
+    }
 }
 
 @end

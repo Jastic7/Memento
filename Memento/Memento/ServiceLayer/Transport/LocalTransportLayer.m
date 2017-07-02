@@ -9,55 +9,28 @@
 #import "LocalTransportLayer.h"
 #import "SetMO+CoreDataClass.h"
 #import "ItemMO+CoreDataClass.h"
-#import <CoreData/CoreData.h>
-#import "SetMapper.h"
+#import "CoreDataManager.h"
 #import <FirebaseDatabase/FirebaseDatabase.h>
 #import <FirebaseAuth/FirebaseAuth.h>
 
-static LocalTransportLayer *sharedInstance = nil;
-
 @interface LocalTransportLayer ()
 
-@property (nonatomic, copy) NSString *modelName;
-@property (nonatomic, strong) NSPersistentContainer *container;
-@property (nonatomic, readonly) NSManagedObjectContext *managedContext;
-
-//@property (nonatomic, strong) NSManagedObjectModel *managedObjectModel;
+@property (nonatomic, strong) CoreDataManager *coreDataManager;
 
 @end
 
 
 @implementation LocalTransportLayer
 
-#pragma mark - Getters
-
-- (NSPersistentContainer *)container {
-    if (!_container) {
-        _container = [[NSPersistentContainer alloc] initWithName:self.modelName];
-        [_container.viewContext setMergePolicy:NSMergeByPropertyObjectTrumpMergePolicy];
-        [_container loadPersistentStoresWithCompletionHandler:^(NSPersistentStoreDescription * _Nonnull description, NSError * _Nullable error) {
-            if (error) {
-                NSLog(@"Unresolved error while LocalTrasportLayer configuring: %@", error);
-            }
-        }];
-    }
-    
-    return _container;
-}
-
-- (NSManagedObjectContext *)managedContext {
-    return self.container.viewContext;
-}
-
-
-
 #pragma mark - Singleton
 
-+ (instancetype)managerWithModelName:(NSString *)modelName {
++ (instancetype)managerWithCoreDataManager:(CoreDataManager *)coreDataManager {
+    static LocalTransportLayer *sharedInstance = nil;
+    
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedInstance = [[self alloc] init];
-        sharedInstance.modelName = modelName;
+        sharedInstance.coreDataManager = coreDataManager;
     });
     
     return sharedInstance;
@@ -132,12 +105,11 @@ static LocalTransportLayer *sharedInstance = nil;
     NSString *ownerId  = parameters[@"ownerId"];
     
     if ([dataType isEqualToString:@"sets"]) {
-        NSFetchRequest *setRequest = [SetMO fetchRequest];
+        NSString *type = @"Set";
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"ownerIdentifier = %@", ownerId];
-        setRequest.predicate = predicate;
         
         NSError *error;
-        NSArray <SetMO *> *results = [self.managedContext executeFetchRequest:setRequest error:&error];
+        NSArray <SetMO *> *results = [self.coreDataManager getManagedObjectsOfType:type withPredicate:predicate sortDescriptors:nil error:error];
         if (error) {
             failure(error);
         } else {
@@ -161,7 +133,12 @@ static LocalTransportLayer *sharedInstance = nil;
         setMO.ownerIdentifier = parameters[@"ownerId"];
     }
     
-    [self saveChanges];
+    [self.coreDataManager saveChanges];
+}
+
+- (void)uploadData:(NSData *)data storagePath:(NSString *)path success:(SuccessCompletionBlock)success failure:(FailureCompletionBlock)failure {
+    NSString *errorMessage = @"Network connection is not avaliable. Please check it and try upload data again.";
+    failure([self errorWithMessage:errorMessage]);
 }
 
 
@@ -232,15 +209,15 @@ static LocalTransportLayer *sharedInstance = nil;
 
 - (SetMO *)saveSet:(id)jsonData {
     NSDictionary <NSString *, id> *setDictionary = jsonData;
-    NSFetchRequest *setRequest = [SetMO fetchRequest];
-    setRequest.predicate = [NSPredicate predicateWithFormat:@"identifier = %@", setDictionary[@"identifier"]];
+    NSString *type = @"Set";
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"identifier = %@", setDictionary[@"identifier"]];
     
     NSMutableOrderedSet <ItemMO *> *currentItems;
-    SetMO *setMO = [self.managedContext executeFetchRequest:setRequest error:nil].firstObject;
+    SetMO *setMO = [self.coreDataManager getManagedObjectsOfType:type withPredicate:predicate sortDescriptors:nil error:nil].firstObject;
     if (setMO) {
         currentItems = [setMO.items mutableCopy];
     } else {
-        setMO = [[SetMO alloc]initWithContext:self.managedContext];
+        setMO = (SetMO *)[self.coreDataManager createManagedObjectForType:type];
     }
     
     NSOrderedSet <ItemMO *> *insertedItems = [NSOrderedSet new];
@@ -256,7 +233,7 @@ static LocalTransportLayer *sharedInstance = nil;
     
     [currentItems minusSet:[insertedItems set]];
     for (ItemMO *deletingItem in currentItems) {
-        [self.managedContext deleteObject:deletingItem];
+        [self.coreDataManager removeManagedObject:deletingItem];
     }
     
     setMO.items = insertedItems;
@@ -277,7 +254,8 @@ static LocalTransportLayer *sharedInstance = nil;
 
 - (ItemMO *)saveItem:(id)jsonData {
     NSDictionary <NSString *, NSString *> *itemDictionary = jsonData;
-    ItemMO *itemMO = [[ItemMO alloc] initWithContext:self.managedContext];
+    NSString *type = @"Item";
+    ItemMO *itemMO = (ItemMO *)[self.coreDataManager createManagedObjectForType:type];
     
     for (NSString *key in itemDictionary) {
         NSString *value = itemDictionary[key];
@@ -285,17 +263,6 @@ static LocalTransportLayer *sharedInstance = nil;
     }
     
     return itemMO;
-}
-
-- (void)saveChanges {
-    if (self.managedContext.hasChanges) {
-        NSError *error;
-        [self.managedContext save:&error];
-        
-        if (error) {
-            NSLog(@"Unresolved error while LocalTrasportLayer are saving changes: %@", error);
-        }
-    }
 }
 
 @end

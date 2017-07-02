@@ -13,29 +13,30 @@
 #import "SpeechService.h"
 #import "UserDefaultsService.h"
 #import "LocalTransportLayer.h"
+#import "CoreDataManager.h"
 
 static NSString * const modelName = @"Memento";
 
 @implementation LocalServiceFactory
 
 - (id <AuthServiceProtocol>)createAuthService {
-    return [AuthService createWithTrasport:[LocalTransportLayer managerWithModelName:modelName]];
+    return [AuthService createWithTrasport:[LocalTransportLayer managerWithCoreDataManager:[CoreDataManager manager]]];
 }
 
 - (id <SetServiceProtocol>)createSetService {
-    return [SetService createWithTrasport:[LocalTransportLayer managerWithModelName:modelName]];
+    return [SetService createWithTrasport:[LocalTransportLayer managerWithCoreDataManager:[CoreDataManager manager]]];
 }
 
 - (id <UserServiceProtocol>)createUserService {
-    return [UserService createWithTrasport:[LocalTransportLayer managerWithModelName:modelName]];
+    return [UserService createWithTrasport:[LocalTransportLayer managerWithCoreDataManager:[CoreDataManager manager]]];
 }
 
 - (id <SpeechServiceProtocol>)createSpeechService {
-    return [SpeechService createWithTrasport:[LocalTransportLayer managerWithModelName:modelName]];
+    return [SpeechService createWithTrasport:[LocalTransportLayer managerWithCoreDataManager:[CoreDataManager manager]]];
 }
 
 - (id <UserDefaultsServiceProtocol>)createUserDefaultsService {
-    return [UserDefaultsService createWithTrasport:[LocalTransportLayer managerWithModelName:modelName]];
+    return [UserDefaultsService createWithTrasport:[LocalTransportLayer managerWithCoreDataManager:[CoreDataManager manager]]];
 }
 
 @end
