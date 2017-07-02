@@ -10,7 +10,7 @@
 #import "Entity.h"
 
 
-@interface Set : Entity <NSCopying>
+@interface Set : Entity <NSCopying, NSFastEnumeration>
 
 @property (nonatomic, copy, readonly)   NSString *title;
 @property (nonatomic, copy, readonly)   NSString *author;
@@ -57,6 +57,8 @@
  * @param item The item to be added.
  */
 - (void)addItem:(ItemOfSet *)item;
+
+- (void)addItemsFromSet:(Set *)set;
 
 /*!
  * @brief Remove item from the current set items.

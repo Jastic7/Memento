@@ -67,7 +67,7 @@
 
 #pragma mark - Learn Progress
 
--(void)failLearnProgress {
+- (void)failLearnProgress {
     self.learnProgress = Mistake;
 }
 
@@ -84,12 +84,13 @@
 
 #pragma mark - Equality
 
-- (BOOL)isEqual:(id)object {
-    ItemOfSet *anotherObject = object;
-    
-    return  ([self.term isEqualToString:anotherObject.term]) &&
-            ([self.definition isEqualToString:anotherObject.definition]);
-}
+//- (BOOL)isEqual:(id)object {
+//    ItemOfSet *anotherObject = object;
+//    
+//    return [self.identifier isEqualToString:anotherObject.identifier];
+////    return  ([self.term isEqualToString:anotherObject.term]) &&
+////            ([self.definition isEqualToString:anotherObject.definition]);
+//}
 
 
 #pragma mark - Copying
@@ -97,6 +98,7 @@
 - (id)copyWithZone:(NSZone *)zone {
     ItemOfSet *copyItem     = [[[self class] allocWithZone:zone] init];
     
+    copyItem->_identifier   = self.identifier;
     copyItem.term           = self.term;
     copyItem.definition     = self.definition;
     copyItem.learnProgress  = self.learnProgress;

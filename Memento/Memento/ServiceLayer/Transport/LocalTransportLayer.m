@@ -126,14 +126,23 @@
       parameters:(NSDictionary <NSString *, NSString *> *)parameters
       completion:(TransportCompletionBlock)completion {
     NSString *dataType = parameters[@"dataType"];
+    NSString *dataId = parameters[@"dataId"];
     
     if ([dataType isEqualToString:@"sets"]) {
-        SetMO *setMO = [self saveSet:jsonData];
-        setMO.identifier = parameters[@"dataId"];
-        setMO.ownerIdentifier = parameters[@"ownerId"];
+        if (jsonData) {
+            SetMO *setMO = [self saveSet:jsonData];
+            setMO.identifier = parameters[@"dataId"];
+            setMO.ownerIdentifier = parameters[@"ownerId"];
+        } else {
+            [self deleteSetById:dataId];
+        }
+        
     }
     
-    [self.coreDataManager saveChanges];
+    NSError *error = [self.coreDataManager saveChanges];
+    if (completion) {
+        completion(error);
+    }
 }
 
 - (void)uploadData:(NSData *)data storagePath:(NSString *)path success:(SuccessCompletionBlock)success failure:(FailureCompletionBlock)failure {
@@ -263,6 +272,15 @@
     }
     
     return itemMO;
+}
+
+- (void)deleteSetById:(NSString *)setId {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"identifier = %@", setId];
+    NSManagedObject *setMO = [self.coreDataManager getManagedObjectsOfType:@"Set" withPredicate:predicate sortDescriptors:nil error:nil].firstObject;
+    if (setMO) {
+        [self.coreDataManager removeManagedObject:setMO];
+    }
+    
 }
 
 @end

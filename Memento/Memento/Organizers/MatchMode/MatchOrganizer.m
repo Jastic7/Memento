@@ -97,12 +97,12 @@
     NSString *firstSelectedItem = selectedItems[0];
     NSString *secondSelectedItem = selectedItems[1];
     
-    ItemOfSet *checkingItem = [ItemOfSet itemOfSetWithTerm:firstSelectedItem definition:secondSelectedItem];
-    isMatched = [self.roundSet containsItem:checkingItem];
+    ItemOfSet *checkingItem = [self.roundSet findItemWithTerm:firstSelectedItem definition:secondSelectedItem];
+    isMatched = checkingItem != nil;
     
     if (!isMatched) {
-        checkingItem = [ItemOfSet itemOfSetWithTerm:secondSelectedItem definition:firstSelectedItem];
-        isMatched = [self.roundSet containsItem:checkingItem];
+        checkingItem = [self.roundSet findItemWithTerm:secondSelectedItem definition:firstSelectedItem];
+        isMatched = checkingItem != nil;
     }
     
     if (isMatched) {

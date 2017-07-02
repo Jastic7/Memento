@@ -18,6 +18,7 @@
 #import "ServiceLocator.h"
 #import "AlertPresenterProtocol.h"
 #import "Assembly.h"
+#import "AppDelegate.h"
 
 #import <AFNetworking/AFNetworkReachabilityManager.h>
 @import FirebaseAuth;
@@ -71,18 +72,6 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
     return _emptyStateLabel;
 }
 
-- (UIRefreshControl *)refreshControl {
-    if (!_refreshControl) {
-        _refreshControl = [UIRefreshControl new];
-        NSString *title = @"Sets are downloading...";
-        _refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:title];
-        [_refreshControl addTarget:self action:@selector(downloadSets:) forControlEvents:UIControlEventValueChanged];
-        _refreshControl.backgroundColor = [UIColor clearColor];
-    }
-    
-    return _refreshControl;
-}
-
 - (id <AlertPresenterProtocol>)alertPresenter {
     if (!_alertPresenter) {
         _alertPresenter = [Assembly assembledAlertPresenter];
@@ -96,27 +85,16 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    [Assembly assemblyServiceLayer];
-    
-    [self.refreshControl beginRefreshing];
-
-    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
-    
-    [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-        if (status == AFNetworkReachabilityStatusNotReachable || status == AFNetworkReachabilityStatusUnknown) {
-            [Assembly assemblyLocalServiceLayer];
-        } else {
-            [Assembly assemblyRemoteServiceLayer];
-        }
-        
-        static dispatch_once_t onceToken;
-        dispatch_once(&onceToken, ^{
-            [self registerAuthStateNotification];
-        });
-        
-    }];
-    
+    [self configureRefreshControl];
     [self configureTableView];
+    
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    appDelegate.saveChangesBlock = ^() {
+        [Assembly assemblyLocalServiceLayer];
+        [self.serviceLocator.setService postSetList:self.sets completion:nil];
+    };
+    
+    [self configureReachability];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -222,11 +200,7 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
             [self.navigationController popViewControllerAnimated:YES];
             break;
         }
-            
-        default:
-            break;
     }
-    
 }
 
 
@@ -250,9 +224,7 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
         WelcomeViewController *dvc = segue.destinationViewController;
         dvc.authenticationCompletion = ^() {
             [self dismissViewControllerAnimated:YES completion:^{
-                [self.refreshControl beginRefreshing];
-                [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentOffset.y - self.refreshControl.frame.size.height) animated:YES];
-                [self downloadSets:self.refreshControl];
+                [self updateSets];
             }];
         };
     }
@@ -274,10 +246,7 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
             static dispatch_once_t onceToken;
             dispatch_once(&onceToken, ^{
                 if (self.presentedViewController == nil) {
-                    [self.refreshControl beginRefreshing];
-                    [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentOffset.y-self.refreshControl.frame.size.height) animated:YES];
-                    [self.refreshControl layoutIfNeeded];
-                    [self downloadSets:self.refreshControl];
+                    [self updateSets];
                 }
             });
         }
@@ -319,6 +288,36 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
     return emptyStateLabel;
 }
 
+- (void)configureReachability {
+    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
+    
+    [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        [Assembly assemblyLocalServiceLayer];
+        
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            [self updateSets];
+            [self registerAuthStateNotification];
+        });
+        
+        
+        if (status == AFNetworkReachabilityStatusNotReachable || status == AFNetworkReachabilityStatusUnknown) {
+            [Assembly assemblyLocalServiceLayer];
+//            [self updateSets];
+        } else {
+            [Assembly assemblyRemoteServiceLayer];
+            [self uploadSets];
+        }
+    }];
+}
+
+- (void)configureRefreshControl {
+    self.refreshControl = [UIRefreshControl new];
+    NSString *title = @"Sets are downloading...";
+    self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:title];
+    [self.refreshControl addTarget:self action:@selector(downloadSets:) forControlEvents:UIControlEventValueChanged];
+    self.refreshControl.backgroundColor = [UIColor clearColor];
+}
 
 #pragma mark - Updating
 
@@ -332,6 +331,13 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
     rect.origin.x = (self.tableView.bounds.size.width - self.emptyStateLabel.frame.size.width ) / 2;
     rect.origin.y = (self.tableView.bounds.size.height - self.emptyStateLabel.frame.size.height) / 2;
     self.emptyStateLabel.frame = rect;
+}
+
+- (void)updateSets {
+    [self.refreshControl beginRefreshing];
+    [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentOffset.y-self.refreshControl.frame.size.height) animated:YES];
+    [self.refreshControl layoutIfNeeded];
+    [self downloadSets:self.refreshControl];
 }
 
 
@@ -357,6 +363,12 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
         }
         
         self.sets = setList;
+        for (Set *set in setList) {
+            if (![self.sets containsObject:set]) {
+                [self.sets addObject:set];
+            }
+        }
+        
         [self.tableView reloadData];
     }];
 }
@@ -375,7 +387,5 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
     [self.emptyStateLabel bringSubviewToFront:self.tableView];
     
 }
-
-
 
 @end

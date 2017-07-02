@@ -127,6 +127,13 @@
     [self.items addObject:item];
 }
 
+- (void)addItemsFromSet:(Set *)set {
+    for (ItemOfSet *item in set) {
+        if (![self containsItem:item]) {
+            [self addItem:item];
+        }
+    }
+}
 
 #pragma mark - Removing
 
@@ -157,10 +164,8 @@
 }
 
 - (ItemOfSet *)findItemWithTerm:(NSString *)term definition:(NSString *)definition {
-    ItemOfSet *findingItem = [ItemOfSet itemOfSetWithTerm:term definition:definition];
-    
     for (ItemOfSet *item in self.items) {
-        if ([item isEqual:findingItem]) {
+        if ([item.term isEqualToString:term] && [item.definition isEqualToString:definition]) {
             return item;
         }
     }
@@ -233,6 +238,10 @@
     }
     
     return copySet;
+}
+
+- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(id  _Nullable __unsafe_unretained [])buffer count:(NSUInteger)len {
+    return [self.items countByEnumeratingWithState:state objects:buffer count:len];
 }
 
 @end

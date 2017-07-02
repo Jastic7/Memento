@@ -10,4 +10,10 @@
 
 @implementation Entity
 
+- (BOOL)isEqual:(id)object {
+    Entity *another = object;
+    
+    return [self.identifier isEqualToString:another.identifier];
+}
+
 @end

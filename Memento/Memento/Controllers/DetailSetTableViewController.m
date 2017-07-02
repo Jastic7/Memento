@@ -91,7 +91,6 @@ static NSString * const kEditSetSegue           = @"editSetSegue";
                                                         speechStartBlock:^{ [cell activateSpeaker]; }
                                                           speechEndBlock:^{ [cell inactivateSpeaker]; }];
              }];
-    
     return cell;
 }
 
@@ -105,7 +104,11 @@ static NSString * const kEditSetSegue           = @"editSetSegue";
 }
 
 - (void)editSetTableViewControllerDidEditSet:(Set *)set inEditingMode:(EditingMode)editingMode {
-    [self uploadSet];
+    [self.serviceLocator.setService postSet:set completion:^(NSError *error) {
+        if (error) {
+            [self.alertPresenter showError:error title:@"Set doesn't updated" presentingController:self];
+        }
+    }];
     [self.tableView reloadData];
     [self dismissViewControllerAnimated:YES completion:^{
         [self.delegate editSetTableViewControllerDidEditSet:set inEditingMode:editingMode];
@@ -114,6 +117,7 @@ static NSString * const kEditSetSegue           = @"editSetSegue";
 
 - (void)editSetTableViewControllerDidDeleteSet:(Set *)set inEditingMode:(EditingMode)editingMode {
     NSString *setId = set.identifier;
+    
     [self.serviceLocator.setService deleteSetWithId:setId completion:^(NSError *error) {
         if (error) {
             [self.alertPresenter showError:error title:@"Deletion failed" presentingController:self];
@@ -164,7 +168,6 @@ static NSString * const kEditSetSegue           = @"editSetSegue";
         if (error) {
             [self.alertPresenter showError:error title:@"Set doesn't updated" presentingController:self];
         }
-        
     }];
 }
 
