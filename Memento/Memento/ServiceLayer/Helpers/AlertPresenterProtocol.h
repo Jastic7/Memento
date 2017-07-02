@@ -15,19 +15,34 @@
 
 - (void)setAlertFactory:(id <AlertFactoryProtocol>)alertFactory;
 
+/*!
+ * @brief Show alert with error representation.
+ */
 - (void)showError:(NSError *)error title:(NSString *)title presentingController:(UIViewController *)presentingController;
 
+/*!
+ * @brief Show alert with information for user.
+ */
 - (void)showInfoMessage:(NSString *)message
                   title:(NSString *)title
             actionTitle:(NSString *)actionTitle
                 handler:(void (^)(UIAlertAction *action))handler
    presentingController:(UIViewController *)presentingController;
 
+/*!
+ * @brief Show alert with preloader.
+ */
 - (void)showPreloaderWithMessage:(NSString *)message
             presentingController:(UIViewController *)presentingController;
 
+/*!
+ * @brief Hide preloader alert.
+ */
 - (void)hidePreloaderWithCompletion:(void (^)())completion;
 
+/*!
+ * @brief Show alert with confirm action.
+ */
 - (void)showConfirmationWithMessage:(NSString *)message
                    inputPlaceholder:(NSString *)placeholder
                      confirmHandler:(void (^)(UIAlertAction *action, NSString *confirmedText))handler

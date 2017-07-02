@@ -33,7 +33,7 @@ static NSString * const kLearnRoundInfoNavigationControllerID = @"LearnRoundInfo
 
 #pragma mark - Getters
 
--(id <AlertPresenterProtocol>)alertPresenter {
+- (id <AlertPresenterProtocol>)alertPresenter {
     if (!_alertPresenter) {
         _alertPresenter = [Assembly assembledAlertPresenter];
     }

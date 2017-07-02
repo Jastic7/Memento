@@ -21,7 +21,6 @@
 #import "AppDelegate.h"
 
 #import <AFNetworking/AFNetworkReachabilityManager.h>
-@import FirebaseAuth;
 
 static NSString * const kSetCellID          = @"SetTableViewCell";
 static NSString * const kCreateNewSetSegue  = @"createNewSetSegue";
@@ -303,7 +302,6 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
         
         if (status == AFNetworkReachabilityStatusNotReachable || status == AFNetworkReachabilityStatusUnknown) {
             [Assembly assemblyLocalServiceLayer];
-//            [self updateSets];
         } else {
             [Assembly assemblyRemoteServiceLayer];
             [self uploadSets];

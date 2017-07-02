@@ -35,17 +35,6 @@
 
 #pragma mark - Getters
 
-//- (UIImagePickerController *)imagePicker {
-//    if (!_imagePicker) {
-//        _imagePicker = [UIImagePickerController new];
-//        
-//        _imagePicker.delegate = self;
-//        _imagePicker.allowsEditing = YES;
-//    }
-//    
-//    return _imagePicker;
-//}
-
 - (ServiceLocator *)serviceLocator {
     if (!_serviceLocator) {
         _serviceLocator = [ServiceLocator shared];

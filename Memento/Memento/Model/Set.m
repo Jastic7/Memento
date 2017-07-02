@@ -135,6 +135,7 @@
     }
 }
 
+
 #pragma mark - Removing
 
 - (void)removeItem:(ItemOfSet *)item {
@@ -239,6 +240,9 @@
     
     return copySet;
 }
+
+
+#pragma mark - NSFastEnumeration
 
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(id  _Nullable __unsafe_unretained [])buffer count:(NSUInteger)len {
     return [self.items countByEnumeratingWithState:state objects:buffer count:len];

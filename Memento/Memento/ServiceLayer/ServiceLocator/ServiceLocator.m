@@ -93,10 +93,10 @@ static ServiceLocator *sharedInstance = nil;
 }
 
 - (void)resetServices {
-    self.authService = nil;
-    self.setService = nil;
-    self.userService = nil;
-    self.speechService = nil;
+    self.authService         = nil;
+    self.setService          = nil;
+    self.userService         = nil;
+    self.speechService       = nil;
     self.userDefualtsService = nil;
 }
 

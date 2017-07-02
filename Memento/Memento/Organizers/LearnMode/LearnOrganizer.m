@@ -172,8 +172,8 @@
 #pragma mark - Checking
 
 - (void)checkDefinition:(NSString *)definition {
-    NSString *rightDefinition = [self.learningItem.definition lowercaseString];
-    NSString *enteredDefinition = [definition lowercaseString];
+    NSString *rightDefinition = [self stringByTrimmingAndLowerCasing:self.learningItem.definition];
+    NSString *enteredDefinition = [self stringByTrimmingAndLowerCasing:definition];
     
     BOOL isMatched = [rightDefinition  isEqualToString:enteredDefinition];
     
@@ -198,6 +198,12 @@
     } else {
         [item failLearnProgress];
     }
+}
+
+- (NSString *)stringByTrimmingAndLowerCasing:(NSString *)string {
+    NSMutableCharacterSet *removingSymbols = [NSMutableCharacterSet symbolCharacterSet];
+    [removingSymbols addCharactersInString:@" \n"];
+    return [[string stringByTrimmingCharactersInSet:removingSymbols] lowercaseString];
 }
 
 @end

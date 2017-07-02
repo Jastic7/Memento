@@ -5,17 +5,21 @@
 //  Created by Andrey Morozov on 29.06.17.
 //  Copyright © 2017 Andrey Morozov. All rights reserved.
 //
+#import "CoreDataManager.h"
 
 #import "LocalTransportLayer.h"
 #import "SetMO+CoreDataClass.h"
 #import "ItemMO+CoreDataClass.h"
-#import "CoreDataManager.h"
+#import "ManagedObjectsMapper.h"
+
+
 #import <FirebaseDatabase/FirebaseDatabase.h>
 #import <FirebaseAuth/FirebaseAuth.h>
 
 @interface LocalTransportLayer ()
 
 @property (nonatomic, strong) CoreDataManager *coreDataManager;
+@property (nonatomic, strong) ManagedObjectsMapper *managedObjectsMapper;
 
 @end
 
@@ -31,6 +35,7 @@
     dispatch_once(&onceToken, ^{
         sharedInstance = [[self alloc] init];
         sharedInstance.coreDataManager = coreDataManager;
+        sharedInstance.managedObjectsMapper = [ManagedObjectsMapper new];
     });
     
     return sharedInstance;
@@ -101,7 +106,6 @@
                          success:(SuccessCompletionBlock)success
                          failure:(FailureCompletionBlock)failure {
     NSString *dataType = parameters[@"dataType"];
-    NSString *dataId   = parameters[@"dataId"];
     NSString *ownerId  = parameters[@"ownerId"];
     
     if ([dataType isEqualToString:@"sets"]) {
@@ -113,7 +117,7 @@
         if (error) {
             failure(error);
         } else {
-            id response = [self jsonFromSetsMO:results];
+            id response = [self.managedObjectsMapper jsonFromSetsMO:results];
             success(response);
         }
     }
@@ -136,7 +140,6 @@
         } else {
             [self deleteSetById:dataId];
         }
-        
     }
     
     NSError *error = [self.coreDataManager saveChanges];
@@ -148,59 +151,6 @@
 - (void)uploadData:(NSData *)data storagePath:(NSString *)path success:(SuccessCompletionBlock)success failure:(FailureCompletionBlock)failure {
     NSString *errorMessage = @"Network connection is not avaliable. Please check it and try upload data again.";
     failure([self errorWithMessage:errorMessage]);
-}
-
-
-#pragma mark - Mapper
-
-- (NSDictionary *)jsonFromSetsMO:(NSArray <SetMO *> *)setsMO {
-    NSString *uniqueId;
-    NSMutableDictionary *jsonModels = [NSMutableDictionary dictionary];
-    
-    for (SetMO *setMO in setsMO) {
-        uniqueId = setMO.identifier;
-        NSDictionary *json = [self jsonFromSetMO:setMO];
-        
-        jsonModels[uniqueId] = json;
-    }
-    
-    return jsonModels;
-}
-
-- (NSDictionary *)jsonFromSetMO:(SetMO *)setMO {
-    NSDictionary *itemsMO = [self jsonFromItemsMO:setMO.items];
-    
-    NSDictionary *jsonModel = @{ @"author"          : setMO.author,
-                                 @"definitionLang"  : setMO.definitionLang,
-                                 @"termLang"        : setMO.termLang,
-                                 @"title"           : setMO.title,
-                                 @"items"           : itemsMO,
-                                 @"identifier"      : setMO.identifier };
-    
-    return jsonModel;
-}
-
-- (NSDictionary *)jsonFromItemsMO:(NSOrderedSet<ItemMO *> *)itemsMO {
-    NSString *uniqueId;
-    NSMutableDictionary *jsonModels = [NSMutableDictionary dictionary];
-    
-    for (ItemMO *itemMO in itemsMO) {
-        uniqueId = itemMO.identifier;
-        NSDictionary *json = [self jsonFromItemMO:itemMO];
-        
-        jsonModels[uniqueId] = json;
-    }
-    
-    return jsonModels;
-}
-
-- (NSDictionary *)jsonFromItemMO:(ItemMO *)itemMO {
-    NSDictionary <NSString *, id> *jsonModel = @{ @"term"           : itemMO.term,
-                                                  @"definition"     : itemMO.definition,
-                                                  @"learnProgress"  : itemMO.learnProgress,
-                                                  @"identifier"     : itemMO.identifier };
-    
-    return jsonModel;
 }
 
 
@@ -252,6 +202,7 @@
 - (NSOrderedSet <ItemMO *> *)saveItems:(id)jsonData {
     NSDictionary *itemsMODict = jsonData;
     NSMutableOrderedSet <ItemMO *> *insertedItemsMO = [NSMutableOrderedSet new];
+    
     for (NSString *key in itemsMODict) {
         NSDictionary *itemMODict = itemsMODict[key];
         ItemMO *insertedItemMO = [self saveItem:itemMODict];

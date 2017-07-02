@@ -82,17 +82,6 @@
 }
 
 
-#pragma mark - Equality
-
-//- (BOOL)isEqual:(id)object {
-//    ItemOfSet *anotherObject = object;
-//    
-//    return [self.identifier isEqualToString:anotherObject.identifier];
-////    return  ([self.term isEqualToString:anotherObject.term]) &&
-////            ([self.definition isEqualToString:anotherObject.definition]);
-//}
-
-
 #pragma mark - Copying
 
 - (id)copyWithZone:(NSZone *)zone {

@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,7 +21,40 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch" translatesAutoresizingMaskIntoConstraints="NO" id="SH9-31-lvK">
+                                <rect key="frame" x="67.5" y="30" width="240" height="240"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="3vf-G9-ObM"/>
+                                    <constraint firstAttribute="height" constant="240" id="YQP-xq-BkI"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Memento" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dcy-wP-6we">
+                                <rect key="frame" x="16" y="290" width="343" height="57"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="45"/>
+                                <color key="textColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="0.79577390940000003" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" red="0.25879535079999999" green="0.25884389880000003" blue="0.25878500939999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <size key="shadowOffset" width="3" height="3"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Train your brain!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="seP-n4-mct">
+                                <rect key="frame" x="16" y="352" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="seP-n4-mct" firstAttribute="top" secondItem="Dcy-wP-6we" secondAttribute="bottom" constant="5" id="5kf-TD-maR"/>
+                            <constraint firstItem="seP-n4-mct" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" id="7GA-Tu-msv"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Dcy-wP-6we" secondAttribute="trailing" id="Hoa-9g-bHl"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="seP-n4-mct" secondAttribute="trailing" id="X54-rT-GDE"/>
+                            <constraint firstItem="SH9-31-lvK" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="10" id="Zni-tu-gji"/>
+                            <constraint firstItem="Dcy-wP-6we" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" id="bIr-9E-Clu"/>
+                            <constraint firstItem="Dcy-wP-6we" firstAttribute="top" secondItem="SH9-31-lvK" secondAttribute="bottom" constant="20" id="i1n-lM-1Oo"/>
+                            <constraint firstItem="SH9-31-lvK" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="n4B-Fv-PHN"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -28,4 +62,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="launch" width="512" height="512"/>
+    </resources>
 </document>

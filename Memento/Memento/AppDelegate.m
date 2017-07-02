@@ -34,15 +34,10 @@
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {
-//    [self.coreDataManager saveChanges];
-    
-
 }
 
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-//    [self.coreDataManager saveChanges];
-
 }
 
 
@@ -57,9 +52,7 @@
 
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-//    [self.coreDataManager saveChanges];
     self.saveChangesBlock();
-    
 }
 
 

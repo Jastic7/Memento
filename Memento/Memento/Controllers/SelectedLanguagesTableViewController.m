@@ -56,12 +56,6 @@ static NSString * const kSelectLangSegue = @"selectLanguageSegue";
     [self configureLanguageLabels];
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    
-//    self.completionWithLanguages(self.termLanguageCode, self.definitionLanguageCode);
-}
-
 -(void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     

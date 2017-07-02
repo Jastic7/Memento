@@ -15,7 +15,6 @@
 
 @interface SetService ()
 
-@property (nonatomic, copy) NSString *rootPath;
 @property (nonatomic, strong) SetMapper *setMapper;
 @property (nonatomic, weak) ServiceLocator *serviceLocator;
 
@@ -51,19 +50,6 @@
     }
     
     return _serviceLocator;
-}
-
-#pragma mark - Path Helpers
-
-- (NSString *)setPathWithUserId:(NSString *)uid {
-    return [self setPathWithUserId:uid setId:@""];
-}
-
-- (NSString *)setPathWithUserId:(NSString *)uid setId:(NSString *)setId {
-    NSString *setPathFormat = @"%@/%@/%@";
-    NSString *setPath = [NSString stringWithFormat:setPathFormat, self.rootPath, uid, setId];
-    
-    return setPath;
 }
 
 

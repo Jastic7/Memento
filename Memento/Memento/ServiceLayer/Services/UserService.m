@@ -15,7 +15,6 @@
 @interface UserService ()
 
 @property (nonatomic, strong) UserMapper *userMapper;
-@property (nonatomic, copy) NSString *rootPath;
 @property (nonatomic, weak) ServiceLocator *serviceLocator;
 
 @end

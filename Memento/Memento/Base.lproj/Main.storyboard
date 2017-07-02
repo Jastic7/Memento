@@ -33,7 +33,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                                 <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SetTableViewCell" rowHeight="75" id="bm9-FL-pc0" customClass="SetTableViewCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="SetTableViewCell" rowHeight="75" id="bm9-FL-pc0" customClass="SetTableViewCell">
                                         <rect key="frame" x="0.0" y="28" width="375" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bm9-FL-pc0" id="lS2-Xj-Q9C">
@@ -99,6 +99,7 @@
                                         <connections>
                                             <outlet property="authorLabel" destination="9b4-YH-eYa" id="slo-P9-urT"/>
                                             <outlet property="countTermsLabel" destination="Idk-2A-Vg3" id="J3f-G8-FjE"/>
+                                            <outlet property="setView" destination="Ovx-MT-0gp" id="5hn-A8-Ubo"/>
                                             <outlet property="titleLabel" destination="cyt-nt-dRd" id="Kse-tT-LBz"/>
                                             <segue destination="Eg5-yh-EAG" kind="show" identifier="detailSetSegue" id="iFe-Bu-Lza"/>
                                         </connections>
