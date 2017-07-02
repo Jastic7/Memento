@@ -38,7 +38,7 @@
     return _synthesizer;
 }
 
-- (NSDictionary<NSString *, NSString *> *)languagesToCodes {
+- (NSDictionary <NSString *, NSString *> *)languagesToCodes {
     if (!_languagesToCodes) {
         _languagesToCodes = @{@"Arabic" : @"ar-SA",
                               @"Chinese": @"zh-CN",
@@ -58,7 +58,7 @@
     return _languagesToCodes;
 }
 
-- (NSDictionary<NSString *,NSString *> *)codesToLanguages {
+- (NSDictionary <NSString *, NSString *> *)codesToLanguages {
     if (!_codesToLanguages) {
         NSArray *languages = self.languagesToCodes.allKeys;
         NSArray *codes     = self.languagesToCodes.allValues;
@@ -72,8 +72,8 @@
 
 #pragma mark - SpeechServiceProtocol implementation
 
-- (void)speakWords:(NSArray<NSString *> *)words
- withLanguageCodes:(NSArray<NSString *> *)langCodes
+- (void)speakWords:(NSArray <NSString *> *)words
+ withLanguageCodes:(NSArray <NSString *> *)langCodes
   speechStartBlock:(SpeechStartBlock)startBlock
     speechEndBlock:(SpeechEndBlock)endBlock {
     

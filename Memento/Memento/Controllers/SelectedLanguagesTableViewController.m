@@ -16,6 +16,8 @@ static NSString * const kSelectLangSegue = @"selectLanguageSegue";
 @interface SelectedLanguagesTableViewController ()
 
 @property (nonatomic, assign) BOOL isTermSelected;
+@property (nonatomic, assign) BOOL deletedWasTapped;
+
 @property (nonatomic, copy) NSDictionary <NSString *, NSString *> *languages;
 @property (nonatomic, strong) ServiceLocator *serviceLocator;
 
@@ -57,7 +59,17 @@ static NSString * const kSelectLangSegue = @"selectLanguageSegue";
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
-    self.completionWithLanguages(self.termLanguageCode, self.definitionLanguageCode);
+//    self.completionWithLanguages(self.termLanguageCode, self.definitionLanguageCode);
+}
+
+-(void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    
+    if (self.deletedWasTapped) {
+        self.deleteSetCompletion();
+    } else {
+        self.completionWithLanguages(self.termLanguageCode, self.definitionLanguageCode);
+    }
 }
 
 #pragma mark - Configure
@@ -111,7 +123,9 @@ static NSString * const kSelectLangSegue = @"selectLanguageSegue";
 #pragma mark - Actions
 
 - (IBAction)deleteTapped:(id)sender {
-    self.deleteSetCompletion();
+    self.deletedWasTapped = YES;
+    [self.navigationController popViewControllerAnimated:YES];
+//    self.deleteSetCompletion();
 }
 
 

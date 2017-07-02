@@ -8,13 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSInteger, EditingMode) {
+    CreateNewSet,
+    EditExistingSet
+};
+
 @class Set;
+
 
 @protocol EditSetTableViewControllerDelegate <NSObject>
 
-- (void)editSetTableViewControllerDidCancel;
-- (void)editSetTableViewControllerDidEditSet:(Set *)set;
-- (void)editSetTableViewControllerDidDeleteSet:(Set *)set;
+- (void)editSetTableViewControllerDidCancelInEditingMode:(EditingMode)editingMode;
+- (void)editSetTableViewControllerDidEditSet:(Set *)set inEditingMode:(EditingMode)editingMode;
+- (void)editSetTableViewControllerDidDeleteSet:(Set *)set inEditingMode:(EditingMode)editingMode;
 
 @end
 

@@ -9,7 +9,6 @@
 #import "DetailSetTableViewController.h"
 #import "MatchPrepareViewController.h"
 #import "LearnRoundViewController.h"
-#import "EditSetTableViewController.h"
 #import "ItemOfSetTableViewCell.h"
 
 #import "Set.h"
@@ -99,28 +98,33 @@ static NSString * const kEditSetSegue           = @"editSetSegue";
 
 #pragma mark - EditSetTableViewControllerDelegate
 
-- (void)editSetTableViewControllerDidCancel {
+- (void)editSetTableViewControllerDidCancelInEditingMode:(EditingMode)editingMode{
     [self dismissViewControllerAnimated:YES completion:nil];
+    [self.delegate editSetTableViewControllerDidCancelInEditingMode:editingMode];
+    
 }
 
-- (void)editSetTableViewControllerDidEditSet:(Set *)set {
+- (void)editSetTableViewControllerDidEditSet:(Set *)set inEditingMode:(EditingMode)editingMode {
     [self uploadSet];
     [self.tableView reloadData];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:^{
+        [self.delegate editSetTableViewControllerDidEditSet:set inEditingMode:editingMode];
+    }];
 }
 
-- (void)editSetTableViewControllerDidDeleteSet:(Set *)set {
+- (void)editSetTableViewControllerDidDeleteSet:(Set *)set inEditingMode:(EditingMode)editingMode {
     NSString *setId = set.identifier;
     [self.serviceLocator.setService deleteSetWithId:setId completion:^(NSError *error) {
         if (error) {
             [self.alertPresenter showError:error title:@"Deletion failed" presentingController:self];
         } else {
             [self dismissViewControllerAnimated:YES completion:^{
-                self.deleteSetCompletion(set);
+                [self.delegate editSetTableViewControllerDidDeleteSet:set inEditingMode:editingMode];
             }];
         }
     }];
 }
+
 
 #pragma mark - Navigation
 

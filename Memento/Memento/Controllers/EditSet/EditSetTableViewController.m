@@ -21,11 +21,6 @@
 #import "UITableView+GettingIndexPath.h"
 #import <BGTableViewRowActionWithImage/BGTableViewRowActionWithImage.h>
 
-typedef NS_ENUM(NSInteger, EditingMode) {
-    CreateNewSet,
-    EditExistingSet
-};
-
 
 static NSString * const kEditingItemOfSetCellID = @"EditingItemOfSetTableViewCell";
 static NSString * const kAddItemCellID          = @"AddItemTableViewCell";
@@ -99,6 +94,16 @@ static NSString * const kSelectedLangSegue      = @"selectedLanguagesSegue";
     [self.items addObject:item];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.titleOfSetTextField becomeFirstResponder];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [self.view endEditing:YES];
+}
+
 
 #pragma mark - UITableViewDataSource
 
@@ -140,7 +145,7 @@ static NSString * const kSelectedLangSegue      = @"selectedLanguagesSegue";
 }
 
 
-- (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (NSArray <UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell *currentCell = [tableView cellForRowAtIndexPath:indexPath];
     NSUInteger height = currentCell.frame.size.height;
@@ -197,7 +202,12 @@ static NSString * const kSelectedLangSegue      = @"selectedLanguagesSegue";
     [self.view endEditing:YES];
     
     if ([self isEditCancel]) {
-        [self.delegate editSetTableViewControllerDidCancel];
+        [self.delegate editSetTableViewControllerDidCancelInEditingMode:self.editingMode];
+        return;
+    }
+    
+    if ([self isEditDelete]) {
+        [self.delegate editSetTableViewControllerDidDeleteSet:self.editableSet inEditingMode:self.editingMode];
         return;
     }
     
@@ -208,7 +218,7 @@ static NSString * const kSelectedLangSegue      = @"selectedLanguagesSegue";
         NSString *title = self.titleOfSetTextField.text;
         [self.editableSet updateWithTitle:title termLang:self.termLanguage defLang:self.definitionLanguage items:[filteredItems mutableCopy]];
         
-        [self.delegate editSetTableViewControllerDidEditSet:self.editableSet];
+        [self.delegate editSetTableViewControllerDidEditSet:self.editableSet inEditingMode:self.editingMode];
         self.delegate = nil;
     }
 }
@@ -229,8 +239,8 @@ static NSString * const kSelectedLangSegue      = @"selectedLanguagesSegue";
             self.definitionLanguage = definitionLang;
         };
         dvc.deleteSetCompletion = ^() {
-            [self.navigationController popViewControllerAnimated:YES];
-            [self.delegate editSetTableViewControllerDidDeleteSet:self.editableSet];
+//            [self.navigationController popViewControllerAnimated:YES];
+            [self.delegate editSetTableViewControllerDidDeleteSet:self.editableSet inEditingMode:self.editingMode];
         };
     }
 }
@@ -307,6 +317,11 @@ static NSString * const kSelectedLangSegue      = @"selectedLanguagesSegue";
 - (BOOL)isEditCancel {
     NSArray *filteredItems =  [self.items filteredArrayUsingPredicate:self.emptyItemPredicate];
     return ((self.editingMode == CreateNewSet) && (filteredItems.count == 0));
+}
+
+- (BOOL)isEditDelete {
+    NSArray *filteredItems = [self.items filteredArrayUsingPredicate:self.emptyItemPredicate];
+    return ((self.editingMode == EditExistingSet) && (filteredItems.count == 0));
 }
 
 

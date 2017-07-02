@@ -7,14 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "EditSetTableViewController.h"
 @class Set;
 
 
 @interface DetailSetTableViewController : UITableViewController
 
 @property (nonatomic, strong) Set *set;
-@property (nonatomic, copy) void (^deleteSetCompletion)(Set *deletedSet);
-@property (nonatomic, copy) void (^editSetCompletion)();
+@property (nonatomic, weak) id <EditSetTableViewControllerDelegate> delegate;
 
 @end

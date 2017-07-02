@@ -119,14 +119,6 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
     [self configureTableView];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    if (self.indexPathOfSelectedSet) {
-        [self.tableView reloadRowsAtIndexPaths:@[self.indexPathOfSelectedSet] withRowAnimation:UITableViewRowAnimationFade];
-    }
-}
-
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     [self.refreshControl endRefreshing];
@@ -173,22 +165,68 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
 
 #pragma mark - EditSetTableViewControllerDelegate
 
-- (void)editSetTableViewControllerDidCancel {
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+- (void)editSetTableViewControllerDidCancelInEditingMode:(EditingMode)editingMode {
+    switch (editingMode) {
+        case CreateNewSet: {
+            [self dismissViewControllerAnimated:YES completion:nil];
+            break;
+        }
+            
+        default:
+            break;
+    }
 }
 
-- (void)editSetTableViewControllerDidEditSet:(Set *)set {
-    NSIndexPath *lastRow = [NSIndexPath indexPathForRow:self.sets.count inSection:0];
-    
-    [self.sets addObject:set];
-    [self.tableView insertRowsAtIndexPaths:@[lastRow] withRowAnimation:UITableViewRowAnimationNone];
-    
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-    [self uploadSets];
+- (void)editSetTableViewControllerDidEditSet:(Set *)set inEditingMode:(EditingMode)editingMode {
+    switch (editingMode) {
+        case CreateNewSet: {
+            NSIndexPath *lastRow = [NSIndexPath indexPathForRow:self.sets.count inSection:0];
+            
+            [self.sets addObject:set];
+            [self.tableView insertRowsAtIndexPaths:@[lastRow] withRowAnimation:UITableViewRowAnimationNone];
+            
+            [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+            [self.serviceLocator.setService postSet:set completion:^(NSError *error) {
+                if (error) {
+                    [self.alertPresenter showError:error title:@"Sets doesn't uploaded" presentingController:self];
+                }
+            }];
+            break;
+        }
+            
+        case EditExistingSet: {
+            [self.tableView reloadRowsAtIndexPaths:@[self.indexPathOfSelectedSet] withRowAnimation:UITableViewRowAnimationNone];
+            break;
+        }
+    }
 }
 
-- (void)editSetTableViewControllerDidDeleteSet:(Set *)set {
-    [self dismissViewControllerAnimated:YES completion:nil];
+- (void)editSetTableViewControllerDidDeleteSet:(Set *)set inEditingMode:(EditingMode)editingMode {
+    switch (editingMode) {
+        case CreateNewSet: {
+            [self dismissViewControllerAnimated:YES completion:nil];
+            break;
+        }
+            
+        case EditExistingSet: {
+            [self.sets removeObjectAtIndex:self.indexPathOfSelectedSet.row];
+            
+            [self.tableView beginUpdates];
+                [self.tableView deleteRowsAtIndexPaths:@[self.indexPathOfSelectedSet] withRowAnimation:UITableViewRowAnimationNone];
+                self.indexPathOfSelectedSet = nil;
+                if (self.sets.count == 0) {
+                    [self showEmptyStateLabel];
+                }
+            [self.tableView endUpdates];
+            
+            [self.navigationController popViewControllerAnimated:YES];
+            break;
+        }
+            
+        default:
+            break;
+    }
+    
 }
 
 
@@ -206,16 +244,7 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
         DetailSetTableViewController *dvc = segue.destinationViewController;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
         dvc.set = self.sets[indexPath.row];
-        dvc.deleteSetCompletion = ^(Set *deletedSet) {
-            [self.sets removeObjectAtIndex:self.indexPathOfSelectedSet.row];
-            
-            [self.tableView beginUpdates];
-                [self.tableView deleteRowsAtIndexPaths:@[self.indexPathOfSelectedSet] withRowAnimation:UITableViewRowAnimationNone];
-                self.indexPathOfSelectedSet = nil;
-            [self.tableView endUpdates];
-        
-            [self.navigationController popViewControllerAnimated:YES];
-        };
+        dvc.delegate = self;
         
     } else if ([identifier isEqualToString:kShowWelcomeSegue]) {
         WelcomeViewController *dvc = segue.destinationViewController;
@@ -291,6 +320,21 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
 }
 
 
+#pragma mark - Updating
+
+- (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
+    [self updateEmptyStateLabelLayout];
+}
+
+- (void)updateEmptyStateLabelLayout {
+    CGRect rect = self.emptyStateLabel.frame;
+    rect.origin.x = (self.tableView.bounds.size.width - self.emptyStateLabel.frame.size.width ) / 2;
+    rect.origin.y = (self.tableView.bounds.size.height - self.emptyStateLabel.frame.size.height) / 2;
+    self.emptyStateLabel.frame = rect;
+}
+
+
 #pragma mark - Private
 
 - (void)downloadSets:(UIRefreshControl *)refreshControl {
@@ -314,7 +358,6 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
         
         self.sets = setList;
         [self.tableView reloadData];
-        
     }];
 }
 
@@ -333,16 +376,6 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
     
 }
 
-- (void)viewWillLayoutSubviews {
-    [super viewWillLayoutSubviews];
-    [self updateEmptyStateLabelLayout];
-}
 
-- (void)updateEmptyStateLabelLayout {
-    CGRect rect = self.emptyStateLabel.frame;
-    rect.origin.x = (self.tableView.bounds.size.width - self.emptyStateLabel.frame.size.width ) / 2;
-    rect.origin.y = (self.tableView.bounds.size.height - self.emptyStateLabel.frame.size.height) / 2;
-    self.emptyStateLabel.frame = rect;
-}
 
 @end
