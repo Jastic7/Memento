@@ -16,6 +16,7 @@
 @property (nonatomic, copy, readonly)   NSString *author;
 @property (nonatomic, copy, readonly)   NSString *termLang;
 @property (nonatomic, copy, readonly)   NSString *definitionLang;
+@property (nonatomic, strong, readonly) NSDate   *creationDate;
 
 @property (nonatomic, assign, readonly) NSUInteger count;
 @property (nonatomic, assign, readonly) BOOL isEmpty;
@@ -33,6 +34,7 @@
                definitionLang:(NSString *)defLang
                      termLang:(NSString *)termLang
                    identifier:(NSString *)identifier
+                 creationDate:(NSDate   *)creationDate
                         items:(NSArray<ItemOfSet *> *)items;
 
 + (instancetype)setWithTitle:(NSString *)title
@@ -46,11 +48,15 @@
               definitionLang:(NSString *)defLang
                     termLang:(NSString *)termLang
                   identifier:(NSString *)identifier
+                creationDate:(NSDate   *)creationDate
                        items:(NSArray<ItemOfSet *> *)items;
 
 + (instancetype)setWithSet:(Set *)set;
 
-- (void)updateWithTitle:(NSString *)title termLang:(NSString *)termLang defLang:(NSString *)defLang items:(NSMutableArray <ItemOfSet *> *)items;
+- (void)updateWithTitle:(NSString *)title
+               termLang:(NSString *)termLang
+                defLang:(NSString *)defLang
+                  items:(NSMutableArray <ItemOfSet *> *)items;
 
 /*!
  * @brief Add new item to the current set items.

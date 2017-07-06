@@ -38,7 +38,7 @@
     ServiceLocator *serviceLocator = [ServiceLocator shared];
     NSString *identifier = [serviceLocator.authService configureUnuiqueId];
     
-    self = [self initWithTitle:title author:author definitionLang:defLang termLang:termLang identifier:identifier items:items];
+    self = [self initWithTitle:title author:author definitionLang:defLang termLang:termLang identifier:identifier creationDate:[NSDate date] items:items];
 
     return self;
 }
@@ -48,6 +48,7 @@
                definitionLang:(NSString *)defLang
                      termLang:(NSString *)termLang
                    identifier:(NSString *)identifier
+                 creationDate:(NSDate   *)creationDate
                         items:(NSArray<ItemOfSet *> *)items {
     
     self = [super init];
@@ -59,6 +60,7 @@
         _termLang = termLang;
         _identifier = identifier;
         _items = [NSMutableArray new];
+        _creationDate = creationDate;
         
         [self.items addObjectsFromArray:items];
     }
@@ -80,9 +82,10 @@
               definitionLang:(NSString *)defLang
                     termLang:(NSString *)termLang
                   identifier:(NSString *)identifier
+                creationDate:(NSDate   *)creationDate
                        items:(NSArray<ItemOfSet *> *)items {
     
-    return [[self alloc] initWithTitle:title author:author definitionLang:defLang termLang:termLang identifier:identifier items:items];
+    return [[self alloc] initWithTitle:title author:author definitionLang:defLang termLang:termLang identifier:identifier creationDate:creationDate items:items];
 }
 
 
@@ -92,6 +95,7 @@
                         definitionLang:set.definitionLang
                               termLang:set.termLang
                             identifier:set.identifier
+                          creationDate:set.creationDate
                                  items:set.items];
 }
 
@@ -118,6 +122,10 @@
     self.termLang = termLang;
     self.definitionLang = defLang;
     self.items = items;
+    
+    [self.items sortUsingComparator:^NSComparisonResult(ItemOfSet *  _Nonnull obj1, ItemOfSet *  _Nonnull obj2) {
+        return [obj1.term compare:obj2.term];
+    }];
 }
 
 
@@ -125,6 +133,9 @@
 
 - (void)addItem:(ItemOfSet *)item {
     [self.items addObject:item];
+    [self.items sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+        return [obj1 compare:obj2];
+    }];
 }
 
 - (void)addItemsFromSet:(Set *)set {

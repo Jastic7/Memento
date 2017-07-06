@@ -18,11 +18,11 @@
     NSString *term       = json[@"term"];
     NSString *identifier = json[@"identifier"];
     
-    
     LearnState learnProgress = [json[@"learnProgress"] getLearnState];
     
     return [ItemOfSet itemOfSetWithTerm:term definition:definition learnProgress:learnProgress identifier:identifier];
 }
+
 
 - (NSDictionary *)jsonFromModel:(id)model {
     NSNumber *state = [model valueForKey:@"learnProgress"];

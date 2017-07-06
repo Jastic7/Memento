@@ -10,5 +10,5 @@
 
 
 @interface SetMapper : BaseMapper
-
+@property (nonatomic, readonly) NSDateFormatter *dateFormatter;
 @end

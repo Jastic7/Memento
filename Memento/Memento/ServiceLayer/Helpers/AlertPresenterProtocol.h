@@ -17,11 +17,19 @@
 
 /*!
  * @brief Show alert with error representation.
+ * @param error Occured error, which localized description will be shows.
+ * @param title Title of occured error.
+ * @param presentingController Controller which present alert.
  */
 - (void)showError:(NSError *)error title:(NSString *)title presentingController:(UIViewController *)presentingController;
 
 /*!
  * @brief Show alert with information for user.
+ * @param message Information which will be shows.
+ * @param title Title of the information.
+ * @param actionTitle Title of action button.
+ * @param handler Handler of occured action when action button pressed.
+ * @param presentingController Controller which present alert.
  */
 - (void)showInfoMessage:(NSString *)message
                   title:(NSString *)title
@@ -31,17 +39,24 @@
 
 /*!
  * @brief Show alert with preloader.
+ * @param message Preloader message for user about waiting process.
+ * @param presentingController Controller which present alert.
  */
 - (void)showPreloaderWithMessage:(NSString *)message
             presentingController:(UIViewController *)presentingController;
 
 /*!
  * @brief Hide preloader alert.
+ * @param completion Completion block which is called, when preloader is hidden.
  */
 - (void)hidePreloaderWithCompletion:(void (^)())completion;
 
 /*!
- * @brief Show alert with confirm action.
+ * @brief Show alert with confirm input fields and action.
+ * @param message Description of confirming process.
+ * @param placeholder Placeholder message in the confirming input textfield.
+ * @param handler Handler of occured action with confirmed text.
+ * @param presentingController Controller which present alert.
  */
 - (void)showConfirmationWithMessage:(NSString *)message
                    inputPlaceholder:(NSString *)placeholder

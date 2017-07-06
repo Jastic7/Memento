@@ -95,6 +95,9 @@
     return copyItem;
 }
 
+
+#pragma mark - KVC
+
 - (id)valueForKey:(NSString *)key {
     if ([key isEqualToString:@"learnProgress"]) {
         return @(self.learnProgress);
@@ -102,6 +105,5 @@
         return [super valueForKey:key];
     }
 }
-
 
 @end

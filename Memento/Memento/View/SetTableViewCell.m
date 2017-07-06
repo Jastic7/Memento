@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *countTermsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *authorLabel;
 @property (weak, nonatomic) IBOutlet UIView *setView;
+@property (weak, nonatomic) IBOutlet UILabel *creationDateLabel;
 
 @end
 

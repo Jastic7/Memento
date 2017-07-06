@@ -112,9 +112,10 @@
     if ([dataType isEqualToString:@"sets"]) {
         NSString *type = @"Set";
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"ownerIdentifier = %@", ownerId];
+        NSSortDescriptor *setSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:YES];
         
         NSError *error;
-        NSArray <SetMO *> *results = [self.coreDataManager getManagedObjectsOfType:type withPredicate:predicate sortDescriptors:nil error:error];
+        NSArray <SetMO *> *results = [self.coreDataManager getManagedObjectsOfType:type withPredicate:predicate sortDescriptors:@[setSortDescriptor] error:error];
         if (error) {
             failure(error);
         } else {
@@ -188,6 +189,9 @@
         if ([key isEqualToString:@"items"]) {
             NSDictionary *itemsMOJson = setDictionary[key];
             insertedItems = [self saveItems:itemsMOJson];
+        } else if ([key isEqualToString:@"creationDate"]) {
+            id value = [self.setMapper.dateFormatter dateFromString:setDictionary[key]];
+            [setMO setValue:value forKey:key];
         } else {
             id value = setDictionary[key];
             [setMO setValue:value forKey:key];

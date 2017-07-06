@@ -160,10 +160,10 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
 - (void)editSetTableViewControllerDidEditSet:(Set *)set inEditingMode:(EditingMode)editingMode {
     switch (editingMode) {
         case CreateNewSet: {
-            NSIndexPath *lastRow = [NSIndexPath indexPathForRow:self.sets.count inSection:0];
+            NSIndexPath *firstRow = [NSIndexPath indexPathForRow:0 inSection:0];
             
-            [self.sets addObject:set];
-            [self.tableView insertRowsAtIndexPaths:@[lastRow] withRowAnimation:UITableViewRowAnimationNone];
+            [self.sets insertObject:set atIndex:firstRow.row];
+            [self.tableView insertRowsAtIndexPaths:@[firstRow] withRowAnimation:UITableViewRowAnimationNone];
             
             [self.navigationController dismissViewControllerAnimated:YES completion:nil];
             [self.serviceLocator.setService postSet:set completion:^(NSError *error) {
@@ -364,12 +364,15 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
             [self showEmptyStateLabel];
         }
         
-        self.sets = setList;
         for (Set *set in setList) {
             if (![self.sets containsObject:set]) {
                 [self.sets addObject:set];
             }
         }
+        
+        [self.sets sortUsingComparator:^NSComparisonResult(Set *  _Nonnull obj1, Set *  _Nonnull obj2) {
+            return [obj2.creationDate compare:obj1.creationDate];
+        }];
         
         [self.tableView reloadData];
     }];

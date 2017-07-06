@@ -18,7 +18,9 @@
                                                                        message:message
                                                                 preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:dismissTitle style:UIAlertActionStyleDefault handler:handler];
+    UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:dismissTitle
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:handler];
     [infoAlert addAction:dismissAction];
     
     return infoAlert;
