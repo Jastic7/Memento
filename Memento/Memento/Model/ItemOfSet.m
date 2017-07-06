@@ -95,5 +95,13 @@
     return copyItem;
 }
 
+- (id)valueForKey:(NSString *)key {
+    if ([key isEqualToString:@"learnProgress"]) {
+        return @(self.learnProgress);
+    } else {
+        return [super valueForKey:key];
+    }
+}
+
 
 @end

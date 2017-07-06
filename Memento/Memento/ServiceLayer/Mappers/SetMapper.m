@@ -27,19 +27,17 @@
     return [Set setWithTitle:title author:author definitionLang:definitionLang termLang:termLang identifier:identifier items:items];
 }
 
+
 - (NSDictionary *)jsonFromModel:(id)model {
-    
-    Set *set = model;
     ItemOfSetMapper *itemMapper = [ItemOfSetMapper new];
     
-    NSDictionary *items = [itemMapper jsonFromModelArray:set.items];
-    
-    NSDictionary *jsonModel = @{ @"author"          : set.author,
-                                 @"definitionLang"  : set.definitionLang,
-                                 @"termLang"        : set.termLang,
-                                 @"title"           : set.title,
+    NSDictionary *items = [itemMapper jsonFromModelArray:[model valueForKey:@"items"]];
+    NSDictionary *jsonModel = @{ @"author"          : [model valueForKey:@"author"],
+                                 @"definitionLang"  : [model valueForKey:@"definitionLang"],
+                                 @"termLang"        : [model valueForKey:@"termLang"],
+                                 @"title"           : [model valueForKey:@"title"],
                                  @"items"           : items,
-                                 @"identifier"      : set.identifier };
+                                 @"identifier"      : [model valueForKey:@"identifier"] };
     
     return jsonModel;
 }

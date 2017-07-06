@@ -15,7 +15,6 @@
 #import "LocalTransportLayer.h"
 #import "CoreDataManager.h"
 
-static NSString * const modelName = @"Memento";
 
 @implementation LocalServiceFactory
 

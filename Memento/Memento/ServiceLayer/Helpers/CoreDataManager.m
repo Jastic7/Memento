@@ -55,6 +55,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             self.managedContext = [[NSManagedObjectContext alloc]  initWithConcurrencyType:NSMainQueueConcurrencyType];
             [self.managedContext setPersistentStoreCoordinator:self.persistentStoreCoordinator];
+            self.managedContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy;
         });
         
     });

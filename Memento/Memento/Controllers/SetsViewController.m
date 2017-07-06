@@ -35,6 +35,7 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
 
 
 @property (nonatomic, strong) NSMutableArray <Set *> *sets;
+@property (nonatomic, strong) NSMutableArray <NSString *> *deletedSetsId;
 @property (nonatomic, strong) NSIndexPath *indexPathOfSelectedSet;
 @property (nonatomic, strong) UILabel *emptyStateLabel;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
@@ -50,6 +51,7 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
 - (NSMutableArray <Set *> *)sets {
     if (!_sets) {
         _sets = [NSMutableArray array];
+        _deletedSetsId = [NSMutableArray array];
     }
     
     return _sets;
@@ -91,6 +93,7 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
     appDelegate.saveChangesBlock = ^() {
         [Assembly assemblyLocalServiceLayer];
         [self.serviceLocator.setService postSetList:self.sets completion:nil];
+        [self.serviceLocator.setService deleteSetsWithId:self.deletedSetsId completion:nil];
     };
     
     [self configureReachability];
@@ -187,6 +190,7 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
             
         case EditExistingSet: {
             [self.sets removeObjectAtIndex:self.indexPathOfSelectedSet.row];
+            [self.deletedSetsId addObject:set.identifier];
             
             [self.tableView beginUpdates];
                 [self.tableView deleteRowsAtIndexPaths:@[self.indexPathOfSelectedSet] withRowAnimation:UITableViewRowAnimationNone];

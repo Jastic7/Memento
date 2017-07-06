@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Entity.h"
 
 
 @interface BaseMapper : NSObject
@@ -38,7 +37,7 @@
  * @param models Object which is being serialized.
  * @return Json data from models.
  */
-- (NSDictionary *)jsonFromModelArray:(NSArray <id> *)models;
+- (NSDictionary *)jsonFromModelArray:(NSArray *)models;
 
 
 @end

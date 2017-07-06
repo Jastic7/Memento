@@ -69,6 +69,13 @@ typedef void (^SetServiceUploadCompletionBlock)(NSError *error);
      completion:(SetServiceUploadCompletionBlock)completion;
 
 /*!
+ * @brief Delete sets with setId from database.
+ * @param completion Callback which is beeing called, when set is successfully deleted
+ * or error occured.
+ */
+- (void)deleteSetsWithId:(NSArray <NSString *> *)setsId completion:(SetServiceUploadCompletionBlock)completion;
+
+/*!
  * @brief Delete set with setId from database.
  * @param completion Callback which is beeing called, when set is successfully deleted
  * or error occured.

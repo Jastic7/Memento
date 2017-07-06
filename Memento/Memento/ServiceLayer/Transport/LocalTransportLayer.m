@@ -10,16 +10,17 @@
 #import "LocalTransportLayer.h"
 #import "SetMO+CoreDataClass.h"
 #import "ItemMO+CoreDataClass.h"
-#import "ManagedObjectsMapper.h"
-
+#import "SetMapper.h"
+#import "NSString+LearnStateParser.h"
 
 #import <FirebaseDatabase/FirebaseDatabase.h>
 #import <FirebaseAuth/FirebaseAuth.h>
 
+
 @interface LocalTransportLayer ()
 
 @property (nonatomic, strong) CoreDataManager *coreDataManager;
-@property (nonatomic, strong) ManagedObjectsMapper *managedObjectsMapper;
+@property (nonatomic, strong) SetMapper *setMapper;
 
 @end
 
@@ -35,7 +36,7 @@
     dispatch_once(&onceToken, ^{
         sharedInstance = [[self alloc] init];
         sharedInstance.coreDataManager = coreDataManager;
-        sharedInstance.managedObjectsMapper = [ManagedObjectsMapper new];
+        sharedInstance.setMapper = [SetMapper new];
     });
     
     return sharedInstance;
@@ -117,7 +118,7 @@
         if (error) {
             failure(error);
         } else {
-            id response = [self.managedObjectsMapper jsonFromSetsMO:results];
+            id response = [self.setMapper jsonFromModelArray:results];
             success(response);
         }
     }
@@ -171,10 +172,13 @@
     NSString *type = @"Set";
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"identifier = %@", setDictionary[@"identifier"]];
     
-    NSMutableOrderedSet <ItemMO *> *currentItems;
-    SetMO *setMO = [self.coreDataManager getManagedObjectsOfType:type withPredicate:predicate sortDescriptors:nil error:nil].firstObject;
+    SetMO *setMO = [self.coreDataManager getManagedObjectsOfType:type
+                                                   withPredicate:predicate
+                                                 sortDescriptors:nil
+                                                           error:nil].firstObject;
+    NSMutableOrderedSet <ItemMO *> *existingItems;
     if (setMO) {
-        currentItems = [setMO.items mutableCopy];
+        existingItems = [setMO.items mutableCopy];
     } else {
         setMO = (SetMO *)[self.coreDataManager createManagedObjectForType:type];
     }
@@ -190,8 +194,8 @@
         }
     }
     
-    [currentItems minusSet:[insertedItems set]];
-    for (ItemMO *deletingItem in currentItems) {
+    [existingItems minusSet:[insertedItems set]];
+    for (ItemMO *deletingItem in existingItems) {
         [self.coreDataManager removeManagedObject:deletingItem];
     }
     
@@ -218,7 +222,13 @@
     ItemMO *itemMO = (ItemMO *)[self.coreDataManager createManagedObjectForType:type];
     
     for (NSString *key in itemDictionary) {
-        NSString *value = itemDictionary[key];
+        id value;
+        if ([key isEqualToString:@"learnProgress"]) {
+            value = @([itemDictionary[key] getLearnState]);
+        } else {
+            value = itemDictionary[key];
+        }
+        
         [itemMO setValue:value forKey:key];
     }
     
@@ -231,7 +241,6 @@
     if (setMO) {
         [self.coreDataManager removeManagedObject:setMO];
     }
-    
 }
 
 @end

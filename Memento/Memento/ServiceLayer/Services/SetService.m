@@ -103,6 +103,12 @@
     [self postSet:set userId:uid completion:completion];
 }
 
+- (void)deleteSetsWithId:(NSArray<NSString *> *)setsId completion:(SetServiceUploadCompletionBlock)completion {
+    for (NSString *setId in setsId) {
+        [self deleteSetWithId:setId completion:completion];
+    }
+}
+
 - (void)deleteSetWithId:(NSString *)setId completion:(SetServiceUploadCompletionBlock)completion {
     NSString *uid = [self.serviceLocator.userDefaultsService userId];
     NSDictionary *parameters = [self parametersWithUserId:uid dataId:setId];

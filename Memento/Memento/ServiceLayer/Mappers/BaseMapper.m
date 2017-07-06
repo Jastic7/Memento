@@ -33,12 +33,12 @@
     return nil;
 }
 
-- (NSDictionary *)jsonFromModelArray:(NSArray<Entity *> *)models {
+- (NSDictionary *)jsonFromModelArray:(NSArray *)models {
     NSString *uniqueId;
     NSMutableDictionary *jsonModels = [NSMutableDictionary dictionary];
     
-    for (Entity *model in models) {
-        uniqueId = model.identifier;
+    for (id model in models) {
+        uniqueId = [model valueForKey:@"identifier"];
         NSDictionary *json = [self jsonFromModel:model];
         
         jsonModels[uniqueId] = json;

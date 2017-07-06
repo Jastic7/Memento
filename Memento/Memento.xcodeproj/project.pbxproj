@@ -48,7 +48,6 @@
 		55501CA31EFC7815007B732C /* LearnSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55501CA21EFC7815007B732C /* LearnSettingsTableViewController.m */; };
 		55501CA71EFC79B5007B732C /* UserDefaultsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 55501CA61EFC79B5007B732C /* UserDefaultsService.m */; };
 		55863A501F0873C000727762 /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 55863A4F1F0873C000727762 /* CoreDataManager.m */; };
-		55863A531F09785B00727762 /* ManagedObjectsMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 55863A521F09785B00727762 /* ManagedObjectsMapper.m */; };
 		55863A561F0985E700727762 /* CustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 55863A551F0985E700727762 /* CustomButton.m */; };
 		559094291EDEF53A00BE4500 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 559094281EDEF53A00BE4500 /* User.m */; };
 		559094311EDF009700BE4500 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 559094301EDF009700BE4500 /* GoogleService-Info.plist */; };
@@ -82,6 +81,7 @@
 		55E181B91EE4723200C1313D /* UserMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E181B81EE4723200C1313D /* UserMapper.m */; };
 		55E181C21EE4B45400C1313D /* ItemOfSetTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E181C01EE4B45400C1313D /* ItemOfSetTableViewCell.m */; };
 		55E181C31EE4B45400C1313D /* ItemOfSetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55E181C11EE4B45400C1313D /* ItemOfSetTableViewCell.xib */; };
+		55EA4BFC1F0E4CD300DC84EC /* NSString+LearnStateParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 55EA4BFB1F0E4CD300DC84EC /* NSString+LearnStateParser.m */; };
 		55FDE9EE1F030593007DEFD1 /* AlertFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 55FDE9ED1F030593007DEFD1 /* AlertFactory.m */; };
 /* End PBXBuildFile section */
 
@@ -169,8 +169,6 @@
 		55501CA61EFC79B5007B732C /* UserDefaultsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDefaultsService.m; sourceTree = "<group>"; };
 		55863A4E1F0873C000727762 /* CoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataManager.h; sourceTree = "<group>"; };
 		55863A4F1F0873C000727762 /* CoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataManager.m; sourceTree = "<group>"; };
-		55863A511F09785B00727762 /* ManagedObjectsMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagedObjectsMapper.h; sourceTree = "<group>"; };
-		55863A521F09785B00727762 /* ManagedObjectsMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManagedObjectsMapper.m; sourceTree = "<group>"; };
 		55863A541F0985E700727762 /* CustomButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomButton.h; sourceTree = "<group>"; };
 		55863A551F0985E700727762 /* CustomButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomButton.m; sourceTree = "<group>"; };
 		558D15331ED91E100055C2DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -236,6 +234,8 @@
 		55E181BF1EE4B45400C1313D /* ItemOfSetTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemOfSetTableViewCell.h; sourceTree = "<group>"; };
 		55E181C01EE4B45400C1313D /* ItemOfSetTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemOfSetTableViewCell.m; sourceTree = "<group>"; };
 		55E181C11EE4B45400C1313D /* ItemOfSetTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemOfSetTableViewCell.xib; sourceTree = "<group>"; };
+		55EA4BFA1F0E4CD300DC84EC /* NSString+LearnStateParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+LearnStateParser.h"; sourceTree = "<group>"; };
+		55EA4BFB1F0E4CD300DC84EC /* NSString+LearnStateParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+LearnStateParser.m"; sourceTree = "<group>"; };
 		55FDE9EB1F030567007DEFD1 /* AlertFactoryProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertFactoryProtocol.h; sourceTree = "<group>"; };
 		55FDE9EC1F030593007DEFD1 /* AlertFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertFactory.h; sourceTree = "<group>"; };
 		55FDE9ED1F030593007DEFD1 /* AlertFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertFactory.m; sourceTree = "<group>"; };
@@ -431,8 +431,6 @@
 				5525EE901EE3918500206898 /* ItemOfSetMapper.m */,
 				55E181B71EE4723200C1313D /* UserMapper.h */,
 				55E181B81EE4723200C1313D /* UserMapper.m */,
-				55863A511F09785B00727762 /* ManagedObjectsMapper.h */,
-				55863A521F09785B00727762 /* ManagedObjectsMapper.m */,
 			);
 			path = Mappers;
 			sourceTree = "<group>";
@@ -601,6 +599,8 @@
 				55DD03471ED919FA00BDA097 /* UITableView+GettingIndexPath.m */,
 				55DD034A1ED91A3200BDA097 /* NSMutableArray+Shuffle.h */,
 				55DD034B1ED91A3200BDA097 /* NSMutableArray+Shuffle.m */,
+				55EA4BFA1F0E4CD300DC84EC /* NSString+LearnStateParser.h */,
+				55EA4BFB1F0E4CD300DC84EC /* NSString+LearnStateParser.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -776,9 +776,9 @@
 				55B3E16C1F016AEC003961E3 /* AlertPresenter.m in Sources */,
 				55E181C21EE4B45400C1313D /* ItemOfSetTableViewCell.m in Sources */,
 				551E913A1EF707720091DB14 /* AddItemTableViewCell.m in Sources */,
-				55863A531F09785B00727762 /* ManagedObjectsMapper.m in Sources */,
 				5508B94B1ED9176B00526200 /* MatchPrepareViewController.m in Sources */,
 				55E181B01EE43B1700C1313D /* BaseMapper.m in Sources */,
+				55EA4BFC1F0E4CD300DC84EC /* NSString+LearnStateParser.m in Sources */,
 				5508B96A1ED9184B00526200 /* SetTableViewCell.m in Sources */,
 				5508B9491ED9176B00526200 /* LearnRoundViewController.m in Sources */,
 				5508B9731ED9186300526200 /* Set.m in Sources */,

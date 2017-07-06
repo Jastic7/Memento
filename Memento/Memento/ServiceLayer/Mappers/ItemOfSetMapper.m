@@ -7,56 +7,31 @@
 //
 
 #import "ItemOfSetMapper.h"
-#import "ItemOfSet.h"
+#import "NSString+LearnStateParser.h"
 
 
 @implementation ItemOfSetMapper
 
-- (NSUInteger)parseLearnProgressFromString:(NSString *)string {
-    if ([string isEqualToString:@"failed"]) {
-        return -1;
-    } else if ([string isEqualToString:@"unknown"]) {
-        return 0;
-    } else if ([string isEqualToString:@"learnt"]) {
-        return 1;
-    } else if ([string isEqualToString:@"mastered"]) {
-        return 2;
-    } else {
-        return 0;
-    }
-}
-
-- (NSString *)encodeLearnProgressByState:(LearnState)state {
-    switch (state) {
-        case Mistake:
-            return @"failed";
-        case Unknown:
-            return @"unknown";
-        case Learnt:
-            return @"learnt";
-        case Mastered:
-            return @"mastered";
-    }
-}
 
 - (id)modelFromJsonOfObject:(NSDictionary *)json {
     NSString *definition = json[@"definition"];
     NSString *term       = json[@"term"];
     NSString *identifier = json[@"identifier"];
     
-    LearnState learnProgress = [self parseLearnProgressFromString:json[@"learnProgress"]];
+    
+    LearnState learnProgress = [json[@"learnProgress"] getLearnState];
     
     return [ItemOfSet itemOfSetWithTerm:term definition:definition learnProgress:learnProgress identifier:identifier];
 }
 
 - (NSDictionary *)jsonFromModel:(id)model {
-    ItemOfSet *item = model;
-    NSString *learnProgress = [self encodeLearnProgressByState:item.learnProgress];
+    NSNumber *state = [model valueForKey:@"learnProgress"];
+    NSString *learnProgress = [NSString stringWithLearnState:state.integerValue];
     
-    NSDictionary <NSString *, id> *jsonModel = @{ @"term"           : item.term,
-                                                  @"definition"     : item.definition,
+    NSDictionary <NSString *, id> *jsonModel = @{ @"term"           : [model valueForKey:@"term"],
+                                                  @"definition"     : [model valueForKey:@"definition"],
                                                   @"learnProgress"  : learnProgress,
-                                                  @"identifier"     : item.identifier };
+                                                  @"identifier"     : [model valueForKey:@"identifier"] };
     
     return jsonModel;
 }
