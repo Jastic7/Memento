@@ -27,6 +27,14 @@
     [super setSelected:selected animated:animated];
 }
 
+-(BOOL)canBecomeFirstResponder {
+    return YES;
+}
+
+-(BOOL)becomeFirstResponder {
+    return [self.termTextView becomeFirstResponder];
+}
+
 
 #pragma mark - Configuration
 

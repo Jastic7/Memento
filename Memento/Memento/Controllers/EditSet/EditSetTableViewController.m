@@ -40,6 +40,7 @@ static NSString * const kSelectedLangSegue      = @"selectedLanguagesSegue";
 
 @property (nonatomic, assign) EditingMode editingMode;
 @property (nonatomic, assign) BOOL isSetCorrect;
+@property (nonatomic, assign) NSInteger countOfSpecialCells;
 
 @end
 
@@ -91,7 +92,7 @@ static NSString * const kSelectedLangSegue      = @"selectedLanguagesSegue";
     [self initializeProperties];
     
     ItemOfSet *item = [ItemOfSet new];
-    [self.items addObject:item];
+    [self.items insertObject:item atIndex:0];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -103,11 +104,11 @@ static NSString * const kSelectedLangSegue      = @"selectedLanguagesSegue";
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.items.count + 1;
+    return self.items.count + self.countOfSpecialCells;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == self.items.count) {
+    if (indexPath.row == 0) {
         AddItemTableViewCell *addItemCell = [tableView dequeueReusableCellWithIdentifier:kAddItemCellID
                                                                         forIndexPath:indexPath];
         return addItemCell;
@@ -117,7 +118,7 @@ static NSString * const kSelectedLangSegue      = @"selectedLanguagesSegue";
                                                                           forIndexPath:indexPath];
     cell.delegate = self;
     
-    ItemOfSet *item = self.items[indexPath.row];
+    ItemOfSet *item = self.items[indexPath.row - self.countOfSpecialCells];
     [cell configureWithTerm:item.term definition:item.definition];
     
     return cell;
@@ -127,21 +128,22 @@ static NSString * const kSelectedLangSegue      = @"selectedLanguagesSegue";
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([self isLastRowAtIndexPath:indexPath]) {
-        [self addNewTermWithСompletion: ^void(NSIndexPath *insertedIndexPath) {
+    if ([self isAddItemButtonAtIndexPath:indexPath]) {
+        [self addNewTermWithCompletion: ^void(NSIndexPath *insertedIndexPath) {
             [tableView scrollToNearestSelectedRowAtScrollPosition:UITableViewScrollPositionBottom animated:YES];
             [tableView deselectRowAtIndexPath:indexPath animated:YES];
+            EditingItemOfSetTableViewCell *cell = [tableView cellForRowAtIndexPath:insertedIndexPath];
+            [cell becomeFirstResponder];
         }];
     }
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    return ![self isLastRowAtIndexPath:indexPath];
+    return ![self isAddItemButtonAtIndexPath:indexPath];
 }
 
 
 - (NSArray <UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     UITableViewCell *currentCell = [tableView cellForRowAtIndexPath:indexPath];
     NSUInteger height = currentCell.frame.size.height;
     NSUInteger topOffset = 45;
@@ -157,7 +159,7 @@ static NSString * const kSelectedLangSegue      = @"selectedLanguagesSegue";
                                                                              forCellHeight:(height + topOffset)
                                                                                    handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
         [self.view endEditing:YES];
-        [self.items removeObjectAtIndex:indexPath.row];
+        [self.items removeObjectAtIndex:indexPath.row - self.countOfSpecialCells];
         
         [tableView beginUpdates];
             [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
@@ -176,7 +178,7 @@ static NSString * const kSelectedLangSegue      = @"selectedLanguagesSegue";
 
 - (void)editingItemOfSetCell:(EditingItemOfSetTableViewCell *)cell didEndEditingItemInTextView:(UITextView *)textView {
     NSIndexPath *indexPath = [self.tableView indexPathForSubview:textView];
-    ItemOfSet *item = self.items[indexPath.row];
+    ItemOfSet *item = self.items[indexPath.row - self.countOfSpecialCells];
     
     NSString *editedText = [self stringByTrimmingSpaces:textView.text];
     if (textView.tag == 1000) {
@@ -234,7 +236,6 @@ static NSString * const kSelectedLangSegue      = @"selectedLanguagesSegue";
             self.definitionLanguage = definitionLang;
         };
         dvc.deleteSetCompletion = ^() {
-//            [self.navigationController popViewControllerAnimated:YES];
             [self.delegate editSetTableViewControllerDidDeleteSet:self.editableSet inEditingMode:self.editingMode];
         };
     }
@@ -278,11 +279,11 @@ static NSString * const kSelectedLangSegue      = @"selectedLanguagesSegue";
 
 #pragma mark - Private
 
-- (void)addNewTermWithСompletion:(void (^)(NSIndexPath *insertedIndexPath))completion {
+- (void)addNewTermWithCompletion:(void (^)(NSIndexPath *insertedIndexPath))completion {
     ItemOfSet *item = [ItemOfSet new];
-    [self.items addObject:item];
+    [self.items insertObject:item atIndex:0];
     
-    NSIndexPath *insertingIndexPath = [NSIndexPath indexPathForRow:self.items.count - 1 inSection:0];
+    NSIndexPath *insertingIndexPath = [NSIndexPath indexPathForRow:self.countOfSpecialCells inSection:0];
     
     [CATransaction begin];
     
@@ -297,8 +298,8 @@ static NSString * const kSelectedLangSegue      = @"selectedLanguagesSegue";
     [CATransaction commit];
 }
 
-- (BOOL)isLastRowAtIndexPath:(NSIndexPath *)indexPath {
-    return self.items.count == indexPath.row;
+- (BOOL)isAddItemButtonAtIndexPath:(NSIndexPath *)indexPath {
+    return indexPath.row == 0;
 }
 
 - (BOOL)isLanguagesSelected {
@@ -325,6 +326,7 @@ static NSString * const kSelectedLangSegue      = @"selectedLanguagesSegue";
 - (void)configureTableView {
     self.tableView.estimatedRowHeight = 100;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
     
     [self.tableView registerNib:[EditingItemOfSetTableViewCell nib] forCellReuseIdentifier:kEditingItemOfSetCellID];
     [self.tableView registerNib:[AddItemTableViewCell nib] forCellReuseIdentifier:kAddItemCellID];
@@ -336,6 +338,7 @@ static NSString * const kSelectedLangSegue      = @"selectedLanguagesSegue";
     self.termLanguage               = self.editableSet.termLang;
     self.definitionLanguage         = self.editableSet.definitionLang;
     self.items                      = [self.editableSet.items mutableCopy];
+    self.countOfSpecialCells        = 1;
 }
 
 @end

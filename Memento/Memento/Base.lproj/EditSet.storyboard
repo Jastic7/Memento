@@ -44,6 +44,7 @@
                             <outlet property="delegate" destination="pWI-6z-sSu" id="B6X-bm-oBK"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="Acv-ul-jGr">
                         <barButtonItem key="leftBarButtonItem" image="configuration" id="BK3-cL-o6j">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -242,6 +243,10 @@
                         <color key="barTintColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="jMR-RL-W8e">
+                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="pWI-6z-sSu" kind="relationship" relationship="rootViewController" id="QK3-CI-gao"/>
                     </connections>
