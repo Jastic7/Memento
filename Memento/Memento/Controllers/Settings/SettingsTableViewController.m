@@ -17,8 +17,8 @@
 
 #import <SDWebImage/UIImageView+WebCache.h>
 
-static NSString * const kShowEditEmailSegue         = @"showEditEmailSegue";
-static NSString * const kShowPasswordSettingSegue   = @"showPasswordSettingSegue";
+static NSString * const kShowEditEmailSegue         = @"ShowEditEmailSegue";
+static NSString * const kShowPasswordSettingSegue   = @"ShowPasswordSettingSegue";
 
 
 @interface SettingsTableViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>

@@ -21,9 +21,9 @@
 #import "MatchOrganizer.h"
 
 static NSString * const kItemOfSetCellID        = @"ItemOfSetTableViewCell";
-static NSString * const kMatchModePrepareSegue  = @"matchModePrepareSegue";
-static NSString * const kRoundLearnModeSegue    = @"roundLearnModeSegue";
-static NSString * const kEditSetSegue           = @"editSetSegue";
+static NSString * const kMatchModePrepareSegue  = @"ShowMatchModePrepareSegue";
+static NSString * const kRoundLearnModeSegue    = @"ShowRoundLearnModeSegue";
+static NSString * const kEditSetSegue           = @"EditSetSegue";
 
 
 @interface DetailSetTableViewController () <EditSetTableViewControllerDelegate>
@@ -155,8 +155,8 @@ static NSString * const kEditSetSegue           = @"editSetSegue";
         UINavigationController *navController = segue.destinationViewController;
         EditSetTableViewController *dvc = (EditSetTableViewController *)navController.topViewController;
         
-        dvc.editableSet = self.set;
-        dvc.delegate = self;
+        dvc.editingSet = self.set;
+        dvc.delegate   = self;
     }
 }
 

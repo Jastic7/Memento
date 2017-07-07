@@ -10,7 +10,7 @@
 #import "SelectLanguageTableViewController.h"
 #import "ServiceLocator.h"
 
-static NSString * const kSelectLangSegue = @"selectLanguageSegue";
+static NSString * const kSelectLangSegue = @"SelectLanguageSegue";
 
 
 @interface SelectedLanguagesTableViewController ()
@@ -56,7 +56,7 @@ static NSString * const kSelectLangSegue = @"selectLanguageSegue";
     [self configureLanguageLabels];
 }
 
--(void)viewDidDisappear:(BOOL)animated {
+- (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     
     if (self.deletedWasTapped) {
@@ -119,7 +119,6 @@ static NSString * const kSelectLangSegue = @"selectLanguageSegue";
 - (IBAction)deleteTapped:(id)sender {
     self.deletedWasTapped = YES;
     [self.navigationController popViewControllerAnimated:YES];
-//    self.deleteSetCompletion();
 }
 
 

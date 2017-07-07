@@ -28,6 +28,6 @@ typedef NS_ENUM(NSInteger, EditingMode) {
 @interface EditSetTableViewController : UITableViewController
 
 @property (nonatomic, weak) id <EditSetTableViewControllerDelegate> delegate;
-@property (nonatomic, strong) Set *editableSet;
+@property (nonatomic, strong) Set *editingSet;
 
 @end

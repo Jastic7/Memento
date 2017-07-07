@@ -61,7 +61,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="titleOfSetTextField" destination="0PC-mq-P1S" id="Vfr-f1-32c"/>
-                        <segue destination="AlX-y4-kpO" kind="show" identifier="selectedLanguagesSegue" id="shl-ND-vVh"/>
+                        <segue destination="AlX-y4-kpO" kind="show" identifier="SelectedLanguagesSegue" id="shl-ND-vVh"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RJM-Lg-khP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -180,7 +180,7 @@
                     <connections>
                         <outlet property="definitionLanguageLabel" destination="K7k-cl-YWc" id="JhZ-QR-pI7"/>
                         <outlet property="termLanguageLabel" destination="bMz-2m-s9s" id="MGQ-r5-koX"/>
-                        <segue destination="h7s-EO-lx7" kind="show" identifier="selectLanguageSegue" id="u5u-j0-C8Z"/>
+                        <segue destination="h7s-EO-lx7" kind="show" identifier="SelectLanguageSegue" id="u5u-j0-C8Z"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DHH-lS-BRI" userLabel="First Responder" sceneMemberID="firstResponder"/>

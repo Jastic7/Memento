@@ -81,7 +81,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="Iwg-ka-jgj" kind="show" identifier="showEditEmailSegue" id="dxK-SU-Qhx"/>
+                                            <segue destination="Iwg-ka-jgj" kind="show" identifier="ShowEditEmailSegue" id="dxK-SU-Qhx"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -103,7 +103,7 @@
                                                         <color key="titleColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
                                                     <connections>
-                                                        <segue destination="KfN-Pz-QRM" kind="show" identifier="showPasswordSettingSegue" id="cIt-Wp-1pL"/>
+                                                        <segue destination="KfN-Pz-QRM" kind="show" identifier="ShowPasswordSettingSegue" id="cIt-Wp-1pL"/>
                                                     </connections>
                                                 </button>
                                             </subviews>

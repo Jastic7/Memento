@@ -16,7 +16,7 @@
 
 static NSString * const kLearnRoundInfoHeaderID = @"LearnRoundInfoHeader";
 static NSString * const kItemOfSetTableViewCellID = @"ItemOfSetTableViewCell";
-static NSString * const kLearnSettingsSegue = @"learnSettingsSegue";
+static NSString * const kLearnSettingsSegue = @"ShowLearnSettingsSegue";
 
 
 @interface LearnRoundInfoTableViewController () <UINavigationBarDelegate>
@@ -49,7 +49,7 @@ static NSString * const kLearnSettingsSegue = @"learnSettingsSegue";
     return _serviceLocator;
 }
 
-- (NSMutableArray<ItemOfSet *> *)unknownItems {
+- (NSMutableArray <ItemOfSet *> *)unknownItems {
     if (!_unknownItems) {
         _unknownItems = [self.roundSet itemsWithLearnState:Unknown];
     }
@@ -57,7 +57,7 @@ static NSString * const kLearnSettingsSegue = @"learnSettingsSegue";
     return _unknownItems;
 }
 
-- (NSMutableArray<ItemOfSet *> *)learntItems {
+- (NSMutableArray <ItemOfSet *> *)learntItems {
     if (!_learntItems) {
         _learntItems = [self.roundSet  itemsWithLearnState:Learnt];
     }
@@ -65,7 +65,7 @@ static NSString * const kLearnSettingsSegue = @"learnSettingsSegue";
     return _learntItems;
 }
 
-- (NSMutableArray<ItemOfSet *> *)masteredItems {
+- (NSMutableArray <ItemOfSet *> *)masteredItems {
     if (!_masteredItems) {
         _masteredItems = [self.roundSet itemsWithLearnState:Mastered];
     }
@@ -73,7 +73,7 @@ static NSString * const kLearnSettingsSegue = @"learnSettingsSegue";
     return _masteredItems;
 }
 
-- (NSMutableArray<NSMutableArray<ItemOfSet *> *> *)items {
+- (NSMutableArray <NSMutableArray<ItemOfSet *> *> *)items {
     if (!_items) {
         _items = [NSMutableArray array];
         
@@ -96,7 +96,7 @@ static NSString * const kLearnSettingsSegue = @"learnSettingsSegue";
     return _items;
 }
 
-- (NSMutableArray<NSString *> *)titles {
+- (NSMutableArray <NSString *> *)titles {
     if (!_titles) {
         _titles = [NSMutableArray array];
     }
@@ -198,7 +198,7 @@ static NSString * const kLearnSettingsSegue = @"learnSettingsSegue";
 
 #pragma mark - Navigation
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSString *identifier = segue.identifier;
     
     if ([identifier isEqualToString:kLearnSettingsSegue]) {

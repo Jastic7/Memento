@@ -101,7 +101,7 @@
                                             <outlet property="countTermsLabel" destination="Idk-2A-Vg3" id="J3f-G8-FjE"/>
                                             <outlet property="setView" destination="Ovx-MT-0gp" id="5hn-A8-Ubo"/>
                                             <outlet property="titleLabel" destination="cyt-nt-dRd" id="Kse-tT-LBz"/>
-                                            <segue destination="Eg5-yh-EAG" kind="show" identifier="detailSetSegue" id="iFe-Bu-Lza"/>
+                                            <segue destination="Eg5-yh-EAG" kind="show" identifier="ShowDetailSetSegue" id="iFe-Bu-Lza"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -118,13 +118,13 @@
                     <navigationItem key="navigationItem" title="Sets" id="Cgh-Wh-nb7">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="6VK-Uo-gWv">
                             <connections>
-                                <segue destination="whK-Ao-VA2" kind="presentation" identifier="createNewSetSegue" id="556-dZ-Z6z"/>
+                                <segue destination="whK-Ao-VA2" kind="presentation" identifier="CreateNewSetSegue" id="556-dZ-Z6z"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="dRh-9M-rL9" id="kyc-sb-b1a"/>
-                        <segue destination="EeB-lp-O46" kind="presentation" identifier="showWelcomeSegue" modalTransitionStyle="flipHorizontal" id="Xl7-8c-L13"/>
+                        <segue destination="EeB-lp-O46" kind="presentation" identifier="ShowWelcomeSegue" modalTransitionStyle="flipHorizontal" id="Xl7-8c-L13"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JxS-ak-l73" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -159,7 +159,7 @@
                                             <inset key="titleEdgeInsets" minX="10" minY="15" maxX="0.0" maxY="0.0"/>
                                             <state key="normal" title="Learn"/>
                                             <connections>
-                                                <segue destination="jsI-YI-fPY" kind="presentation" identifier="roundLearnModeSegue" id="Juw-T6-QuT"/>
+                                                <segue destination="jsI-YI-fPY" kind="presentation" identifier="ShowRoundLearnModeSegue" id="Juw-T6-QuT"/>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OpS-MD-dBw" customClass="CustomButton">
@@ -169,7 +169,7 @@
                                             <inset key="titleEdgeInsets" minX="10" minY="15" maxX="0.0" maxY="0.0"/>
                                             <state key="normal" title="Match"/>
                                             <connections>
-                                                <segue destination="q5J-HD-rDc" kind="presentation" identifier="matchModePrepareSegue" id="Twi-Lb-g84"/>
+                                                <segue destination="q5J-HD-rDc" kind="presentation" identifier="ShowMatchModePrepareSegue" id="Twi-Lb-g84"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -197,7 +197,7 @@
                     <navigationItem key="navigationItem" id="Xmg-y8-5ZS">
                         <barButtonItem key="rightBarButtonItem" image="configuration" id="cAy-el-WGm">
                             <connections>
-                                <segue destination="whK-Ao-VA2" kind="presentation" identifier="editSetSegue" id="Z8g-v2-Hb0"/>
+                                <segue destination="whK-Ao-VA2" kind="presentation" identifier="EditSetSegue" id="Z8g-v2-Hb0"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -496,7 +496,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="configuration" id="c0w-ft-thr">
                             <connections>
-                                <segue destination="EEo-0x-Q64" kind="show" identifier="learnSettingsSegue" id="wg2-MZ-CCi"/>
+                                <segue destination="EEo-0x-Q64" kind="show" identifier="ShowLearnSettingsSegue" id="wg2-MZ-CCi"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -861,6 +861,6 @@
         <image name="sets_tabbar" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="556-dZ-Z6z"/>
+        <segue reference="Z8g-v2-Hb0"/>
     </inferredMetricsTieBreakers>
 </document>

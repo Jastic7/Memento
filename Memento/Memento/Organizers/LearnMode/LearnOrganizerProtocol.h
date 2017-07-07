@@ -62,6 +62,10 @@ didCheckedDefinitionWithLearningState:(LearnState)learnProgress
  */
 - (void)selectNextLearningItem;
 
+/*!
+ * @brief Get right definition for current term.
+ * @return Definition of current term.
+ */
 - (NSString *)getRightAnswer;
 
 @end

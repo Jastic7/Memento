@@ -23,9 +23,9 @@
 #import <AFNetworking/AFNetworkReachabilityManager.h>
 
 static NSString * const kSetCellID          = @"SetTableViewCell";
-static NSString * const kCreateNewSetSegue  = @"createNewSetSegue";
-static NSString * const kDetailSetSegue     = @"detailSetSegue";
-static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
+static NSString * const kCreateNewSetSegue  = @"CreateNewSetSegue";
+static NSString * const kDetailSetSegue     = @"ShowDetailSetSegue";
+static NSString * const kShowWelcomeSegue   = @"ShowWelcomeSegue";
 
 
 @interface SetsViewController () <UITableViewDataSource, UITableViewDelegate, EditSetTableViewControllerDelegate>
@@ -80,6 +80,7 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
     
     return _alertPresenter;
 }
+
 
 #pragma mark - LifeCycle
 
@@ -193,7 +194,8 @@ static NSString * const kShowWelcomeSegue   = @"showWelcomeSegue";
             [self.deletedSetsId addObject:set.identifier];
             
             [self.tableView beginUpdates];
-                [self.tableView deleteRowsAtIndexPaths:@[self.indexPathOfSelectedSet] withRowAnimation:UITableViewRowAnimationNone];
+                [self.tableView deleteRowsAtIndexPaths:@[self.indexPathOfSelectedSet]
+                                      withRowAnimation:UITableViewRowAnimationNone];
                 self.indexPathOfSelectedSet = nil;
                 if (self.sets.count == 0) {
                     [self showEmptyStateLabel];

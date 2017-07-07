@@ -24,7 +24,7 @@
 
 static NSString * const kEditingItemOfSetCellID = @"EditingItemOfSetTableViewCell";
 static NSString * const kAddItemCellID          = @"AddItemTableViewCell";
-static NSString * const kSelectedLangSegue      = @"selectedLanguagesSegue";
+static NSString * const kSelectedLangSegue      = @"SelectedLanguagesSegue";
 
 
 @interface EditSetTableViewController () <EditingItemOfSetTableViewCellDelegate>
@@ -49,13 +49,13 @@ static NSString * const kSelectedLangSegue      = @"selectedLanguagesSegue";
 
 #pragma mark - Getters
 
-- (Set *)editableSet {
-    if (!_editableSet) {
+- (Set *)editingSet {
+    if (!_editingSet) {
         NSString *author = [[ServiceLocator shared].userDefaultsService userName];
-        _editableSet = [Set setWithTitle:nil author:author definitionLang:nil termLang:nil items:nil];
+        _editingSet = [Set setWithTitle:nil author:author definitionLang:nil termLang:nil items:nil];
     }
     
-    return _editableSet;
+    return _editingSet;
 }
 
 - (NSPredicate *)emptyItemPredicate {
@@ -204,7 +204,7 @@ static NSString * const kSelectedLangSegue      = @"selectedLanguagesSegue";
     }
     
     if ([self isEditDelete]) {
-        [self.delegate editSetTableViewControllerDidDeleteSet:self.editableSet inEditingMode:self.editingMode];
+        [self.delegate editSetTableViewControllerDidDeleteSet:self.editingSet inEditingMode:self.editingMode];
         return;
     }
     
@@ -213,9 +213,9 @@ static NSString * const kSelectedLangSegue      = @"selectedLanguagesSegue";
         NSArray <ItemOfSet *> *filteredItems = [self.items filteredArrayUsingPredicate:self.emptyItemPredicate];
         
         NSString *title = self.titleOfSetTextField.text;
-        [self.editableSet updateWithTitle:title termLang:self.termLanguage defLang:self.definitionLanguage items:[filteredItems mutableCopy]];
+        [self.editingSet updateWithTitle:title termLang:self.termLanguage defLang:self.definitionLanguage items:[filteredItems mutableCopy]];
         
-        [self.delegate editSetTableViewControllerDidEditSet:self.editableSet inEditingMode:self.editingMode];
+        [self.delegate editSetTableViewControllerDidEditSet:self.editingSet inEditingMode:self.editingMode];
         self.delegate = nil;
     }
 }
@@ -236,7 +236,7 @@ static NSString * const kSelectedLangSegue      = @"selectedLanguagesSegue";
             self.definitionLanguage = definitionLang;
         };
         dvc.deleteSetCompletion = ^() {
-            [self.delegate editSetTableViewControllerDidDeleteSet:self.editableSet inEditingMode:self.editingMode];
+            [self.delegate editSetTableViewControllerDidDeleteSet:self.editingSet inEditingMode:self.editingMode];
         };
     }
 }
@@ -333,11 +333,11 @@ static NSString * const kSelectedLangSegue      = @"selectedLanguagesSegue";
 }
 
 - (void)initializeProperties {
-    self.editingMode                = _editableSet == nil ? CreateNewSet : EditExistingSet;
-    self.titleOfSetTextField.text   = self.editableSet.title;
-    self.termLanguage               = self.editableSet.termLang;
-    self.definitionLanguage         = self.editableSet.definitionLang;
-    self.items                      = [self.editableSet.items mutableCopy];
+    self.editingMode                = _editingSet == nil ? CreateNewSet : EditExistingSet;
+    self.titleOfSetTextField.text   = self.editingSet.title;
+    self.termLanguage               = self.editingSet.termLang;
+    self.definitionLanguage         = self.editingSet.definitionLang;
+    self.items                      = [self.editingSet.items mutableCopy];
     self.countOfSpecialCells        = 1;
 }
 
