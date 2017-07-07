@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="EditingItemOfSetTableViewCell" rowHeight="127" id="KGk-i7-Jjw" customClass="EditingItemOfSetTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="130"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="129"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e9s-MT-wIe">
+                        <rect key="frame" x="10" y="8" width="300" height="114"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="tDh-GA-2YW">
+                                <rect key="frame" x="0.0" y="0.0" width="300" height="106"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1000" contentMode="scaleToFill" scrollEnabled="NO" text="Lorem ipsum dolor sit er elit " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="SLj-oQ-E8P" customClass="EditingTextView">
+                                        <rect key="frame" x="16" y="0.0" width="268" height="35.5"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="gAY-92-ObH"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no"/>
+                                    </textView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Term" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4zi-db-Rhm">
+                                        <rect key="frame" x="16" y="39" width="268" height="12"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="12" id="VUR-pn-8uq"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="10"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="2000" contentMode="scaleToFill" scrollEnabled="NO" text="Lorem ipsum dolor sit er elit lamet" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="M7l-tf-Y5c" customClass="EditingTextView">
+                                        <rect key="frame" x="16" y="55" width="268" height="35.5"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="xLW-nF-vW3"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no"/>
+                                    </textView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Definition" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BDx-CV-jW9">
+                                        <rect key="frame" x="16" y="94" width="268" height="12"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="12" id="whc-dD-md7"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="10"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="BDx-CV-jW9" firstAttribute="leading" secondItem="tDh-GA-2YW" secondAttribute="leading" constant="16" id="0pR-O7-Zhy"/>
+                                    <constraint firstAttribute="trailing" secondItem="M7l-tf-Y5c" secondAttribute="trailing" constant="16" id="7Uj-c5-CMm"/>
+                                    <constraint firstItem="M7l-tf-Y5c" firstAttribute="leading" secondItem="tDh-GA-2YW" secondAttribute="leading" constant="16" id="LIe-s1-Y2p"/>
+                                    <constraint firstItem="SLj-oQ-E8P" firstAttribute="leading" secondItem="tDh-GA-2YW" secondAttribute="leading" constant="16" id="WNk-dw-Rge"/>
+                                    <constraint firstAttribute="trailing" secondItem="4zi-db-Rhm" secondAttribute="trailing" constant="16" id="jbN-cu-UuD"/>
+                                    <constraint firstItem="4zi-db-Rhm" firstAttribute="leading" secondItem="tDh-GA-2YW" secondAttribute="leading" constant="16" id="wGY-2F-PSD"/>
+                                    <constraint firstAttribute="trailing" secondItem="SLj-oQ-E8P" secondAttribute="trailing" constant="16" id="zyK-FE-hZQ"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="tDh-GA-2YW" firstAttribute="leading" secondItem="e9s-MT-wIe" secondAttribute="leading" id="3Q7-em-GA3"/>
+                            <constraint firstAttribute="trailing" secondItem="tDh-GA-2YW" secondAttribute="trailing" id="3h4-QT-9Qv"/>
+                            <constraint firstAttribute="bottom" secondItem="tDh-GA-2YW" secondAttribute="bottom" constant="8" id="lsv-nR-tvf"/>
+                            <constraint firstItem="tDh-GA-2YW" firstAttribute="top" secondItem="e9s-MT-wIe" secondAttribute="top" id="vgb-Ys-MGt"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                <constraints>
+                    <constraint firstItem="e9s-MT-wIe" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="ESZ-Ya-J0F"/>
+                    <constraint firstItem="e9s-MT-wIe" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="a2f-Ng-3QO"/>
+                    <constraint firstAttribute="trailing" secondItem="e9s-MT-wIe" secondAttribute="trailing" constant="10" id="gMn-ZD-T2L"/>
+                    <constraint firstAttribute="bottom" secondItem="e9s-MT-wIe" secondAttribute="bottom" constant="8" id="lMb-aw-EVx"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="definitionTextView" destination="M7l-tf-Y5c" id="mk8-K9-Nqx"/>
+                <outlet property="termTextView" destination="SLj-oQ-E8P" id="y3E-cp-hE2"/>
+            </connections>
+            <point key="canvasLocation" x="32" y="100"/>
+        </tableViewCell>
+    </objects>
+</document>
