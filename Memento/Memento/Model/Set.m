@@ -16,6 +16,7 @@
 @property (nonatomic, copy) NSString *author;
 @property (nonatomic, copy) NSString *termLang;
 @property (nonatomic, copy) NSString *definitionLang;
+@property (nonatomic, strong) NSDate *creationDate;
 @property (nonatomic, strong) NSMutableArray<ItemOfSet *> *items;
 
 @end
@@ -63,6 +64,9 @@
         _creationDate = creationDate;
         
         [self.items addObjectsFromArray:items];
+        [self.items sortUsingComparator:^NSComparisonResult(ItemOfSet * _Nonnull obj1, ItemOfSet * _Nonnull obj2) {
+            return [obj1.term compare:obj2.term];
+        }];
     }
     
     return self;
@@ -133,9 +137,6 @@
 
 - (void)addItem:(ItemOfSet *)item {
     [self.items addObject:item];
-    [self.items sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
-        return [obj1 compare:obj2];
-    }];
 }
 
 - (void)addItemsFromSet:(Set *)set {
@@ -244,6 +245,7 @@
     copySet.title           = self.title;
     copySet.termLang        = self.termLang;
     copySet.definitionLang  = self.definitionLang;
+    copySet.creationDate    = self.creationDate;
     
     for (ItemOfSet *item in self.items) {
         [copySet.items addObject:[item copy]];

@@ -240,6 +240,7 @@ static NSString * const reuseIdentifier = @"ItemOfMatchCollectionViewCell";
             cell.alpha = 0.0;
         } completion:^(BOOL finished) {
             [self.collectionView deselectItemAtIndexPath:indexPath animated:NO];
+            [cell setHidden:YES];
         }];
     }
     
